@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLedsTable extends Migration
+class CreateStockTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateLedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('leds', function (Blueprint $table) {
+        Schema::dropIfExists('stock');
+        Schema::create('stock', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type');
+            $table->string('code');
+            $table->string('name');
+            $table->string('description');
             $table->text('data');
+            $table->text('image');
+            $table->text('detail')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ class CreateLedsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leds');
+        Schema::dropIfExists('stock');
     }
 }

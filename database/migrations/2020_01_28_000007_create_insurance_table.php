@@ -21,6 +21,7 @@ class CreateInsuranceTable extends Migration
             $table->text('price');                  // MONTHLY, QUARTERLY, YEARLY
             $table->text('image')->nullable();
             $table->text('detail')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

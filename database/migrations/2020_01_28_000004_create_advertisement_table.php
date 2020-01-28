@@ -13,12 +13,14 @@ class CreateAdvertisementTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('advertisement');
         Schema::create('advertisement', function (Blueprint $table) {
             $table->increments('id');
             $table->text('image');
             $table->string('title');
             $table->text('description');
             $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

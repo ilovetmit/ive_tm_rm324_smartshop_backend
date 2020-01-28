@@ -13,12 +13,14 @@ class CreateQrWallTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('qr_wall');
         Schema::create('qr_wall', function (Blueprint $table) {
             $table->string('qrcode')->primary();
             $table->string('product_qrcode');
-            $table->foreign('product_qrcode')->references('qrcode')->on('products')->onDelete('cascade');
+            $table->foreign('product_qrcode','product_qrcode_fk')->references('qrcode')->on('products')->onDelete('cascade');
             $table->string('message')->nullable();
             $table->string('remark')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
