@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->text('bio')->nullable();
             // $table->text('interest')->nullable();                -> (cancel||useless attribute)
             // $table->text('face_id')->nullable();                 -> (cancel)
-            $table->string('api_token')->unique();
+            $table->string('api_token')->nullable();
             $table->softDeletes();           
             $table->rememberToken();
             $table->timestamps();
