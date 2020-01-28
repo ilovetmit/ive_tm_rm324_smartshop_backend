@@ -17,13 +17,14 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            // $table->foreign('user_id','user_id_fk')->references('user_id')->on('users')->onDelete('cascade');
             $table->string('type');
             $table->string('title');
             $table->double('amount');
             $table->double('balance');
             $table->string('account');
             $table->text('remark')->nullable();;
+            $table->softDeletes();
             $table->timestamps();
         });
     }

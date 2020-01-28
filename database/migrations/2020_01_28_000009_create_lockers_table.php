@@ -24,6 +24,7 @@ class CreateLockersTable extends Migration
             $table->string('size')->nullable();
             $table->text('price');
             // $table->integer('hours')->default(2)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             // $table->engine = 'MyISAM';                           -> (unknow)
             
-            $table->bigIncrements('user_id');
+            $table->increments('user_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -32,9 +32,10 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default('icon.jpg');
             // $table->integer('role')->default(10);                -> (permission package?)
             $table->text('bio')->nullable();
-            // $table->text('interest')->nullable();                -> (cancel)
+            // $table->text('interest')->nullable();                -> (cancel||useless attribute)
             // $table->text('face_id')->nullable();                 -> (cancel)
-            $table->string('api_token')->unique();               
+            $table->string('api_token')->nullable();
+            $table->softDeletes();           
             $table->rememberToken();
             $table->timestamps();
         });

@@ -13,6 +13,7 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('product_transactions');
         Schema::dropIfExists('products');
         Schema::create('products', function (Blueprint $table) {
             // $table->engine = 'MyISAM';                           -> (unknow)
@@ -39,6 +40,7 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('product_transactions');
         Schema::dropIfExists('products');
     }
 }
