@@ -17,27 +17,21 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             // $table->engine = 'MyISAM';                           -> (unknow)
             
-            $table->increments('user_id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->bigIncrements('id');
+            $table->string('email')                 ->unique();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('password');
-            // $table->string('credit_card')->nullable();           -> (cancel)
-            // $table->string('cc_type')->nullable();               -> (cancel)
-            // $table->double('balance')->default(0.0);             -> (cancel)
-            $table->double('saving_account')->default(0.0);
-            $table->double('current_account')->default(0.0);
-            // $table->double('ive_coin')->default(0.0);            -> (cancel)
-            $table->double('bitcoin')->default(0.0);             // -> (unknow type)
-            $table->string('avatar')->default('icon.jpg');
-            // $table->integer('role')->default(10);                -> (permission package?)
-            $table->text('bio')->nullable();
-            // $table->text('interest')->nullable();                -> (cancel||useless attribute)
-            // $table->text('face_id')->nullable();                 -> (cancel)
-            $table->string('api_token')->nullable();
-            $table->softDeletes();           
+            $table->text('avatar');
+            $table->date('birthday')                ->nullable();
+            $table->int('gender');
+            $table->int('telephone')                ->nullable();
+            $table->text('bio')                     ->nullable();
+            $table->int('status');
+            $table->timestamp('email_verified_at')  ->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

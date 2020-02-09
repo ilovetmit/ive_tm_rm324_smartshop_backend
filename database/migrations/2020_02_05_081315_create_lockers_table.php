@@ -4,20 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordResetsTable extends Migration
+class CreateLockersTable extends Migration
 {
     /**
      * Run the migrations.
-     * Copy from last smartshop project
+     *
      * @return void
      */
     public function up()
     {
-        Schema::dropIfExists('password_resets');
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token');
+        Schema::create('lockers', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('qrcode');
+            $table->double('per_hour_price');
+            $table->integer('is_active');
+            $table->integer('is_using');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +31,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('lockers');
     }
 }

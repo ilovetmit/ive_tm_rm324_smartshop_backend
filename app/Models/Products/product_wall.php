@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Products;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
    
-class Insurance extends Model
+class product_wall extends Model
 {
     use SoftDeletes;
 
-    public $table = 'vending_products';
+    public $table = 'product_walls';
 
     protected $dates = [
         'created_at',
@@ -18,10 +18,16 @@ class Insurance extends Model
     ];
 
     protected $fillable = [
+        'qrcode',
         'product_id',
-        'channel',
+        'message',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    public function product_walls_products()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

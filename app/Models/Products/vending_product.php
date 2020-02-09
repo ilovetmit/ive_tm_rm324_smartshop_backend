@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Products;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
    
-class Insurance extends Model
+class vending_product extends Model
 {
     use SoftDeletes;
 
@@ -24,4 +24,9 @@ class Insurance extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function vending_products_products()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

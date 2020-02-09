@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Account_Info_s;
 
+use App\Models\Accounts\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-   
-class Insurance extends Model
+
+class Address extends Model
 {
     use SoftDeletes;
 
-    public $table = 'vending_products';
+    public $table = 'addresses';
 
     protected $dates = [
         'created_at',
@@ -18,10 +19,17 @@ class Insurance extends Model
     ];
 
     protected $fillable = [
-        'product_id',
-        'channel',
+        'user_id',
+        'district',
+        'address1',
+        'address2',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    public function addresses_users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

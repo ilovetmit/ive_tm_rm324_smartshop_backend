@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Products;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
    
-class Insurance extends Model
+class Advertisment extends Model
 {
     use SoftDeletes;
 
-    public $table = 'vending_products';
+    public $table = 'advertisments';
 
     protected $dates = [
         'created_at',
@@ -18,10 +18,17 @@ class Insurance extends Model
     ];
 
     protected $fillable = [
-        'product_id',
-        'channel',
+        'header',
+        'image',
+        'description',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    public function advertisments_tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
