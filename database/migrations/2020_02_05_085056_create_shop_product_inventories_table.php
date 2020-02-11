@@ -15,7 +15,12 @@ class CreateShopProductInventoriesTable extends Migration
     {
         Schema::create('shop_product_inventories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('shop_product_id');
+            $table->foreign('shop_product_id')              ->references('id')->on('shop_products')->onDelete('cascade');
+            $table->string('rfid_code');
+            $table->integer('is_sold');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

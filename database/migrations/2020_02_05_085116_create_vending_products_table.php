@@ -15,7 +15,11 @@ class CreateVendingProductsTable extends Migration
     {
         Schema::create('vending_products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')              ->references('id')->on('products')->onDelete('cascade');
+            $table->integer('channel');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

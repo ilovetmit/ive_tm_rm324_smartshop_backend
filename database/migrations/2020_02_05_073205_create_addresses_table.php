@@ -15,8 +15,8 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')   ->nullable();
-            $table->foreign('user_id')              ->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')              ->references('id')->on('users')->onDelete('cascade');
             $table->integer('district');
             $table->text('address1');
             $table->text('address2')                ->nullable();

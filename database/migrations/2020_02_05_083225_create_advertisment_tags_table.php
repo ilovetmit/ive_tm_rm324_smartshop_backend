@@ -14,8 +14,10 @@ class CreateAdvertismentTagsTable extends Migration
     public function up()
     {
         Schema::create('advertisment_tags', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('advertisment_id');
+            $table->foreign('advertisment_id')              ->references('id')->on('advertisments')->onDelete('cascade');
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')                       ->references('id')->on('tags')->onDelete('cascade');
         });
     }
 

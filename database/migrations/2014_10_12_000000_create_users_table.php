@@ -24,10 +24,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->text('avatar');
             $table->date('birthday')                ->nullable();
-            $table->int('gender');
-            $table->int('telephone')                ->nullable();
+            $table->integer('gender');
+            $table->integer('telephone')            ->nullable();
             $table->text('bio')                     ->nullable();
-            $table->int('status');
+            $table->integer('status');
             $table->timestamp('email_verified_at')  ->nullable();
             $table->rememberToken();
             $table->timestamps();

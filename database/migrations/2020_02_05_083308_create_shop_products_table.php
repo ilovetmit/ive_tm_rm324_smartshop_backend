@@ -15,7 +15,11 @@ class CreateShopProductsTable extends Migration
     {
         Schema::create('shop_products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('shop_product_id');
+            $table->foreign('shop_product_id')              ->references('id')->on('shop_products')->onDelete('cascade');
+            $table->string('qrcode');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

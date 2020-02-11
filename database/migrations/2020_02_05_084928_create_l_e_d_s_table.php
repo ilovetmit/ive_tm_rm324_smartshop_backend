@@ -15,7 +15,10 @@ class CreateLEDSTable extends Migration
     {
         Schema::create('l_e_d_s', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('shop_product_id');
+            $table->foreign('shop_product_id')              ->references('id')->on('shop_products')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

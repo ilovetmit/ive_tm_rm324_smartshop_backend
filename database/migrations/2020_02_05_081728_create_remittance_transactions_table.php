@@ -15,7 +15,12 @@ class CreateRemittanceTransactionsTable extends Migration
     {
         Schema::create('remittance_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('transaction_id');
+            $table->foreign('transaction_id')               ->references('id')->on('transactions')->onDelete('cascade');
+            $table->unsignedBigInteger('remittee_id');
+            $table->foreign('remittee_id')                  ->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
