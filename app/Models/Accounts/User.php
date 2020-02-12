@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-// use Laravel\Passport\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 use App\Models\Account_Info_s\Interest;
 use App\Models\Account_Info_s\Address;
@@ -21,7 +21,7 @@ use App\Models\Lockers\locker_transaction;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable;//, HasApiTokens;
+    use SoftDeletes, Notifiable, HasApiTokens;
 
     public $table = 'users';
 
