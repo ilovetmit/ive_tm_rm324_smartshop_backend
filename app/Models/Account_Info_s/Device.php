@@ -10,7 +10,7 @@ class Device extends Model
 {
     use SoftDeletes;
 
-    public $table = 'addresses';
+    public $table = 'devices';
 
     protected $dates = [
         'created_at',
@@ -27,7 +27,7 @@ class Device extends Model
         'deleted_at',
     ];
 
-    public function devices_users()
+    public function hasUser()
     {
         return $this->belongsTo(User::class);
     }

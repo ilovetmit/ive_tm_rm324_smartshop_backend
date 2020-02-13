@@ -11,6 +11,6 @@ class LockersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Lockers\Locker::class,1)->create();
     }
 }

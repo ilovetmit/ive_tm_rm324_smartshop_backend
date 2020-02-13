@@ -10,7 +10,7 @@ class Locker extends Model
 {
     use SoftDeletes;
 
-    public $table = 'permissions';
+    public $table = 'lockers';
 
     protected $dates = [
         'created_at',
@@ -28,7 +28,7 @@ class Locker extends Model
         'deleted_at',
     ];
 
-    public function Lockers_locker_transaction()
+    public function hasLocker_transaction()
     {
         return $this->hasMany(locker_transaction::class);
     }

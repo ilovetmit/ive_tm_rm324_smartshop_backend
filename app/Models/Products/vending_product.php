@@ -25,7 +25,7 @@ class vending_product extends Model
         'deleted_at',
     ];
 
-    public function vending_products_products()
+    public function hasProduct()
     {
         return $this->belongsTo(Product::class);
     }

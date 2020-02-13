@@ -28,7 +28,7 @@ class Address extends Model
         'deleted_at',
     ];
 
-    public function addresses_users()
+    public function hasUser()
     {
         return $this->belongsTo(User::class);
     }

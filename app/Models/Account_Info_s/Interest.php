@@ -10,7 +10,7 @@ class Interest extends Model
 {
     use SoftDeletes;
 
-    public $table = 'addresses';
+    public $table = 'interests';
 
     protected $dates = [
         'created_at',
@@ -26,7 +26,7 @@ class Interest extends Model
         'deleted_at',
     ];
 
-    public function interests_users()
+    public function hasUser()
     {
         return $this->belongsToMany(User::class);
     }

@@ -18,25 +18,24 @@ class shop_product extends Model
     ];
 
     protected $fillable = [
-        'shop_product_id',
-        'rfid_code',
-        'is_sold',
+        'product_id',
+        'qrcode',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public function shop_product_products()
+    public function hasProduct()
     {
         return $this->belongsTo(product::class);
     }
 
-    public function shop_product_inventories_leds()
+    public function hasLED()
     {
         return $this->hasMany(LED::class);
     }
 
-    public function shop_products_shop_product_inventories()
+    public function hasShop_product_inventory()
     {
         return $this->hasMany(shop_product_inventory::class);
     }

@@ -29,32 +29,32 @@ class Product extends Model
         'deleted_at',
     ];
 
-    public function products_tags()
+    public function hasTag()
     {
         return $this->belongsToMany(Tag::class);
     }
 
-    public function products_categories()
+    public function hasCategory()
     {
         return $this->belongsToMany(Category::class);
     }
 
-    public function products_product_walls()
+    public function hasProduct_wall()
     {
         return $this->hasMany(product_wall::class);
     }
 
-    public function products_shop_products()
+    public function hasShop_product()
     {
         return $this->hasMany(shop_product::class);
     }
 
-    public function products_product_transactions()
+    public function hasProduct_transaction()
     {
         return $this->hasMany(product_transaction::class);
     }
 
-    public function products_vending_product()
+    public function hasVending_product()
     {
         return $this->hasMany(vending_product::class);
     }

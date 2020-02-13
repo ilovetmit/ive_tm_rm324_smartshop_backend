@@ -26,12 +26,12 @@ class remittance_transaction extends Model
         'deleted_at',
     ];
 
-    public function remittance_transactions_users()
+    public function hasUser()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function remittance_transactions_transactions()
+    public function hasTransaction()
     {
         return $this->belongsTo(Transaction::class);
     }

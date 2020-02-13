@@ -84,42 +84,43 @@ class User extends Authenticatable
         $this->notify(new ResetPassword($token));
     }
 
-    public function users_roles()
+    // relationship
+    public function hasRole()
     {
         return $this->belongsToMany(Role::class);
     }
 
-    public function users_interests()
+    public function hasInterest()
     {
         return $this->belongsToMany(Interest::class);
     }
 
-    public function users_devices()
+    public function hasDevice()
     {
         return $this->hasMany(Device::class);
     }
 
-    public function users_addresses()
+    public function hasAddresse()
     {
         return $this->hasOne(Address::class);
     }
 
-    public function users_vitcoins()
+    public function hasVitcoin()
     {
         return $this->hasOne(Vitcoins::class);
     }
 
-    public function users_transactions()
+    public function hasTransaction()
     {
         return $this->hasMany(Transaction::class);
     }
 
-    public function users_remittance_transactions()
+    public function hasRemittance_transaction()
     {
         return $this->hasMany(remittance_transaction::class);
     }
 
-    public function users_locker_transactions()
+    public function hasLocker_transaction()
     {
         return $this->hasMany(locker_transaction::class);
     }

@@ -26,7 +26,7 @@ class shop_product_inventory extends Model
         'deleted_at',
     ];
 
-    public function shop_product_inventories_shop_products()
+    public function hasShop_product()
     {
         return $this->belongsTo(shop_product::class);
     }

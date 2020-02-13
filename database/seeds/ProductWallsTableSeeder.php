@@ -11,6 +11,6 @@ class ProductWallsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Products\product_wall::class,1)->create();
     }
 }

@@ -27,12 +27,12 @@ class product_transaction extends Model
         'deleted_at',
     ];
 
-    public function product_transactions_products()
+    public function hasProduct()
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function product_transactions_transactions()
+    public function hasTransaction()
     {
         return $this->belongsTo(Transaction::class);
     }

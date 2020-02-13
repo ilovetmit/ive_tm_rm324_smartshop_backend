@@ -11,6 +11,6 @@ class LockerTransactionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Lockers\locker_transaction::class,1)->create();
     }
 }

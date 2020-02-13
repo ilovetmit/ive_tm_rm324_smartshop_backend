@@ -11,6 +11,6 @@ class AdvertismentsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Products\Advertisment::class,1)->create();
     }
 }

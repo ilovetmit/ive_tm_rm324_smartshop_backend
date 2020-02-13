@@ -11,6 +11,6 @@ class LEDsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Products\LED::class,1)->create();
     }
 }

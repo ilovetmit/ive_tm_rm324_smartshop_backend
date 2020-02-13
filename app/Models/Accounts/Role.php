@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
-    use SoftDeletes, Auditable;
+    use SoftDeletes;//, Auditable;
 
     public $table = 'roles';
 
@@ -30,12 +30,12 @@ class Role extends Model
         'deleted_at',
     ];
 
-    public function roles_users()
+    public function hasUser()
     {
         return $this->belongsToMany(User::class);
     }
 
-    public function roles_permissions()
+    public function hasPermission()
     {
         return $this->belongsToMany(Permission::class);
     }

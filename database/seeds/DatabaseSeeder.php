@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Products\Advertisment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,23 +14,28 @@ class DatabaseSeeder extends Seeder
         // Model::unguard();
         $this->call([
             UsersTableSeeder::class,
-            AddressesTableSeeder::class,
+            RolesTableSeeder::class,
+            AddressesTableSeeder::class,            
             AdvertismentsTableSeeder::class,
             CategoriesTableSeeder::class,
             DevicesTableSeeder::class,
             InterestsTableSeeder::class,
+            ProductsTableSeeder::class,
+            VendingProductsTableSeeder::class,
+            TransactionsTableSeeder::class,
+            ShopProductsTableSeeder::class,
+            ShopProductInventoriesTableSeeder::class,
             LEDsTableSeeder::class,
             LockersTableSeeder::class,
-            LockerTransactionsTableSeeder::class,
-            ProductsTableSeeder::class,
             ProductWallsTableSeeder::class,
+            LockerTransactionsTableSeeder::class,
             ProductTransactionsTableSeeder::class,
             RemittanceTransactionsTableSeeder::class,
-            ShopProductInventoriesTableSeeder::class,
-            ShopProductsTableSeeder::class,
             TagsTableSeeder::class,
-            TransactionsTableSeeder::class,
-            VendingProductsTableSeeder::class,
+            PermissionTableSeeder::class,
+            RoleUserTableSeeder::class,
+            PermissionRoleTableSeeder::class,
+
         ]);
         // Model::reguard();
     }

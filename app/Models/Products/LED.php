@@ -9,7 +9,7 @@ class LED extends Model
 {
     use SoftDeletes;
 
-    public $table = 'leds';
+    public $table = 'l_e_d_s';
 
     protected $dates = [
         'created_at',
@@ -24,7 +24,7 @@ class LED extends Model
         'deleted_at',
     ];
 
-    public function leds_shop_products()
+    public function hasShop_product()
     {
         return $this->belongsTo(shop_product::class);
     }

@@ -2,13 +2,13 @@
 
 namespace App\Models\Accounts;
 
-use App\Traits\Auditable;
+// use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permission extends Model
 {
-    use SoftDeletes, Auditable;
+    use SoftDeletes; //, Auditable;
 
     public $table = 'permissions';
 
@@ -30,7 +30,7 @@ class Permission extends Model
         'deleted_at',
     ];
 
-    public function permissions_roles()
+    public function hasRole()
     {
         return $this->belongsToMany(Role::class);
     }

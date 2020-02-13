@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdvertismentTagsTable extends Migration
+class CreateAdvertismentTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAdvertismentTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('advertisment_tags', function (Blueprint $table) {
+        Schema::create('advertisment_tag', function (Blueprint $table) {
             $table->unsignedBigInteger('advertisment_id');
             $table->foreign('advertisment_id')              ->references('id')->on('advertisments')->onDelete('cascade');
             $table->unsignedBigInteger('tag_id');
@@ -28,6 +28,6 @@ class CreateAdvertismentTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('advertisment_tags');
+        Schema::dropIfExists('advertisment_tag');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
 use App\Models\Accounts\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -19,7 +20,7 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     $gender = $faker->randomElement(['1', '2']);
     $status = $faker->randomElement(['1', '2', '3', '4']);
-    $phoneNumber = $faker->numberBetween($min = 11111111, $max = 99999999);
+    $phoneNumber = $faker->numberBetween($min = 51111111, $max = 69999999);
     return [
         'email'             => $faker->unique()->safeEmail,
         'first_name'        => $faker->firstName,
@@ -29,7 +30,7 @@ $factory->define(User::class, function (Faker $faker) {
         'birthday'          => $faker->dateTimeThisCentury->format('Y-m-d'),
         'gender'            => $gender,
         'telephone'         => $phoneNumber,
-        'bio'               => $faker->text,
+        'bio'               => $faker->text($maxNbChars = 50),
         'status'            => $status,
         'email_verified_at' => now(),
         'remember_token'    => Str::random(10),

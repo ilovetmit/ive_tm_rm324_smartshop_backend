@@ -11,6 +11,6 @@ class TransactionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Account_Info_s\Transaction::class,1)->create();
     }
 }

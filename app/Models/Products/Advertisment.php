@@ -27,7 +27,7 @@ class Advertisment extends Model
         'deleted_at',
     ];
 
-    public function advertisments_tags()
+    public function hasTag()
     {
         return $this->belongsToMany(Tag::class);
     }

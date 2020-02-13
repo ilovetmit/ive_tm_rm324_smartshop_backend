@@ -26,7 +26,7 @@ class product_wall extends Model
         'deleted_at',
     ];
 
-    public function product_walls_products()
+    public function hasProduct()
     {
         return $this->belongsTo(Product::class);
     }

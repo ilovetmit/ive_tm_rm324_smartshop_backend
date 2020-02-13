@@ -11,7 +11,7 @@ class locker_transaction extends Model
 {
     use SoftDeletes;
 
-    public $table = 'locker_transaction';
+    public $table = 'locker_transactions';
 
     protected $dates = [
         'created_at',
@@ -23,24 +23,25 @@ class locker_transaction extends Model
         'transaction_id',
         'locker_id',
         'reveiver_id',
+        'item',
+        'deadline',
+        'remark',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    // locker <-> locker_transaction <-> transaction
-    public function locker_transactions_transactions()
+    public function hasTransaction()
     {
         return $this->belongsTo(Transaction::class);
     }
 
-    public function locker_transactions_lockers()
+    public function hasLocker()
     {
         return $this->belongsTo(locker::class);
     }
 
-    // locker <-> user
-    public function locker_transactions_users()
+    public function hasUser()
     {
         return $this->belongsTo(User::class);
     }

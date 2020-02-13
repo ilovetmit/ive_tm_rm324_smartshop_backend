@@ -11,6 +11,6 @@ class InterestsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Account_Info_s\Interest::class,1)->create();
     }
 }

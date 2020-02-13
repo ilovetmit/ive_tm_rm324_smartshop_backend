@@ -18,13 +18,14 @@ class Category extends Model
     ];
 
     protected $fillable = [
+        'name',
         'description',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public function categories_products()
+    public function hasProduct()
     {
         return $this->belongsToMany(Product::class);
     }

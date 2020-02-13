@@ -2,7 +2,6 @@
 
 namespace App\Models\Products;
 
-use App\Http\Controllers\ProductController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
    
@@ -26,12 +25,12 @@ class Tag extends Model
         'deleted_at',
     ];
 
-    public function tags_products()
+    public function hasProduct()
     {
         return $this->belongsToMany(Product::class);
     }
 
-    public function tags_advertisments()
+    public function hasAdvertisment()
     {
         return $this->belongsToMany(Advertisment::class);
     }

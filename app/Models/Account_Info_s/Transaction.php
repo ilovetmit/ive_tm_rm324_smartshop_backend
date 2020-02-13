@@ -12,7 +12,7 @@ class Transaction extends Model
 {
     use SoftDeletes;
 
-    public $table = 'transaction';
+    public $table = 'transactions';
 
     protected $dates = [
         'created_at',
@@ -24,24 +24,24 @@ class Transaction extends Model
         'header',
         'user_id',
         'amount',
+        'balance',
         'curreny',
-        'description',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public function transactions_users()
+    public function hasUser()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function transactions_locker_transactions()
+    public function hasLocker_transaction()
     {
         return $this->hasMany(locker_transaction::class);
     }
 
-    public function transactions_product_transactions()
+    public function hasProduct_transaction()
     {
         return $this->hasMany(product_transaction::class);
     }
