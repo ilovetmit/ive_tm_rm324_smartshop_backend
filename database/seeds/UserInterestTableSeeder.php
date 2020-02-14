@@ -12,7 +12,7 @@ class UserInterestTableSeeder extends Seeder
      */
     public function run()
     {
-        User::findOrFail(1)->hasInterest()->sync(1);
+        // User::findOrFail(1)->hasInterest()->sync(1);
         User::findOrFail(2)->hasInterest()->sync(1);
     }
 }

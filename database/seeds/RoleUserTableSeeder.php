@@ -13,6 +13,6 @@ class RoleUserTableSeeder extends Seeder
     public function run()
     {
         User::findOrFail(1)->hasRole()->sync(1);
-        User::findOrFail(2)->hasRole()->sync(1);
+        User::findOrFail(2)->hasRole()->sync(2);
     }
 }
