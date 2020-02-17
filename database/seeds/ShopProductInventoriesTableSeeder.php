@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\ProductManagement\ShopProductManagement\shop_product_inventory;
 
 class ShopProductInventoriesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class ShopProductInventoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Products\shop_product_inventory::class,1)->create();
+        factory(shop_product_inventory::class,1)->create();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\InformationManagement\Interest;
 
 class InterestsTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class InterestsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Account_Info_s\Interest::class,1)->create();
+        factory(Interest::class,1)->create();
     }
 }

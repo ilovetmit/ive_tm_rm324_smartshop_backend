@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\InformationManagement\Transaction;
 
 class TransactionsTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class TransactionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Account_Info_s\Transaction::class,1)->create();
+        factory(Transaction::class,1)->create();
     }
 }

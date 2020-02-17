@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Account_Info_s\Transaction;
-use App\Models\Accounts\User;
+use App\Models\InformationManagement\Transaction;
+use App\Models\UserManagement\User;
 use Faker\Generator as Faker;
 
 $factory->define(Transaction::class, function (Faker $faker) {

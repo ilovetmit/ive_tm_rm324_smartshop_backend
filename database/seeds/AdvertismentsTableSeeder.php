@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\ProductManagement\AdvertismentManagement\Advertisment;
 
 class AdvertismentsTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class AdvertismentsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Products\Advertisment::class,1)->create();
+        factory(Advertisment::class,1)->create();
     }
 }

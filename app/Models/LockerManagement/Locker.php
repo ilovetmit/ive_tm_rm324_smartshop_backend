@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models\LockerManagement;
+
+use App\Models\LockerManagement\locker_transaction;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Locker extends Model
+{
+    use SoftDeletes;
+
+    public $table = 'lockers';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    protected $fillable = [
+        'qrcode',
+        'per_hour_price',
+        'is_active',
+        'is_using',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    public function hasLocker_transaction()
+    {
+        return $this->hasMany(locker_transaction::class);
+    }
+}

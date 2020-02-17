@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\ProductManagement\AdvertismentManagement\Tag;
 
 class TagsTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Products\Tag::class,1)->create();
+        factory(Tag::class,1)->create();
     }
 }

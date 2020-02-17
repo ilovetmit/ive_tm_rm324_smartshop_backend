@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Products\Product;
 use Illuminate\Database\Seeder;
+use App\Models\ProductManagement\Product;
 
 class ProductTagTableSeeder extends Seeder
 {

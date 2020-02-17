@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\LockerManagement\Locker;
 
 class LockersTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class LockersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Lockers\Locker::class,1)->create();
+        factory(Locker::class,1)->create();
     }
 }

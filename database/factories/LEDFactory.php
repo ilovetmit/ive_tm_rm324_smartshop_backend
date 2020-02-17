@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Products\LED;
-use App\Models\Products\shop_product;
+use App\Models\ProductManagement\ShopProductManagement\LED;
+use App\Models\ProductManagement\ShopProductManagement\shop_product;
 use Faker\Generator as Faker;
 
 $factory->define(LED::class, function (Faker $faker) {

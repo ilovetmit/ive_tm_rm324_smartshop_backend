@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Account_Info_s\Interest;
+use App\Models\InformationManagement\Interest;
 use Faker\Generator as Faker;
 
 $factory->define(Interest::class, function (Faker $faker) {

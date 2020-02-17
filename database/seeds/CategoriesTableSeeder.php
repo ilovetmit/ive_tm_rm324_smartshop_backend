@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\ProductManagement\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Products\Category::class,1)->create();
+        factory(Category::class,1)->create();
     }
 }

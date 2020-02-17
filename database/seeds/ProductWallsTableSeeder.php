@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\ProductManagement\product_wall;
 
 class ProductWallsTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class ProductWallsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Products\product_wall::class,1)->create();
+        factory(product_wall::class,1)->create();
     }
 }

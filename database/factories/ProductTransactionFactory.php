@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Products\product_transaction;
-use App\Models\Products\Product;
-use App\Models\Account_Info_s\Transaction;
+use App\Models\ProductManagement\product_transaction;
+use App\Models\ProductManagement\Product;
+use App\Models\InformationManagement\Transaction;
 use Faker\Generator as Faker;
 
 $factory->define(product_transaction::class, function (Faker $faker) {

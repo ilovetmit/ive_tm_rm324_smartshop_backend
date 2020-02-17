@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Products\Tag;
+use App\Models\ProductManagement\AdvertismentManagement\Tag;
 use Faker\Generator as Faker;
 
 $factory->define(Tag::class, function (Faker $faker) {

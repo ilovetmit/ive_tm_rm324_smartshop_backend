@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\InformationManagement\Address;
 
 class AddressesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class AddressesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Account_Info_s\Address::class,1)->create();
+        factory(Address::class,1)->create();
     }
 }

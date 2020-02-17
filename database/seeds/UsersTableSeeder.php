@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Accounts\User;
+use App\Models\UserManagement\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -33,6 +33,6 @@ class UsersTableSeeder extends Seeder
             ],
         ];
         User::insert($user);
-        // factory(\App\Models\Accounts\User::class,1)->create();
+        // factory(\App\Models\UserManagement\User::class,1)->create();
     }
 }

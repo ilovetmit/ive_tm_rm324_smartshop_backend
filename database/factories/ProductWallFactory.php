@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Products\product_wall;
-use App\Models\Products\Product;
+use App\Models\ProductManagement\product_wall;
+use App\Models\ProductManagement\Product;
 use Faker\Generator as Faker;
 
 $factory->define(product_wall::class, function (Faker $faker) {

@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Products\shop_product;
-use App\Models\Products\shop_product_inventory;
+use App\Models\ProductManagement\ShopProductManagement\shop_product;
+use App\Models\ProductManagement\ShopProductManagement\shop_product_inventory;
 use Faker\Generator as Faker;
 
 $factory->define(shop_product_inventory::class, function (Faker $faker) {

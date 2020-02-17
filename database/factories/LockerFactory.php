@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Lockers\Locker;
+use App\Models\LockerManagement\Locker;
 use Faker\Generator as Faker;
 
 $factory->define(Locker::class, function (Faker $faker) {
