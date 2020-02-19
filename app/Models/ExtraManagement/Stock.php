@@ -9,7 +9,7 @@ class Stock extends Model
 {
     use SoftDeletes;
 
-    public $table = 'vending_products';
+    public $table = 'stocks';
 
     protected $dates = [
         'created_at',
@@ -18,8 +18,10 @@ class Stock extends Model
     ];
 
     protected $fillable = [
-        'product_id',
-        'channel',
+        'code',
+        'icon',
+        'name',
+        'data',
         'created_at',
         'updated_at',
         'deleted_at',

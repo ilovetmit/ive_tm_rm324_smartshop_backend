@@ -2,9 +2,9 @@
 
 namespace App\Models\LockerManagement;
 
-use App\Models\LockerManagement\locker_transaction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\TransactionManagement\LockerTransaction;
 
 class Locker extends Model
 {
@@ -28,8 +28,8 @@ class Locker extends Model
         'deleted_at',
     ];
 
-    public function hasLocker_transaction()
+    public function hasLockerTransaction()
     {
-        return $this->hasMany(locker_transaction::class);
+        return $this->hasMany(LockerTransaction::class);
     }
 }

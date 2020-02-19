@@ -2,11 +2,14 @@
 
 namespace App\Models\ProductManagement;
 
-use App\Models\ProductManagement\AdvertismentManagement\Tag;
-use App\Models\ProductManagement\ShopProductManagement\shop_product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-   
+use App\Models\TagManagement\Tag;
+use App\Models\ProductManagement\OnSell\ShopProduct;
+use App\Models\ProductManagement\VendingMachine\VendingProduct;
+use App\Models\ProductManagement\ProductWall;
+use App\Models\TransactionManagement\ProductTransaction;
+
 class Product extends Model
 {
     use SoftDeletes;
@@ -41,23 +44,23 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function hasProduct_wall()
+    public function hasProductWall()
     {
-        return $this->hasMany(product_wall::class);
+        return $this->hasMany(ProductWall::class);
     }
 
-    public function hasShop_product()
+    public function hasShopProduct()
     {
-        return $this->hasMany(shop_product::class);
+        return $this->hasMany(ShopProduct::class);
     }
 
-    public function hasProduct_transaction()
+    public function hasProductTransaction()
     {
-        return $this->hasMany(product_transaction::class);
+        return $this->hasMany(ProductTransaction::class);
     }
 
-    public function hasVending_product()
+    public function hasVendingProduct()
     {
-        return $this->hasMany(vending_product::class);
+        return $this->hasMany(VendingProduct::class);
     }
 }

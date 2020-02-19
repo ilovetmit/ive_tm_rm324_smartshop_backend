@@ -14,10 +14,10 @@ use Laravel\Passport\HasApiTokens;
 use App\Models\InformationManagement\Interest;
 use App\Models\InformationManagement\Address;
 use App\Models\InformationManagement\Device;
-use App\Models\InformationManagement\Transaction;
-use App\Models\InformationManagement\remittance_transaction;
-use App\Models\InformationManagement\Vitcoins;
-use App\Models\LockerManagement\locker_transaction;
+use App\Models\InformationManagement\Vitcoin;
+use App\Models\TransactionManagement\Transaction;
+use App\Models\TransactionManagement\RemittanceTransaction;
+use App\Models\TransactionManagement\LockerTransaction;
 
 class User extends Authenticatable
 {
@@ -59,17 +59,17 @@ class User extends Authenticatable
 
     public function getIsAdminAttribute()
     {
-        return $this->roles()->where('id', 1)->exists();
+        return $this->hasRole()->where('id', 1)->exists();
     }
 
     public function getEmailVerifiedAtAttribute($value)
     {
-        // return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
+        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
     }
 
     public function setEmailVerifiedAtAttribute($value)
     {
-        // $this->attributes['email_verified_at'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
+        $this->attributes['email_verified_at'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
     }
 
     public function setPasswordAttribute($input)
@@ -100,14 +100,14 @@ class User extends Authenticatable
         return $this->hasMany(Device::class);
     }
 
-    public function hasAddresse()
+    public function hasAddress()
     {
         return $this->hasOne(Address::class);
     }
 
     public function hasVitcoin()
     {
-        return $this->hasOne(Vitcoins::class);
+        return $this->hasOne(Vitcoin::class);
     }
 
     public function hasTransaction()
@@ -115,13 +115,13 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
-    public function hasRemittance_transaction()
+    public function hasRemittanceTransaction()
     {
-        return $this->hasMany(remittance_transaction::class);
+        return $this->hasMany(RemittanceTransaction::class);
     }
 
-    public function hasLocker_transaction()
+    public function hasLockerTransaction()
     {
-        return $this->hasMany(locker_transaction::class);
+        return $this->hasMany(LockerTransaction::class);
     }
 }

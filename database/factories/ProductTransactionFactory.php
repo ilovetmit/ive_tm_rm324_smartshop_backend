@@ -2,12 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\ProductManagement\product_transaction;
+use App\Models\TransactionManagement\ProductTransaction;
 use App\Models\ProductManagement\Product;
-use App\Models\InformationManagement\Transaction;
+use App\Models\TransactionManagement\Transaction;
 use Faker\Generator as Faker;
 
-$factory->define(product_transaction::class, function (Faker $faker) {
+$factory->define(ProductTransaction::class, function (Faker $faker) {
     $transaction_id = Transaction::all()->pluck('id');
     $product_id = Product::all()->pluck('id');
     return [

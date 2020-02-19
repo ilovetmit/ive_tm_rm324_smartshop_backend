@@ -9,7 +9,7 @@ class Insurance extends Model
 {
     use SoftDeletes;
 
-    public $table = 'vending_products';
+    public $table = 'insurances';
 
     protected $dates = [
         'created_at',
@@ -18,8 +18,10 @@ class Insurance extends Model
     ];
 
     protected $fillable = [
-        'product_id',
-        'channel',
+        'name',
+        'price',
+        'image',
+        'description',
         'created_at',
         'updated_at',
         'deleted_at',

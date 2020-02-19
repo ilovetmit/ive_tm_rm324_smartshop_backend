@@ -2,12 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\ProductManagement\ShopProductManagement\shop_product;
-use App\Models\ProductManagement\ShopProductManagement\shop_product_inventory;
+use App\Models\ProductManagement\OnSell\ShopProduct;
+use App\Models\ProductManagement\OnSell\ShopProductInventory;
 use Faker\Generator as Faker;
 
-$factory->define(shop_product_inventory::class, function (Faker $faker) {
-    $shop_product_id = shop_product::all()->pluck('id');
+$factory->define(ShopProductInventory::class, function (Faker $faker) {
+    $shop_product_id = ShopProduct::all()->pluck('id');
     $is_sold = $faker->randomElement(['1', '2']);
     return [
         'shop_product_id'   => $faker->randomElement($shop_product_id),

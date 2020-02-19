@@ -3,10 +3,10 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\ProductManagement\Product;
-use App\Models\ProductManagement\vending_product;
+use App\Models\ProductManagement\VendingMachine\VendingProduct;
 use Faker\Generator as Faker;
 
-$factory->define(vending_product::class, function (Faker $faker) {
+$factory->define(VendingProduct::class, function (Faker $faker) {
     $product_id = Product::all()->pluck('id');
     $channel = $faker->randomElement(['1', '2']);
     return [

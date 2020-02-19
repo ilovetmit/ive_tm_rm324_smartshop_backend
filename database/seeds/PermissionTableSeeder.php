@@ -14,21 +14,22 @@ class PermissionTableSeeder extends Seeder
     {
         // => UserManagement            permission                                      => user_management_access           (menu access)
         //                              role
-        //                              user - address/interest
+        //                              user - address/interest/device
         // => ProductManagement         Product - category/tag                          => product_management_access        (menu access)
-        //                              >>>product_transaction
         //                              vending_product
         //                              shop_product - led/shop_product_inventories
-        // => Product_wall                                                              => product_wall_management_access   (menu access)
-        // => AdvertismentManagement                                                    => advertisment_management_access   (menu access)
-        // => TransactionManagement     Transaction                                     => transaction_management_access    (menu access)
+        //                              product wall
+        // => AdvertisementManagement    Advertisement                                    => Advertisement_management_access   (menu access)
+        // => TagManagement
+        // => TransactionManagement     all Transaction                                 => transaction_management_access    (menu access)
         //                              remittance_transaction
-        //                              >product_transaction
-        //                              >locker_transaction
+        //                              product_transaction
+        //                              locker_transaction
         // => LockerManagement          Locker                                          => locker_management_access         (menu access)
-        //                              >>>LockerTransaction
+        //                            
         // => Stock                                                                     => stock_management_access          (menu access)
         // => Insurance                                                                 => insurance_management_access      (menu access)
+
         // permission               => [create,edit,view,delete,access] 01,02,03,04,05
         // role                     => [create,edit,view,delete,access] 06,07,08,09,10
         // user                     => [create,edit,view,delete,access] 11,12,13,14,15
@@ -61,7 +62,7 @@ class PermissionTableSeeder extends Seeder
                 'name'  => 'product_management_access',
             ],
             [
-                'name'  => 'advertisment_management_access',
+                'name'  => 'Advertisement_management_access',
             ],
             [
                 'name'  => 'transaction_management_access',

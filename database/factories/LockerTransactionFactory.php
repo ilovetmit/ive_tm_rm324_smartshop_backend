@@ -2,13 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\InformationManagement\Transaction;
-use App\Models\LockerManagement\locker_transaction;
+use App\Models\TransactionManagement\Transaction;
+use App\Models\TransactionManagement\LockerTransaction;
 use App\Models\LockerManagement\Locker;
 use App\Models\UserManagement\User;
 use Faker\Generator as Faker;
 
-$factory->define(locker_transaction::class, function (Faker $faker) {
+$factory->define(LockerTransaction::class, function (Faker $faker) {
     $transaction_id = Transaction::all()->pluck('id');
     $locker_id = Locker::all()->pluck('id');
     $receiver_id = User::all()->pluck('id');

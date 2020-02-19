@@ -19,11 +19,10 @@ class PermissionRoleTableSeeder extends Seeder
         $admin_permissions = Permission::all();
         Role::findOrFail(1)->hasPermission()->sync($admin_permissions->pluck('id'));
 
-        $user_permissions = $admin_permissions->filter(function ($permission) {
+        // $user_permissions = $admin_permissions->filter(function ($permission) {
             // need to rebuild the function with consider menu access permission (17/2)
-            return substr($permission->name, 0, 5) != 'user_' && substr($permission->name, 0, 5) != 'role_' && substr($permission->name, 0, 11) != 'permission_';
-        });
-
-        Role::findOrFail(2)->hasPermission()->sync($user_permissions);
+            // return substr($permission->name, 0, 5) != 'user_' && substr($permission->name, 0, 5) != 'role_' && substr($permission->name, 0, 11) != 'permission_';
+        // });
+        // Role::findOrFail(2)->hasPermission()->sync($user_permissions);
     }
 }

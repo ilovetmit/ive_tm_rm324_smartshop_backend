@@ -2,20 +2,14 @@
 
 namespace App\Models\UserManagement;
 
-// use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permission extends Model
 {
-    use SoftDeletes; //, Auditable;
+    use SoftDeletes;
 
     public $table = 'permissions';
-
-    // public function getTable()
-    // {
-    //     return config('constant.TABLE')['014'];
-    // }
 
     protected $dates = [
         'created_at',
