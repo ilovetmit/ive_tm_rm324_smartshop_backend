@@ -19,23 +19,23 @@ class PermissionTableSeeder extends Seeder
         //                              device
         //                              interest
         //                              vitcoin
-        // => ProductManagement         Product                                         => product_management_access            (menu access)
+        // => ProductManagement         product                                         => product_management_access            (menu access)
         //                              category
         //                              vending_product
         //                              shop_product
         //                              led
         //                              shop_product_inventory
         //                              product_wall
-        // => AdvertisementManagement   advertisement                                  => Advertisement_management_access      (menu access)
-        // => TagManagement             tag
-        // => TransactionManagement     all Transaction                                 => transaction_management_access        (menu access)
+        // => AdvertisementManagement   advertisement                                  => advertisement_management_access      (menu access)
+        // => TransactionManagement     all Transaction                                => transaction_management_access        (menu access)
         //                              remittance_transaction
         //                              product_transaction
         //                              locker_transaction
-        // => LockerManagement          Locker                                          => locker_management_access             (menu access)
+        // => TagManagement             tag                                            => tag_management_access
+        // => LockerManagement          locker                                         => locker_management_access             (menu access)
         //                            
-        // => ExtraManagement           Stock                                           => extraManagement_management_access    (menu access)
-        //                              Insurance                                                                               (menu access)
+        // => ExtraManagement           stock                                           => extraManagement_management_access    (menu access)
+        //                              insurance                                                                               (menu access)
 
         // permission               => [create,edit,view,delete,access]
         // role                     => [create,edit,view,delete,access]
@@ -61,6 +61,7 @@ class PermissionTableSeeder extends Seeder
         // insurance                => [create,edit,view,delete,access]
         // vitcoin                  => [create,edit,view,delete,access]
 
+        // @formatter:off
         $permissions = [
             // UserManagement 
             ['name'=>'user_management_access'],
@@ -203,7 +204,7 @@ class PermissionTableSeeder extends Seeder
                 ['name'=>'locker_delete'],
                 ['name'=>'locker_access'],
             // ExtraManagement
-            ['name'=>'extraManagement_management_access'],
+            ['name'=>'extra_management_access'],
                 // stock
                 ['name'=>'stock_create'],
                 ['name'=>'stock_edit'],

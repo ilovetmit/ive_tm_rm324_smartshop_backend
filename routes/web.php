@@ -14,7 +14,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'SmartShop'], function () {
 
         // http://http://127.0.0.1:8000/SmartShop/Dashboard
-        Route::get('Dashboard', 'DashboardController@index')->name('dashboard');
+        Route::get('Dashboard', 'DashboardController@index')->name('Dashboard');
 
         // http://http://127.0.0.1:8000/SmartShop/UserManagement
         Route::group(['prefix' => 'UserManagement', 'as' => 'UserManagement.', 'namespace' => 'UserManagement'], function () {
@@ -45,6 +45,12 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('Vitcoins', 'VitcoinController');
         });
 
+        // http://http://127.0.0.1:8000/SmartShop/TagManagement/Tags
+        Route::group(['prefix' => 'TagManagement', 'as' => 'TagManagement.', 'namespace' => 'TagManagement'], function () {
+            Route::delete('Tags/destroy', 'TagController@massDestroy')->name('Tags.massDestroy');
+            Route::resource('Tags', 'TagController');
+        });
+
         // http://http://127.0.0.1:8000/SmartShop/ProductManagement
         Route::group(['prefix' => 'ProductManagement', 'as' => 'ProductManagement.', 'namespace' => 'ProductManagement'], function () {
             // http://http://127.0.0.1:8000/SmartShop/ProductManagement/Products
@@ -54,17 +60,17 @@ Route::group(['middleware' => ['auth']], function () {
             Route::delete('Categories/destroy', 'CategoryController@massDestroy')->name('Categories.massDestroy');
             Route::resource('Categories', 'CategoryController');
             // http://http://127.0.0.1:8000/SmartShop/ProductManagement/VendingMachine/VendingProducts
-            Route::delete('VendingMachine/VendingProducts/destroy', 'VendingMachine/VendingProductController@massDestroy')->name('VendingProducts.massDestroy');
-            Route::resource('VendingMachine/VendingProducts', 'VendingMachine/VendingProductController');
+            Route::delete('VendingMachine/VendingProducts/destroy', 'VendingMachine\VendingProductController@massDestroy')->name('VendingProducts.massDestroy');
+            Route::resource('VendingMachine/VendingProducts', 'VendingMachine\VendingProductController');
             // http://http://127.0.0.1:8000/SmartShop/ProductManagement/OnSell/ShopProducts
-            Route::delete('OnSell/ShopProducts/destroy', 'OnSell/ShopProductController@massDestroy')->name('ShopProducts.massDestroy');
-            Route::resource('OnSell/ShopProducts', 'OnSell/ShopProductController');
+            Route::delete('OnSell/ShopProducts/destroy', 'OnSell\ShopProductController@massDestroy')->name('ShopProducts.massDestroy');
+            Route::resource('OnSell/ShopProducts', 'OnSell\ShopProductController');
             // http://http://127.0.0.1:8000/SmartShop/ProductManagement/OnSell/LEDs
-            Route::delete('OnSell/LEDs/destroy', 'OnSell/LEDController@massDestroy')->name('LEDs.massDestroy');
-            Route::resource('OnSell/LEDs', 'OnSell/LEDController');
+            Route::delete('OnSell/LEDs/destroy', 'OnSell\LEDController@massDestroy')->name('LEDs.massDestroy');
+            Route::resource('OnSell/LEDs', 'OnSell\LEDController');
             // http://http://127.0.0.1:8000/SmartShop/ProductManagement/OnSell/ShopProductInventories
-            Route::delete('OnSell/ShopProductInventories/destroy', 'OnSell/ShopProductInventoryController@massDestroy')->name('ShopProductInventories.massDestroy');
-            Route::resource('OnSell/ShopProductInventories', 'OnSell/ShopProductInventoryController');
+            Route::delete('OnSell/ShopProductInventories/destroy', 'OnSell\ShopProductInventoryController@massDestroy')->name('ShopProductInventories.massDestroy');
+            Route::resource('OnSell/ShopProductInventories', 'OnSell\ShopProductInventoryController');
             // http://http://127.0.0.1:8000/SmartShop/ProductManagement/ProductWall
             Route::delete('ProductWalls/destroy', 'ProductWallController@massDestroy')->name('ProductWalls.massDestroy');
             Route::resource('ProductWalls', 'ProductWallController');
@@ -76,12 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('Advertisements', 'AdvertisementController');
         });
 
-        // http://http://127.0.0.1:8000/SmartShop/TagManagement/Tags
-        Route::group(['prefix' => 'TagManagement', 'as' => 'TagManagement.', 'namespace' => 'TagManagement'], function () {
-            Route::delete('Tags/destroy', 'TagController@massDestroy')->name('Tags.massDestroy');
-            Route::resource('Tags', 'TagController');
-        });
-
+        
         // http://http://127.0.0.1:8000/SmartShop/TransactionManagement
         Route::group(['prefix' => 'TransactionManagement', 'as' => 'TransactionManagement.', 'namespace' => 'TransactionManagement'], function () {
             // http://http://127.0.0.1:8000/SmartShop/TransactionManagement/Transactions
