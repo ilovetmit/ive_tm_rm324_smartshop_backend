@@ -28,6 +28,6 @@ class CreateUserInterestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_interests');
+        Schema::dropIfExists('user_interest');
     }
 }

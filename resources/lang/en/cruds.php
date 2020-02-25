@@ -29,7 +29,7 @@ return [
 
     ],
     'informationManagement' => [
-        'title'             => 'Information Management',
+        'title'             => 'User Information',
         'sub_title_1' => [
             'title'         => 'Address',
             'title_s'       => 'Addresses',
@@ -175,8 +175,8 @@ return [
             ],
         ],
     ],
-    'extraManagement' => [
-        'title'             => 'extraManagement',
+    'smartBankManagement' => [
+        'title'             => 'Smart Bank',
         'sub_title_1' => [
             'title'         => 'Stock',
             'title_s'       => 'Stocks',

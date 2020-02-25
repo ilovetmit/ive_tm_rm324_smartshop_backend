@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\ExtraManagement;
+namespace App\Http\Controllers\SmartBankManagement;
 
-use App\Models\ExtraManagement\Insurance;
+use App\Models\SmartBankManagement\Insurance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

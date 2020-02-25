@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models\ExtraManagement;
+namespace App\Models\SmartBankManagement;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
    
-class Stock extends Model
+class Insurance extends Model
 {
     use SoftDeletes;
 
-    public $table = 'stocks';
+    public $table = 'insurances';
 
     protected $dates = [
         'created_at',
@@ -18,10 +18,10 @@ class Stock extends Model
     ];
 
     protected $fillable = [
-        'code',
-        'icon',
         'name',
-        'data',
+        'price',
+        'image',
+        'description',
         'created_at',
         'updated_at',
         'deleted_at',

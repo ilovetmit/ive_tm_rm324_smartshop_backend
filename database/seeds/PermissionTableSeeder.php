@@ -34,7 +34,7 @@ class PermissionTableSeeder extends Seeder
         // => TagManagement             tag                                            => tag_management_access
         // => LockerManagement          locker                                         => locker_management_access             (menu access)
         //                            
-        // => ExtraManagement           stock                                           => extraManagement_management_access    (menu access)
+        // => SmartBankManagement           stock                                           => SmartBankManagement_management_access    (menu access)
         //                              insurance                                                                               (menu access)
 
         // permission               => [create,edit,view,delete,access]
@@ -203,8 +203,8 @@ class PermissionTableSeeder extends Seeder
                 ['name'=>'locker_view'],
                 ['name'=>'locker_delete'],
                 ['name'=>'locker_access'],
-            // ExtraManagement
-            ['name'=>'extra_management_access'],
+            // SmartBankManagement
+            ['name'=>'smart_bank_management_access'],
                 // stock
                 ['name'=>'stock_create'],
                 ['name'=>'stock_edit'],

@@ -106,12 +106,12 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('Lockers', 'LockerController');
         });
 
-        // http://http://127.0.0.1:8000/SmartShop/ExtraManagement
-        Route::group(['prefix' => 'ExtraManagement', 'as' => 'ExtraManagement.', 'namespace' => 'ExtraManagement'], function () {
-            // http://http://127.0.0.1:8000/SmartShop/ExtraManagement/Stocks
+        // http://http://127.0.0.1:8000/SmartShop/SmartBankManagement
+        Route::group(['prefix' => 'SmartBankManagement', 'as' => 'SmartBankManagement.', 'namespace' => 'SmartBankManagement'], function () {
+            // http://http://127.0.0.1:8000/SmartShop/SmartBankManagement/Stocks
             Route::delete('Stocks/destroy', 'StockController@massDestroy')->name('Stocks.massDestroy');
             Route::resource('Stocks', 'StockController');
-            // http://http://127.0.0.1:8000/SmartShop/ExtraManagement/Insurances
+            // http://http://127.0.0.1:8000/SmartShop/SmartBankManagement/Insurances
             Route::delete('Insurances/destroy', 'InsuranceController@massDestroy')->name('Insurances.massDestroy');
             Route::resource('Insurances', 'InsuranceController');
         });

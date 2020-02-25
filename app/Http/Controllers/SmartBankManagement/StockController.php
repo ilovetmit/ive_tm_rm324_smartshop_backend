@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\ExtraManagement;
+namespace App\Http\Controllers\SmartBankManagement;
 
-use App\Models\ExtraManagement\Stock;
+use App\Models\SmartBankManagement\Stock;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
