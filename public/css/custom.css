@@ -15,7 +15,9 @@ textarea {
 
 .dt-buttons .btn {
     margin-left: 0.333em;
-    border-radius: 0;
+    /* DIY_STYLE */
+    /* border-radius: 0; */
+    border-color: #ddd;
 }
 
 .table.datatable {

@@ -18,47 +18,47 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index', compact('users'));
+        return view('UserManagement.Users.index', compact('users'));
     }
 
     public function create()
     {
         $roles = Role::all()->pluck('name', 'id');
-        return view('admin.users.create', compact('roles'));
+        return view('UserManagement.Users.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
-        return redirect()->route('admin.users.index');
+        return redirect()->route('UserManagement.Users.index');
     }
 
     public function show(User $user)
     {
         $roles = Role::all()->pluck('name', 'id');
         $user->load('roles');
-        return view('admin.users.edit', compact('roles', 'user'));
+        return view('UserManagement.Users.edit', compact('roles', 'user'));
     }
 
     public function edit(User $user)
     {
         $roles = Role::all()->pluck('name', 'id');
         $user->load('roles');
-        return view('admin.users.edit', compact('roles', 'user'));
+        return view('UserManagement.Users.edit', compact('roles', 'user'));
     }
 
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
-        return redirect()->route('admin.users.index');
+        return redirect()->route('UserManagement.Users.index');
     }
 
     public function destroy(User $user)
     {
        $user->load('roles');
-        return view('admin.users.show', compact('user'));
+        return view('UserManagement.Users.show', compact('user'));
     }
 
     // public function massDestroy(MassDestroyUserRequest $request)
