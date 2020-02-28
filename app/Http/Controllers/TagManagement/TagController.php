@@ -10,7 +10,8 @@ class TagController extends Controller
 {
     public function index()
     {
-        
+        $tags = Tag::all();
+        return view('TagManagement.Tags.index', compact('tags'));
     }
 
     public function create()
@@ -25,7 +26,8 @@ class TagController extends Controller
 
     public function show(Tag $tag)
     {
-        
+        $tag->load('hasProduct', 'hasAdvertisement');
+        return view('TagManagement.Tags.show', compact('tag'));
     }
 
     public function edit(Tag $tag)

@@ -45,8 +45,7 @@
                         <td>
                             {{ $permission->name ?? '' }}
                         </td>
-                        <td style='text-align:center'>
-                            <!-- DIY_STYLE: text-align:center -->
+                        <td>
                             @can('permission_view')
                             <a class="btn btn-xs btn-primary" href="{{ route('UserManagement.Permissions.show', $permission->id) }}">
                                 {{ trans('global.view') }}

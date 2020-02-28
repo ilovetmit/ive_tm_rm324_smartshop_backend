@@ -10,7 +10,8 @@ class AdvertisementController extends Controller
 {
     public function index()
     {
-        
+        $advertisements = Advertisement::all();
+        return view('AdvertisementManagement.Advertisements.index', compact('advertisements'));
     }
 
     public function create()
@@ -23,9 +24,10 @@ class AdvertisementController extends Controller
         
     }
 
-    public function show(Advertisement $Advertisement)
+    public function show(Advertisement $advertisement)
     {
-        
+        $advertisement->load('hasTag');
+        return view('AdvertisementManagement.Advertisements.show', compact('advertisement'));
     }
 
     public function edit(Advertisement $Advertisement)

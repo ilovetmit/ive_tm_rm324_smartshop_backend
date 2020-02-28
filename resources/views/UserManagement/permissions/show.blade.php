@@ -3,13 +3,13 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.permission.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_1.title') }}
     </div>
 
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.permissions.index') }}">
+                <a class="btn btn-default" href="{{ route('UserManagement.Permissions.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.permission.fields.id') }}
+                            {{ trans('cruds.userManagement.sub_title_1.fields.id') }}
                         </th>
                         <td>
                             {{ $permission->id }}
@@ -25,16 +25,16 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.permission.fields.title') }}
+                            {{ trans('cruds.userManagement.sub_title_1.fields.name') }}
                         </th>
                         <td>
-                            {{ $permission->title }}
+                            {{ $permission->name }}
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.permissions.index') }}">
+                <a class="btn btn-default" href="{{ route('UserManagement.Permissions.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -49,13 +49,13 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#permissions_roles" role="tab" data-toggle="tab">
-                {{ trans('cruds.role.title') }}
+                {{ trans('cruds.userManagement.sub_title_2.title') }} 
             </a>
         </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="permissions_roles">
-            @includeIf('admin.permissions.relationships.permissionsRoles', ['roles' => $permission->permissionsRoles])
+            @includeIf('UserManagement.permissions.relationships.permissionsRoles', ['roles' => $permission->hasRole])
         </div>
     </div>
 </div>

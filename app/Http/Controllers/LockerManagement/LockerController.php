@@ -10,7 +10,8 @@ class LockerController extends Controller
 {
     public function index()
     {
-        
+        $lockers = Locker::all();
+        return view('LockerManagement.Lockers.index', compact('lockers'));
     }
 
     public function create()

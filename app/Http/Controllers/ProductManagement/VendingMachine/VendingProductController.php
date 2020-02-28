@@ -10,7 +10,8 @@ class VendingProductController extends Controller
 {
     public function index()
     {
-        
+        $vendingProducts = VendingProduct::all();
+        return view('ProductManagement.VendingMachine.VendingProducts.index', compact('vendingProducts'));
     }
 
     public function create()

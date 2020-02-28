@@ -10,7 +10,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        
+        $categories = Category::all();
+        return view('ProductManagement.Category.index', compact('categories'));
     }
 
     public function create()

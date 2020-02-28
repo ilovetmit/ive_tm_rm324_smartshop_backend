@@ -3,13 +3,13 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.role.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_2.title') }}
     </div>
 
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.roles.index') }}">
+                <a class="btn btn-default" href="{{ route('UserManagement.Roles.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.role.fields.id') }}
+                            {{ trans('cruds.userManagement.sub_title_2.fields.id') }}
                         </th>
                         <td>
                             {{ $role->id }}
@@ -25,26 +25,35 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.role.fields.title') }}
+                            {{ trans('cruds.userManagement.sub_title_2.fields.name') }}
                         </th>
                         <td>
-                            {{ $role->title }}
+                            {{ $role->name }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.role.fields.permissions') }}
+                            {{ trans('cruds.userManagement.sub_title_2.fields.description') }}
                         </th>
                         <td>
-                            @foreach($role->permissions as $key => $permissions)
-                                <span class="label label-info">{{ $permissions->title }}</span>
+                            {{ $role->description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.userManagement.sub_title_2.fields.permission') }}
+                        </th>
+                        <td>
+                            @foreach($role->hasPermission as $key => $permissions)
+                            <!-- DIY_STYLE -->
+                            <span class="badge badge-info">{{ $permissions->name }}</span>
                             @endforeach
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.roles.index') }}">
+                <a class="btn btn-default" href="{{ route('UserManagement.Roles.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -59,13 +68,13 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#roles_users" role="tab" data-toggle="tab">
-                {{ trans('cruds.user.title') }}
+                {{ trans('cruds.userManagement.sub_title_3.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="roles_users">
-            @includeIf('admin.roles.relationships.rolesUsers', ['users' => $role->rolesUsers])
+            @includeIf('UserManagement.roles.relationships.rolesUsers', ['users' => $role->hasUser])
         </div>
     </div>
 </div>

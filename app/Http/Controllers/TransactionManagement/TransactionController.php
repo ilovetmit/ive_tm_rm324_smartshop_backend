@@ -10,7 +10,8 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        
+        $transactions = Transaction::all();
+        return view('TransactionManagement.Transaction.index', compact('transactions'));
     }
 
     public function create()

@@ -10,7 +10,8 @@ class LockerTransactionController extends Controller
 {
     public function index()
     {
-        
+        $lockerTransactions = LockerTransaction::all();
+        return view('TransactionManagement.LockerTransaction.index', compact('lockerTransactions'));
     }
 
     public function create()

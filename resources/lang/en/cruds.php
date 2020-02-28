@@ -20,6 +20,7 @@ return [
             'fields' => [
                 'id'                => 'ID',
                 'name'              => 'Name',
+                'permission'        => 'Permission',
                 'description'       => 'Description',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',
@@ -62,7 +63,7 @@ return [
                 'user_id'           => 'User ID',
                 'district'          => 'District',
                 'address1'          => 'Address Line 1',
-                'Address2'          => 'Address Line 2',
+                'address2'          => 'Address Line 2',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',
                 'deleted_at'        => 'Deleted at',

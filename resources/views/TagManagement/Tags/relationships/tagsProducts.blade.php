@@ -2,15 +2,15 @@
     @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("UserManagement.Users.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+            <a class="btn btn-success" href="{{ route("ProductManagement.Products.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_1.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.productManagement.sub_title_1.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
@@ -22,19 +22,16 @@
 
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.id') }}
+                                {{ trans('cruds.productManagement.sub_title_1.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.name') }}
+                                {{ trans('cruds.productManagement.sub_title_1.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.email') }}
+                                {{ trans('cruds.productManagement.sub_title_1.fields.image') }}
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.email_verified_at') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.role') }}
+                                {{ trans('cruds.productManagement.sub_title_1.fields.status') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -42,51 +39,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $key => $user)
-                        <tr data-entry-id="{{ $user->id }}">
+                        @foreach($product as $key => $product)
+                        <tr data-entry-id="{{ $product->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $user->id ?? '' }}
+                                {{ $product->id ?? '' }}
                             </td>
                             <td>
-                                {{ $user->first_name ?? '' }} {{ $user->last_name ?? '' }}
+                                {{ $product->name ?? '' }}
                             </td>
                             <td>
-                                {{ $user->email ?? '' }}
+                                {{ $product->image ?? '' }}
                             </td>
                             <td>
-                                {{ $user->email_verified_at ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($user->hasRole as $key => $item)
-                                <span class="badge badge-info">{{ $item->name }}</span>
-                                @endforeach
+                                {{ $product->status ?? '' }}
                             </td>
                             <td>
                                 @can('user_view')
-                                <a class="btn btn-xs btn-primary" href="{{ route('UserManagement.Users.show', $user->id) }}">
+                                <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.Products.show', $product->id ?? '' ) }}">
                                     {{ trans('global.view') }}
                                 </a>
                                 @endcan
 
                                 @can('user_edit')
-                                <a class="btn btn-xs btn-info" href="{{ route('UserManagement.Users.edit', $user->id) }}">
+                                <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.Products.edit', $product->id ?? '' ) }}">
                                     {{ trans('global.edit') }}
                                 </a>
                                 @endcan
 
                                 @can('user_delete')
-                                <form action="{{ route('UserManagement.Users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                <form action="{{ route('ProductManagement.Products.destroy', $product->id ?? '' ) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                 </form>
                                 @endcan
-
                             </td>
-
                         </tr>
                         @endforeach
                     </tbody>
@@ -100,11 +90,11 @@
 <script>
     $(function() {
         let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-        @can('user_delete')
+        @can('product_delete')
         let deleteButtonTrans = "{{ trans('global.datatables.delete') }}"
         let deleteButton = {
             text: deleteButtonTrans,
-            url: "{{ route('UserManagement.Users.massDestroy') }}",
+            url: "{{ route('ProductManagement.Products.massDestroy') }}",
             className: 'btn-danger',
             action: function(e, dt, node, config) {
                 var ids = $.map(dt.rows({

@@ -10,7 +10,8 @@ class RemittanceTransactionController extends Controller
 {
     public function index()
     {
-        
+        $remittanceTransactions = RemittanceTransaction::all();
+        return view('TransactionManagement.RemittanceTransaction.index', compact('remittanceTransactions'));
     }
 
     public function create()

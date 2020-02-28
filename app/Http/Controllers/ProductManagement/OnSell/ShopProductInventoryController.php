@@ -10,7 +10,8 @@ class ShopProductInventoryController extends Controller
 {
     public function index()
     {
-        
+        $shopProductInventories = ShopProductInventory::all();
+        return view('ProductManagement.OnSell.ShopProductInventories.index', compact('shopProductInventories'));
     }
 
     public function create()

@@ -10,7 +10,8 @@ class ProductTransactionController extends Controller
 {
     public function index()
     {
-        
+        $productTransactions = ProductTransaction::all();
+        return view('TransactionManagement.ProductTransaction.index', compact('productTransactions'));
     }
 
     public function create()

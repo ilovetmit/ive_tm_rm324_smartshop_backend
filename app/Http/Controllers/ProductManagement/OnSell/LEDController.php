@@ -10,7 +10,8 @@ class LEDController extends Controller
 {
     public function index()
     {
-        
+        $leds = LED::all();
+        return view('ProductManagement.OnSell.Lockers.index', compact('leds'));
     }
 
     public function create()

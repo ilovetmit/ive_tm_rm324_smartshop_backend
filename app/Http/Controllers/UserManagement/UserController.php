@@ -36,15 +36,14 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $roles = Role::all()->pluck('name', 'id');
-        $user->load('roles');
-        return view('UserManagement.Users.edit', compact('roles', 'user'));
+        $user->load('hasRole');
+        return view('UserManagement.Users.show', compact('user'));
     }
 
     public function edit(User $user)
     {
         $roles = Role::all()->pluck('name', 'id');
-        $user->load('roles');
+        $user->load('hasRole');
         return view('UserManagement.Users.edit', compact('roles', 'user'));
     }
 

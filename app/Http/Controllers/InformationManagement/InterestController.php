@@ -10,7 +10,8 @@ class InterestController extends Controller
 {
     public function index()
     {
-        
+        $interests = Interest::all();
+        return view('InformationManagement.Interests.index', compact('interests'));
     }
 
     public function create()
@@ -25,7 +26,8 @@ class InterestController extends Controller
 
     public function show(Interest $interest)
     {
-        
+        $interest->load('user');
+        return view('InformationManagement.Interest.show', compact('interest'));
     }
 
     public function edit(Interest $interest)

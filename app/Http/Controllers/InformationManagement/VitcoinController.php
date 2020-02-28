@@ -10,7 +10,8 @@ class VitcoinController extends Controller
 {
     public function index()
     {
-        
+        $vitcoins = Vitcoin::all();
+        return view('InformationManagement.Vitcoins.index', compact('vitcoins'));
     }
 
     public function create()
@@ -25,7 +26,8 @@ class VitcoinController extends Controller
 
     public function show(Vitcoin $vitcoin)
     {
-        
+        $vitcoin->load('user');
+        return view('InformationManagement.Interest.show', compact('vitcoin'));
     }
 
     public function edit(Vitcoin $vitcoin)

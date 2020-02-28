@@ -10,7 +10,8 @@ class InsuranceController extends Controller
 {
     public function index()
     {
-        
+        $insurances = Insurance::all();
+        return view('SmartBankManagement.Insurance.index', compact('insurances'));
     }
 
     public function create()

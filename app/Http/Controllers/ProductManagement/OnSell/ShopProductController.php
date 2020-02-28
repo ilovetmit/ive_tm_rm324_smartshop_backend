@@ -10,7 +10,8 @@ class ShopProductController extends Controller
 {
     public function index()
     {
-        
+        $shopProducts = ShopProduct::all();
+        return view('ProductManagement.OnSell.ShopProducts.index', compact('shopProducts'));
     }
 
     public function create()

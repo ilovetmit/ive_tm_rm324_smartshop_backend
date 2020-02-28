@@ -31,27 +31,27 @@ class RoleController extends Controller
     {
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
-        return redirect()->route('UserManagement.roles.index');
+        return redirect()->route('UserManagement.Roles.index');
     }
 
     public function show(Role $role)
     {
-        $role->load('permissions', 'rolesUsers');
+        $role->load('hasUser', 'hasPermission');
         return view('UserManagement.roles.show', compact('role'));
     }
 
     public function edit(Role $role)
     {
         $permissions = Permission::all()->pluck('name', 'id');
-        $role->load('permissions');
+        $role->load('hasPermission');
         return view('UserManagement.roles.edit', compact('permissions', 'role'));
     }
 
     public function update(Request $request, Role $role)
     {
         $role->update($request->all());
-        $role->permissions()->sync($request->input('permissions', []));
-        return redirect()->route('UserManagement.roles.index');
+        $role->hasPermission()->sync($request->input('permissions', []));
+        return redirect()->route('UserManagement.Roles.index');
     }
 
     public function destroy(Role $role)

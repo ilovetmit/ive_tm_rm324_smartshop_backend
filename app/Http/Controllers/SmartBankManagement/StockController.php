@@ -10,7 +10,8 @@ class StockController extends Controller
 {
     public function index()
     {
-        
+        $stocks = Stock::all();
+        return view('SmartBankManagement.Stock.index', compact('stocks'));
     }
 
     public function create()

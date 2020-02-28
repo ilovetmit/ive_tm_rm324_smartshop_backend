@@ -1,16 +1,16 @@
 <div class="m-3">
-    @can('user_create')
+    @can('product_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("UserManagement.Users.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.advertisementManagement.sub_title_1.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
@@ -22,19 +22,19 @@
 
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.id') }}
+                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.name') }}
+                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.header') }}
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.email') }}
+                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.image') }}
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.email_verified_at') }}
+                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.description') }}
                             </th>
                             <th>
-                                {{ trans('cruds.userManagement.sub_title_3.fields.role') }}
+                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.status') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -42,51 +42,47 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $key => $user)
-                        <tr data-entry-id="{{ $user->id }}">
+                        @foreach($advertisement as $key => $advertisement)
+                        <tr data-entry-id="{{ $advertisement->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $user->id ?? '' }}
+                                {{ $advertisement->id ?? '' }}
                             </td>
                             <td>
-                                {{ $user->first_name ?? '' }} {{ $user->last_name ?? '' }}
+                                {{ $advertisement->header ?? '' }}
                             </td>
                             <td>
-                                {{ $user->email ?? '' }}
+                                {{ $advertisement->image ?? '' }}
                             </td>
                             <td>
-                                {{ $user->email_verified_at ?? '' }}
+                                {{ $advertisement->description ?? '' }}
                             </td>
                             <td>
-                                @foreach($user->hasRole as $key => $item)
-                                <span class="badge badge-info">{{ $item->name }}</span>
-                                @endforeach
+                                {{ $advertisement->status ?? '' }}
                             </td>
                             <td>
-                                @can('user_view')
-                                <a class="btn btn-xs btn-primary" href="{{ route('UserManagement.Users.show', $user->id) }}">
+                                @can('product_view')
+                                <a class="btn btn-xs btn-primary" href="{{ route('AdvertisementManagement.Advertisements.show', $advertisement->id ?? '' ) }}">
                                     {{ trans('global.view') }}
                                 </a>
                                 @endcan
 
-                                @can('user_edit')
-                                <a class="btn btn-xs btn-info" href="{{ route('UserManagement.Users.edit', $user->id) }}">
+                                @can('product_edit')
+                                <a class="btn btn-xs btn-info" href="{{ route('AdvertisementManagement.Advertisements.edit', $advertisement->id ?? '' ) }}">
                                     {{ trans('global.edit') }}
                                 </a>
                                 @endcan
 
-                                @can('user_delete')
-                                <form action="{{ route('UserManagement.Users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('product_delete')
+                                <form action="{{ route('AdvertisementManagement.Advertisements.destroy', $advertisement->id ?? '' ) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                 </form>
                                 @endcan
-
                             </td>
-
                         </tr>
                         @endforeach
                     </tbody>
@@ -100,11 +96,11 @@
 <script>
     $(function() {
         let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-        @can('user_delete')
+        @can('product_delete')
         let deleteButtonTrans = "{{ trans('global.datatables.delete') }}"
         let deleteButton = {
             text: deleteButtonTrans,
-            url: "{{ route('UserManagement.Users.massDestroy') }}",
+            url: "{{ route('AdvertisementManagement.Advertisements.massDestroy') }}",
             className: 'btn-danger',
             action: function(e, dt, node, config) {
                 var ids = $.map(dt.rows({

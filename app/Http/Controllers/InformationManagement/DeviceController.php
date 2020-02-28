@@ -10,7 +10,8 @@ class DeviceController extends Controller
 {
     public function index()
     {
-        
+        $devices = Device::all();
+        return view('InformationManagement.Devices.index', compact('devices'));
     }
 
     public function create()
@@ -25,7 +26,8 @@ class DeviceController extends Controller
 
     public function show(Device $device)
     {
-        
+        $device->load('user');
+        return view('InformationManagement.Devices.show', compact('device'));
     }
 
     public function edit(Device $device)
