@@ -27,7 +27,7 @@ class Device extends Model
         'deleted_at',
     ];
 
-    public function hasUser()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

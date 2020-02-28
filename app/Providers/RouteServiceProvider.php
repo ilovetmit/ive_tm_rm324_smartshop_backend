@@ -26,6 +26,30 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        Route::model('Permission',              'App\Models\UserManagement\Permission');
+        Route::model('Role',                    'App\Models\UserManagement\Role');
+        Route::model('User',                    'App\Models\UserManagement\User');
+        Route::model('User',                    'App\Models\UserManagement\User');
+        Route::model('Advertisement',           'App\Models\AdvertisementManagement\Advertisement');
+        Route::model('Address',                 'App\Models\InformationManagement\Address');
+        Route::model('Device',                  'App\Models\InformationManagement\Device');
+        Route::model('Interest',                'App\Models\InformationManagement\Interest');
+        Route::model('Vitcoin',                 'App\Models\InformationManagement\Vitcoin');
+        Route::model('Locker',                  'App\Models\LockerManagement\Locker');
+        Route::model('Product',                 'App\Models\ProductManagement\Product');
+        Route::model('Category',                'App\Models\ProductManagement\Category');
+        Route::model('ProductWall',             'App\Models\ProductManagement\ProductWall');
+        Route::model('LED',                     'App\Models\ProductManagement\OnSell\LED');
+        Route::model('ShopProduct',             'App\Models\ProductManagement\OnSell\ShopProduct');
+        Route::model('ShopProductInventory',    'App\Models\ProductManagement\OnSell\ShopProductInventory');
+        Route::model('VendingProduct',          'App\Models\ProductManagement\VendingMachine\VendingProduct');
+        Route::model('Insurance',               'App\Models\SmartBankManagement\Insurance');
+        Route::model('Stock',                   'App\Models\SmartBankManagement\Stock');
+        Route::model('Tag',                     'App\Models\TagManagement\Tag');
+        Route::model('Transaction',             'App\Models\TransactionManagement\Transaction');
+        Route::model('LockerTransaction',       'App\Models\TransactionManagement\LockerTransaction');
+        Route::model('RemittanceTransaction',   'App\Models\TransactionManagement\RemittanceTransaction');
+        Route::model('ProductTransaction',      'App\Models\TransactionManagement\ProductTransaction');
     }
 
     /**

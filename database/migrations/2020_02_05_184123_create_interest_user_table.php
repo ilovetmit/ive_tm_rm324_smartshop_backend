@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserInterestTable extends Migration
+class CreateInterestUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserInterestTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_interest', function (Blueprint $table) {
+        Schema::create('interest_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')       ->nullable();
             $table->foreign('user_id')                  ->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('interest_id')   ->nullable();
@@ -28,6 +28,6 @@ class CreateUserInterestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_interest');
+        Schema::dropIfExists('interest_user');
     }
 }

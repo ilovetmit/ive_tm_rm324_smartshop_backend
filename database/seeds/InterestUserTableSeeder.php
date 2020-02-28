@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\UserManagement\User;
 
-class UserInterestTableSeeder extends Seeder
+class InterestUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class UserInterestTableSeeder extends Seeder
      */
     public function run()
     {
-        // User::findOrFail(1)->hasInterest()->sync(1);
+        User::findOrFail(1)->hasInterest()->sync(1);
         User::findOrFail(2)->hasInterest()->sync(1);
     }
 }

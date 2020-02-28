@@ -12,6 +12,6 @@ class ProductTagTableSeeder extends Seeder
      */
     public function run()
     {
-        Product::findOrFail(1)->hasTag()->sync(1);
+        Product::find(1)->hasTag()->sync(1);
     }
 }

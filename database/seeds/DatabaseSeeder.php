@@ -15,27 +15,36 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             RoleTableSeeder::class,
-            AddressTableSeeder::class,            
-            AdvertisementTableSeeder::class,
-            CategoryTableSeeder::class,
-            DeviceTableSeeder::class,
-            InterestTableSeeder::class,
-            ProductTableSeeder::class,
-            VendingProductTableSeeder::class,
-            TransactionTableSeeder::class,
-            ShopProductTableSeeder::class,
-            ShopProductInventoryTableSeeder::class,
-            LEDTableSeeder::class,
-            LockerTableSeeder::class,
-            ProductWallTableSeeder::class,
-            LockerTransactionTableSeeder::class,
-            ProductTransactionTableSeeder::class,
-            RemittanceTransactionTableSeeder::class,
-            TagTableSeeder::class,
             PermissionTableSeeder::class,
             RoleUserTableSeeder::class,
             PermissionRoleTableSeeder::class,
 
+            AddressTableSeeder::class,
+            DeviceTableSeeder::class,
+            InterestTableSeeder::class,
+            InterestUserTableSeeder::class,
+            // VitcoinTableSeeder::class,
+
+            ProductTableSeeder::class,
+            CategoryTableSeeder::class,
+            ProductWallTableSeeder::class,
+            VendingProductTableSeeder::class,
+            ShopProductTableSeeder::class,
+            ShopProductInventoryTableSeeder::class,
+            LEDTableSeeder::class,
+
+            TagTableSeeder::class,
+
+            ProductTagTableSeeder::class,
+            AdvertisementTableSeeder::class,
+            AdvertisementTagTableSeeder::class,
+            
+            LockerTableSeeder::class,
+
+            TransactionTableSeeder::class,
+            LockerTransactionTableSeeder::class,
+            ProductTransactionTableSeeder::class,
+            RemittanceTransactionTableSeeder::class,
         ]);
         // Model::reguard();
     }

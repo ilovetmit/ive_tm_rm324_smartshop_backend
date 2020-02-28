@@ -57,6 +57,10 @@ class User extends Authenticatable
         'email_verified_at',
     ];
 
+    public function getFullNameAttribute() {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+
     public function getIsAdminAttribute()
     {
         return $this->hasRole()->where('id', 1)->exists();
