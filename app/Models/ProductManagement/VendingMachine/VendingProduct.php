@@ -28,6 +28,6 @@ class VendingProduct extends Model
 
     public function hasProduct()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

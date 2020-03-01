@@ -4,7 +4,7 @@ namespace App\Models\AdvertisementManagement;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use app\Models\TagManagement\Tag;
+use App\Models\TagManagement\Tag;
    
 class Advertisement extends Model
 {

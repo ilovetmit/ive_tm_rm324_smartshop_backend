@@ -27,6 +27,6 @@ class LED extends Model
 
     public function hasShopProduct()
     {
-        return $this->belongsTo(ShopProduct::class);
+        return $this->belongsTo(ShopProduct::class, 'shop_product_id', 'id');
     }
 }

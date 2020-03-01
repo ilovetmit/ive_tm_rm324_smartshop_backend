@@ -31,7 +31,7 @@ class Transaction extends Model
 
     public function hasUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function hasLocker_transaction()
@@ -42,5 +42,10 @@ class Transaction extends Model
     public function hasProduct_transaction()
     {
         return $this->hasMany(ProductTransaction::class);
+    }
+    
+    public function hasRemittance_transaction()
+    {
+        return $this->hasMany(RemittanceTransaction::class);
     }
 }

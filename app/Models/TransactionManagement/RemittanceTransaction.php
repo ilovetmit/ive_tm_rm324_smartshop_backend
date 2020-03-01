@@ -28,11 +28,11 @@ class RemittanceTransaction extends Model
 
     public function hasUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'remittee_id', 'id');
     }
 
     public function hasTransaction()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
     }
 }

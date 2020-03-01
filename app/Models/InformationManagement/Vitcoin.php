@@ -27,8 +27,8 @@ class Vitcoin extends Model
         'deleted_at',
     ];
 
-    public function user()
+    public function hasUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
