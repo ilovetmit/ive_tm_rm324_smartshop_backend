@@ -16,5 +16,6 @@ npm run dev
 php artisan storage:link
 sudo chmod 777 storage/app/public/ 
 php artisan migrate:refresh --seed
+php artisan passport:install
 php artisan serve
 ```
