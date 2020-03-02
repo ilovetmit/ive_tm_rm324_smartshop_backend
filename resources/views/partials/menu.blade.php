@@ -131,7 +131,7 @@
                 <!----------------------------------------------------------------------------------------------------------------------------------------------------->
                 <!-- SmartBankManagement -->
                 @can('smart_bank_management_access')
-                <li class="nav-item has-treeview {{ request()->is('SmartShop/SmartBank*') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('SmartShop/SmartBankManagement*') ? 'menu-open' : '' }}">
                     <a class="nav-link nav-dropdown-toggle" href="#">
                         <i class="fa-fw fas fa-users"></i>
                         <p>
@@ -140,20 +140,20 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        @can('stock_access')
+                        @can('insurance_access')
                         <li class="nav-item">
-                            <a href="{{ route("SmartBankManagement.Stocks.index") }}" class="nav-link {{ request()->is('SmartShop/SmartBank/Stocks*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-unlock-alt"></i>
+                            <a href="{{ route("SmartBankManagement.Insurances.index") }}" class="nav-link {{ request()->is('SmartShop/SmartBankManagement/Insurances*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-briefcase"></i>
                                 <p>
                                     <span>{{ trans('cruds.smartBankManagement.sub_title_1.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
                         @endcan
-                        @can('insurance_access')
+                        @can('stock_access')
                         <li class="nav-item">
-                            <a href="{{ route("SmartBankManagement.Insurances.index") }}" class="nav-link {{ request()->is('SmartShop/SmartBank/Insurances*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-briefcase"></i>
+                            <a href="{{ route("SmartBankManagement.Stocks.index") }}" class="nav-link {{ request()->is('SmartShop/SmartBankManagement/Stocks*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-unlock-alt"></i>
                                 <p>
                                     <span>{{ trans('cruds.smartBankManagement.sub_title_2.title_s') }}</span>
                                 </p>
@@ -176,7 +176,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         @can('vending_product_access')
-                        <li class="nav-item">
+                        <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement/VendingMachine*') ? 'menu-open' : '' }}">
                             <a class="nav-link nav-dropdown-toggle" href="#">
                                 <i class="fa-fw fas fa-users"></i>
                                 <p>
@@ -198,7 +198,7 @@
                             </ul>
                         </li>
                         @endcan
-                        <li class="nav-item">
+                        <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement/OnSell*') ? 'menu-open' : '' }}">
                             <a class="nav-link nav-dropdown-toggle" href="#">
                                 <i class="fa-fw fas fa-users"></i>
                                 <p>

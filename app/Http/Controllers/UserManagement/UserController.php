@@ -30,7 +30,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = User::create($request->all());
-        $user->roles()->sync($request->input('roles', []));
+        $user->hasRole()->sync($request->input('roles', []));
         return redirect()->route('UserManagement.Users.index');
     }
 
@@ -50,19 +50,19 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        $user->roles()->sync($request->input('roles', []));
+        $user->hasRole()->sync($request->input('roles', []));
         return redirect()->route('UserManagement.Users.index');
     }
 
     public function destroy(User $user)
     {
-       $user->load('roles');
-        return view('UserManagement.Users.show', compact('user'));
+        $user->delete();
+        return back();
     }
 
-    // public function massDestroy(MassDestroyUserRequest $request)
-    // {
-    //     User::whereIn('id', request('ids'))->delete();
-    //     return response(null, Response::HTTP_NO_CONTENT);
-    // }
+    public function massDestroy(MassDestroyUserRequest $request)
+    {
+        User::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
 }

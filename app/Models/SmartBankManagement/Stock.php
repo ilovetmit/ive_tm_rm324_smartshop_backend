@@ -22,6 +22,7 @@ class Stock extends Model
         'icon',
         'name',
         'data',
+        'description',
         'created_at',
         'updated_at',
         'deleted_at',

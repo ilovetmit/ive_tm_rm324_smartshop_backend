@@ -311,6 +311,20 @@ return [
     'smartBankManagement' => [
         'title'             => 'Smart Bank',
         'sub_title_1' => [
+            'title'         => 'Insurance',
+            'title_s'       => 'Insurances',
+            'fields' => [
+                'id'                => 'ID',
+                'name'              => 'Name',
+                'price'             => 'Price',
+                'image'             => 'Image',
+                'description'       => 'Description',
+                'created_at'        => 'Created at',
+                'updated_at'        => 'Updated at',
+                'deleted_at'        => 'Deleted at',
+            ],
+        ],
+        'sub_title_2' => [
             'title'         => 'Stock',
             'title_s'       => 'Stocks',
             'fields' => [
@@ -319,20 +333,6 @@ return [
                 'icon'              => 'Icon',
                 'name'              => 'Name',
                 'data'              => 'Data',
-                'description'       => 'Description',
-                'created_at'        => 'Created at',
-                'updated_at'        => 'Updated at',
-                'deleted_at'        => 'Deleted at',
-            ],
-        ],
-        'sub_title_2' => [
-            'title'         => 'Insurance',
-            'title_s'       => 'Insurances',
-            'fields' => [
-                'id'                => 'ID',
-                'name'              => 'Name',
-                'price'             => 'Price',
-                'image'             => 'Image',
                 'description'       => 'Description',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',

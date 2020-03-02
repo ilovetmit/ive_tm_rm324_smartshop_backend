@@ -19,12 +19,12 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-        return view('UserManagement.permissions.index', compact('permissions'));
+        return view('UserManagement.Permissions.index', compact('permissions'));
     }
 
     public function create()
     {
-        return view('UserManagement.permissions.create');
+        return view('UserManagement.Permissions.create');
     }
 
     public function store(Request $request)
@@ -36,12 +36,12 @@ class PermissionController extends Controller
     public function show(Permission $permission)
     {
         $permission->load('hasRole');  
-        return view('UserManagement.permissions.show', compact('permission'));
+        return view('UserManagement.Permissions.show', compact('permission'));
     }
 
     public function edit(Permission $permission)
     {
-        return view('UserManagement.permissions.edit', compact('permission'));
+        return view('UserManagement.Permissions.edit', compact('permission'));
     }
 
     public function update(Request $request, Permission $permission)

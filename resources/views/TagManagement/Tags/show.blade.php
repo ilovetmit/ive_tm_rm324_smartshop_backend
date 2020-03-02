@@ -50,30 +50,4 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.relatedData') }}
-    </div>
-    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#tags_advertisement" role="tab" data-toggle="tab">
-                {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#tags_products" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_1.title') }}
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="tags_advertisement">
-            @includeIf('TagManagement.Tags.relationships.tagsAdvertisements', ['advertisement' => $tag->hasAdvertisement])
-        </div>
-        <div class="tab-pane" role="tabpanel" id="tags_products">
-            @includeIf('TagManagement.Tags.relationships.tagsProducts', ['product' => $tag->hasProduct])
-        </div>
-    </div>
-</div>
-
 @endsection

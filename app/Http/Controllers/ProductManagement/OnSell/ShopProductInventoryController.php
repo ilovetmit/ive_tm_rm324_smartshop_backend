@@ -16,31 +16,40 @@ class ShopProductInventoryController extends Controller
 
     public function create()
     {
-        
+        // $permissions = Permission::all()->pluck('name', 'id');
+        return view('ProductManagement.OnSell.ShopProductInventories.create');
     }
 
     public function store(Request $request)
     {
-        
+        $shopProductInventory = ShopProductInventory::create($request->all());
+        // $remittanceTransaction->hasTransaction()->sync($request->input('hasTransaction', []));
+        return redirect()->route('ProductManagement.ShopProductInventories.index');
     }
 
     public function show(ShopProductInventory $shopProductInventory)
     {
-        
+        // $shopProductInventory->load('hasTransaction');
+        return view('ProductManagement.OnSell.ShopProductInventories.show', compact('shopProductInventory'));
     }
 
     public function edit(ShopProductInventory $shopProductInventory)
     {
-        
+        // $transactions = Transaction::all()->pluck('id');
+        // $shopProductInventory->load('hasTransaction');
+        return view('ProductManagement.OnSell.ShopProductInventories.edit', compact('shopProductInventory'));
     }
 
     public function update(Request $request, ShopProductInventory $shopProductInventory)
     {
-        
+        $shopProductInventory->update($request->all());
+        // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
+        return redirect()->route('ProductManagement.ShopProductInventories.index');
     }
 
     public function destroy(ShopProductInventory $shopProductInventory)
     {
-        
+        $shopProductInventory->delete();
+        return back();
     }
 }

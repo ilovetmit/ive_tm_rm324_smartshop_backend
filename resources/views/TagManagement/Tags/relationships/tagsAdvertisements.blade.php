@@ -63,19 +63,19 @@
                                 {{ $advertisement->status ?? '' }}
                             </td>
                             <td>
-                                @can('product_view')
+                                @can('advertisement_view')
                                 <a class="btn btn-xs btn-primary" href="{{ route('AdvertisementManagement.Advertisements.show', $advertisement->id ?? '' ) }}">
                                     {{ trans('global.view') }}
                                 </a>
                                 @endcan
 
-                                @can('product_edit')
+                                @can('advertisement_edit')
                                 <a class="btn btn-xs btn-info" href="{{ route('AdvertisementManagement.Advertisements.edit', $advertisement->id ?? '' ) }}">
                                     {{ trans('global.edit') }}
                                 </a>
                                 @endcan
 
-                                @can('product_delete')
+                                @can('advertisement_delete')
                                 <form action="{{ route('AdvertisementManagement.Advertisements.destroy', $advertisement->id ?? '' ) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

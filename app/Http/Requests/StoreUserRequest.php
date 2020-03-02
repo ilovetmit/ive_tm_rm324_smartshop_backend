@@ -19,23 +19,23 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'    => [
+            'first_name' => [
                 'required',
             ],
-            'last_name'    => [
+            'last_name' => [
                 'required',
             ],
-            'email'    => [
+            'email' => [
                 'required',
                 'unique:users',
             ],
             'password' => [
                 'required',
             ],
-            'roles.*'  => [
+            'roles.*' => [
                 'integer',
             ],
-            'roles'    => [
+            'roles' => [
                 'required',
                 'array',
             ],

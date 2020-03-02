@@ -3,13 +3,13 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.informationManagement.sub_title_1.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.informationManagement.sub_title_2.title') }}
     </div>
 
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('InformationManagement.Addresses.index') }}">
+                <a class="btn btn-default" href="{{ route('InformationManagement.Devices.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -17,48 +17,40 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.id') }}
+                            {{ trans('cruds.informationManagement.sub_title_2.fields.id') }}
                         </th>
                         <td>
-                            {{ $address->id }}
+                            {{ $device->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.user_id') }}
+                            {{ trans('cruds.informationManagement.sub_title_2.fields.token') }}
                         </th>
                         <td>
-                            {{ $address->user_id }}
+                            {{ $device->token }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.district') }}
+                            {{ trans('cruds.informationManagement.sub_title_2.fields.user_id') }}
                         </th>
                         <td>
-                            {{ $address->district }}
+                            {{ $device->user_id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.address1') }}
+                            {{ trans('cruds.informationManagement.sub_title_2.fields.is_active') }}
                         </th>
                         <td>
-                            {{ $address->address1 }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.address2') }}
-                        </th>
-                        <td>
-                            {{ $address->address2 }}
+                            {{ $device->is_active }}
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('InformationManagement.Addresses.index') }}">
+                <a class="btn btn-default" href="{{ route('InformationManagement.Devices.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>

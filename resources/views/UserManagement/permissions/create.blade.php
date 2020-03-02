@@ -10,8 +10,8 @@
         <form method="POST" action="{{ route("UserManagement.Permissions.store") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label class="required" for="title">{{ trans('cruds.userManagement.sub_title_1.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ old('name', '') }}" required>
+                <label class="required" for="name">{{ trans('cruds.userManagement.sub_title_1.fields.name') }}</label>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', '') }}" required>
                 @if($errors->has('name'))
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif

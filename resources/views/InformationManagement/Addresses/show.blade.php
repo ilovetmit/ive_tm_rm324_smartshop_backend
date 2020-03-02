@@ -79,7 +79,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="addresses_users">
-            @includeIf('InformationManagement.Addresses.relationships.addressesUsers', ['users' => $address->user])
+            @includeIf('InformationManagement.Addresses.relationships.addressesUsers', ['users' => $address->hasUser])
         </div>
     </div>
 </div>

@@ -3,48 +3,47 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.userManagement.sub_title_2.title') }}
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("TagManagement.Tags.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("UserManagement.Roles.store") }}" enctype="multipart/form-data">
             @csrf
-            <!-- ------------------------------------name------------------------------------ -->
+            <!-- --------------------------------------name-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="title">{{ trans('cruds.tagManagement.sub_title_1.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('title', '') }}" required>
-                @if($errors->has('name'))
-                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                <label class="required" for="title">{{ trans('cruds.userManagement.sub_title_2.fields.name') }}</label>
+                <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ old('title', '') }}" required>
+                @if($errors->has('title'))
+                <span class="text-danger">{{ $errors->first('title') }}</span>
                 @endif
-                <span class="help-block"> </span>
+                <span class="help-block"></span>
             </div>
-            <!-- ------------------------------------description------------------------------------ -->
+            <!-- --------------------------------------description-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="description">{{ trans('cruds.tagManagement.sub_title_1.fields.description') }}</label>
+                <label class="required" for="description">{{ trans('cruds.userManagement.sub_title_2.fields.description') }}</label>
                 <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', '') }}" required>
                 @if($errors->has('description'))
-                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif
-                <span class="help-block"> </span>
+                <span class="help-block"></span>
             </div>
-            <!-- ------------------------------------product------------------------------------ -->
-            <!-- <div class="form-group">
-                <label class="required" for="permissions">{{ trans('cruds.tagManagement.sub_title_1.fields.permission') }}</label>
+            <!-- --------------------------------------permission-------------------------------------- -->
+            <div class="form-group">
+                <label class="required" for="permissions">{{ trans('cruds.userManagement.sub_title_2.fields.permission') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
                 <select class="form-control select2 {{ $errors->has('permissions') ? 'is-invalid' : '' }}" name="permissions[]" id="permissions" multiple required>
                     @foreach($permissions as $id => $permissions)
-                        <option value="{{ $id }}" {{ in_array($id, old('permissions', [])) ? 'selected' : '' }}>{{ $permissions }}</option>
+                    <option value="{{ $id }}" {{ in_array($id, old('permissions', [])) ? 'selected' : '' }}>{{ $permissions }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('permissions'))
-                    <span class="text-danger">{{ $errors->first('permissions') }}</span>
+                <span class="text-danger">{{ $errors->first('permissions') }}</span>
                 @endif
                 <span class="help-block"></span>
-            </div> -->
-            <!-- ------------------------------------advertisement------------------------------------ -->
+            </div>
             <!-- ------------------------------------------------------------------------ -->
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

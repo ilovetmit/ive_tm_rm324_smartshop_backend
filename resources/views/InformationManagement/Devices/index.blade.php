@@ -52,13 +52,13 @@
                             {{ $device->token ?? '' }}
                         </td>
                         <td>
-                            {{ $device->user->user_id ?? '' }}
+                            {{ $device->user->first_name ?? '' }} {{ $device->user->last_name ?? '' }}
                         </td>
                         <td>
                             {{ $device->is_active ?? '' }}
                         </td>
                         <td>
-                        <!-- which can allow to do -->
+                            <!-- which can allow to do -->
                             @can('device_view_cannot')
                             <a class="btn btn-xs btn-primary" href="{{ route('InformationManagement.Devices.show', $device->id) }}">
                                 {{ trans('global.view') }}
