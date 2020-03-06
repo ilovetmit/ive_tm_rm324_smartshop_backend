@@ -12,13 +12,13 @@ class VitcoinController extends Controller
     public function index()
     {
         $vitcoins = Vitcoin::all();
-        return view('InformationManagement.Vitcoins.index', compact('vitcoins'));
+        return view('information-management.vitcoins.index', compact('vitcoins'));
     }
 
     public function create()
     {
         $users = User::all()->pluck('id');
-        return view('InformationManagement.Vitcoins.create', compact('users'));
+        return view('information-management.vitcoins.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -31,14 +31,14 @@ class VitcoinController extends Controller
     public function show(Vitcoin $vitcoin)
     {
         $vitcoin->load('hasUser');
-        return view('InformationManagement.Vitcoins.show', compact('vitcoin'));
+        return view('information-management.vitcoins.show', compact('vitcoin'));
     }
 
     public function edit(Vitcoin $vitcoin)
     {
         $users = User::all()->pluck('name', 'id');
         $vitcoin->load('hasUser');
-        return view('InformationManagement.Vitcoins.edit', compact('users', 'vitcoin'));
+        return view('information-management.vitcoins.edit', compact('users', 'vitcoin'));
     }
 
     public function update(Request $request, Vitcoin $vitcoin)

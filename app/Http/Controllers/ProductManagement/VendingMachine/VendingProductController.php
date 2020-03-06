@@ -11,13 +11,13 @@ class VendingProductController extends Controller
     public function index()
     {
         $vendingProducts = VendingProduct::all();
-        return view('ProductManagement.VendingMachine.VendingProducts.index', compact('vendingProducts'));
+        return view('product-management.vending-machine.vending-products.index', compact('vendingProducts'));
     }
 
     public function create()
     {
         // $permissions = Permission::all()->pluck('name', 'id');
-        return view('ProductManagement.VendingMachine.VendingProducts.create');
+        return view('product-management.vending-machine.vending-products.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class VendingProductController extends Controller
     public function show(VendingProduct $vendingProduct)
     {
         // $product->load('hasTransaction');
-        return view('ProductManagement.VendingMachine.VendingProducts.show', compact('vendingProduct'));
+        return view('product-management.vending-machine.vending-products.show', compact('vendingProduct'));
     }
 
     public function edit(VendingProduct $vendingProduct)
     {
         // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
-        return view('ProductManagement.VendingMachine.VendingProducts.edit', compact('vendingProduct'));
+        return view('product-management.vending-machine.vending-products.edit', compact('vendingProduct'));
     }
 
     public function update(Request $request, VendingProduct $vendingProduct)

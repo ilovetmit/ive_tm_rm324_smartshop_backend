@@ -12,12 +12,12 @@ class LockerTransactionController extends Controller
     public function index()
     {
         $lockerTransactions = LockerTransaction::all();
-        return view('TransactionManagement.LockerTransactions.index', compact('lockerTransactions'));
+        return view('transaction-management.locker-transactions.index', compact('lockerTransactions'));
     }
 
     public function create()
     {
-        return view('TransactionManagement.LockerTransactions.create');
+        return view('transaction-management.locker-transactions.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class LockerTransactionController extends Controller
     public function show(LockerTransaction $lockerTransaction)
     {
         $lockerTransaction->load('hasTransaction');
-        return view('TransactionManagement.LockerTransactions.show', compact('lockerTransaction'));
+        return view('transaction-management.locker-transactions.show', compact('lockerTransaction'));
     }
 
     public function edit(LockerTransaction $lockerTransaction)
     {
         $transactions = Transaction::all()->pluck('id');
         $lockerTransaction->load('hasTransaction');
-        return view('TransactionManagement.LockerTransactions.edit', compact('transactions', 'lockerTransaction'));
+        return view('transaction-management.locker-transactions.edit', compact('transactions', 'lockerTransaction'));
     }
 
     public function update(Request $request, LockerTransaction $lockerTransaction)

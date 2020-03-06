@@ -11,13 +11,13 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('TagManagement.Tags.index', compact('tags'));
+        return view('tag-management.tags.index', compact('tags'));
     }
 
     public function create()
     {
         // $permissions = Permission::all()->pluck('name', 'id');
-        return view('TagManagement.Tags.create');
+        return view('tag-management.tags.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         // $tag->load('hasProduct', 'hasAdvertisement');
-        return view('TagManagement.Tags.show', compact('tag'));
+        return view('tag-management.tags.show', compact('tag'));
     }
 
     public function edit(Tag $tag)
     {
         // $permissions = Permission::all()->pluck('name', 'id');
         // $role->load('hasPermission');
-        return view('TagManagement.Tags.edit', compact('tag'));
+        return view('tag-management.tags.edit', compact('tag'));
     }
 
     public function update(Request $request, Tag $tag)

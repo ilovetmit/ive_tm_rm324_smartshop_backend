@@ -12,13 +12,13 @@ class InterestController extends Controller
     public function index()
     {
         $interests = Interest::all();
-        return view('InformationManagement.Interests.index', compact('interests'));
+        return view('information-management.interests.index', compact('interests'));
     }
 
     public function create()
     {
         $users = User::all()->pluck('id');
-        return view('InformationManagement.Interests.create', compact('users'));
+        return view('information-management.interests.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -31,14 +31,14 @@ class InterestController extends Controller
     public function show(Interest $interest)
     {
         $interest->load('hasUser');
-        return view('InformationManagement.Interests.show', compact('interest'));
+        return view('information-management.interests.show', compact('interest'));
     }
 
     public function edit(Interest $interest)
     {
         $users = User::all()->pluck('id');
         $interest->load('hasUser');
-        return view('InformationManagement.Interests.edit', compact('interest', 'users'));
+        return view('information-management.interests.edit', compact('interest', 'users'));
     }
 
     public function update(Request $request, Interest $interest)

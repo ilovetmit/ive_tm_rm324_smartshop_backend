@@ -11,13 +11,13 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::all();
-        return view('TransactionManagement.Transactions.index', compact('transactions'));
+        return view('transaction-management.transactions.index', compact('transactions'));
     }
 
     public function create()
     {
         $transaction = Transaction::all()->pluck('id');
-        return view('TransactionManagement.Transaction.create');
+        return view('transaction-management.transactions.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         // $role->load('hasUser', 'hasPermission');
-        return view('TransactionManagement.Transactions.show');
+        return view('transaction-management.transactions.show');
     }
 
     public function edit(Transaction $transaction)
     {
         // $permissions = Permission::all()->pluck('name', 'id');
         // $transaction->load('hasPermission');
-        return view('TransactionManagement.Transactions.edit');
+        return view('transaction-management.transactions.edit');
     }
 
     public function update(Request $request, Transaction $transaction)

@@ -11,13 +11,13 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('ProductManagement.Categories.index', compact('categories'));
+        return view('product-management.categories.index', compact('categories'));
     }
 
     public function create()
     {
         // $permissions = Permission::all()->pluck('name', 'id');
-        return view('ProductManagement.Categories.create');
+        return view('product-management.categories.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         // $product->load('hasTransaction');
-        return view('ProductManagement.Categories.show', compact('category'));
+        return view('product-management.categories.show', compact('category'));
     }
 
     public function edit(Category $category)
     {
         // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
-        return view('ProductManagement.Categories.edit', compact('category'));
+        return view('product-management.categories.edit', compact('category'));
     }
 
     public function update(Request $request, Category $category)

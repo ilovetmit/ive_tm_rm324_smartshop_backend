@@ -12,13 +12,13 @@ class RemittanceTransactionController extends Controller
     public function index()
     {
         $remittanceTransactions = RemittanceTransaction::all();
-        return view('TransactionManagement.RemittanceTransactions.index', compact('remittanceTransactions'));
+        return view('transaction-management.remittance-transactions.index', compact('remittanceTransactions'));
     }
 
     public function create()
     {
         // $permissions = Permission::all()->pluck('name', 'id');
-        return view('TransactionManagement.RemittanceTransactions.create');
+        return view('transaction-management.remittance-transactions.create');
     }
 
     public function store(Request $request)
@@ -31,14 +31,14 @@ class RemittanceTransactionController extends Controller
     public function show(RemittanceTransaction $remittanceTransaction)
     {
         $remittanceTransaction->load('hasTransaction');
-        return view('TransactionManagement.RemittanceTransactions.show', compact('remittanceTransaction'));
+        return view('transaction-management.remittance-transactions.show', compact('remittanceTransaction'));
     }
 
     public function edit(RemittanceTransaction $remittanceTransaction)
     {
         $transactions = Transaction::all()->pluck('id');
         $remittanceTransaction->load('hasTransaction');
-        return view('TransactionManagement.RemittanceTransactions.edit', compact('transactions', 'remittanceTransaction'));
+        return view('transaction-management.remittance-transactions.edit', compact('transactions', 'remittanceTransaction'));
     }
 
     public function update(Request $request, RemittanceTransaction $remittanceTransaction)

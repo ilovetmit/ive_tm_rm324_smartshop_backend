@@ -12,13 +12,13 @@ class DeviceController extends Controller
     public function index()
     {
         $devices = Device::all();
-        return view('InformationManagement.Devices.index', compact('devices'));
+        return view('information-management.devices.index', compact('devices'));
     }
 
     public function create()
     {
         $devices = Device::all()->pluck('id');
-        return view('InformationManagement.Devices.create', compact('devices'));
+        return view('information-management.devices.create', compact('devices'));
     }
 
     public function store(Request $request)
@@ -31,14 +31,14 @@ class DeviceController extends Controller
     public function show(Device $device)
     {
         $device->load('hasUser');
-        return view('InformationManagement.Devices.show', compact('device'));
+        return view('information-management.devices.show', compact('device'));
     }
 
     public function edit(Device $device)
     {
         $users = User::all()->pluck('name', 'id');
         $device->load('hasUser');
-        return view('InformationManagement.Devices.edit', compact('device', 'users'));
+        return view('information-management.devices.edit', compact('device', 'users'));
     }
 
     public function update(Request $request, Device $device)

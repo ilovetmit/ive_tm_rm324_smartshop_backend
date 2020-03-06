@@ -12,12 +12,12 @@ class AddressController extends Controller
     public function index()
     {
         $addresses = Address::all();
-        return view('InformationManagement.Addresses.index', compact('addresses'));
+        return view('information-management.addresses.index', compact('addresses'));
     }
 
     public function create()
     {
-        return view('InformationManagement.Addresses.create');
+        return view('information-management.addresses.create');
     }
 
     public function store(Request $request)
@@ -29,14 +29,14 @@ class AddressController extends Controller
     public function show(Address $address)
     {
         $address->load('hasUser');
-        return view('InformationManagement.Addresses.show', compact('address'));
+        return view('information-management.addresses.show', compact('address'));
     }
 
     public function edit(Address $address)
     {
         $users = User::all()->pluck('name', 'id');
         $address->load('hasUser');
-        return view('InformationManagement.Addresses.edit', compact('address', 'users'));
+        return view('information-management.addresses.edit', compact('address', 'users'));
     }
 
     public function update(Request $request, Address $address)

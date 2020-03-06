@@ -11,13 +11,13 @@ class ShopProductController extends Controller
     public function index()
     {
         $shopProducts = ShopProduct::all();
-        return view('ProductManagement.OnSell.ShopProducts.index', compact('shopProducts'));
+        return view('product-management.on-sell.shop-products.index', compact('shopProducts'));
     }
 
     public function create()
     {
         // $permissions = Permission::all()->pluck('name', 'id');
-        return view('ProductManagement.OnSell.ShopProducts.create');
+        return view('product-management.on-sell.shop-products.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class ShopProductController extends Controller
     public function show(ShopProduct $shopProduct)
     {
         // $shopProduct->load('hasTransaction');
-        return view('ProductManagement.OnSell.ShopProducts.show', compact('shopProduct'));
+        return view('product-management.on-sell.shop-products.show', compact('shopProduct'));
     }
 
     public function edit(ShopProduct $shopProduct)
     {
         // $transactions = Transaction::all()->pluck('id');
         // $shopProduct->load('hasTransaction');
-        return view('ProductManagement.OnSell.ShopProducts.edit', compact('shopProduct'));
+        return view('product-management.on-sell.shop-products.edit', compact('shopProduct'));
     }
 
     public function update(Request $request, ShopProduct $shopProduct)

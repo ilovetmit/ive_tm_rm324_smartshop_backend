@@ -11,12 +11,12 @@ class StockController extends Controller
     public function index()
     {
         $stocks = Stock::all();
-        return view('SmartBankManagement.Stocks.index', compact('stocks'));
+        return view('smart-bank-management.stocks.index', compact('stocks'));
     }
 
     public function create()
     {
-        return view('SmartBankManagement.Stocks.create');
+        return view('smart-bank-management.stocks.create');
     }
 
     public function store(Request $request)
@@ -27,12 +27,12 @@ class StockController extends Controller
 
     public function show(Stock $stock)
     {
-        return view('SmartBankManagement.Stocks.show', compact('stock'));
+        return view('smart-bank-management.stocks.show', compact('stock'));
     }
 
     public function edit(Stock $stock)
     {
-        return view('SmartBankManagement.Stocks.edit', compact('stock'));
+        return view('smart-bank-management.stocks.edit', compact('stock'));
     }
 
     public function update(Request $request, Stock $stock)

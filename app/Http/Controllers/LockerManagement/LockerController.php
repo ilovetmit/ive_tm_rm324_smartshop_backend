@@ -12,13 +12,13 @@ class LockerController extends Controller
     public function index()
     {
         $lockers = Locker::all();
-        return view('LockerManagement.Lockers.index', compact('lockers'));
+        return view('locker-management.lockers.index', compact('lockers'));
     }
 
     public function create()
     {
         $lockers = Locker::all()->pluck('id');
-        return view('LockerManagement.Lockers.create', compact('lockers'));
+        return view('locker-management.lockers.create', compact('lockers'));
     }
 
     public function store(Request $request)
@@ -31,14 +31,14 @@ class LockerController extends Controller
     public function show(Locker $locker)
     {
         $locker->load('hasLockerTransaction');
-        return view('LockerManagement.Lockers.show', compact('locker'));
+        return view('locker-management.lockers.show', compact('locker'));
     }
 
     public function edit(Locker $locker)
     {
         $lockTransaction = LockerTransaction::all()->pluck('id');
         $locker->load('hasLockerTransaction');
-        return view('LockerManagement.Lockers.edit', compact('locker'));
+        return view('locker-management.lockers.edit', compact('locker'));
     }
 
     public function update(Request $request, Locker $locker)

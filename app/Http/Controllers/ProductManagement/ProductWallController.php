@@ -11,13 +11,13 @@ class ProductWallController extends Controller
     public function index()
     {
         $productWalls = ProductWall::all();
-        return view('ProductManagement.ProductWalls.index', compact('productWalls'));
+        return view('poduct-management.product-walls.index', compact('productWalls'));
     }
 
     public function create()
     {
          // $permissions = Permission::all()->pluck('name', 'id');
-         return view('ProductManagement.ProductWalls.create');
+         return view('poduct-management.product-walls.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class ProductWallController extends Controller
     public function show(ProductWall $productWall)
     {
         // $product->load('hasTransaction');
-        return view('ProductManagement.ProductWalls.show', compact('productWall'));
+        return view('poduct-management.product-walls.show', compact('productWall'));
     }
 
     public function edit(ProductWall $productWall)
     {
          // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
-        return view('ProductManagement.ProductWalls.edit', compact('productWall'));
+        return view('poduct-management.product-walls.edit', compact('productWall'));
     }
 
     public function update(Request $request, ProductWall $productWall)

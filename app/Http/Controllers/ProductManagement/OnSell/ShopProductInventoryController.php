@@ -11,13 +11,13 @@ class ShopProductInventoryController extends Controller
     public function index()
     {
         $shopProductInventories = ShopProductInventory::all();
-        return view('ProductManagement.OnSell.ShopProductInventories.index', compact('shopProductInventories'));
+        return view('product-management.on-sell.shop-products-inventories.index', compact('shopProductInventories'));
     }
 
     public function create()
     {
         // $permissions = Permission::all()->pluck('name', 'id');
-        return view('ProductManagement.OnSell.ShopProductInventories.create');
+        return view('product-management.on-sell.shop-product-inventories.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class ShopProductInventoryController extends Controller
     public function show(ShopProductInventory $shopProductInventory)
     {
         // $shopProductInventory->load('hasTransaction');
-        return view('ProductManagement.OnSell.ShopProductInventories.show', compact('shopProductInventory'));
+        return view('product-management.on-sell.shop-product-inventories.show', compact('shopProductInventory'));
     }
 
     public function edit(ShopProductInventory $shopProductInventory)
     {
         // $transactions = Transaction::all()->pluck('id');
         // $shopProductInventory->load('hasTransaction');
-        return view('ProductManagement.OnSell.ShopProductInventories.edit', compact('shopProductInventory'));
+        return view('product-management.on-sell.shop-product-inventories.edit', compact('shopProductInventory'));
     }
 
     public function update(Request $request, ShopProductInventory $shopProductInventory)

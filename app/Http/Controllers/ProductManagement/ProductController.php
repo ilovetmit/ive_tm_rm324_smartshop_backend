@@ -11,13 +11,13 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('ProductManagement.Products.index', compact('products'));
+        return view('product-management.products.index', compact('products'));
     }
 
     public function create()
     {
         // $permissions = Permission::all()->pluck('name', 'id');
-        return view('ProductManagement.Products.create');
+        return view('product-management.products.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         // $product->load('hasTransaction');
-        return view('ProductManagement.Products.show', compact('product'));
+        return view('product-management.products.show', compact('product'));
     }
 
     public function edit(Product $product)
     {
         // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
-        return view('ProductManagement.Products.edit', compact('product'));
+        return view('product-management.products.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)

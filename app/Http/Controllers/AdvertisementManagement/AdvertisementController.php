@@ -17,13 +17,13 @@ class AdvertisementController extends Controller
     public function index()
     {
         $advertisements = Advertisement::all();
-        return view('AdvertisementManagement.Advertisements.index', compact('advertisements'));
+        return view('advertisement-management.advertisements.index', compact('advertisements'));
     }
 
     public function create()
     {
         $advertisements = Advertisement::all()->pluck('id');
-        return view('AdvertisementManagement.Advertisements.create', compact('advertisements'));
+        return view('advertisement-management.advertisements.create', compact('advertisements'));
     }
 
     public function store(Request $request)
@@ -36,14 +36,14 @@ class AdvertisementController extends Controller
     public function show(Advertisement $advertisement)
     {
         $advertisement->load('hasTag');
-        return view('AdvertisementManagement.Advertisements.show', compact('advertisement'));
+        return view('advertisement-management.advertisements.show', compact('advertisement'));
     }
 
     public function edit(Advertisement $advertisement)
     {
         $tag = Tag::all()->pluck('id');
         $advertisement->load('hasTag');
-        return view('AdvertisementManagement.Advertisements.edit', compact('advertisement', 'tag'));
+        return view('advertisement-management.advertisements.edit', compact('advertisement', 'tag'));
     }
 
     public function update(Request $request, Advertisement $advertisement)

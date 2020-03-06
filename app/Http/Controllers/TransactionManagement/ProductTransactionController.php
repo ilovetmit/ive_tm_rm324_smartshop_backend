@@ -12,12 +12,12 @@ class ProductTransactionController extends Controller
     public function index()
     {
         $productTransactions = ProductTransaction::all();
-        return view('TransactionManagement.ProductTransactions.index', compact('productTransactions'));
+        return view('transaction-management.product-transactions.index', compact('productTransactions'));
     }
 
     public function create()
     {
-        return view('TransactionManagement.ProductTransactions.create');
+        return view('transaction-management.product-transactions.create');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class ProductTransactionController extends Controller
     public function show(ProductTransaction $productTransaction)
     {
         $productTransaction->load('hasTransaction');
-        return view('TransactionManagement.ProductTransactions.show', compact('productTransaction'));
+        return view('transaction-management.product-transactions.show', compact('productTransaction'));
     }
 
     public function edit(ProductTransaction $productTransaction)
     {
         $transactions = Transaction::all()->pluck('id');
         $productTransaction->load('hasTransaction');
-        return view('TransactionManagement.ProductTransactions.edit', compact('transactions', 'productTransaction'));
+        return view('transaction-management.product-transactions.edit', compact('transactions', 'productTransaction'));
     }
 
     public function update(Request $request, ProductTransaction $productTransaction)
