@@ -18,40 +18,40 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('UserManagement.users.index', compact('users'));
+        return view('user-management.users.index', compact('users'));
     }
 
     public function create()
     {
         $roles = Role::all()->pluck('name', 'id');
-        return view('UserManagement.users.create', compact('roles'));
+        return view('user-management.users.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
         $user = User::create($request->all());
         $user->hasRole()->sync($request->input('roles', []));
-        return redirect()->route('UserManagement.users.index');
+        return redirect()->route('UserManagement.Users.index');
     }
 
     public function show(User $user)
     {
         $user->load('hasRole');
-        return view('UserManagement.users.show', compact('user'));
+        return view('user-management.users.show', compact('user'));
     }
 
     public function edit(User $user)
     {
         $roles = Role::all()->pluck('name', 'id');
         $user->load('hasRole');
-        return view('UserManagement.users.edit', compact('roles', 'user'));
+        return view('user-management.users.edit', compact('roles', 'user'));
     }
 
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
         $user->hasRole()->sync($request->input('roles', []));
-        return redirect()->route('UserManagement.users.index');
+        return redirect()->route('UserManagement.Users.index');
     }
 
     public function destroy(User $user)

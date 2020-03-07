@@ -18,33 +18,33 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('UserManagement.roles.index', compact('roles'));
+        return view('user-management.roles.index', compact('roles'));
     }
 
     public function create()
     {
         $permissions = Permission::all()->pluck('name', 'id');
-        return view('UserManagement.roles.create', compact('permissions'));
+        return view('user-management.roles.create', compact('permissions'));
     }
 
     public function store(Request $request)
     {
         $role = Role::create($request->all());
         $role->hasPermission()->sync($request->input('hasPermission', []));
-        return redirect()->route('UserManagement.roles.index');
+        return redirect()->route('UserManagement.Roles.index');
     }
 
     public function show(Role $role)
     {
         $role->load('hasUser', 'hasPermission');
-        return view('UserManagement.roles.show', compact('role'));
+        return view('user-management.roles.show', compact('role'));
     }
 
     public function edit(Role $role)
     {
         $permissions = Permission::all()->pluck('name', 'id');
         $role->load('hasPermission');
-        return view('UserManagement.roles.edit', compact('permissions', 'role'));
+        return view('user-management.roles.edit', compact('permissions', 'role'));
     }
 
     public function update(Request $request, Role $role)

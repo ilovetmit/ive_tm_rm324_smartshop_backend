@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\UserManagement\User;
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 class UserTableSeeder extends Seeder
 {
@@ -19,8 +21,15 @@ class UserTableSeeder extends Seeder
                 'last_name'             => 'lastName',
                 'password'              => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'avatar'                => 'avatar',
+                'birthday'              => '1999-09-19',
+                'telephone'             => '99999999',
+                'bio'                   => 'bio',
                 'gender'                => 1,
                 'status'                => 1,
+                'email_verified_at'     => now(),
+                'remember_token'        => Str::random(10),
+                'created_at'            => now(),
+                'updated_at'            => now(),
             ],
             [
                 'email'                 => 'user@user.com',
@@ -28,8 +37,15 @@ class UserTableSeeder extends Seeder
                 'last_name'             => 'lastName',
                 'password'              => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'avatar'                => 'avatar',
-                'gender'                => 1,
-                'status'                => 1,
+                'birthday'              => '1999-09-19',
+                'telephone'             => '99999999',
+                'bio'                   => 'bio',
+                'gender'                => 2,
+                'status'                => 2,
+                'email_verified_at'     => now(),
+                'remember_token'        => Str::random(10),
+                'created_at'            => now(),
+                'updated_at'            => now(),
             ],
         ];
         User::insert($user);

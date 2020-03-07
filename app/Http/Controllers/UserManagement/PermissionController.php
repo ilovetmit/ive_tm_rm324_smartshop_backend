@@ -19,35 +19,35 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-        return view('UserManagement.permissions.index', compact('permissions'));
+        return view('user-management.permissions.index', compact('permissions'));
     }
 
     public function create()
     {
-        return view('UserManagement.permissions.create');
+        return view('user-management.permissions.create');
     }
 
     public function store(Request $request)
     {
         $permission = Permission::create($request->all());
-        return redirect()->route('UserManagement.permissions.index');
+        return redirect()->route('UserManagement.Permissions.index');
     }
 
     public function show(Permission $permission)
     {
         $permission->load('hasRole');
-        return view('UserManagement.permissions.show', compact('permission'));
+        return view('user-management.permissions.show', compact('permission'));
     }
 
     public function edit(Permission $permission)
     {
-        return view('UserManagement.permissions.edit', compact('permission'));
+        return view('user-management.permissions.edit', compact('permission'));
     }
 
     public function update(Request $request, Permission $permission)
     {
         $permission->update($request->all());
-        return redirect()->route('UserManagement.permissions.index');
+        return redirect()->route('UserManagement.Permissions.index');
     }
 
     public function destroy(Permission $permission)
