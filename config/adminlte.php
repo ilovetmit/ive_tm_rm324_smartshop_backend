@@ -132,7 +132,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'SmartShop/Dashboard',
 
     'logout_url' => 'logout',
 
