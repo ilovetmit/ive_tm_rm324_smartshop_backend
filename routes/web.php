@@ -4,7 +4,7 @@ use JeroenNoten\LaravelAdminLte\AdminLte;
 
 Auth::routes(['register' => false]);
 
-Route::redirect('/', '/login');
+Route::get('/', 'HomeController@index')->name('home');
 /***********************************************
  * Smart-Shop-FYP (admin side) Controller
  ***********************************************/
@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('Devices', 'DeviceController');
             // http://127.0.0.1:8000/SmartShop/InformationManagement/Interests
             Route::delete('Interests/destroy', 'InterestController@massDestroy')->name('Interests.massDestroy');
-            Route::resource('Interests', 'InterestController');            
+            Route::resource('Interests', 'InterestController');
             // http://127.0.0.1:8000/SmartShop/InformationManagement/Vitcoins
             Route::delete('Vitcoins/destroy', 'VitcoinController@massDestroy')->name('Vitcoins.massDestroy');
             Route::resource('Vitcoins', 'VitcoinController');
@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('ad', 'AdvertisementController');
         });
 
-        
+
         // http://127.0.0.1:8000/SmartShop/TransactionManagement
         Route::group(['prefix' => 'TransactionManagement', 'as' => 'TransactionManagement.', 'namespace' => 'TransactionManagement'], function () {
             // http://127.0.0.1:8000/SmartShop/TransactionManagement/Transactions
