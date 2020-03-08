@@ -78,8 +78,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         // http://127.0.0.1:8000/SmartShop/AdvertisementManagement/Advertisements
         Route::group(['prefix' => 'AdvertisementManagement', 'as' => 'AdvertisementManagement.', 'namespace' => 'AdvertisementManagement'], function () {
-            Route::delete('Advertisements/destroy', 'AdvertisementController@massDestroy')->name('Advertisements.massDestroy');
-            Route::resource('Advertisements', 'AdvertisementController');
+            Route::delete('ad/destroy', 'AdvertisementController@massDestroy')->name('ad.massDestroy');
+            Route::resource('ad', 'AdvertisementController');
         });
 
         
