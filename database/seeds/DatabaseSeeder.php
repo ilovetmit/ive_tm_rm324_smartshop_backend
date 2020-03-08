@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
 
             ProductTableSeeder::class,
             CategoryTableSeeder::class,
+            CategoryProductTableSeeder::class,
             ProductWallTableSeeder::class,
             VendingProductTableSeeder::class,
             ShopProductTableSeeder::class,
