@@ -61,6 +61,7 @@ return [
             'fields' => [
                 'id'                => 'ID',
                 'user_id'           => 'User ID',
+                'user'              => 'User',
                 'district'          => 'District',
                 'address1'          => 'Address Line 1',
                 'address2'          => 'Address Line 2',
@@ -76,7 +77,8 @@ return [
                 'id'                => 'ID',
                 'token'             => 'Token',
                 'user_id'           => 'User ID',
-                'is_active'         => 'Active Status',
+                'user'              => 'User',
+                'is_active'         => 'Status',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',
                 'deleted_at'        => 'Deleted at',

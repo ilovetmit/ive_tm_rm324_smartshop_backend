@@ -29,9 +29,6 @@
                             {{ trans('cruds.informationManagement.sub_title_3.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_3.fields.description') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -47,9 +44,6 @@
                         </td>
                         <td>
                             {{ $interest->name ?? '' }}
-                        </td>
-                        <td>
-                            {{ $interest->description ?? '' }}
                         </td>
                         <td>
                             @can('interest_view')

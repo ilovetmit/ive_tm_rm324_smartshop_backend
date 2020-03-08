@@ -26,10 +26,7 @@
                             {{ trans('cruds.informationManagement.sub_title_2.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_2.fields.token') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.informationManagement.sub_title_2.fields.user_id') }} -> show user name?
+                            {{ trans('cruds.informationManagement.sub_title_2.fields.user') }}
                         </th>
                         <th>
                             {{ trans('cruds.informationManagement.sub_title_2.fields.is_active') }}
@@ -49,29 +46,26 @@
                             {{ $device->id ?? '' }}
                         </td>
                         <td>
-                            {{ $device->token ?? '' }}
+                            {{ $device->hasUser->getFullNameAttribute() ?? 'Customer' }}
                         </td>
                         <td>
-                            {{ $device->user->first_name ?? '' }} {{ $device->user->last_name ?? '' }}
-                        </td>
-                        <td>
-                            {{ $device->is_active ?? '' }}
+                            <span class="badge badge-info">{{ config('constant.device_isActive')[$device->is_active] ?? '' }}</span>
                         </td>
                         <td>
                             <!-- which can allow to do -->
-                            @can('device_view_cannot')
+                            @can('device_view')
                             <a class="btn btn-xs btn-primary" href="{{ route('InformationManagement.Devices.show', $device->id) }}">
                                 {{ trans('global.view') }}
                             </a>
                             @endcan
 
-                            @can('device_edit_cannot')
+                            @can('device_edit')
                             <a class="btn btn-xs btn-info" href="{{ route('InformationManagement.Devices.edit', $device->id) }}">
                                 {{ trans('global.edit') }}
                             </a>
                             @endcan
 
-                            @can('device_delete_cannot')
+                            @can('device_delete')
                             <form action="{{ route('InformationManagement.Devices.destroy', $device->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

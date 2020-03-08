@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("ProductManagement.VendingMachine.VendingProducts.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("ProductManagement.VendingProducts.store") }}" enctype="multipart/form-data">
             @csrf
             <!---------------------------product_id--------------------------->
             <div class="form-group">

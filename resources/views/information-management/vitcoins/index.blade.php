@@ -29,12 +29,6 @@
                             {{ trans('cruds.informationManagement.sub_title_4.fields.user_id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_4.fields.address') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.informationManagement.sub_title_4.fields.primary_key') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -52,12 +46,6 @@
                             {{ $vitcoin->user_id ?? '' }}
                         </td>
                         <td>
-                            {{ $vitcoin->address ?? '' }}
-                        </td>
-                        <td>
-                            {{ $vitcoin->primary_key ?? '' }}
-                        </td>
-                        <td>
                             @can('vitcoin_view')
                             <a class="btn btn-xs btn-primary" href="{{ route('InformationManagement.Vitcoins.show', $vitcoin->id) }}">
                                 {{ trans('global.view') }}
@@ -69,7 +57,6 @@
                                 {{ trans('global.edit') }}
                             </a>
                             @endcan
-
                             @can('vitcoin_delete')
                             <form action="{{ route('InformationManagement.Vitcoins.destroy', $vitcoin->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">

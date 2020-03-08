@@ -15,9 +15,11 @@ class RoleTableSeeder extends Seeder
         $roles = [
             [
                 'name'  => 'Admin',
+                'description'   => 'all function permission allow',
             ],
             [
                 'name'  => 'User',
+                'description'   => '[UserManagement - Can not create][ProductManagement - Can not edit]',
             ],
         ];
 

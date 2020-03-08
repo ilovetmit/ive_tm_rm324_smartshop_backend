@@ -17,7 +17,7 @@ class ShopProductInventoryController extends Controller
     public function index()
     {
         $shopProductInventories = ShopProductInventory::all();
-        return view('product-management.on-sell.shop-products-inventories.index', compact('shopProductInventories'));
+        return view('product-management.on-sell.shop-product-inventories.index', compact('shopProductInventories'));
     }
 
     public function create()

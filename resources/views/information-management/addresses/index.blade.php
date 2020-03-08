@@ -26,7 +26,7 @@
                             {{ trans('cruds.informationManagement.sub_title_1.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.user_id') }}
+                            {{ trans('cruds.informationManagement.sub_title_1.fields.user') }}
                         </th>
                         <th>
                             {{ trans('cruds.informationManagement.sub_title_1.fields.district') }}
@@ -46,10 +46,10 @@
                             {{ $address->id ?? '' }}
                         </td>
                         <td>
-                            {{ $address->user->first_name ?? '' }} {{ $address->user->last_name ?? '' }}
+                            {{ $address->hasUser->getFullNameAttribute() ?? '' }}
                         </td>
                         <td>
-                            {{ $address->district ?? '' }}
+                            {{ config('constant.address_district')[$address->district] ?? '' }}
                         </td>
                         <td>
                             @can('address_view')

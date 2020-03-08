@@ -49,9 +49,7 @@
                             {{ $role->name ?? '' }}
                         </td>
                         <td>
-                            @foreach($role->hasPermission as $key => $item)
-                            <span class="badge badge-info">{{ $item->title }}</span>
-                            @endforeach
+                            {{ $role->description ?? '' }}
                         </td>
                         <td>
                             @can('role_view')
@@ -89,9 +87,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'role_delete',
-    'route'                     => route('UserManagement.Roles.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Role'
+'permission_massDestory' => 'role_delete',
+'route' => route('UserManagement.Roles.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Role'
 ])
 @endsection

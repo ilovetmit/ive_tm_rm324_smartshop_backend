@@ -20,7 +20,7 @@ class MassDestroyShopProductRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:shop_product_s,id',
+            'ids.*' => 'exists:shop_products,id',
         ];
     }
 }
