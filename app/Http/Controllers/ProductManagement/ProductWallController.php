@@ -5,19 +5,24 @@ namespace App\Http\Controllers\ProductManagement;
 use App\Models\ProductManagement\ProductWall;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyProductWallRequest;
+use App\Http\Requests\StoreProductWallRequest;
+use App\Http\Requests\UpdateProductWallRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductWallController extends Controller
 {
     public function index()
     {
         $productWalls = ProductWall::all();
-        return view('poduct-management.product-walls.index', compact('productWalls'));
+        return view('product-management.product-walls.index', compact('productWalls'));
     }
 
     public function create()
     {
          // $permissions = Permission::all()->pluck('name', 'id');
-         return view('poduct-management.product-walls.create');
+         return view('product-management.product-walls.create');
     }
 
     public function store(Request $request)
@@ -30,14 +35,14 @@ class ProductWallController extends Controller
     public function show(ProductWall $productWall)
     {
         // $product->load('hasTransaction');
-        return view('poduct-management.product-walls.show', compact('productWall'));
+        return view('product-management.product-walls.show', compact('productWall'));
     }
 
     public function edit(ProductWall $productWall)
     {
          // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
-        return view('poduct-management.product-walls.edit', compact('productWall'));
+        return view('product-management.product-walls.edit', compact('productWall'));
     }
 
     public function update(Request $request, ProductWall $productWall)
@@ -51,5 +56,11 @@ class ProductWallController extends Controller
     {
         $productWall->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyProductWallRequest $request)
+    {
+        ProductWall::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

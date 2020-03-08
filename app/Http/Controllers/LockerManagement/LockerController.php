@@ -6,6 +6,12 @@ use App\Models\LockerManagement\Locker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TransactionManagement\LockerTransaction;
+// massDestroy
+use App\Http\Requests\MassDestroyLockerRequest;
+use App\Http\Requests\StoreLockerRequest;
+use App\Http\Requests\UpdateLockerRequest;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class LockerController extends Controller
 {
@@ -54,9 +60,9 @@ class LockerController extends Controller
         return back();
     }
 
-    // public function massDestroy(MassDestroyUserRequest $request)
-    // {
-    //     User::whereIn('id', request('ids'))->delete();
-    //     return response(null, Response::HTTP_NO_CONTENT);
-    // }
+    public function massDestroy(MassDestroyLockerRequest $request)
+    {
+        Locker::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
 }

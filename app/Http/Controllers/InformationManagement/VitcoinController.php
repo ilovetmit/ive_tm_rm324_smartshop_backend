@@ -6,6 +6,12 @@ use App\Models\InformationManagement\Vitcoin;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyVitcoinRequest;
+use App\Http\Requests\StoreVitcoinRequest;
+use App\Http\Requests\UpdateVitcoinRequest;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class VitcoinController extends Controller
 {
@@ -52,5 +58,11 @@ class VitcoinController extends Controller
     {
         $vitcoin->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyVitcoinRequest $request)
+    {
+        Vitcoin::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

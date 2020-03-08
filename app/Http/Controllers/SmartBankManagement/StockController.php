@@ -5,6 +5,11 @@ namespace App\Http\Controllers\SmartBankManagement;
 use App\Models\SmartBankManagement\Stock;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyStockRequest;
+use App\Http\Requests\StoreStockRequest;
+use App\Http\Requests\UpdateStockRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class StockController extends Controller
 {
@@ -45,5 +50,11 @@ class StockController extends Controller
     {
         $stock->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyStockRequest $request)
+    {
+        Stock::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

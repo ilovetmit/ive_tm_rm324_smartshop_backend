@@ -95,6 +95,7 @@
 
 @endsection
 @section('scripts')
+@parent
 @include('module.datatable.massdestory',[
     'permission_massDestory'    => 'advertisement_delete',
     'route'                     => route('AdvertisementManagement.Advertisements.massDestroy'),

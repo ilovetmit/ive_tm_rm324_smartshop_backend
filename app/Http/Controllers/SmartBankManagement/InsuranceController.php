@@ -5,6 +5,11 @@ namespace App\Http\Controllers\SmartBankManagement;
 use App\Models\SmartBankManagement\Insurance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyInsuranceRequest;
+use App\Http\Requests\StoreInsuranceRequest;
+use App\Http\Requests\UpdateInsuranceRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class InsuranceController extends Controller
 {
@@ -45,5 +50,11 @@ class InsuranceController extends Controller
     {
         $insurance->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyInsuranceRequest $request)
+    {
+        Insurance::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

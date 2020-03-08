@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\AdvertisementManagement\Advertisement;
+use App\Models\ProductManagement\OnSell\ShopProduct;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class MassDestroyAdvertisementRequest extends FormRequest
+class MassDestroyShopProductRequest extends FormRequest
 {
     public function authorize()
     {
-        abort_if(Gate::denies('advertisement_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('shop_product_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -20,7 +20,7 @@ class MassDestroyAdvertisementRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:advertisements,id',
+            'ids.*' => 'exists:shop_product_s,id',
         ];
     }
 }

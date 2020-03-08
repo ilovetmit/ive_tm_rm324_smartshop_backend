@@ -5,6 +5,11 @@ namespace App\Http\Controllers\ProductManagement\VendingMachine;
 use App\Models\ProductManagement\VendingMachine\VendingProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyVendingProductRequest;
+use App\Http\Requests\StoreVendingProductRequest;
+use App\Http\Requests\UpdateVendingProductRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class VendingProductController extends Controller
 {
@@ -51,5 +56,11 @@ class VendingProductController extends Controller
     {
         $vendingProduct->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyVendingProductRequest $request)
+    {
+        VendingProduct::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

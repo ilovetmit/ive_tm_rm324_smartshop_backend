@@ -6,6 +6,12 @@ use App\Models\InformationManagement\Interest;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyInterestRequest;
+use App\Http\Requests\StoreInterestRequest;
+use App\Http\Requests\UpdateInterestRequest;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class InterestController extends Controller
 {
@@ -52,5 +58,11 @@ class InterestController extends Controller
     {
         $interest->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyInterestRequest $request)
+    {
+        Interest::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

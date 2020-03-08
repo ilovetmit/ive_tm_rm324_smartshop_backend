@@ -5,6 +5,11 @@ namespace App\Http\Controllers\ProductManagement;
 use App\Models\ProductManagement\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyProductRequest;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -51,5 +56,11 @@ class ProductController extends Controller
     {
         $product->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyProductRequest $request)
+    {
+        Product::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

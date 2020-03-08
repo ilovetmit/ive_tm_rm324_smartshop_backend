@@ -5,6 +5,11 @@ namespace App\Http\Controllers\TagManagement;
 use App\Models\TagManagement\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyTagRequest;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class TagController extends Controller
 {
@@ -51,5 +56,11 @@ class TagController extends Controller
     {
         $tag->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyTagRequest $request)
+    {
+        Tag::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

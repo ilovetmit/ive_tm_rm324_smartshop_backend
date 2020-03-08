@@ -6,6 +6,11 @@ use App\Models\InformationManagement\Device;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyDeviceRequest;
+use App\Http\Requests\StoreDeviceRequest;
+use App\Http\Requests\UpdateDeviceRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class DeviceController extends Controller
 {
@@ -52,5 +57,11 @@ class DeviceController extends Controller
     {
         $device->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyDeviceRequest $request)
+    {
+        Device::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

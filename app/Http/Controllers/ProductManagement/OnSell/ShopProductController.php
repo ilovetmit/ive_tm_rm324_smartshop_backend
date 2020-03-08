@@ -5,6 +5,12 @@ namespace App\Http\Controllers\ProductManagement\OnSell;
 use App\Models\ProductManagement\OnSell\ShopProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyShopProductRequest;
+use App\Http\Requests\StoreShopProductRequest;
+use App\Http\Requests\UpdateShopProductRequest;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class ShopProductController extends Controller
 {
@@ -51,5 +57,11 @@ class ShopProductController extends Controller
     {
         $shopProduct->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyShopProductRequest $request)
+    {
+        ShopProduct::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

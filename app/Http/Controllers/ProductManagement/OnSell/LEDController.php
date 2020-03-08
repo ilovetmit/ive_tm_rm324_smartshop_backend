@@ -5,6 +5,12 @@ namespace App\Http\Controllers\ProductManagement\OnSell;
 use App\Models\ProductManagement\OnSell\LED;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyLEDRequest;
+use App\Http\Requests\StoreLEDRequest;
+use App\Http\Requests\UpdateLEDRequest;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class LEDController extends Controller
 {
@@ -51,5 +57,11 @@ class LEDController extends Controller
     {
         $led->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyLEDRequest $request)
+    {
+        LED::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

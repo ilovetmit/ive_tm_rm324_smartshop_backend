@@ -5,6 +5,11 @@ namespace App\Http\Controllers\ProductManagement;
 use App\Models\ProductManagement\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyCategoryRequest;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends Controller
 {
@@ -51,5 +56,11 @@ class CategoryController extends Controller
     {
         $category->delete();
         return back();
+    }
+    
+    public function massDestroy(MassDestroyCategoryRequest $request)
+    {
+        Category::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

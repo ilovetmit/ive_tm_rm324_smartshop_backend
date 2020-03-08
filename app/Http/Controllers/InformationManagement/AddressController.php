@@ -6,6 +6,11 @@ use App\Models\InformationManagement\Address;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// massDestroy
+use App\Http\Requests\MassDestroyAddressRequest;
+use App\Http\Requests\StoreAddressRequest;
+use App\Http\Requests\UpdateAddressRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class AddressController extends Controller
 {
@@ -50,5 +55,11 @@ class AddressController extends Controller
     {
         $address->delete();
         return back();
+    }
+
+    public function massDestroy(MassDestroyAddressRequest $request)
+    {
+        Address::whereIn('id', request('ids'))->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
