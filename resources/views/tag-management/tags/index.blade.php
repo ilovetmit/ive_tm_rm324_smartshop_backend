@@ -52,25 +52,11 @@
                             {{ $tag->description ?? '' }}
                         </td>
                         <td>
-                            @can('tag_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('TagManagement.Tags.show', $tag->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('tag_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('TagManagement.Tags.edit', $tag->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('tag_delete')
-                            <form action="{{ route('TagManagement.Tags.destroy', $tag->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'tag',
+                            'route_subject' => 'TagManagement.Tags',
+                            'id' => $tag->id
+                            ])
                         </td>
                     </tr>
                     @endforeach
@@ -84,9 +70,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'tag_delete',
-    'route'                     => route('TagManagement.Tags.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Tag'
+'permission_massDestory' => 'tag_delete',
+'route' => route('TagManagement.Tags.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Tag'
 ])
 @endsection

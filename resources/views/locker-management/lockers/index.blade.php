@@ -26,9 +26,6 @@
                             {{ trans('cruds.lockerManagement.sub_title_1.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.qrcode') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.lockerManagement.sub_title_1.fields.per_hour_price') }}
                         </th>
                         <th>
@@ -52,40 +49,44 @@
                             {{ $locker->id ?? '' }}
                         </td>
                         <td>
-                            {{ $locker->qrcode ?? '' }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $locker->per_hour_price ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $locker->per_hour_price ?? '' }}
+                            @if($locker->is_active == 1)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'success',
+                            'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
+                            ])
+                            @else
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'warning',
+                            'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
+                            ])
+                            @endif
                         </td>
                         <td>
-                            {{ $locker->is_active ?? '' }}
+                            @if($locker->is_using == 1)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'success',
+                            'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
+                            ])
+                            @else
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'warning',
+                            'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
+                            ])
+                            @endif
                         </td>
                         <td>
-                            {{ $locker->is_using ?? '' }}
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'locker',
+                            'route_subject' => 'LockerManagement.Lockers',
+                            'id' => $locker->id
+                            ])
                         </td>
-                        <td>
-                            @can('locker_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('LockerManagement.Lockers.show', $locker->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('locker_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('LockerManagement.Lockers.edit', $locker->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('locker_delete')
-                            <form action="{{ route('LockerManagement.Lockers.destroy', $locker->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
-                        </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -98,9 +99,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'locker_delete',
-    'route'                     => route('LockerManagement.Lockers.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Locker'
+'permission_massDestory' => 'locker_delete',
+'route' => route('LockerManagement.Lockers.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Locker'
 ])
 @endsection

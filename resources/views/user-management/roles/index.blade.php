@@ -52,26 +52,11 @@
                             {{ $role->description ?? '' }}
                         </td>
                         <td>
-                            @can('role_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('UserManagement.Roles.show', $role->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('role_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('UserManagement.Roles.edit', $role->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('role_delete')
-                            <form action="{{ route('UserManagement.Roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'role',
+                            'route_subject' => 'UserManagement.Roles',
+                            'id' => $role->id
+                            ])
                         </td>
 
                     </tr>

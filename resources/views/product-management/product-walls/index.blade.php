@@ -26,10 +26,7 @@
                             {{ trans('cruds.productManagement.sub_title_7.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_7.fields.qrcode') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.productManagement.sub_title_7.fields.product_id') }}
+                            {{ trans('cruds.productManagement.sub_title_7.fields.product') }}
                         </th>
                         <th>
                             {{ trans('cruds.productManagement.sub_title_7.fields.message') }}
@@ -49,37 +46,22 @@
                             {{ $productWall->id ?? '' }}
                         </td>
                         <td>
-                            {{ $productWall->qrcode ?? '' }}
-                        </td>
-                        <td>
-                            {{ $productWall->product_id ?? '' }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $productWall->hasProduct->id ?? '',
+                            'suffix' => $productWall->hasProduct->name ?? '',
+                            ])
                         </td>
                         <td>
                             {{ $productWall->message ?? '' }}
                         </td>
                         <td>
-                            @can('product_wall_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.ProductWalls.show', $productWall->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('product_wall_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.ProductWalls.edit', $productWall->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('product_wall_delete')
-                            <form action="{{ route('ProductManagement.ProductWalls.destroy', $productWall->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'product_wall',
+                            'route_subject' => 'ProductManagement.ProductWalls',
+                            'id' => $productWall->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -92,9 +74,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'product_wall_delete',
-    'route'                     => route('ProductManagement.ProductWalls.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-ProductWall'
+'permission_massDestory' => 'product_wall_delete',
+'route' => route('ProductManagement.ProductWalls.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-ProductWall'
 ])
 @endsection

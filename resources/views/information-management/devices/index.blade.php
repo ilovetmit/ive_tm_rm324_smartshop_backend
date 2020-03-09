@@ -46,33 +46,24 @@
                             {{ $device->id ?? '' }}
                         </td>
                         <td>
-                            {{ $device->hasUser->getFullNameAttribute() ?? 'Customer' }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $device->hasUser->id ?? '',
+                            'suffix' => $device->hasUser->getFullNameAttribute() ?? 'Customer',
+                            ])
                         </td>
                         <td>
-                            <span class="badge badge-info">{{ config('constant.device_isActive')[$device->is_active] ?? '' }}</span>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => config('constant.device_isActive')[$device->is_active] ?? '',
+                            ])
                         </td>
                         <td>
-                            <!-- which can allow to do -->
-                            @can('device_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('InformationManagement.Devices.show', $device->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('device_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('InformationManagement.Devices.edit', $device->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('device_delete')
-                            <form action="{{ route('InformationManagement.Devices.destroy', $device->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'device',
+                            'route_subject' => 'InformationManagement.Devices',
+                            'id' => $device->id
+                            ])
                         </td>
 
                     </tr>
@@ -87,9 +78,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'device_delete',
-    'route'                     => route('InformationManagement.Devices.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Device'
+'permission_massDestory' => 'device_delete',
+'route' => route('InformationManagement.Devices.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Device'
 ])
 @endsection

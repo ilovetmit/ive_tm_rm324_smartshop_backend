@@ -102,6 +102,7 @@ return [
             'fields' => [
                 'id'                => 'ID',
                 'user_id'           => 'User ID',
+                'user'              => 'User',
                 'address'           => 'VITCoin Link Address',
                 'primary_key'       => 'VITCoin Primary Key',
                 'created_at'        => 'Created at',
@@ -133,6 +134,8 @@ return [
             'title_s'       => 'Products',
             'fields' => [
                 'id'                => 'ID',
+                'tag'               => 'Tag',
+                'category'          => 'Category',
                 'name'              => 'Name',
                 'price'             => 'Price',
                 'quantity'          => 'Quantity',
@@ -162,6 +165,7 @@ return [
             'fields' => [
                 'id'                => 'ID',
                 'product_id'        => 'Product ID',
+                'product'           => 'Product',
                 'channel'           => 'Channel',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',
@@ -174,6 +178,7 @@ return [
             'fields' => [
                 'id'                => 'ID',
                 'product_id'        => 'Product ID',
+                'product'           => 'Product',
                 'qrcode'            => 'QR code',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',
@@ -197,6 +202,7 @@ return [
             'fields' => [
                 'id'                => 'ID',
                 'shop_product_id'   => 'Shop Product ID',
+                'shop_product'      => 'Shop Product',
                 'rfid_code'         => 'RFID Code',
                 'is_sold'           => 'Selling Status',
                 'created_at'        => 'Created at',
@@ -211,6 +217,7 @@ return [
                 'id'                => 'ID',
                 'qrcode'            => 'QR Code',
                 'product_id'        => 'Product ID',
+                'product'           => 'Product',
                 'message'           => 'Message',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',
@@ -226,6 +233,7 @@ return [
             'fields' => [
                 'id'                => 'ID',
                 'header'            => 'Header',
+                'tag'               => 'Tag',
                 'image'             => 'Image',
                 'description'       => 'Description',
                 'status'            => 'Status',
@@ -302,8 +310,8 @@ return [
                 'id'                => 'ID',
                 'qrcode'            => 'QR Code',
                 'per_hour_price'    => 'Rent (per hour)',
-                'is_active'         => 'Active Status',
-                'is_using'          => 'Using Status',
+                'is_active'         => 'Active',
+                'is_using'          => 'Using',
                 'created_at'        => 'Created at',
                 'updated_at'        => 'Updated at',
                 'deleted_at'        => 'Deleted at',

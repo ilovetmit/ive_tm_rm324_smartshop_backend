@@ -29,16 +29,10 @@
                             {{ trans('cruds.productManagement.sub_title_1.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.price') }}
+                            {{ trans('cruds.productManagement.sub_title_1.fields.tag') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.quantity') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.image') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.description') }}
+                            {{ trans('cruds.productManagement.sub_title_1.fields.category') }}
                         </th>
                         <th>
                             {{ trans('cruds.productManagement.sub_title_1.fields.status') }}
@@ -61,43 +55,41 @@
                             {{ $product->name ?? '' }}
                         </td>
                         <td>
-                            {{ $product->price ?? '' }}
+                            @foreach($product->hasTag as $key => $tag)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $tag->name,
+                            ])
+                            @endforeach
                         </td>
                         <td>
-                            {{ $product->quantity ?? '' }}
+                            @foreach($product->hasCategory as $key => $category)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $category->name,
+                            ])
+                            @endforeach
                         </td>
                         <td>
-                            {{ $product->image ?? '' }}
+                            @if($product->status == 1)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'danger',
+                            'element' => config('constant.product_status')[$product->status] ?? '',
+                            ])
+                            @else
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'success',
+                            'element' => config('constant.product_status')[$product->status] ?? '',
+                            ])
+                            @endif
                         </td>
                         <td>
-                            {{ $product->description ?? '' }}
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'product',
+                            'route_subject' => 'ProductManagement.Products',
+                            'id' => $product->id
+                            ])
                         </td>
-                        <td>
-                            {{ $product->status ?? '' }}
-                        </td>
-                        <td>
-                            @can('product_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.Products.show', $product->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('product_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.Products.edit', $product->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('product_delete')
-                            <form action="{{ route('ProductManagement.Products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
-                        </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -111,9 +103,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'product_delete',
-    'route'                     => route('ProductManagement.Products.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Product'
+'permission_massDestory' => 'product_delete',
+'route' => route('ProductManagement.Products.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Product'
 ])
 @endsection

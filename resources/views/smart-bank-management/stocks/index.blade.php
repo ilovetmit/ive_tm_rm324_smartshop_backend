@@ -29,16 +29,7 @@
                             {{ trans('cruds.smartBankManagement.sub_title_2.fields.code') }}
                         </th>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.icon') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.smartBankManagement.sub_title_2.fields.name') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.data') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.description') }}
                         </th>
                         <th>
                             &nbsp;
@@ -58,16 +49,7 @@
                             {{ $stock->code ?? '' }}
                         </td>
                         <td>
-                            {{ $stock->icon ?? '' }}
-                        </td>
-                        <td>
                             {{ $stock->name ?? '' }}
-                        </td>
-                        <td>
-                            {{ $stock->data ?? '' }}
-                        </td>
-                        <td>
-                            {{ $stock->description ?? '' }}
                         </td>
                         <td>
                             @can('stock_view')

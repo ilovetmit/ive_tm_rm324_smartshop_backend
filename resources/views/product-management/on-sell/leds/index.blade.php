@@ -43,31 +43,19 @@
                             {{ $led->id ?? '' }}
                         </td>
                         <td>
-                            {{ $led->shop_product_id ?? '' }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $led->hasShopProduct->hasProduct->id ?? '',
+                            'suffix' => $led->hasShopProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                         <td>
-                            @can('led_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.LEDs.show', $led->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('led_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.LEDs.edit', $led->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('led_delete')
-                            <form action="{{ route('ProductManagement.LEDs.destroy', $led->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'led',
+                            'route_subject' => 'ProductManagement.LEDs',
+                            'id' => $led->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -81,9 +69,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'led_delete',
-    'route'                     => route('ProductManagement.LEDs.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-LED'
+'permission_massDestory' => 'led_delete',
+'route' => route('ProductManagement.LEDs.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-LED'
 ])
 @endsection

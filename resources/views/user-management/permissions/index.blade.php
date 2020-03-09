@@ -46,26 +46,11 @@
                             {{ $permission->name ?? '' }}
                         </td>
                         <td>
-                            @can('permission_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('UserManagement.Permissions.show', $permission->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('permission_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('UserManagement.Permissions.edit', $permission->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('permission_delete')
-                            <form action="{{ route('UserManagement.Permissions.destroy', $permission->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'permission',
+                            'route_subject' => 'UserManagement.Permissions',
+                            'id' => $permission->id
+                            ])
                         </td>
 
                     </tr>
@@ -80,9 +65,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'permission_delete',
-    'route'                     => route('UserManagement.Permissions.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Permission'
+'permission_massDestory' => 'permission_delete',
+'route' => route('UserManagement.Permissions.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Permission'
 ])
 @endsection

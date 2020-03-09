@@ -52,28 +52,12 @@
                             {{ $category->description ?? '' }}
                         </td>
                         <td>
-                            @can('category_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.Categories.show', $category->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('category_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.Categories.edit', $category->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('category_delete')
-                            <form action="{{ route('ProductManagement.Categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'category',
+                            'route_subject' => 'ProductManagement.Categories',
+                            'id' => $category->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -86,9 +70,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'category_delete',
-    'route'                     => route('ProductManagement.Categories.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Category'
+'permission_massDestory' => 'category_delete',
+'route' => route('ProductManagement.Categories.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Category'
 ])
 @endsection

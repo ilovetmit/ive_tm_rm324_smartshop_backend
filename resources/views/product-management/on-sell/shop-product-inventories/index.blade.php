@@ -26,10 +26,7 @@
                             {{ trans('cruds.productManagement.sub_title_6.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_6.fields.shop_product_id') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.productManagement.sub_title_6.fields.rfid_code') }}
+                            {{ trans('cruds.productManagement.sub_title_6.fields.shop_product') }}
                         </th>
                         <th>
                             {{ trans('cruds.productManagement.sub_title_6.fields.is_sold') }}
@@ -49,34 +46,36 @@
                             {{ $shopProductInventory->id ?? '' }}
                         </td>
                         <td>
-                            {{ $shopProductInventory->shop_product_id ?? '' }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id ?? '',
+                            'suffix' => $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $shopProductInventory->rfid_code ?? '' }}
+                            @if($shopProductInventory->is_sold == 1)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'success',
+                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            ])
+                            @elseif($shopProductInventory->is_sold == 2)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'warning',
+                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            ])
+                            @elseif($shopProductInventory->is_sold == 3)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'secondary',
+                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            ])
+                            @endif
                         </td>
                         <td>
-                            {{ $shopProductInventory->is_sold ?? '' }}
-                        </td>
-                        <td>
-                            @can('shop_product_inventory_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.ShopProductInventories.show', $shopProductInventory->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('shop_product_inventory_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.ShopProductInventories.edit', $shopProductInventory->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('shop_product_inventory_delete')
-                            <form action="{{ route('ProductManagement.ShopProductInventories.destroy', $shopProductInventory->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'shop_product_inventory',
+                            'route_subject' => 'ProductManagement.ShopProductInventories',
+                            'id' => $shopProductInventory->id
+                            ])
                         </td>
                     </tr>
                     @endforeach
@@ -90,9 +89,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'shop_product_inventory_delete',
-    'route'                     => route('ProductManagement.ShopProductInventories.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-ShopProductInventory'
+'permission_massDestory' => 'shop_product_inventory_delete',
+'route' => route('ProductManagement.ShopProductInventories.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-ShopProductInventory'
 ])
 @endsection

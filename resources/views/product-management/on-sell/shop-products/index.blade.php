@@ -26,10 +26,7 @@
                             {{ trans('cruds.productManagement.sub_title_4.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_4.fields.product_id') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.productManagement.sub_title_4.fields.qrcode') }}
+                            {{ trans('cruds.productManagement.sub_title_4.fields.product') }}
                         </th>
                         <th>
                             &nbsp;
@@ -46,34 +43,19 @@
                             {{ $shopProduct->id ?? '' }}
                         </td>
                         <td>
-                            {{ $shopProduct->product_id ?? '' }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $shopProduct->hasProduct->id ?? '',
+                            'suffix' => $shopProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $shopProduct->qrcode ?? '' }}
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'shop_product',
+                            'route_subject' => 'ProductManagement.ShopProducts',
+                            'id' => $shopProduct->id
+                            ])
                         </td>
-                        <td>
-                            @can('shop_product_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.ShopProducts.show', $shopProduct->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('shop_product_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.ShopProducts.edit', $shopProduct->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('shop_product_delete')
-                            <form action="{{ route('ProductManagement.ShopProducts.destroy', $shopProduct->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
-                        </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -86,9 +68,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'shop_product_delete',
-    'route'                     => route('ProductManagement.ShopProducts.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-ShopProduct'
+'permission_massDestory' => 'shop_product_delete',
+'route' => route('ProductManagement.ShopProducts.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-ShopProduct'
 ])
 @endsection

@@ -29,13 +29,10 @@
                             {{ trans('cruds.advertisementManagement.sub_title_1.fields.header') }}
                         </th>
                         <th>
-                            {{ trans('cruds.advertisementManagement.sub_title_1.fields.image') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.advertisementManagement.sub_title_1.fields.description') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.advertisementManagement.sub_title_1.fields.status') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.advertisementManagement.sub_title_1.fields.tag') }}
                         </th>
                         <th>
                             &nbsp;
@@ -55,34 +52,32 @@
                             {{ $advertisement->header ?? '' }}
                         </td>
                         <td>
-                            {{ $advertisement->image ?? '' }}
+                            @if($advertisement->status == 1)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'success',
+                            'element' => config('constant.advertisement_status')[$advertisement->status] ?? '',
+                            ])
+                            @else
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'warning',
+                            'element' => config('constant.advertisement_status')[$advertisement->status] ?? '',
+                            ])
+                            @endif
                         </td>
                         <td>
-                            {{ $advertisement->description ?? '' }}
+                            @foreach($advertisement->hasTag as $key => $item)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $item->name,
+                            ])
+                            @endforeach
                         </td>
                         <td>
-                            {{ $advertisement->status ?? '' }}
-                        </td>
-                        <td>
-                            @can('advertisement_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('AdvertisementManagement.Advertisements.show', $advertisement->id ?? '' ) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('advertisement_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('AdvertisementManagement.Advertisements.edit', $advertisement->id ?? '' ) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('advertisement_delete')
-                            <form action="{{ route('AdvertisementManagement.Advertisements.destroy', $advertisement->id ?? '' ) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'advertisement',
+                            'route_subject' => 'AdvertisementManagement.Advertisements',
+                            'id' => $advertisement->id
+                            ])
                         </td>
                     </tr>
                     @endforeach
@@ -97,9 +92,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'advertisement_delete',
-    'route'                     => route('AdvertisementManagement.Advertisements.massDestroy'),
-    'pageLength'                => 100,
-    'class'                     => 'datatable-Advertisement',
+'permission_massDestory' => 'advertisement_delete',
+'route' => route('AdvertisementManagement.Advertisements.massDestroy'),
+'pageLength' => 100,
+'class' => 'datatable-Advertisement',
 ])
 @endsection

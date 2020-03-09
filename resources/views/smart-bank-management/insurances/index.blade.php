@@ -29,12 +29,6 @@
                             {{ trans('cruds.smartBankManagement.sub_title_1.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_1.fields.price') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_1.fields.image') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.smartBankManagement.sub_title_1.fields.description') }}
                         </th>
                         <th>
@@ -55,37 +49,15 @@
                             {{ $insurance->name ?? '' }}
                         </td>
                         <td>
-                            {{ $insurance->price ?? '' }}
-                        </td>
-                        <td>
-                            {{ $insurance->image ?? '' }}
-                        </td>
-                        <td>
                             {{ $insurance->description ?? '' }}
                         </td>
                         <td>
-                            @can('insurance_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('SmartBankManagement.Insurances.show', $insurance->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('insurance_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('SmartBankManagement.Insurances.edit', $insurance->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('insurance_delete')
-                            <form action="{{ route('SmartBankManagement.Insurances.destroy', $insurance->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'insurance',
+                            'route_subject' => 'SmartBankManagement.Insurances',
+                            'id' => $insurance->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -98,9 +70,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'insurance_delete',
-    'route'                     => route('SmartBankManagement.Insurances.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Insurance'
+'permission_massDestory' => 'insurance_delete',
+'route' => route('SmartBankManagement.Insurances.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Insurance'
 ])
 @endsection

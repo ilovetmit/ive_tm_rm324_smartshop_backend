@@ -8,9 +8,8 @@ return [
     ],
 
     'product_status' => [
-        '1' => '',
-        '2' => '',
-        '3' => '',
+        '1' => 'shortage',
+        '2' => 'enough',
     ],
 
     'shopProductInventories_isSold' => [
@@ -57,8 +56,8 @@ return [
     ],
     
     'locker_isUsing' => [
-        '1' => 'using',
-        '2' => 'free',
+        '1' => 'free',
+        '2' => 'using',
     ],
 
     'user_gender' => [

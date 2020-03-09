@@ -26,7 +26,7 @@
                             {{ trans('cruds.productManagement.sub_title_3.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_3.fields.product_id') }}
+                            {{ trans('cruds.productManagement.sub_title_3.fields.product') }}
                         </th>
                         <th>
                             {{ trans('cruds.productManagement.sub_title_3.fields.channel') }}
@@ -46,34 +46,25 @@
                             {{ $vendingProduct->id ?? '' }}
                         </td>
                         <td>
-                            {{ $vendingProduct->product_id ?? '' }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $vendingProduct->hasProduct->id ?? '',
+                            'suffix' => $vendingProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $vendingProduct->channel ?? '' }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'dark',
+                            'element' => $vendingProduct->channel ?? '',
+                            ])
                         </td>
                         <td>
-                            @can('vending_product_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('ProductManagement.VendingProducts.show', $vendingProduct->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('vending_product_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('ProductManagement.VendingProducts.edit', $vendingProduct->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('vending_product_delete')
-                            <form action="{{ route('ProductManagement.VendingProducts.destroy', $vendingProduct->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'vending_product',
+                            'route_subject' => 'ProductManagement.VendingProducts',
+                            'id' => $vendingProduct->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -86,9 +77,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'vending_product_delete',
-    'route'                     => route('ProductManagement.VendingProducts.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-VendingProduct'
+'permission_massDestory' => 'vending_product_delete',
+'route' => route('ProductManagement.VendingProducts.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-VendingProduct'
 ])
 @endsection

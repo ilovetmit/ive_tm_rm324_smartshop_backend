@@ -52,7 +52,7 @@
                             {{ $user->id ?? '' }}
                         </td>
                         <td>
-                            {{ $user->first_name ?? '' }} {{ $user->last_name ?? '' }}
+                            {{ $user->getFullNameAttribute() ?? '' }}
                         </td>
                         <td>
                             {{ $user->email ?? '' }}
@@ -62,32 +62,19 @@
                         </td>
                         <td>
                             @foreach($user->hasRole as $key => $item)
-                            <span class="badge badge-info">{{ $item->name }}</span>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $item->name ?? '',
+                            ])
                             @endforeach
                         </td>
                         <td>
-                            @can('user_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('UserManagement.Users.show', $user->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('user_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('UserManagement.Users.edit', $user->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('user_delete')
-                            <form action="{{ route('UserManagement.Users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'user',
+                            'route_subject' => 'UserManagement.Users',
+                            'id' => $user->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -100,9 +87,9 @@
 @endsection
 @section('scripts')
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'user_delete',
-    'route'                     => route('UserManagement.Users.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-User'
+'permission_massDestory' => 'user_delete',
+'route' => route('UserManagement.Users.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-User'
 ])
 @endsection

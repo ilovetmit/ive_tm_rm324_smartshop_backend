@@ -46,34 +46,22 @@
                             {{ $address->id ?? '' }}
                         </td>
                         <td>
-                            {{ $address->hasUser->getFullNameAttribute() ?? '' }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $address->hasUser->id ?? '',
+                            'suffix' => $address->hasUser->getFullNameAttribute() ?? '',
+                            ])
                         </td>
                         <td>
                             {{ config('constant.address_district')[$address->district] ?? '' }}
                         </td>
                         <td>
-                            @can('address_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('InformationManagement.Addresses.show', $address->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('address_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('InformationManagement.Addresses.edit', $address->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('address_delete')
-                            <form action="{{ route('InformationManagement.Addresses.destroy', $address->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'address',
+                            'route_subject' => 'InformationManagement.Addresses',
+                            'id' => $address->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -86,9 +74,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'address_delete',
-    'route'                     => route('InformationManagement.Addresses.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Address'
+'permission_massDestory' => 'address_delete',
+'route' => route('InformationManagement.Addresses.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Address'
 ])
 @endsection
