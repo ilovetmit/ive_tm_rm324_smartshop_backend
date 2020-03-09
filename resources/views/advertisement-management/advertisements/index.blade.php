@@ -3,7 +3,7 @@
 @can('role_create')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("AdvertisementManagement.Advertisements.create") }}">
+        <a class="btn btn-success" href="{{ route("AdvertisementManagement.ad.create") }}">
             {{ trans('global.add') }} {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
         </a>
     </div>
@@ -79,6 +79,27 @@
                             'id' => $advertisement->id
                             ])
                         </td>
+                        <td>
+                            @can('advertisement_view')
+                            <a class="btn btn-xs btn-primary" href="{{ route('AdvertisementManagement.ad.show', $advertisement->id ?? '' ) }}">
+                                {{ trans('global.view') }}
+                            </a>
+                            @endcan
+
+                            @can('advertisement_edit')
+                            <a class="btn btn-xs btn-info" href="{{ route('AdvertisementManagement.ad.edit', $advertisement->id ?? '' ) }}">
+                                {{ trans('global.edit') }}
+                            </a>
+                            @endcan
+
+                            @can('advertisement_delete')
+                            <form action="{{ route('AdvertisementManagement.ad.destroy', $advertisement->id ?? '' ) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                            </form>
+                            @endcan
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -92,9 +113,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'advertisement_delete',
-'route' => route('AdvertisementManagement.Advertisements.massDestroy'),
-'pageLength' => 100,
-'class' => 'datatable-Advertisement',
+    'permission_massDestory'    => 'advertisement_delete',
+    'route'                     => route('AdvertisementManagement.ad.massDestroy'),
+    'pageLength'                => 100,
+    'class'                     => 'datatable-Advertisement',
 ])
 @endsection

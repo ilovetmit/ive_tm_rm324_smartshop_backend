@@ -345,7 +345,7 @@
                 <!-- AdvertisementManagement -->
                 @can('advertisement_management_access')
                 <li class="nav-item">
-                    <a href="{{ route("AdvertisementManagement.Advertisements.index") }}" class="nav-link {{ request()->is('SmartShop/AdvertisementManagement/Advertisements*') ? 'active' : '' }}">
+                    <a href="{{ route("AdvertisementManagement.ad.index") }}" class="nav-link {{ request()->is('SmartShop/AdvertisementManagement/ad*') ? 'active' : '' }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <p>
                             <span>{{ trans('cruds.advertisementManagement.sub_title_1.title_s') }}</span>

@@ -30,35 +30,35 @@ class AdvertisementController extends Controller
     {
         $advertisement = Advertisement::create($request->all());
         // $advertisement->roles()->sync($request->input('roles', []));
-        return redirect()->route('AdvertisementManagement.Advertisements.index');
+        return redirect()->route('AdvertisementManagement.ad.index');
     }
 
-    public function show(Advertisement $advertisement)
+    public function show(Advertisement $ad)
     {
-        $advertisement->load('hasTag');
-        return view('advertisement-management.advertisements.show', compact('advertisement'));
+        $ad->load('hasTag');
+        return view('advertisement-management.advertisements.show', compact('ad'));
     }
 
-    public function edit(Advertisement $advertisement)
+    public function edit(Advertisement $ad)
     {
         $tag = Tag::all()->pluck('id');
-        $advertisement->load('hasTag');
-        return view('advertisement-management.advertisements.edit', compact('advertisement', 'tag'));
+        $ad->load('hasTag');
+        return view('advertisement-management.advertisements.edit', compact('ad', 'tag'));
     }
 
-    public function update(Request $request, Advertisement $advertisement)
+    public function update(Request $request, Advertisement $ad)
     {
-        $advertisement->update($request->all());
+        $ad->update($request->all());
         // $user->roles()->sync($request->input('roles', []));
-        return redirect()->route('AdvertisementManagement.Advertisements.index');
+        return redirect()->route('AdvertisementManagement.ad.index');
     }
 
-    public function destroy(Advertisement $advertisement)
+    public function destroy(Advertisement $ad)
     {
-        $advertisement->delete();
+        $ad->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyAdvertisementRequest $request)
     {
         Advertisement::whereIn('id', request('ids'))->delete();

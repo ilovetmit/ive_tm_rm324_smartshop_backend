@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('AdvertisementManagement.Advertisements.index') }}">
+                <a class="btn btn-default" href="{{ route('AdvertisementManagement.ad.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -20,7 +20,7 @@
                             {{ trans('cruds.advertisementManagement.sub_title_1.fields.id') }}
                         </th>
                         <td>
-                            {{ $advertisement->id }}
+                            {{ $ad->id }}
                         </td>
                     </tr>
                     <tr>
@@ -28,7 +28,7 @@
                             {{ trans('cruds.advertisementManagement.sub_title_1.fields.header') }}
                         </th>
                         <td>
-                            {{ $advertisement->header }}
+                            {{ $ad->header }}
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +36,7 @@
                             {{ trans('cruds.advertisementManagement.sub_title_1.fields.image') }}
                         </th>
                         <td>
-                            {{ $advertisement->image }}
+                            {{ $ad->image }}
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@
                             {{ trans('cruds.advertisementManagement.sub_title_1.fields.description') }}
                         </th>
                         <td>
-                            {{ $advertisement->description }}
+                            {{ $ad->description }}
                         </td>
                     </tr>
                     <tr>
@@ -52,13 +52,13 @@
                             {{ trans('cruds.advertisementManagement.sub_title_1.fields.status') }}
                         </th>
                         <td>
-                            {{ $advertisement->status }}
+                            {{ $ad->status }}
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('AdvertisementManagement.Advertisements.index') }}">
+                <a class="btn btn-default" href="{{ route('AdvertisementManagement.ad.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
