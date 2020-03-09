@@ -49,7 +49,7 @@
                             @include('module.datatable.badge_tag.tag_suffix',[
                             'type' => 'info',
                             'element' => $device->hasUser->id ?? '',
-                            'suffix' => $device->hasUser->getFullNameAttribute() ?? 'Customer',
+                            'suffix' => $device->hasUser->getFullNameAttribute() ?? 'Visitor',
                             ])
                         </td>
                         <td>
@@ -65,7 +65,6 @@
                             'id' => $device->id
                             ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>

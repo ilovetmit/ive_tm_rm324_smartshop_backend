@@ -32,4 +32,9 @@ class Address extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function getFullAddress() //todo
+    {
+        return ucfirst($this->address1) . ', ' . ucfirst($this->address2) . ', ' . ucfirst(config('constant.address_district')[$this->district]);
+    }
 }

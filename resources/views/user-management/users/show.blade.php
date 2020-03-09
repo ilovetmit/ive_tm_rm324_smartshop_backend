@@ -30,7 +30,7 @@
                             {{ trans('cruds.userManagement.sub_title_3.fields.name') }}
                         </th>
                         <td>
-                            {{ $user->first_name }} {{ $user->last_name }}
+                            {{ $user->getFullNameAttribute() }}
                         </td>
                     </tr>
                     <!------------------------email------------------------>
@@ -48,7 +48,7 @@
                             {{ trans('cruds.userManagement.sub_title_3.fields.avatar') }}
                         </th>
                         <td>
-                            {{ $user->avatar }}
+                            {{ $user->avatar }} ?? how to show picture ??
                         </td>
                     </tr>
                     <!------------------------birthday------------------------>
@@ -66,7 +66,7 @@
                             {{ trans('cruds.userManagement.sub_title_3.fields.gender') }}
                         </th>
                         <td>
-                            {{ $user->gender }}
+                            {{ config('constant.user_gender')[$user->gender] }}
                         </td>
                     </tr>
                     <!------------------------telephone------------------------>
@@ -93,7 +93,7 @@
                             {{ trans('cruds.userManagement.sub_title_3.fields.status') }}
                         </th>
                         <td>
-                            {{ $user->status }}
+                            {{ config('constant.user_status')[$user->status] }}
                         </td>
                     </tr>
                     <!------------------------email verified at------------------------>
@@ -112,10 +112,73 @@
                         </th>
                         <td>
                             @foreach($user->hasRole as $key => $roles)
-                            <span class="label label-info">{{ $roles->name }}</span>
+                            <h5>
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $roles->name ?? '',
+                                ])
+                            </h5>
                             @endforeach
                         </td>
                     </tr>
+                    <!-- todo -->
+                    <!------------------------address------------------------> 
+                    <tr>
+                        <th>
+                            {{ trans('cruds.userManagement.sub_title_3.fields.address') }}
+                        </th>
+                        <td>
+                            {{ $user->hasAddress->getFullAddress() ?? '' }}
+                        </td>
+                    </tr>
+
+                    <!------------------------device------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.userManagement.sub_title_3.fields.device') }}
+                        </th>
+                        <td>
+                            @foreach($user->hasDevice as $key => $device)
+                            <h5>
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $device->is_active ?? '',
+                                ])
+                            </h5>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <!------------------------interest------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.userManagement.sub_title_3.fields.interest') }}
+                        </th>
+                        <td>
+                            @foreach($user->hasInterest as $key => $interests)
+                            <h5>
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $interests->name ?? '',
+                                ])
+                            </h5>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <!------------------------vitcoin------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.userManagement.sub_title_3.fields.vitcoin') }}
+                        </th>
+                        <td>
+                            <h5>
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $vitcoins->address ?? '',
+                                ])
+                            </h5>
+                        </td>
+                    </tr>
+
 
                 </tbody>
             </table>

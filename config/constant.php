@@ -69,5 +69,11 @@ return [
         '1' => 'available',
         '2' => 'unavailable',
     ],
+
+    'gender' => [
+        '1' => 'Male',
+        '2' => 'Woman',
+        '3' => 'Other',
+    ]
     
 ];

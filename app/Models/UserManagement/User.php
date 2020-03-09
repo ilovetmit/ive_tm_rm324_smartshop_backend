@@ -104,7 +104,7 @@ class User extends Authenticatable
         return $this->hasMany(Device::class);
     }
 
-    public function hasAddress()
+    public function hasAddress() //todo
     {
         return $this->hasOne(Address::class);
     }
