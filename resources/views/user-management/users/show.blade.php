@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
-    </div>
+    <div class="card">
+        <div class="card-header">
+            {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+        </div>
 
-    <div class="card-body">
-        <div class="form-group">
+        <div class="card-body">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
-            <table class="table table-bordered table-striped">
-                <tbody>
+                <div class="form-group">
+                    <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
+                        {{ trans('global.back_to_list') }}
+                    </a>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <tbody>
                     <!------------------------ID------------------------>
                     <tr>
                         <th>
@@ -112,23 +112,25 @@
                         </th>
                         <td>
                             @foreach($user->hasRole as $key => $roles)
-                            <h5>
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $roles->name ?? '',
-                                ])
-                            </h5>
+                                <h5>
+                                    @include('module.datatable.badge_tag.tag',[
+                                    'type' => 'info',
+                                    'element' => $roles->name ?? '',
+                                    ])
+                                </h5>
                             @endforeach
                         </td>
                     </tr>
                     <!-- todo -->
-                    <!------------------------address------------------------> 
+                    <!------------------------address------------------------>
                     <tr>
                         <th>
                             {{ trans('cruds.userManagement.sub_title_3.fields.address') }}
                         </th>
                         <td>
-                            {{ $user->hasAddress->getFullAddress() ?? '' }}
+                            @if(!is_null($user->hasAddress))
+                                {{ $user->hasAddress->getFullAddress() ?? '-' }}
+                            @endif
                         </td>
                     </tr>
 
@@ -139,12 +141,12 @@
                         </th>
                         <td>
                             @foreach($user->hasDevice as $key => $device)
-                            <h5>
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $device->is_active ?? '',
-                                ])
-                            </h5>
+                                <h5>
+                                    @include('module.datatable.badge_tag.tag',[
+                                    'type' => 'info',
+                                    'element' => $device->is_active ?? '',
+                                    ])
+                                </h5>
                             @endforeach
                         </td>
                     </tr>
@@ -155,12 +157,12 @@
                         </th>
                         <td>
                             @foreach($user->hasInterest as $key => $interests)
-                            <h5>
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $interests->name ?? '',
-                                ])
-                            </h5>
+                                <h5>
+                                    @include('module.datatable.badge_tag.tag',[
+                                    'type' => 'info',
+                                    'element' => $interests->name ?? '',
+                                    ])
+                                </h5>
                             @endforeach
                         </td>
                     </tr>
@@ -180,16 +182,16 @@
                     </tr>
 
 
-                </tbody>
-            </table>
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
+                        {{ trans('global.back_to_list') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 

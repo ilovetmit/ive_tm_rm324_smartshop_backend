@@ -37,6 +37,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user->load('hasRole');
+        $user->load('hasAddress');
         return view('user-management.users.show', compact('user'));
     }
 
