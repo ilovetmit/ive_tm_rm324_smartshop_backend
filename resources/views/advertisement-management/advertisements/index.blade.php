@@ -52,17 +52,10 @@
                             {{ $advertisement->header ?? '' }}
                         </td>
                         <td>
-                            @if($advertisement->status == 1)
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => 'success',
+                            'type' => $advertisement->status == 1 ? 'success' : 'warning',
                             'element' => config('constant.advertisement_status')[$advertisement->status] ?? '',
                             ])
-                            @else
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'warning',
-                            'element' => config('constant.advertisement_status')[$advertisement->status] ?? '',
-                            ])
-                            @endif
                         </td>
                         <td>
                             @foreach($advertisement->hasTag as $key => $item)

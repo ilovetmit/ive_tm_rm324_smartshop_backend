@@ -63,7 +63,7 @@
                         <td>
                             @foreach($user->hasRole as $key => $item)
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => $item->name == 'Admin' ? 'danger' : 'info',
                             'element' => $item->name ?? '',
                             ])
                             @endforeach

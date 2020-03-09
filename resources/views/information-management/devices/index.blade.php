@@ -54,7 +54,7 @@
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => $device->is_active == 0 ? 'warning' : 'success',
                             'element' => config('constant.device_isActive')[$device->is_active] ?? '',
                             ])
                         </td>

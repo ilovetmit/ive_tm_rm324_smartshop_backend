@@ -71,17 +71,10 @@
                             @endforeach
                         </td>
                         <td>
-                            @if($product->status == 1)
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => 'danger',
+                            'type' => $product->status == 1 ? 'danger' : 'success',
                             'element' => config('constant.product_status')[$product->status] ?? '',
                             ])
-                            @else
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'success',
-                            'element' => config('constant.product_status')[$product->status] ?? '',
-                            ])
-                            @endif
                         </td>
                         <td>
                             @include('module.datatable.action.index',[

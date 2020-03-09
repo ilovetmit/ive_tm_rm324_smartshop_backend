@@ -53,22 +53,10 @@
                             ])
                         </td>
                         <td>
-                            @if($shopProductInventory->is_sold == 1)
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => 'success',
+                            'type' => $shopProductInventory->is_sold == 1 ? 'success' : ($shopProductInventory->is_sold == 2 ? 'warning' : 'secondary'),
                             'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                             ])
-                            @elseif($shopProductInventory->is_sold == 2)
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'warning',
-                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
-                            ])
-                            @elseif($shopProductInventory->is_sold == 3)
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'secondary',
-                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
-                            ])
-                            @endif
                         </td>
                         <td>
                             @include('module.datatable.action.index',[

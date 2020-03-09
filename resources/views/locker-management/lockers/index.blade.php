@@ -55,30 +55,16 @@
                             ])
                         </td>
                         <td>
-                            @if($locker->is_active == 1)
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => 'success',
+                            'type' => $locker->is_active == 1 ? 'success' : 'warning',
                             'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
                             ])
-                            @else
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'warning',
-                            'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
-                            ])
-                            @endif
                         </td>
                         <td>
-                            @if($locker->is_using == 1)
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => 'success',
+                            'type' => $locker->is_using == 1 ? 'success' : 'warning',
                             'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
                             ])
-                            @else
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'warning',
-                            'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
-                            ])
-                            @endif
                         </td>
                         <td>
                             @include('module.datatable.action.index',[

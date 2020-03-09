@@ -53,6 +53,8 @@ class UserController extends Controller
     {
         $user->load('hasRole');
         $user->load('hasAddress');
+        $user->load('hasInterest');
+        $user->load('hasVitcoin');
         return view('user-management.users.show', compact('user'));
     }
 

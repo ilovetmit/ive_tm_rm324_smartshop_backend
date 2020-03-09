@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 @section('content')
 
-    <div class="card">
-        <div class="card-header">
-            {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
-        </div>
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+    </div>
 
-        <div class="card-body">
+    <div class="card-body">
+        <div class="form-group">
             <div class="form-group">
-                <div class="form-group">
-                    <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
-                        {{ trans('global.back_to_list') }}
-                    </a>
-                </div>
-                <table class="table table-bordered table-striped">
-                    <tbody>
+                <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
+                    {{ trans('global.back_to_list') }}
+                </a>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
                     <!------------------------ID------------------------>
                     <tr>
                         <th>
@@ -112,12 +112,12 @@
                         </th>
                         <td>
                             @foreach($user->hasRole as $key => $roles)
-                                <h5>
-                                    @include('module.datatable.badge_tag.tag',[
-                                    'type' => 'info',
-                                    'element' => $roles->name ?? '',
-                                    ])
-                                </h5>
+                            <h5>
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $roles->name ?? '',
+                                ])
+                            </h5>
                             @endforeach
                         </td>
                     </tr>
@@ -129,25 +129,8 @@
                         </th>
                         <td>
                             @if(!is_null($user->hasAddress))
-                                {{ $user->hasAddress->getFullAddress() ?? '-' }}
+                            {{ $user->hasAddress->getFullAddress() ?? '-' }}
                             @endif
-                        </td>
-                    </tr>
-
-                    <!------------------------device------------------------>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.device') }}
-                        </th>
-                        <td>
-                            @foreach($user->hasDevice as $key => $device)
-                                <h5>
-                                    @include('module.datatable.badge_tag.tag',[
-                                    'type' => 'info',
-                                    'element' => $device->is_active ?? '',
-                                    ])
-                                </h5>
-                            @endforeach
                         </td>
                     </tr>
                     <!------------------------interest------------------------>
@@ -157,12 +140,12 @@
                         </th>
                         <td>
                             @foreach($user->hasInterest as $key => $interests)
-                                <h5>
-                                    @include('module.datatable.badge_tag.tag',[
-                                    'type' => 'info',
-                                    'element' => $interests->name ?? '',
-                                    ])
-                                </h5>
+                            <h5>
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $interests->name ?? '',
+                                ])
+                            </h5>
                             @endforeach
                         </td>
                     </tr>
@@ -172,27 +155,56 @@
                             {{ trans('cruds.userManagement.sub_title_3.fields.vitcoin') }}
                         </th>
                         <td>
-                            <h5>
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $vitcoins->address ?? '',
-                                ])
-                            </h5>
+                            @if(!is_null($user->hasVitcoin))
+                            {{ $user->hasVitcoin->address() ?? '-' }}
+                            @endif
                         </td>
                     </tr>
 
 
-                    </tbody>
-                </table>
-                <div class="form-group">
-                    <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
-                        {{ trans('global.back_to_list') }}
-                    </a>
-                </div>
+                </tbody>
+            </table>
+            <div class="form-group">
+                <a class="btn btn-default" href="{{ route('UserManagement.Users.index') }}">
+                    {{ trans('global.back_to_list') }}
+                </a>
             </div>
         </div>
     </div>
-
-
+</div>
+<!-- hasManyTable -->
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#users_devices" role="tab" data-toggle="tab">
+                {{ trans('cruds.informationManagement.sub_title_2.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#users_interests" role="tab" data-toggle="tab">
+                {{ trans('cruds.informationManagement.sub_title_3.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#users_interests" role="tab" data-toggle="tab">
+                {{ trans('cruds.informationManagement.sub_title_3.transaction') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="users_devices">
+            @includeIf('user-management.users.relationships.users-devices', ['devices' => $user->hasDevice])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="users_interests">
+            @includeIf('user-management.users.relationships.users-interests', ['interests' => $user->hasInterest])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="a">
+            {{-- @includeIf('user-management.users.relationships.users-interests', ['transaction' => $user->hasTransaction]) --}}
+        </div>
+    </div>
+</div>
 
 @endsection
