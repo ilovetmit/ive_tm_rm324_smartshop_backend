@@ -29,8 +29,23 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $user = User::create($request->all());
+        $data = $request->all();
+        if (isset($request->avatar)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('avatar')->store('public/users/avatar');
+                $data['avatar'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+
+        $user = User::create($data);
         $user->hasRole()->sync($request->input('roles', []));
+
         return redirect()->route('UserManagement.Users.index');
     }
 
@@ -50,8 +65,23 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        $data = $request->all();
+        if (isset($request->avatar)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('avatar')->store('public/users/avatar');
+                $data['avatar'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+
+        $user->update($data);
         $user->hasRole()->sync($request->input('roles', []));
+
         return redirect()->route('UserManagement.Users.index');
     }
 

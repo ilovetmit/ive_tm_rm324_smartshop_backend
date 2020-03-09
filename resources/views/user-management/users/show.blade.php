@@ -48,7 +48,7 @@
                             {{ trans('cruds.userManagement.sub_title_3.fields.avatar') }}
                         </th>
                         <td>
-                            {{ $user->avatar }} ?? how to show picture ??
+                            <img src="{{ asset('storage/users/avatar/'.$user->avatar) }}" width="150px">
                         </td>
                     </tr>
                     <!------------------------birthday------------------------>
