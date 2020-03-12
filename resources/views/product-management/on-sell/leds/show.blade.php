@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_5.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $led->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_5.fields.shop_product_id') }}
+                            {{ trans('cruds.fields.shop_product_id') }}
                         </th>
                         <td>
                             {{ $led->shop_product_id }}

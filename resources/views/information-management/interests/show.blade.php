@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_3.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $interest->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_3.fields.name') }}
+                            {{ trans('cruds.fields.name') }}
                         </th>
                         <td>
                             {{ $interest->name }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_3.fields.description') }}
+                            {{ trans('cruds.fields.description') }}
                         </th>
                         <td>
                             {{ $interest->description }}

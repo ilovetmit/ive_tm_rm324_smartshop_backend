@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_3.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $vendingProduct->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_3.fields.product_id') }}
+                            {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
                             {{ $vendingProduct->product_id }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_3.fields.channel') }}
+                            {{ trans('cruds.fields.channel') }}
                         </th>
                         <td>
                             {{ $vendingProduct->channel }}

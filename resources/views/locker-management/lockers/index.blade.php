@@ -23,16 +23,16 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.per_hour_price') }}
+                            {{ trans('cruds.fields.per_hour_price') }}
                         </th>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.is_active') }}
+                            {{ trans('cruds.fields.is_active') }}
                         </th>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.is_using') }}
+                            {{ trans('cruds.fields.is_using') }}
                         </th>
                         <th>
                             &nbsp;

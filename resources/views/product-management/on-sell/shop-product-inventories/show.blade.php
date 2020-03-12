@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_6.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $shopProductInventory->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_6.fields.shop_product_id') }}
+                            {{ trans('cruds.fields.shop_product_id') }}
                         </th>
                         <td>
                             {{ $shopProductInventory->shop_product_id }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_6.fields.rfid_code') }}
+                            {{ trans('cruds.fields.rfid_code') }}
                         </th>
                         <td>
                             {{ $shopProductInventory->rfid_code }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_6.fields.is_sold') }}
+                            {{ trans('cruds.fields.is_sold') }}
                         </th>
                         <td>
                             {{ $shopProductInventory->is_sold }}

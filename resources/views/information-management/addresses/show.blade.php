@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $address->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.user_id') }}
+                            {{ trans('cruds.fields.user_id') }}
                         </th>
                         <td>
                             {{ $address->user_id }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.district') }}
+                            {{ trans('cruds.fields.district') }}
                         </th>
                         <td>
                             {{ $address->district }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.address1') }}
+                            {{ trans('cruds.fields.address1') }}
                         </th>
                         <td>
                             {{ $address->address1 }}
@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_1.fields.address2') }}
+                            {{ trans('cruds.fields.address2') }}
                         </th>
                         <td>
                             {{ $address->address2 }}

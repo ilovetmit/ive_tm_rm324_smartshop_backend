@@ -12,7 +12,7 @@
             @csrf
             <!---------------------------header--------------------------->
             <div class="form-group">
-                <label class="required" for="header">{{ trans('cruds.advertisementManagement.sub_title_1.fields.header') }}</label>
+                <label class="required" for="header">{{ trans('cruds.fields.header') }}</label>
                 <input class="form-control {{ $errors->has('header') ? 'is-invalid' : '' }}" type="text" name="header" id="header" value="{{ old('header', $ad->header) }}" required>
                 @if($errors->has('header'))
                 <span class="text-danger">{{ $errors->first('header') }}</span>
@@ -21,7 +21,7 @@
             </div>
             <!---------------------------image--------------------------->
             <div class="form-group">
-                <label class="required" for="image">{{ trans('cruds.advertisementManagement.sub_title_1.fields.image') }}</label>
+                <label class="required" for="image">{{ trans('cruds.fields.image') }}</label>
                 <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="text" name="image" id="image" value="{{ old('image', $ad->image) }}" required>
                 @if($errors->has('image'))
                 <span class="text-danger">{{ $errors->first('image') }}</span>
@@ -30,7 +30,7 @@
             </div>
             <!---------------------------description--------------------------->
             <div class="form-group">
-                <label class="required" for="description">{{ trans('cruds.advertisementManagement.sub_title_1.fields.description') }}</label>
+                <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
                 <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', $ad->description) }}" required>
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
@@ -39,7 +39,7 @@
             </div>
             <!---------------------------status--------------------------->
             <div class="form-group">
-                <label class="required" for="status">{{ trans('cruds.advertisementManagement.sub_title_1.fields.status') }}</label>
+                <label class="required" for="status">{{ trans('cruds.fields.status') }}</label>
                 <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="text" name="status" id="status" value="{{ old('status', $ad->status) }}" required>
                 @if($errors->has('status'))
                 <span class="text-danger">{{ $errors->first('status') }}</span>

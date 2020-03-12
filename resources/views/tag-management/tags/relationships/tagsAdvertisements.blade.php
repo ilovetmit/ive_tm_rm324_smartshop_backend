@@ -22,19 +22,19 @@
 
                             </th>
                             <th>
-                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.id') }}
+                                {{ trans('cruds.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.header') }}
+                                {{ trans('cruds.fields.header') }}
                             </th>
                             <th>
-                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.image') }}
+                                {{ trans('cruds.fields.image') }}
                             </th>
                             <th>
-                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.description') }}
+                                {{ trans('cruds.fields.description') }}
                             </th>
                             <th>
-                                {{ trans('cruds.advertisementManagement.sub_title_1.fields.status') }}
+                                {{ trans('cruds.fields.status') }}
                             </th>
                             <th>
                                 &nbsp;

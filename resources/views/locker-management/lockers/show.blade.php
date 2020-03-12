@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $locker->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.qrcode') }}
+                            {{ trans('cruds.fields.qrcode') }}
                         </th>
                         <td>
                             {{ $locker->qrcode }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.per_hour_price') }}
+                            {{ trans('cruds.fields.per_hour_price') }}
                         </th>
                         <td>
                             {{ $locker->per_hour_price }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.is_active') }}
+                            {{ trans('cruds.fields.is_active') }}
                         </th>
                         <td>
                             {{ $locker->is_active }}
@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.lockerManagement.sub_title_1.fields.is_using') }}
+                            {{ trans('cruds.fields.is_using') }}
                         </th>
                         <td>
                             {{ $locker->is_using }}

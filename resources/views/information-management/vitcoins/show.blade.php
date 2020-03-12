@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_4.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $vitcoin->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_4.fields.user_id') }}
+                            {{ trans('cruds.fields.user_id') }}
                         </th>
                         <td>
                             {{ $vitcoin->user_id }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_4.fields.address') }}
+                            {{ trans('cruds.fields.address') }}
                         </th>
                         <td>
                             {{ $vitcoin->address }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_4.fields.primary_key') }}
+                            {{ trans('cruds.fields.primary_key') }}
                         </th>
                         <td>
                             {{ $vitcoin->primary_key }}

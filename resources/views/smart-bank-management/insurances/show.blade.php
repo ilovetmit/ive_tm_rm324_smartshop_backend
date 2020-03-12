@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_1.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $insurance->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_1.fields.name') }}
+                            {{ trans('cruds.fields.name') }}
                         </th>
                         <td>
                             {{ $insurance->name }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_1.fields.price') }}
+                            {{ trans('cruds.fields.price') }}
                         </th>
                         <td>
                             {{ $insurance->price }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_1.fields.image') }}
+                            {{ trans('cruds.fields.image') }}
                         </th>
                         <td>
                             {{ $insurance->image }}
@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_1.fields.description') }}
+                            {{ trans('cruds.fields.description') }}
                         </th>
                         <td>
                             {{ $insurance->description }}

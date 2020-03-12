@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $stock->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.code') }}
+                            {{ trans('cruds.fields.code') }}
                         </th>
                         <td>
                             {{ $stock->code }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.icon') }}
+                            {{ trans('cruds.fields.icon') }}
                         </th>
                         <td>
                             {{ $stock->icon }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.name') }}
+                            {{ trans('cruds.fields.name') }}
                         </th>
                         <td>
                             {{ $stock->name }}
@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.data') }}
+                            {{ trans('cruds.fields.data') }}
                         </th>
                         <td>
                             {{ $stock->data }}
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.description') }}
+                            {{ trans('cruds.fields.description') }}
                         </th>
                         <td>
                             {{ $stock->description }}

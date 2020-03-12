@@ -11,7 +11,7 @@
             @csrf
             <!---------------------------product_id--------------------------->
             <div class="form-group">
-                <label class="required" for="product_id">{{ trans('cruds.productManagement.sub_title_3.fields.product_id') }}</label>
+                <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
                 <input class="form-control {{ $errors->has('product_id') ? 'is-invalid' : '' }}" type="text" name="product_id" id="product_id" value="{{ old('product_id', '') }}" required>
                 @if($errors->has('product_id'))
                 <span class="text-danger">{{ $errors->first('product_id') }}</span>
@@ -20,7 +20,7 @@
             </div>
             <!---------------------------channel--------------------------->
             <div class="form-group">
-                <label class="required" for="channel">{{ trans('cruds.productManagement.sub_title_3.fields.channel') }}</label>
+                <label class="required" for="channel">{{ trans('cruds.fields.channel') }}</label>
                 <input class="form-control {{ $errors->has('channel') ? 'is-invalid' : '' }}" type="text" name="channel" id="channel" value="{{ old('channel', '') }}" required>
                 @if($errors->has('channel'))
                 <span class="text-danger">{{ $errors->first('channel') }}</span>

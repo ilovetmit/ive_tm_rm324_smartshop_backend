@@ -18,7 +18,7 @@
                     <!------------------------ID------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $user->id }}
@@ -27,7 +27,7 @@
                     <!------------------------Name------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.name') }}
+                            {{ trans('cruds.fields.name') }}
                         </th>
                         <td>
                             {{ $user->getFullNameAttribute() }}
@@ -36,7 +36,7 @@
                     <!------------------------email------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.email') }}
+                            {{ trans('cruds.fields.email') }}
                         </th>
                         <td>
                             {{ $user->email }}
@@ -45,7 +45,7 @@
                     <!------------------------avatar------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.avatar') }}
+                            {{ trans('cruds.fields.avatar') }}
                         </th>
                         <td>
                             <img src="{{ asset('storage/users/avatar/'.$user->avatar) }}" width="150px">
@@ -54,7 +54,7 @@
                     <!------------------------birthday------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.birthday') }}
+                            {{ trans('cruds.fields.birthday') }}
                         </th>
                         <td>
                             {{ $user->birthday }}
@@ -63,7 +63,7 @@
                     <!------------------------gender------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.gender') }}
+                            {{ trans('cruds.fields.gender') }}
                         </th>
                         <td>
                             {{ config('constant.user_gender')[$user->gender] }}
@@ -72,7 +72,7 @@
                     <!------------------------telephone------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.telephone') }}
+                            {{ trans('cruds.fields.telephone') }}
                         </th>
                         <td>
                             {{ $user->telephone }}
@@ -81,7 +81,7 @@
                     <!------------------------bio------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.bio') }}
+                            {{ trans('cruds.fields.bio') }}
                         </th>
                         <td>
                             {{ $user->bio }}
@@ -90,7 +90,7 @@
                     <!------------------------status------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.status') }}
+                            {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
                             {{ config('constant.user_status')[$user->status] }}
@@ -99,7 +99,7 @@
                     <!------------------------email verified at------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.email_verified_at') }}
+                            {{ trans('cruds.fields.email_verified_at') }}
                         </th>
                         <td>
                             {{ $user->email_verified_at }}
@@ -108,7 +108,7 @@
                     <!------------------------role------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.role') }}
+                            {{ trans('cruds.fields.role') }}
                         </th>
                         <td>
                             @foreach($user->hasRole as $key => $roles)
@@ -125,7 +125,7 @@
                     <!------------------------address------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.address') }}
+                            {{ trans('cruds.fields.address') }}
                         </th>
                         <td>
                             @if(!is_null($user->hasAddress))
@@ -136,7 +136,7 @@
                     <!------------------------interest------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.interest') }}
+                            {{ trans('cruds.fields.interest') }}
                         </th>
                         <td>
                             @foreach($user->hasInterest as $key => $interests)
@@ -152,7 +152,7 @@
                     <!------------------------vitcoin------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.userManagement.sub_title_3.fields.vitcoin') }}
+                            {{ trans('cruds.fields.vitcoin') }}
                         </th>
                         <td>
                             @if(!is_null($user->hasVitcoin))
@@ -189,7 +189,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#users_interests" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#users_transactions" role="tab" data-toggle="tab">
                 {{ trans('cruds.informationManagement.sub_title_3.transaction') }}
             </a>
         </li>
@@ -201,7 +201,7 @@
         <div class="tab-pane" role="tabpanel" id="users_interests">
             @includeIf('user-management.users.relationships.users-interests', ['interests' => $user->hasInterest])
         </div>
-        <div class="tab-pane" role="tabpanel" id="a">
+        <div class="tab-pane" role="tabpanel" id="users_transactions">
             {{-- @includeIf('user-management.users.relationships.users-interests', ['transaction' => $user->hasTransaction]) --}}
         </div>
     </div>

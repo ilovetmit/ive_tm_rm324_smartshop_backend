@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_2.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $device->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_2.fields.token') }}
+                            {{ trans('cruds.fields.token') }}
                         </th>
                         <td>
                             {{ $device->token }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_2.fields.user_id') }}
+                            {{ trans('cruds.fields.user_id') }}
                         </th>
                         <td>
                             {{ $device->user_id }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.informationManagement.sub_title_2.fields.is_active') }}
+                            {{ trans('cruds.fields.is_active') }}
                         </th>
                         <td>
                             {{ $device->is_active }}

@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $product->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.name') }}
+                            {{ trans('cruds.fields.name') }}
                         </th>
                         <td>
                             {{ $product->name }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.price') }}
+                            {{ trans('cruds.fields.price') }}
                         </th>
                         <td>
                             {{ $product->price }}
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.quantity') }}
+                            {{ trans('cruds.fields.quantity') }}
                         </th>
                         <td>
                             {{ $product->quantity }}
@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.image') }}
+                            {{ trans('cruds.fields.image') }}
                         </th>
                         <td>
                             {{ $product->image }}
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.description') }}
+                            {{ trans('cruds.fields.description') }}
                         </th>
                         <td>
                             {{ $product->description }}
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_1.fields.status') }}
+                            {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
                             {{ $product->status }}

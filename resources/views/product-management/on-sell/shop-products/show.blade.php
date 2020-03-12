@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_4.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <td>
                             {{ $shopProduct->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_4.fields.product_id') }}
+                            {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
                             {{ $shopProduct->product_id }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_4.fields.qrcode') }}
+                            {{ trans('cruds.fields.qrcode') }}
                         </th>
                         <td>
                             {{ $shopProduct->qrcode }}

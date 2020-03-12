@@ -23,13 +23,13 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.code') }}
+                            {{ trans('cruds.fields.code') }}
                         </th>
                         <th>
-                            {{ trans('cruds.smartBankManagement.sub_title_2.fields.name') }}
+                            {{ trans('cruds.fields.name') }}
                         </th>
                         <th>
                             &nbsp;

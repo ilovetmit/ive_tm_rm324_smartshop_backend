@@ -12,7 +12,7 @@
             @csrf
             <!---------------------------shop_product_id--------------------------->
             <div class="form-group">
-                <label class="required" for="shop_product_id">{{ trans('cruds.productManagement.sub_title_5.fields.shop_product_id') }}</label>
+                <label class="required" for="shop_product_id">{{ trans('cruds.fields.shop_product_id') }}</label>
                 <input class="form-control {{ $errors->has('shop_product_id') ? 'is-invalid' : '' }}" type="text" name="shop_product_id" id="shop_product_id" value="{{ old('shop_product_id', $led->shop_product_id) }}" required>
                 @if($errors->has('shop_product_id'))
                 <span class="text-danger">{{ $errors->first('shop_product_id') }}</span>

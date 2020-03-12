@@ -12,7 +12,7 @@
             @csrf
             <!---------------------------name--------------------------->
             <div class="form-group">
-                <label class="required" for="name">{{ trans('cruds.productManagement.sub_title_2.fields.name') }}</label>
+                <label class="required" for="name">{{ trans('cruds.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $category->name) }}" required>
                 @if($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -21,7 +21,7 @@
             </div>
             <!---------------------------description--------------------------->
             <div class="form-group">
-                <label class="required" for="description">{{ trans('cruds.productManagement.sub_title_2.fields.description') }}</label>
+                <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
                 <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', $category->description) }}" required>
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>

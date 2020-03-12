@@ -23,13 +23,13 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_3.fields.id') }}
+                            {{ trans('cruds.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_3.fields.product') }}
+                            {{ trans('cruds.fields.product') }}
                         </th>
                         <th>
-                            {{ trans('cruds.productManagement.sub_title_3.fields.channel') }}
+                            {{ trans('cruds.fields.channel') }}
                         </th>
                         <th>
                             &nbsp;
