@@ -19,3 +19,6 @@ php artisan migrate:refresh --seed
 php artisan passport:install
 php artisan serve
 ```
+# Publish UpGrade
+https://huanxiang.codes/aws_setting/ive_tm_fyp_smart_shop/git-pull
+https://huanxiang.codes/aws_setting/ive_tm_fyp_smart_shop/migrate
