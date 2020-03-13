@@ -15,6 +15,7 @@
             </div>
             <table class="table table-bordered table-striped">
                 <tbody>
+                    <!------------------------id------------------------>
                     <tr>
                         <th>
                             {{ trans('cruds.fields.id') }}
@@ -23,6 +24,7 @@
                             {{ $ad->id }}
                         </td>
                     </tr>
+                    <!------------------------header------------------------>
                     <tr>
                         <th>
                             {{ trans('cruds.fields.header') }}

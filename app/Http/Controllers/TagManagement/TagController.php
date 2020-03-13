@@ -21,20 +21,18 @@ class TagController extends Controller
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
         return view('tag-management.tags.create');
     }
 
     public function store(Request $request)
     {
         $tag = Tag::create($request->all());
-        // $role->permissions()->sync($request->input('permissions', []));
         return redirect()->route('TagManagement.Tags.index');
     }
 
     public function show(Tag $tag)
     {
-        // $tag->load('hasProduct', 'hasAdvertisement');
+        $tag->load('hasProduct', 'hasAdvertisement');
         return view('tag-management.tags.show', compact('tag'));
     }
 

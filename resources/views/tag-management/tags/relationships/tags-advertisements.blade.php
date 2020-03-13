@@ -1,0 +1,92 @@
+<div class="m-3">
+    @can('product_create')
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route("UserManagement.Users.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
+            </a>
+        </div>
+    </div>
+    @endcan
+    <div class="card">
+        <div class="card-header">
+            {{ trans('cruds.advertisementManagement.sub_title_1.title') }} {{ trans('global.list') }}
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-tag-Advertisement">
+                    <thead>
+                        <tr>
+                            <th width="10">
+
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.id') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.header') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.image') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.description') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.status') }}
+                            </th>
+                            <th>
+                                &nbsp;
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($ad as $key => $ad)
+                        <tr data-entry-id="{{ $ad->id }}">
+                            <td>
+
+                            </td>
+                            <td>
+                                {{ $ad->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $ad->header ?? '' }}
+                            </td>
+                            <td>
+                                <img src="{{ asset('storage/ad/ad/'.$ad->image) }}" width="150px">
+                            </td>
+                            <td>
+                                {{ $ad->description ?? '' }}
+                            </td>
+                            <td>
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => $ad->status == 1 ? config('constant.advertisement_status')['tag_type_1'] : config('constant.advertisement_status')['tag_type_2'],
+                                'element' => config('constant.advertisement_status')[$ad->status] ?? '',
+                                ])
+                            </td>
+                            <td>
+                                @include('module.datatable.action.index',[
+                                'permission_subject' => 'advertisement',
+                                'route_subject' => 'AdvertisementManagement.ad',
+                                'id' => $ad->id
+                                ])
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section('scripts')
+@parent
+@include('module.datatable.massdestory',[
+'permission_massDestory' => 'role_delete',
+'route' => route('AdvertisementManagement.ad.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-tag-Advertisement'
+])
+@endsection

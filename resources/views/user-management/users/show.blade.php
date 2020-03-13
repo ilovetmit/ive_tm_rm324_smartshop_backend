@@ -160,8 +160,6 @@
                             @endif
                         </td>
                     </tr>
-
-
                 </tbody>
             </table>
             <div class="form-group">
