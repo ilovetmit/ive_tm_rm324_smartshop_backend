@@ -52,28 +52,12 @@
                             {{ $stock->name ?? '' }}
                         </td>
                         <td>
-                            @can('stock_view')
-                            <a class="btn btn-xs btn-primary" href="{{ route('SmartBankManagement.Stocks.show', $stock->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
-
-                            @can('stock_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('SmartBankManagement.Stocks.edit', $stock->id) }}">
-                                {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-
-                            @can('stock_delete')
-                            <form action="{{ route('SmartBankManagement.Stocks.destroy', $stock->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-
+                            @include('module.datatable.action.index',[
+                            'permission_subject' => 'stock',
+                            'route_subject' => 'SmartBankManagement.Stocks',
+                            'id' => $stock->id
+                            ])
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -86,9 +70,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-    'permission_massDestory'    => 'stock_delete',
-    'route'                     => route('SmartBankManagement.Stocks.massDestroy'),
-    'pageLength'                => 25,
-    'class'                     => 'datatable-Stock'
+'permission_massDestory' => 'stock_delete',
+'route' => route('SmartBankManagement.Stocks.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-Stock'
 ])
 @endsection

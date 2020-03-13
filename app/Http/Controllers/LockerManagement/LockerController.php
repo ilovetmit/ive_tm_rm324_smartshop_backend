@@ -23,14 +23,25 @@ class LockerController extends Controller
 
     public function create()
     {
-        $lockers = Locker::all()->pluck('id');
-        return view('locker-management.lockers.create', compact('lockers'));
+        return view('locker-management.lockers.create');
     }
 
     public function store(Request $request)
     {
-        $locker = Locker::create($request->all());
-        // $user->roles()->sync($request->input('roles', []));
+        $data = $request->all();
+        if (isset($request->qrcode)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('qrcode')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('qrcode')->store('public/lockers/qrcode');
+                $data['qrcode'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $locker = Locker::create($data);
         return redirect()->route('LockerManagement.Lockers.index');
     }
 
@@ -42,15 +53,25 @@ class LockerController extends Controller
 
     public function edit(Locker $locker)
     {
-        $lockTransaction = LockerTransaction::all()->pluck('id');
-        $locker->load('hasLockerTransaction');
         return view('locker-management.lockers.edit', compact('locker'));
     }
 
     public function update(Request $request, Locker $locker)
     {
-        $locker->update($request->all());
-        // $locker->hasLockerTransaction()->sync($request->input('locker_id', []));
+        $data = $request->all();
+        if (isset($request->qrcode)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('qrcode')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('qrcode')->store('public/lockers/qrcode');
+                $data['qrcode'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $locker->update($data);
         return redirect()->route('LockerManagement.Lockers.index');
     }
 

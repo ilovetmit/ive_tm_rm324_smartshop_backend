@@ -27,14 +27,15 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!---------------------------image--------------------------->
+            <!-- --------------------------------------image-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="image">{{ trans('cruds.fields.image') }}</label>
-                <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="text" name="image" id="image" value="{{ old('image', '') }}" required>
-                @if($errors->has('image'))
-                <span class="text-danger">{{ $errors->first('image') }}</span>
-                @endif
-                <span class="help-block"></span>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="image" name="image">
+                        <label class="custom-file-label" for="image">Choose file</label>
+                    </div>
+                </div>
             </div>
             <!---------------------------description--------------------------->
             <div class="form-group">
@@ -57,4 +58,12 @@
 
 
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        bsCustomFileInput.init();
+    });
+</script>
 @endsection

@@ -9,14 +9,15 @@
     <div class="card-body">
         <form method="POST" action="{{ route("LockerManagement.Lockers.store") }}" enctype="multipart/form-data">
             @csrf
-            <!---------------------------qrcode--------------------------->
+            <!-- --------------------------------------qrcode-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
-                <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode" id="qrcode" value="{{ old('qrcode', '') }}" required>
-                @if($errors->has('qrcode'))
-                <span class="text-danger">{{ $errors->first('qrcode') }}</span>
-                @endif
-                <span class="help-block"></span>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="qrcode" name="qrcode">
+                        <label class="custom-file-label" for="qrcode">Choose file</label>
+                    </div>
+                </div>
             </div>
             <!---------------------------per_hour_price--------------------------->
             <div class="form-group">
@@ -27,19 +28,33 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!---------------------------is_active--------------------------->
+            <!-- --------------------------------------is_active-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="is_active">{{ trans('cruds.fields.is_active') }}</label>
-                <input class="form-control {{ $errors->has('is_active') ? 'is-invalid' : '' }}" type="text" name="is_active" id="is_active" value="{{ old('is_active', '') }}" required>
+                <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
+                    <option value disabled {{ old('is_active', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(config('constant.locker_isActive') as $key => $label)
+                    <option value="{{ $key }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('is_active'))
                 <span class="text-danger">{{ $errors->first('is_active') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!---------------------------is_using--------------------------->
+            <!-- --------------------------------------is_using-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="is_using">{{ trans('cruds.fields.is_using') }}</label>
-                <input class="form-control {{ $errors->has('is_using') ? 'is-invalid' : '' }}" type="text" name="is_using" id="is_using" value="{{ old('is_using', '') }}" required>
+                <select class="form-control select {{ $errors->has('is_using') ? 'is-invalid' : '' }}" name="is_using" id="is_using" required>
+                    <option value disabled {{ old('is_using', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(config('constant.locker_isUsing') as $key => $label)
+                    <option value="{{ $key }}" {{ old('is_using', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('is_using'))
                 <span class="text-danger">{{ $errors->first('is_using') }}</span>
                 @endif
@@ -55,6 +70,12 @@
     </div>
 </div>
 
+@endsection
 
-
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        bsCustomFileInput.init();
+    });
+</script>
 @endsection

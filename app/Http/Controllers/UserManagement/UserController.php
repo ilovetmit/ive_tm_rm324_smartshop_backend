@@ -49,11 +49,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $user->load('hasRole');
-        $user->load('hasAddress');
-        $user->load('hasDevice');
-        $user->load('hasInterest');
-        $user->load('hasVitcoin');
+        $user->load('hasRole', 'hasAddress', 'hasDevice', 'hasInterest', 'hasVitcoin');
         return view('user-management.users.show', compact('user'));
     }
 
@@ -79,7 +75,6 @@ class UserController extends Controller
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-
         $user->update($data);
         $user->hasRole()->sync($request->input('roles', []));
         return redirect()->route('UserManagement.Users.index');

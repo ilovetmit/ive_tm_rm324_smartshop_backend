@@ -76,7 +76,7 @@ return [
 
     'locker_isUsing' => [
         '1'             => 'free',
-        'tag_type_2'    => 'success',
+        'tag_type_1'    => 'success',
         '2'             => 'using',
         'tag_type_2'    => 'warning',
     ],

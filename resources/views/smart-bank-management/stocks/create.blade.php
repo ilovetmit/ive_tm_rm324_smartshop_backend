@@ -36,7 +36,7 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            
+
             <!---------------------------data--------------------------->
             <div class="form-group">
                 <label class="required" for="data">{{ trans('cruds.fields.data') }}</label>
@@ -67,4 +67,12 @@
 
 
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        bsCustomFileInput.init();
+    });
+</script>
 @endsection

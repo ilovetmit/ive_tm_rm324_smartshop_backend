@@ -1,8 +1,8 @@
 <div class="m-3">
-    @can('product_create')
+    @can('advertisement_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("UserManagement.Users.create") }}">
+            <a class="btn btn-success" href="{{ route("AdvertisementManagement.ad.create") }}">
                 {{ trans('global.add') }} {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
             </a>
         </div>

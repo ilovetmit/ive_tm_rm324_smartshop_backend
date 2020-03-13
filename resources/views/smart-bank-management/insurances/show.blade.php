@@ -36,7 +36,10 @@
                             {{ trans('cruds.fields.price') }}
                         </th>
                         <td>
-                            {{ $insurance->price }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $insurance->price ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +47,7 @@
                             {{ trans('cruds.fields.image') }}
                         </th>
                         <td>
-                            {{ $insurance->image }}
+                            <img src="{{ asset('storage/insurances/image/'.$insurance->image) }}" width="150px">
                         </td>
                     </tr>
                     <tr>
@@ -65,4 +68,12 @@
         </div>
     </div>
 </div>
+@section('scripts')
+@parent
+@include('module.datatable.massdestory',[
+'permission_massDestory' => 'product_delete',
+'route' => route('ProductManagement.Products.massDestroy'),
+'pageLength' => 25,
+'class' => 'datatable-tag-Product'
+])
 @endsection

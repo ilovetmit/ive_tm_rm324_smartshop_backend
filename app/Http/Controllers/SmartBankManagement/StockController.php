@@ -26,7 +26,20 @@ class StockController extends Controller
 
     public function store(Request $request)
     {
-        $stock = Stock::create($request->all());
+        $data = $request->all();
+        if (isset($request->icon)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('icon')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('icon')->store('public/stocks/icon');
+                $data['icon'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $stock = Stock::create($data);
         return redirect()->route('SmartBankManagement.Stocks.index');
     }
 
@@ -42,7 +55,20 @@ class StockController extends Controller
 
     public function update(Request $request, Stock $stock)
     {
-        $stock->update($request->all());
+        $data = $request->all();
+        if (isset($request->icon)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('icon')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('avatar')->store('public/stocks/icon');
+                $data['icon'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $stock->update($data);
         return redirect()->route('SmartBankManagement.Stocks.index');
     }
 
@@ -51,7 +77,7 @@ class StockController extends Controller
         $stock->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyStockRequest $request)
     {
         Stock::whereIn('id', request('ids'))->delete();

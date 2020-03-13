@@ -36,7 +36,7 @@
                             {{ trans('cruds.fields.icon') }}
                         </th>
                         <td>
-                            {{ $stock->icon }}
+                            <img src="{{ asset('storage/stocks/icon/'.$stock->icon) }}" width="150px">
                         </td>
                     </tr>
                     <tr>

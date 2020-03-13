@@ -1,21 +1,21 @@
 <div class="m-3">
-    @can('tag_create')
+    @can('locker_transaction_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("TagManagement.Tags.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
+            <a class="btn btn-success" href="{{-- route("TransactionManagement.LockerTransaction.create") --}}">
+                {{ trans('global.add') }} {{ trans('cruds.lockerTransaction.sub_title_4.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.tagManagement.sub_title_1.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.lockerTransaction.sub_title_4.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-advertisement-Tag">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-locker-LockerTransaction">
                     <thead>
                         <tr>
                             <th width="10">
@@ -28,50 +28,49 @@
                                 {{ trans('cruds.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.description') }}
-                            </th>
+                                {{ trans('cruds.fields.email') }}
                             <th>
                                 &nbsp;
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($tags as $key => $tag)
-                        <tr data-entry-id="{{ $tag->id }}">
+                        <tr data-entry-id="{{-- $locker_transaction->id --}}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $tag->id ?? '' }}
+
                             </td>
                             <td>
-                                {{ $tag->name ?? '' }}
+
                             </td>
                             <td>
-                                {{ $tag->description ?? '' }}
+
                             </td>
                             <td>
+                                {{--
                                 @include('module.datatable.action.index',[
-                                'permission_subject' => 'tag',
-                                'route_subject' => 'TagManagement.Tags',
-                                'id' => $tag->id
+                                'permission_subject' => 'locker_transaction',
+                                'route_subject' => 'TransactionManagement.LockerTransaction',
+                                'id' => '',
                                 ])
+                                --}}
+
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'role_delete',
-'route' => route('AdvertisementManagement.ad.massDestroy'),
+'permission_massDestory' => 'device_delete',
+'route' => route('InformationManagement.Devices.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-advertisement-Tag'
+'class' => 'datatable-locker-LockerTransaction'
 ])
 @endsection

@@ -1,5 +1,5 @@
 <div class="m-3">
-    @can('user_create')
+    @can('interest_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("InformationManagement.Interests.create") }}">
