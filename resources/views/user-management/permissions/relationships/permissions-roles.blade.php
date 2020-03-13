@@ -1,21 +1,21 @@
 <div class="m-3">
-    @can('user_create')
+    @can('role_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("InformationManagement.Interests.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.informationManagement.sub_title_3.title') }}
+            <a class="btn btn-success" href="{{ route("UserManagement.Roles.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.userManagement.sub_title_2.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.userManagement.sub_title_2.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-user-Interest">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-permission-Role">
                     <thead>
                         <tr>
                             <th width="10">
@@ -28,8 +28,7 @@
                                 {{ trans('cruds.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.description') }}
-
+                                {{ trans('cruds.fields.title') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -37,25 +36,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($interests as $key => $interest)
-                        <tr data-entry-id="{{ $interest->id }}">
+                        @foreach($roles as $key => $role)
+                        <tr data-entry-id="{{ $role->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $interest->id ?? '' }}
+                                {{ $role->id ?? '' }}
                             </td>
                             <td>
-                                {{ $interest->name ?? '' }}
+                                {{ $role->name ?? '' }}
                             </td>
                             <td>
-                                {{ $interest->description ?? '' }}
+                                @foreach($role->hasPermission as $key => $item)
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $item->name ?? '',
+                                ])
+                                @endforeach
                             </td>
                             <td>
                                 @include('module.datatable.action.index',[
-                                'permission_subject' => 'interest',
-                                'route_subject' => 'InformationManagement.Interests',
-                                'id' => $interest->id
+                                'permission_subject' => 'role',
+                                'route_subject' => 'UserManagement.Roles',
+                                'id' => $role->id
                                 ])
                             </td>
                         </tr>
@@ -70,9 +74,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'interest_delete',
-'route' => route('InformationManagement.Interests.massDestroy'),
+'permission_massDestory' => 'role_delete',
+'route' => route('UserManagement.Roles.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-user-Interest'
+'class' => 'datatable-permission-Role'
 ])
 @endsection

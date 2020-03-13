@@ -22,14 +22,27 @@ class AdvertisementController extends Controller
 
     public function create()
     {
-        $advertisements = Advertisement::all()->pluck('id');
-        return view('advertisement-management.advertisements.create', compact('advertisements'));
+        $tags = Tag::all()->pluck('name', 'id');
+        return view('advertisement-management.advertisements.create', compact('tags'));
     }
 
     public function store(Request $request)
     {
-        $advertisement = Advertisement::create($request->all());
-        // $advertisement->roles()->sync($request->input('roles', []));
+        $data = $request->all();
+        if (isset($request->image)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('image')->store('public/ad/ad');
+                $data['image'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $advertisement = Advertisement::create($data);
+        $advertisement->hasTag()->sync($request->input('tags', []));
         return redirect()->route('AdvertisementManagement.ad.index');
     }
 
@@ -41,15 +54,28 @@ class AdvertisementController extends Controller
 
     public function edit(Advertisement $ad)
     {
-        $tag = Tag::all()->pluck('id');
+        $tags = Tag::all()->pluck('name', 'id');
         $ad->load('hasTag');
-        return view('advertisement-management.advertisements.edit', compact('ad', 'tag'));
+        return view('advertisement-management.advertisements.edit', compact('ad', 'tags'));
     }
 
     public function update(Request $request, Advertisement $ad)
     {
-        $ad->update($request->all());
-        // $user->roles()->sync($request->input('roles', []));
+        $data = $request->all();
+        if (isset($request->image)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('image')->store('public/ad/ad');
+                $data['image'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $ad->update($data);
+        $ad->hasTag()->sync($request->input('tags', []));
         return redirect()->route('AdvertisementManagement.ad.index');
     }
 

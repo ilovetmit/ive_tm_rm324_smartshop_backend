@@ -56,13 +56,13 @@
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_active == 1 ? 'success' : 'warning',
+                            'type' => $locker->is_active == 1 ? config('constant.locker_isActive')['tag_type_1'] : config('constant.locker_isActive')['tag_type_2'],
                             'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
                             ])
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_using == 1 ? 'success' : 'warning',
+                            'type' => $locker->is_using == 1 ? config('constant.locker_isUsing')['tag_type_1'] : config('constant.locker_isUsing')['tag_type_2'],
                             'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
                             ])
                         </td>

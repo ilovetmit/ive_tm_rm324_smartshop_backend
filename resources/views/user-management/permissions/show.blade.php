@@ -55,7 +55,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="permissions_roles">
-            @includeIf('UserManagement.permissions.relationships.permissionsRoles', ['roles' => $permission->hasRole])
+            @includeIf('UserManagement.permissions.relationships.permissions-roles', ['roles' => $permission->hasRole])
         </div>
     </div>
 </div>

@@ -19,30 +19,55 @@
                 @endif
                 <span class="help-block"> </span>
             </div>
-            <!---------------------------image--------------------------->
+            <!-------------------------------------image------------------------------------->
             <div class="form-group">
                 <label class="required" for="image">{{ trans('cruds.fields.image') }}</label>
-                <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="text" name="image" id="image" value="{{ old('image', $ad->image) }}" required>
-                @if($errors->has('image'))
-                <span class="text-danger">{{ $errors->first('image') }}</span>
-                @endif
-                <span class="help-block"> </span>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image" name="image">
+                        <label class="custom-file-label" for="image">{{ old('image', $ad->image) }}</label>
+                    </div>
+                </div>
             </div>
             <!---------------------------description--------------------------->
             <div class="form-group">
-                <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
-                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', $ad->description) }}" required>
+                <label for="description">{{ trans('cruds.fields.description') }}</label>
+                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', $ad->description) }}">
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif
                 <span class="help-block"> </span>
             </div>
-            <!---------------------------status--------------------------->
+            <!-------------------------------------status------------------------------------->
             <div class="form-group">
                 <label class="required" for="status">{{ trans('cruds.fields.status') }}</label>
-                <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="text" name="status" id="status" value="{{ old('status', $ad->status) }}" required>
+                <select class="form-control select {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
+                    <option value disabled {{ old('status', $ad->status) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(config('constant.advertisement_status') as $key => $label)
+                    <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('status'))
                 <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
+                <span class="help-block"></span>
+            </div>
+            <!-------------------------------------tags------------------------------------->
+            <div class="form-group">
+                <label for="tags">{{ trans('cruds.fields.tag') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]" id="tags" multiple>
+                    @foreach($tags as $id => $tags)
+                    <option value="{{ $id }}" {{ (in_array($id, old('tags', [])) || $ad->hasTag->contains($id)) ? 'selected' : '' }}>{{ $tags }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('tags'))
+                <span class="text-danger">{{ $errors->first('tags') }}</span>
                 @endif
                 <span class="help-block"> </span>
             </div>
@@ -56,6 +81,11 @@
     </div>
 </div>
 
-
-
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
 @endsection

@@ -31,14 +31,16 @@
                             {{ $ad->header }}
                         </td>
                     </tr>
+                    <!------------------------image------------------------>
                     <tr>
                         <th>
                             {{ trans('cruds.fields.image') }}
                         </th>
                         <td>
-                            {{ $ad->image }}
+                            <img src="{{ asset('storage/ad/ad/'.$ad->image) }}" width="150px">
                         </td>
                     </tr>
+                    <!------------------------description------------------------>
                     <tr>
                         <th>
                             {{ trans('cruds.fields.description') }}
@@ -47,12 +49,16 @@
                             {{ $ad->description }}
                         </td>
                     </tr>
+                    <!------------------------status------------------------>
                     <tr>
                         <th>
                             {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
-                            {{ $ad->status }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $ad->status == 1 ? config('constant.advertisement_status')['tag_type_1'] : config('constant.advertisement_status')['tag_type_2'],
+                            'element' => config('constant.advertisement_status')[$ad->status] ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>
@@ -72,13 +78,14 @@
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#roles_users" role="tab" data-toggle="tab">
-                {{ trans('cruds.advertisementManagement.sub_title_3.title') }}
+            <a class="nav-link" href="#advertisements-tags" role="tab" data-toggle="tab">
+                {{ trans('cruds.tagManagement.sub_title_1.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="roles_users">
+        <div class="tab-pane" role="tabpanel" id="advertisements-tags">
+            @includeIf('advertisement-management.advertisements.relationships.advertisements-tags', ['tags' => $ad->hasTag])
         </div>
     </div>
 </div>

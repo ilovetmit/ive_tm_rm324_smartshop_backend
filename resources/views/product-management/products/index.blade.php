@@ -72,7 +72,7 @@
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? 'danger' : 'success',
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
                             'element' => config('constant.product_status')[$product->status] ?? '',
                             ])
                         </td>

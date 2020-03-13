@@ -15,20 +15,20 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-Device">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-user-Device">
                     <thead>
                         <tr>
                             <th width="10">
 
                             </th>
                             <th>
-                                {{ trans('cruds.informationManagement.sub_title_2.fields.id') }}
+                                {{ trans('cruds.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.informationManagement.sub_title_2.fields.is_active') }}
+                                {{ trans('cruds.fields.is_active') }}
                             </th>
                             <th>
-                                {{ trans('cruds.informationManagement.sub_title_2.fields.token') }}
+                                {{ trans('cruds.fields.token') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -46,7 +46,7 @@
                             </td>
                             <td>
                                 @include('module.datatable.badge_tag.tag',[
-                                'type' => $device->is_active == 0 ? 'warning' : 'success',
+                                'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
                                 'element' => config('constant.device_isActive')[$device->is_active] ?? '',
                                 ])
                             </td>
@@ -75,6 +75,6 @@
 'permission_massDestory' => 'device_delete',
 'route' => route('InformationManagement.Devices.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-Device'
+'class' => 'datatable-user-Device'
 ])
 @endsection

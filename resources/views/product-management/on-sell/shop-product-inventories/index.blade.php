@@ -54,7 +54,7 @@
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => $shopProductInventory->is_sold == 1 ? 'success' : ($shopProductInventory->is_sold == 2 ? 'warning' : 'secondary'),
+                            'type' => $shopProductInventory->is_sold == 1 ? config('constant.shopProductInventories_isSold')['tag_type_1'] : ($shopProductInventory->is_sold == 2 ? config('constant.shopProductInventories_isSold')['tag_type_2'] : config('constant.shopProductInventories_isSold')['tag_type_3']),
                             'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                             ])
                         </td>

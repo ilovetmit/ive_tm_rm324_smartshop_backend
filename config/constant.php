@@ -1,26 +1,43 @@
 <?php
 
 return [
+    // primary
+    // secondary
+    // success
+    // danger
+    // warning
+    // info
+    // light
+    // dark
 
     'advertisement_status' => [
-        '1' => 'on promote',
-        '2' => 'expired',
+        '1'             => 'on promote',    // on
+        'tag_type_1'    => 'success',
+        '2'             => 'expired',       // off
+        'tag_type_2'    => 'secondary',
     ],
 
     'product_status' => [
-        '1' => 'shortage',
-        '2' => 'enough',
+        '1'             => 'shortage',
+        'tag_type_1'    => 'danger',
+        '2'             => 'enough',
+        'tag_type_2'    => 'success',
     ],
 
     'shopProductInventories_isSold' => [
-        '1' => 'on sell',
-        '2' => 'sell out',
-        '3' => 'off sell',
+        '1'             => 'on sell',
+        'tag_type_1'    => 'success',
+        '2'             => 'sell out',
+        'tag_type_2'    => 'warning',
+        '3'             => 'off sell',
+        'tag_type_3'    => 'secondary',
     ],
 
     'device_isActive' => [
-        '0' => 'inactive',
-        '1' => 'active',
+        '1'             => 'inactive',
+        'tag_type_1'    => 'warning',
+        '2'             => 'active',
+        'tag_type_2'    => 'success',
     ],
 
     'address_district' => [
@@ -51,13 +68,17 @@ return [
     ],
 
     'locker_isActive' => [
-        '1' => 'active',
-        '2' => 'inactive',
+        '1'             => 'active',
+        'tag_type_1'    => 'success',
+        '2'             => 'inactive',
+        'tag_type_2'    => 'warning',
     ],
-    
+
     'locker_isUsing' => [
-        '1' => 'free',
-        '2' => 'using',
+        '1'             => 'free',
+        'tag_type_2'    => 'success',
+        '2'             => 'using',
+        'tag_type_2'    => 'warning',
     ],
 
     'user_gender' => [
@@ -75,5 +96,5 @@ return [
         '2' => 'Woman',
         '3' => 'Other',
     ]
-    
+
 ];

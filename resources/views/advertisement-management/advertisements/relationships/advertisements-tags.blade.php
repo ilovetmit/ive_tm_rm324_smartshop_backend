@@ -2,20 +2,20 @@
     @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("InformationManagement.Interests.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.informationManagement.sub_title_3.title') }}
+            <a class="btn btn-success" href="{{ route("TagManagement.Tags.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.tagManagement.sub_title_1.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-user-Interest">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-advertisement-Tag">
                     <thead>
                         <tr>
                             <th width="10">
@@ -29,7 +29,6 @@
                             </th>
                             <th>
                                 {{ trans('cruds.fields.description') }}
-
                             </th>
                             <th>
                                 &nbsp;
@@ -37,25 +36,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($interests as $key => $interest)
-                        <tr data-entry-id="{{ $interest->id }}">
+                        @foreach($tags as $key => $tag)
+                        <tr data-entry-id="{{ $tag->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $interest->id ?? '' }}
+                                {{ $tag->id ?? '' }}
                             </td>
                             <td>
-                                {{ $interest->name ?? '' }}
+                                {{ $tag->name ?? '' }}
                             </td>
                             <td>
-                                {{ $interest->description ?? '' }}
+                                {{ $tag->description ?? '' }}
                             </td>
                             <td>
                                 @include('module.datatable.action.index',[
-                                'permission_subject' => 'interest',
-                                'route_subject' => 'InformationManagement.Interests',
-                                'id' => $interest->id
+                                'permission_subject' => 'tag',
+                                'route_subject' => 'TagManagement.Tags',
+                                'id' => $tag->id
                                 ])
                             </td>
                         </tr>
@@ -70,9 +69,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'interest_delete',
-'route' => route('InformationManagement.Interests.massDestroy'),
+'permission_massDestory' => 'role_delete',
+'route' => route('AdvertisementManagement.ad.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-user-Interest'
+'class' => 'datatable-advertisement-Tag'
 ])
 @endsection

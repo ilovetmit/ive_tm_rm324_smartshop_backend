@@ -42,10 +42,8 @@ class UserController extends Controller
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-
         $user = User::create($data);
         $user->hasRole()->sync($request->input('roles', []));
-
         return redirect()->route('UserManagement.Users.index');
     }
 
@@ -53,6 +51,7 @@ class UserController extends Controller
     {
         $user->load('hasRole');
         $user->load('hasAddress');
+        $user->load('hasDevice');
         $user->load('hasInterest');
         $user->load('hasVitcoin');
         return view('user-management.users.show', compact('user'));
@@ -83,7 +82,6 @@ class UserController extends Controller
 
         $user->update($data);
         $user->hasRole()->sync($request->input('roles', []));
-
         return redirect()->route('UserManagement.Users.index');
     }
 
