@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ProductManagement;
 
 use App\Models\ProductManagement\Category;
+use App\Models\ProductManagement\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // massDestroy
@@ -21,20 +22,20 @@ class CategoryController extends Controller
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        return view('product-management.categories.create');
+        // $products = Product::all()->pluck('name', 'id');
+        return view('product-management.categories.create', compact('products'));
     }
 
     public function store(Request $request)
     {
         $category = Category::create($request->all());
-        // $category->permissions()->sync($request->input('permissions', []));
+        // $category->hasProduct()->sync($request->input('product', []));
         return redirect()->route('ProductManagement.Categories.index');
     }
 
     public function show(Category $category)
     {
-        // $product->load('hasTransaction');
+        $category->load('hasProduct');
         return view('product-management.categories.show', compact('category'));
     }
 

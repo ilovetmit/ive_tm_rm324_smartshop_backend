@@ -10,14 +10,15 @@
         <form method="POST" action="{{ route("ProductManagement.ProductWalls.update", [$productWall->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <!---------------------------qrcode--------------------------->
+            <!-------------------------------------qrcode------------------------------------->
             <div class="form-group">
                 <label class="required" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
-                <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode" id="qrcode" value="{{ old('qrcode', $productWall->qrcode) }}" required>
-                @if($errors->has('qrcode'))
-                <span class="text-danger">{{ $errors->first('qrcode') }}</span>
-                @endif
-                <span class="help-block"></span>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" id="qrcode" name="qrcode">
+                        <label class="custom-file-label" for="qrcode">{{ old('qrcode', $productWall->qrcode) }}</label>
+                    </div>
+                </div>
             </div>
             <!---------------------------product_id--------------------------->
             <div class="form-group">

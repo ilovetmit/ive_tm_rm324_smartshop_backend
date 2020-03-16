@@ -36,7 +36,10 @@
                             {{ trans('cruds.fields.price') }}
                         </th>
                         <td>
-                            {{ $product->price }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $product->price ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +47,10 @@
                             {{ trans('cruds.fields.quantity') }}
                         </th>
                         <td>
-                            {{ $product->quantity }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            'element' => $product->quantity,
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +58,7 @@
                             {{ trans('cruds.fields.image') }}
                         </th>
                         <td>
-                            {{ $product->image }}
+                            <img src="{{ asset('storage/products/image/'.$product->image) }}" width="150px">
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +74,10 @@
                             {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
-                            {{ $product->status }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            'element' => config('constant.product_status')[$product->status] ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>
@@ -78,6 +87,40 @@
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
+        </div>
+    </div>
+</div>
+<!-- hasManyTable -->
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#products_categories" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.sub_title_2.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#products_tags" role="tab" data-toggle="tab">
+                {{ trans('cruds.tagManagement.sub_title_1.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#products_productWalls" role="tab" data-toggle="tab">
+                {{ trans('cruds.tagManagement.sub_title_1.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="products_categories">
+            @includeIf('product-management.products.relationships.products-categories', ['categories' => $product->hasCategory])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="products_tags">
+            @includeIf('product-management.products.relationships.products-tags', ['tags' => $product->hasTag])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="products_productWalls">
+            @includeIf('product-management.products.relationships.products-product-walls', ['productWalls' => $product->hasProductWall])
         </div>
     </div>
 </div>

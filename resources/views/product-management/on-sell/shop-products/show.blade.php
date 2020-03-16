@@ -49,4 +49,38 @@
         </div>
     </div>
 </div>
+<!-- hasManyTable -->
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#shopProducts_products" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.sub_title_1.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#shopProducts_shopProductInventories" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.sub_title_3.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#shopProducts_LEDs" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.sub_title_4.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="shopProducts_products">
+            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-products', ['products' => $shopProduct->hasProduct])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="shopProducts_shopProductInventories">
+            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-shop-product-inverntories', ['shopProductInventories' => $shopProduct->hasShopProductInventory])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="shopProducts_LEDs">
+            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-leds', ['LEDs' => $shopProduct->hasLED])
+        </div>
+    </div>
+</div>
 @endsection

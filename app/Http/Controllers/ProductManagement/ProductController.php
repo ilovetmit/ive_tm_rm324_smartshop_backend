@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\ProductManagement;
 
 use App\Models\ProductManagement\Product;
+use App\Models\ProductManagement\Category;
+use App\Models\TagManagement\Tag;
+use App\Models\TransactionManagement\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // massDestroy
@@ -21,34 +24,65 @@ class ProductController extends Controller
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        return view('product-management.products.create');
+        $categories = Category::all()->pluck('name', 'id');
+        $tags = Tag::all()->pluck('name', 'id');
+        return view('product-management.products.create', compact('categories', 'tags'));
     }
 
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        // $remittanceTransaction->hasTransaction()->sync($request->input('hasTransaction', []));
+        $data = $request->all();
+        if (isset($request->image)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('image')->store('public/products/image');
+                $data['image'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $product = Product::create($data);
+        $product->hasCategory()->sync($request->input('categories', []));
+        $product->hasTag()->sync($request->input('tags', []));
         return redirect()->route('ProductManagement.Products.index');
     }
 
     public function show(Product $product)
     {
-        // $product->load('hasTransaction');
+        $product->load('hasProductTransaction', 'hasTag', 'hasCategory');
         return view('product-management.products.show', compact('product'));
     }
 
     public function edit(Product $product)
     {
-        // $transactions = Transaction::all()->pluck('id');
-        // $product->load('hasTransaction');
+        $transactions = Transaction::all()->pluck('name', 'id');
+        $categories = Category::all()->pluck('name', 'id');
+        $tags = Tag::all()->pluck('name', 'id');
+        $product->load('hasProductTransaction', 'hasTag', 'hasCategory');
         return view('product-management.products.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
     {
-        $product->update($request->all());
-        // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
+        $data = $request->all();
+        if (isset($request->image)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('image')->store('public/products/image');
+                $data['image'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $product->update($data);
+        $product->hasCategory()->sync($request->input('categories', []));
+        $product->hasTag()->sync($request->input('tags', []));
         return redirect()->route('ProductManagement.Products.index');
     }
 
@@ -57,7 +91,7 @@ class ProductController extends Controller
         $product->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyProductRequest $request)
     {
         Product::whereIn('id', request('ids'))->delete();

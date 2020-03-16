@@ -28,7 +28,7 @@
                             {{ trans('cruds.fields.qrcode') }}
                         </th>
                         <td>
-                            {{ $productWall->qrcode }}
+                            <img src="{{ asset('storage/productwalls/qrcode/'.$productWall->qrcode) }}" width="150px">
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +36,11 @@
                             {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
-                            {{ $productWall->product_id }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $productWall->hasProduct->id ?? '',
+                            'suffix' => $productWall->hasProduct->name ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -57,4 +61,23 @@
         </div>
     </div>
 </div>
+<!-- hasManyTable -->
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#productWalls_products" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.sub_title_1.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="productWalls_products">
+            @includeIf('product-management.product-walls.relationships.product-walls-products', ['product' => $productWall->hasProduct])
+        </div>
+    </div>
+</div>
+
 @endsection

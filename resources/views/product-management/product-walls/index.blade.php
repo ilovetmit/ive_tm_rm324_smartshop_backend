@@ -16,7 +16,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-ProductWall">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Product-Wall">
                 <thead>
                     <tr>
                         <th width="10">
@@ -77,6 +77,6 @@
 'permission_massDestory' => 'product_wall_delete',
 'route' => route('ProductManagement.ProductWalls.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-ProductWall'
+'class' => 'datatable-Product-Wall'
 ])
 @endsection

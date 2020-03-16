@@ -21,34 +21,58 @@ class ProductWallController extends Controller
 
     public function create()
     {
-         // $permissions = Permission::all()->pluck('name', 'id');
-         return view('product-management.product-walls.create');
+        // $permissions = Permission::all()->pluck('name', 'id');
+        return view('product-management.product-walls.create');
     }
 
     public function store(Request $request)
     {
-        $productWall = ProductWall::create($request->all());
-        // $remittanceTransaction->hasTransaction()->sync($request->input('hasTransaction', []));
+        $data = $request->all();
+        if (isset($request->qrcode)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('qrcode')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('qrcode')->store('public/productwalls/qrcode');
+                $data['qrcode'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $productWall = ProductWall::create($data);
         return redirect()->route('ProductManagement.ProductWalls.index');
     }
 
     public function show(ProductWall $productWall)
     {
-        // $product->load('hasTransaction');
+        $productWall->load('hasProduct');
         return view('product-management.product-walls.show', compact('productWall'));
     }
 
     public function edit(ProductWall $productWall)
     {
-         // $transactions = Transaction::all()->pluck('id');
+        // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
         return view('product-management.product-walls.edit', compact('productWall'));
     }
 
     public function update(Request $request, ProductWall $productWall)
     {
-        $productWall->update($request->all());
-        // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
+        $data = $request->all();
+        if (isset($request->qrcode)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('qrcode')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('qrcode')->store('public/productwalls/qrcode');
+                $data['qrcode'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $productWall->update($data);
         return redirect()->route('ProductManagement.ProductWalls.index');
     }
 
@@ -57,7 +81,7 @@ class ProductWallController extends Controller
         $productWall->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyProductWallRequest $request)
     {
         ProductWall::whereIn('id', request('ids'))->delete();
