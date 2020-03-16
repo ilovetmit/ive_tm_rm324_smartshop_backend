@@ -47,24 +47,30 @@
                             <td>
 
                             </td>
+                            <!-- ----------------id---------------- -->
                             <td>
                                 {{ $ad->id ?? '' }}
                             </td>
+                            <!-- ----------------header---------------- -->
                             <td>
                                 {{ $ad->header ?? '' }}
                             </td>
+                            <!-- ----------------image---------------- -->
                             <td>
                                 <img src="{{ asset('storage/ad/ad/'.$ad->image) }}" width="150px">
                             </td>
+                            <!-- ----------------description---------------- -->
                             <td>
                                 {{ $ad->description ?? '' }}
                             </td>
+                            <!-- ----------------status---------------- -->
                             <td>
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => $ad->status == 1 ? config('constant.advertisement_status')['tag_type_1'] : config('constant.advertisement_status')['tag_type_2'],
                                 'element' => config('constant.advertisement_status')[$ad->status] ?? '',
                                 ])
                             </td>
+                            <!-- ----------------action---------------- -->
                             <td>
                                 @include('module.datatable.action.index',[
                                 'permission_subject' => 'advertisement',

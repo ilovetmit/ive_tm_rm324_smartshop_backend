@@ -112,12 +112,10 @@
                         </th>
                         <td>
                             @foreach($user->hasRole as $key => $roles)
-                            <h5>
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $roles->name ?? '',
-                                ])
-                            </h5>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $roles->name ?? '',
+                            ])
                             @endforeach
                         </td>
                     </tr>
@@ -140,12 +138,11 @@
                         </th>
                         <td>
                             @foreach($user->hasInterest as $key => $interests)
-                            <h5>
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $interests->name ?? '',
-                                ])
-                            </h5>
+
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $interests->name ?? '',
+                            ])
                             @endforeach
                         </td>
                     </tr>

@@ -62,7 +62,7 @@ class StockController extends Controller
             $isInFileType = in_array($extension, $photoTypes);
 
             if ($isInFileType) {
-                $file = $request->file('avatar')->store('public/stocks/icon');
+                $file = $request->file('icon')->store('public/stocks/icon');
                 $data['icon'] = basename($file);
             } else {
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');

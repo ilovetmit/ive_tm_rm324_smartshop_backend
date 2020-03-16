@@ -18,14 +18,15 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!---------------------------icon--------------------------->
+            <!-- --------------------------------------icon-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="icon">{{ trans('cruds.fields.icon') }}</label>
-                <input class="form-control {{ $errors->has('icon') ? 'is-invalid' : '' }}" type="text" name="icon" id="icon" value="{{ old('icon', '') }}" required>
-                @if($errors->has('icon'))
-                <span class="text-danger">{{ $errors->first('icon') }}</span>
-                @endif
-                <span class="help-block"></span>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="icon" name="icon">
+                        <label class="custom-file-label" for="icon">Choose file</label>
+                    </div>
+                </div>
             </div>
             <!---------------------------name--------------------------->
             <div class="form-group">
@@ -36,7 +37,6 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-
             <!---------------------------data--------------------------->
             <div class="form-group">
                 <label class="required" for="data">{{ trans('cruds.fields.data') }}</label>

@@ -44,10 +44,12 @@
                             {{ trans('cruds.fields.permission') }}
                         </th>
                         <td>
-                            @foreach($role->hasPermission as $key => $permissions)
-                            <!-- DIY_STYLE -->
-                            <span class="badge badge-info">{{ $permissions->name }}</span>
-                            @endforeach
+                                @foreach($role->hasPermission as $key => $permissions)
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $permissions->name ?? '',
+                                ])
+                                @endforeach
                         </td>
                     </tr>
                 </tbody>

@@ -50,18 +50,22 @@
                             <td>
 
                             </td>
+                            <!-- ----------------id---------------- -->
                             <td>
                                 {{ $product->id }}
                             </td>
+                            <!-- ----------------name---------------- -->
                             <td>
                                 {{ $product->name ?? '' }}
                             </td>
+                            <!-- ----------------price---------------- -->
                             <td>
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => '$ '. $product->price ?? '',
                                 ])
                             </td>
+                            <!-- ----------------quantity & status---------------- -->
                             <td>
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
@@ -72,12 +76,15 @@
                                 'element' => config('constant.product_status')[$product->status] ?? '',
                                 ])
                             </td>
+                            <!-- ----------------image---------------- -->
                             <td>
                                 <img src="{{ asset('storage/products/image/'.$product->image) }}" width="150px">
                             </td>
+                            <!-- ----------------description---------------- -->
                             <td>
                                 {{ $product->description }}
                             </td>
+                            <!-- ----------------action---------------- -->
                             <td>
                                 @include('module.datatable.action.index',[
                                 'permission_subject' => 'product',

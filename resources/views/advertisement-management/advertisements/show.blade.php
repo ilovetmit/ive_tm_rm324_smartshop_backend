@@ -63,6 +63,20 @@
                             ])
                         </td>
                     </tr>
+                    <!------------------------tag------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.tag') }}
+                        </th>
+                        <td>
+                            @foreach($ad->hasTag as $key => $tags)
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => $tags->name ?? '',
+                                ])
+                            @endforeach
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
