@@ -19,25 +19,39 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!---------------------------user_id--------------------------->
+            <!-------------------------------------user_id------------------------------------->
             <div class="form-group">
                 <label class="required" for="user_id">{{ trans('cruds.fields.user_id') }}</label>
-                <input class="form-control {{ $errors->has('user_id') ? 'is-invalid' : '' }}" type="text" name="user_id" id="user_id" value="{{ old('user_id', $device->user_id) }}" required>
+                <select class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
+                    <option value disabled {{ old('user_id', $device->user_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach($users as $key => $user)
+                    <option value="{{ $user->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $user->getFullNameAttribute() }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('user_id'))
                 <span class="text-danger">{{ $errors->first('user_id') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!---------------------------is_active--------------------------->
+            <!-------------------------------------is_active------------------------------------->
             <div class="form-group">
                 <label class="required" for="is_active">{{ trans('cruds.fields.is_active') }}</label>
-                <input class="form-control {{ $errors->has('is_active') ? 'is-invalid' : '' }}" type="text" name="is_active" id="is_active" value="{{ old('is_active', $device->is_active) }}" required>
+                <select class="form-control select2 {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
+                    <option value disabled {{ old('is_active', $device->is_active) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(config('constant.device_isActive_form') as $key => $label)
+                    <option value="{{ $user->id }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('is_active'))
                 <span class="text-danger">{{ $errors->first('is_active') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!------------------------------------------------------>        
+            <!------------------------------------------------------>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

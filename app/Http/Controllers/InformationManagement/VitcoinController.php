@@ -23,7 +23,7 @@ class VitcoinController extends Controller
 
     public function create()
     {
-        $users = User::all()->pluck('id');
+        $users = User::all();
         return view('information-management.vitcoins.create', compact('users'));
     }
 
@@ -42,7 +42,7 @@ class VitcoinController extends Controller
 
     public function edit(Vitcoin $vitcoin)
     {
-        $users = User::all()->pluck('name', 'id');
+        $users = User::all();
         $vitcoin->load('hasUser');
         return view('information-management.vitcoins.edit', compact('users', 'vitcoin'));
     }

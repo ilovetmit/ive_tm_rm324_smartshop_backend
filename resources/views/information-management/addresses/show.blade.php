@@ -28,7 +28,11 @@
                             {{ trans('cruds.fields.user_id') }}
                         </th>
                         <td>
-                            {{ $address->user_id }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $address->hasUser->id ?? '',
+                            'suffix' => $address->hasUser->getFullNameAttribute() ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -79,9 +83,8 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="addresses_users">
-            @includeIf('InformationManagement.Addresses.relationships.addressesUsers', ['users' => $address->hasUser])
+            @includeIf('InformationManagement.relationships.users', ['user' => $address->hasUser])
         </div>
     </div>
 </div>
-
 @endsection

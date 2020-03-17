@@ -22,7 +22,8 @@ class AddressController extends Controller
 
     public function create()
     {
-        return view('information-management.addresses.create');
+        $users = User::all();
+        return view('information-management.addresses.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -39,8 +40,8 @@ class AddressController extends Controller
 
     public function edit(Address $address)
     {
-        $users = User::all()->pluck('name', 'id');
-        $address->load('hasUser');
+        $users = User::all();
+        // $address->load('hasUser');
         return view('information-management.addresses.edit', compact('address', 'users'));
     }
 

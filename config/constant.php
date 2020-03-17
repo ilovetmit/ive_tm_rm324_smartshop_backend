@@ -15,7 +15,7 @@ return [
         'tag_type_1'    => 'success',
         '2'             => 'expired',       // off
         'tag_type_2'    => 'secondary',
-    ],'advertisement_status_form' => [
+    ], 'advertisement_status_form' => [
         '1'             => 'on promote',    // on
         '2'             => 'expired',       // off
     ],
@@ -25,6 +25,9 @@ return [
         'tag_type_1'    => 'danger',
         '2'             => 'enough',
         'tag_type_2'    => 'success',
+    ], 'product_status_form' => [
+        '1'             => 'shortage',
+        '2'             => 'enough',
     ],
 
     'shopProductInventories_isSold' => [
@@ -34,7 +37,7 @@ return [
         'tag_type_2'    => 'warning',
         '3'             => 'off sell',
         'tag_type_3'    => 'secondary',
-    ],'shopProductInventories_isSold_form' => [
+    ], 'shopProductInventories_isSold_form' => [
         '1'             => 'on sell',
         '2'             => 'sell out',
         '3'             => 'off sell',
@@ -45,6 +48,9 @@ return [
         'tag_type_1'    => 'warning',
         '2'             => 'active',
         'tag_type_2'    => 'success',
+    ], 'device_isActive_form' => [
+        '1'             => 'inactive',
+        '2'             => 'active',
     ],
 
     'address_district' => [
@@ -79,7 +85,7 @@ return [
         'tag_type_1'    => 'success',
         '2'             => 'inactive',
         'tag_type_2'    => 'warning',
-    ],'locker_isActive_form' => [
+    ], 'locker_isActive_form' => [
         '1'             => 'active',
         '2'             => 'inactive',
     ],
@@ -89,7 +95,7 @@ return [
         'tag_type_1'    => 'success',
         '2'             => 'using',
         'tag_type_2'    => 'warning',
-    ],'locker_isUsing_form' => [
+    ], 'locker_isUsing_form' => [
         '1'             => 'free',
         '2'             => 'using',
     ],
@@ -104,7 +110,7 @@ return [
         'tag_type_1'    => 'success',
         '2'             => 'unavailable',
         'tag_type_2'    => 'secondary',
-    ],'user_status_form' => [
+    ], 'user_status_form' => [
         '1' => 'available',
         '2' => 'unavailable',
     ],

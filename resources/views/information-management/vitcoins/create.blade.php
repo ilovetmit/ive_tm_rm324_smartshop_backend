@@ -9,10 +9,17 @@
     <div class="card-body">
         <form method="POST" action="{{ route("InformationManagement.Vitcoins.store") }}" enctype="multipart/form-data">
             @csrf
-            <!---------------------------user_id--------------------------->
+            <!-- --------------------------------------user_id-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="user_id">{{ trans('cruds.fields.user_id') }}</label>
-                <input class="form-control {{ $errors->has('user_id') ? 'is-invalid' : '' }}" type="text" name="user_id" id="user_id" value="{{ old('user_id', '') }}" required>
+                <select class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
+                    <option value disabled {{ old('user_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach($users as $key => $user)
+                    <option value="{{ $user->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $user->getFullNameAttribute() }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('user_id'))
                 <span class="text-danger">{{ $errors->first('user_id') }}</span>
                 @endif

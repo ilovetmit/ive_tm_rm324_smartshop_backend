@@ -22,8 +22,8 @@ class DeviceController extends Controller
 
     public function create()
     {
-        $devices = Device::all()->pluck('id');
-        return view('information-management.devices.create', compact('devices'));
+        $users = User::all();
+        return view('information-management.devices.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class DeviceController extends Controller
 
     public function edit(Device $device)
     {
-        $users = User::all()->pluck('name', 'id');
+        $users = User::all();
         $device->load('hasUser');
         return view('information-management.devices.edit', compact('device', 'users'));
     }
