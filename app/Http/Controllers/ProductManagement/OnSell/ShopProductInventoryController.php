@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\ProductManagement\OnSell;
 
 use App\Models\ProductManagement\OnSell\ShopProductInventory;
+use App\Models\ProductManagement\OnSell\ShopProduct;
+use App\Models\ProductManagement\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // massDestroy
@@ -16,19 +18,32 @@ class ShopProductInventoryController extends Controller
 {
     public function index()
     {
-        $shopProductInventories = ShopProductInventory::all();
-        return view('product-management.on-sell.shop-product-inventories.index', compact('shopProductInventories'));
+        $shopProducts = ShopProduct::all();
+        return view('product-management.on-sell.shop-product-inventories.index', compact('shopProducts'));
     }
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        return view('product-management.on-sell.shop-product-inventories.create');
+        $shopProducts = ShopProduct::all();
+        return view('product-management.on-sell.shop-product-inventories.create', compact('products', 'shopProducts'));
     }
 
     public function store(Request $request)
     {
-        $shopProductInventory = ShopProductInventory::create($request->all());
+        $data = $request->all();
+        if (isset($request->rfid_code)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('rfid_code')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('rfid_code')->store('public/shop_product_inventory/rfid_code');
+                $data['rfid_code'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $shopProductInventory = ShopProductInventory::create($data);
         // $remittanceTransaction->hasTransaction()->sync($request->input('hasTransaction', []));
         return redirect()->route('ProductManagement.ShopProductInventories.index');
     }
@@ -41,14 +56,27 @@ class ShopProductInventoryController extends Controller
 
     public function edit(ShopProductInventory $shopProductInventory)
     {
-        // $transactions = Transaction::all()->pluck('id');
-        // $shopProductInventory->load('hasTransaction');
-        return view('product-management.on-sell.shop-product-inventories.edit', compact('shopProductInventory'));
+        $shopProducts = ShopProduct::all();
+        $shopProductInventory->load('hasShopProduct');
+        return view('product-management.on-sell.shop-product-inventories.edit', compact('shopProductInventory', 'shopProducts'));
     }
 
     public function update(Request $request, ShopProductInventory $shopProductInventory)
     {
-        $shopProductInventory->update($request->all());
+        $data = $request->all();
+        if (isset($request->rfid_code)) {
+            $photoTypes = array('png', 'jpg', 'jpeg');
+            $extension = $request->file('rfid_code')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('rfid_code')->store('public/shop_product_inventory/rfid_code');
+                $data['rfid_code'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
+        $shopProductInventory = ShopProductInventory::create($data);
         // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
         return redirect()->route('ProductManagement.ShopProductInventories.index');
     }
@@ -58,7 +86,7 @@ class ShopProductInventoryController extends Controller
         $shopProductInventory->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyShopProductInventoryRequest $request)
     {
         ShopProductInventory::whereIn('id', request('ids'))->delete();

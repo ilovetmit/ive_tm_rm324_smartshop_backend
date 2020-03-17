@@ -34,7 +34,7 @@
                 <label class="required" for="is_active">{{ trans('cruds.fields.is_active') }}</label>
                 <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
                     <option value disabled {{ old('is_active', $locker->is_active) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.locker_isActive') as $key => $label)
+                    @foreach(config('constant.locker_isActive_form') as $key => $label)
                     <option value="{{ $key }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
@@ -50,7 +50,7 @@
                 <label class="required" for="is_using">{{ trans('cruds.fields.is_using') }}</label>
                 <select class="form-control select {{ $errors->has('is_using') ? 'is-invalid' : '' }}" name="is_using" id="is_using" required>
                     <option value disabled {{ old('is_using', $locker->is_using) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.locker_isUsing') as $key => $label)
+                    @foreach(config('constant.locker_isUsing_form') as $key => $label)
                     <option value="{{ $key }}" {{ old('is_using', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>

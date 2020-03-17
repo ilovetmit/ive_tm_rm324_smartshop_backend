@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ProductManagement\OnSell;
 
 use App\Models\ProductManagement\OnSell\LED;
+use App\Models\ProductManagement\OnSell\ShopProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // massDestroy
@@ -22,34 +23,30 @@ class LEDController extends Controller
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        return view('product-management.on-sell.leds.create');
+        $shopProducts = ShopProduct::all();
+        return view('product-management.on-sell.leds.create', compact('shopProducts'));
     }
 
     public function store(Request $request)
     {
         $led = LED::create($request->all());
-        // $remittanceTransaction->hasTransaction()->sync($request->input('hasTransaction', []));
         return redirect()->route('ProductManagement.LEDs.index');
     }
 
     public function show(LED $led)
     {
-        // $led->load('hasTransaction');
         return view('product-management.on-sell.leds.show', compact('led'));
     }
 
     public function edit(LED $led)
     {
-        // $transactions = Transaction::all()->pluck('id');
-        // $led->load('hasTransaction');
-        return view('product-management.on-sell.leds.edit', compact('led'));
+        $shopProducts = ShopProduct::all();
+        return view('product-management.on-sell.leds.edit', compact('led', 'shopProducts'));
     }
 
     public function update(Request $request, LED $led)
     {
         $led->update($request->all());
-        // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
         return redirect()->route('ProductManagement.LEDs.index');
     }
 
@@ -58,7 +55,7 @@ class LEDController extends Controller
         $led->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyLEDRequest $request)
     {
         LED::whereIn('id', request('ids'))->delete();

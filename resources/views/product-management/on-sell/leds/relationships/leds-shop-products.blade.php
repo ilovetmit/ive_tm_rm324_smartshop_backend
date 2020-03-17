@@ -3,14 +3,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("ProductManagement.ShopProducts.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_1.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_4.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.productManagement.sub_title_1.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.productManagement.sub_title_4.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
@@ -33,7 +33,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($shopProducts as $key => $shopProduct)
                         <tr data-entry-id="{{ $shopProduct->id }}">
                             <td>
 
@@ -56,7 +55,6 @@
                                 ])
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>

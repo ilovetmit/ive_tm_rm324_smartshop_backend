@@ -108,7 +108,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#products_productWalls" role="tab" data-toggle="tab">
-                {{ trans('cruds.tagManagement.sub_title_1.title') }}
+                {{ trans('cruds.productManagement.sub_title_7.title') }}
             </a>
         </li>
     </ul>

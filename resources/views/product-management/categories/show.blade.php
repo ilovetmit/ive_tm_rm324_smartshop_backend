@@ -63,7 +63,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="categories_products">
-            @includeIf('product-management.categories.relationships.categories-products', ['product' => $category->hasProduct])
+            @includeIf('product-management.categories.relationships.categories-products', ['products' => $category->hasProduct])
         </div>
     </div>
 </div>

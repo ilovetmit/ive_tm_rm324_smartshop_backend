@@ -3,14 +3,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("ProductManagement.ShopProductInventories.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.productkbManagement.sub_title_3.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_6.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.productManagement.sub_title_6.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">

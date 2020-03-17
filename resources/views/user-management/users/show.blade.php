@@ -93,7 +93,10 @@
                             {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
-                            {{ config('constant.user_status')[$user->status] }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $user->status == 1 ? config('constant.user_status')['tag_type_1'] : config('constant.user_status')['tag_type_2'],
+                            'element' => config('constant.user_status')[$user->status] ?? '',
+                            ])
                         </td>
                     </tr>
                     <!------------------------email verified at------------------------>
@@ -138,7 +141,6 @@
                         </th>
                         <td>
                             @foreach($user->hasInterest as $key => $interests)
-
                             @include('module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $interests->name ?? '',

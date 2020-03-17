@@ -29,13 +29,13 @@
                             {{ trans('cruds.fields.name') }}
                         </th>
                         <th>
+                            {{ trans('cruds.fields.quantity') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.fields.tag') }}
                         </th>
                         <th>
                             {{ trans('cruds.fields.category') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.fields.status') }}
                         </th>
                         <th>
                             &nbsp;
@@ -48,12 +48,26 @@
                         <td>
 
                         </td>
+                        <!-- ----------------id---------------- -->
                         <td>
                             {{ $product->id ?? '' }}
                         </td>
+                        <!-- ----------------name---------------- -->
                         <td>
                             {{ $product->name ?? '' }}
                         </td>
+                        <!-- ----------------quantity & status---------------- -->
+                        <td>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            'element' => $product->quantity,
+                            ])
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            'element' => config('constant.product_status')[$product->status] ?? '',
+                            ])
+                        </td>
+                        <!-- ----------------tag---------------- -->
                         <td>
                             @foreach($product->hasTag as $key => $tag)
                             @include('module.datatable.badge_tag.tag',[
@@ -62,6 +76,7 @@
                             ])
                             @endforeach
                         </td>
+                        <!-- ----------------category---------------- -->
                         <td>
                             @foreach($product->hasCategory as $key => $category)
                             @include('module.datatable.badge_tag.tag',[
@@ -70,12 +85,7 @@
                             ])
                             @endforeach
                         </td>
-                        <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
-                            'element' => config('constant.product_status')[$product->status] ?? '',
-                            ])
-                        </td>
+                        <!-- ----------------action---------------- -->
                         <td>
                             @include('module.datatable.action.index',[
                             'permission_subject' => 'product',

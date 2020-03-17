@@ -28,7 +28,11 @@
                             {{ trans('cruds.fields.shop_product_id') }}
                         </th>
                         <td>
-                            {{ $shopProductInventory->shop_product_id }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id ?? '',
+                            'suffix' => $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +40,7 @@
                             {{ trans('cruds.fields.rfid_code') }}
                         </th>
                         <td>
-                            {{ $shopProductInventory->rfid_code }}
+                            <img src="{{ asset('storage/shop_product_inventory/rfid_code/'.$shopProductInventory->rfid_code) }}" width="150px">
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +48,10 @@
                             {{ trans('cruds.fields.is_sold') }}
                         </th>
                         <td>
-                            {{ $shopProductInventory->is_sold }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $shopProductInventory->is_sold == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
+                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>
@@ -65,14 +72,14 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#shopProductInventories_shopProducts" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_1.title') }}
+                {{ trans('cruds.productManagement.sub_title_4.title') }}
             </a>
         </li>
-       
+
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="shopProductInventories_shopProducts">
-            @includeIf('product-management.on-sell.shop-product-inventories.relationships.shop-product-inventories-shop-products', ['shopProducts' => $shopProductInventory->hasShopProduct])
+            @includeIf('product-management.on-sell.shop-product-inventories.relationships.shop-product-inventories-shop-products', ['shopProduct' => $shopProductInventory->hasShopProduct])
         </div>
     </div>
 </div>

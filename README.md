@@ -19,6 +19,7 @@ php artisan migrate:refresh --seed
 php artisan passport:install
 php artisan serve
 ```
+
 # Publish UpGrade
 https://huanxiang.codes/smart-shop
 # git pull smart shop repo

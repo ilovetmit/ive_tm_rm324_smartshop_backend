@@ -28,7 +28,12 @@
                             {{ trans('cruds.fields.shop_product_id') }}
                         </th>
                         <td>
-                            {{ $led->shop_product_id }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $led->hasShopProduct->id ?? '',
+                            'suffix' => $led->hasShopProduct->hasProduct->name ?? '',
+                            'suffix' => $led->hasShopProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>
@@ -49,14 +54,14 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#leds_shopProducts" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_1.title') }}
+                {{ trans('cruds.productManagement.sub_title_4.title') }}
             </a>
         </li>
-       
+
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="leds_shopProducts">
-            @includeIf('product-management.on-sell.leds.relationships.leds-shop-products', ['shopProducts' => $led->hasShopProduct])
+            @includeIf('product-management.on-sell.leds.relationships.leds-shop-products', ['shopProduct' => $led->hasShopProduct])
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ProductManagement;
 
 use App\Models\ProductManagement\ProductWall;
+use App\Models\ProductManagement\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // massDestroy
@@ -21,8 +22,8 @@ class ProductWallController extends Controller
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        return view('product-management.product-walls.create');
+        $products = Product::all();
+        return view('product-management.product-walls.create', compact('products'));
     }
 
     public function store(Request $request)
@@ -54,7 +55,8 @@ class ProductWallController extends Controller
     {
         // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
-        return view('product-management.product-walls.edit', compact('productWall'));
+        $products = Product::all();
+        return view('product-management.product-walls.edit', compact('productWall', 'products'));
     }
 
     public function update(Request $request, ProductWall $productWall)

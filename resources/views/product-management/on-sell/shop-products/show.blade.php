@@ -28,7 +28,11 @@
                             {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
-                            {{ $shopProduct->product_id }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $shopProduct->hasProduct->id ?? '',
+                            'suffix' => $shopProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +40,7 @@
                             {{ trans('cruds.fields.qrcode') }}
                         </th>
                         <td>
-                            {{ $shopProduct->qrcode }}
+                            <img src="{{ asset('storage/shop_product/qrcode/'.$shopProduct->qrcode) }}" width="150px">
                         </td>
                     </tr>
                 </tbody>
@@ -62,24 +66,24 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#shopProducts_shopProductInventories" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_3.title') }}
+                {{ trans('cruds.productManagement.sub_title_6.title') }}
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#shopProducts_LEDs" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_4.title') }}
+                {{ trans('cruds.productManagement.sub_title_5.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="shopProducts_products">
-            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-products', ['products' => $shopProduct->hasProduct])
+            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-products', ['product' => $shopProduct->hasProduct])
         </div>
         <div class="tab-pane" role="tabpanel" id="shopProducts_shopProductInventories">
-            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-shop-product-inverntories', ['shopProductInventories' => $shopProduct->hasShopProductInventory])
+            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-shop-product-inventories', ['shopProductInventories' => $shopProduct->hasShopProductInventory])
         </div>
         <div class="tab-pane" role="tabpanel" id="shopProducts_LEDs">
-            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-leds', ['LEDs' => $shopProduct->hasLED])
+            @includeIf('product-management.on-sell.shop-products.relationships.shop-products-leds', ['leds' => $shopProduct->hasLED])
         </div>
     </div>
 </div>

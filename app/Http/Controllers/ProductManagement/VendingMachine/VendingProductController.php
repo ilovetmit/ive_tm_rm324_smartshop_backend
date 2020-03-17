@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ProductManagement\VendingMachine;
 
 use App\Models\ProductManagement\VendingMachine\VendingProduct;
+use App\Models\ProductManagement\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // massDestroy
@@ -21,8 +22,8 @@ class VendingProductController extends Controller
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        return view('product-management.vending-machine.vending-products.create');
+        $products = Product::all();
+        return view('product-management.vending-machine.vending-products.create', compact('products'));
     }
 
     public function store(Request $request)
@@ -42,7 +43,8 @@ class VendingProductController extends Controller
     {
         // $transactions = Transaction::all()->pluck('id');
         // $product->load('hasTransaction');
-        return view('product-management.vending-machine.vending-products.edit', compact('vendingProduct'));
+        $products = Product::all();
+        return view('product-management.vending-machine.vending-products.edit', compact('vendingProduct', 'products'));
     }
 
     public function update(Request $request, VendingProduct $vendingProduct)
@@ -57,7 +59,7 @@ class VendingProductController extends Controller
         $vendingProduct->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyVendingProductRequest $request)
     {
         VendingProduct::whereIn('id', request('ids'))->delete();

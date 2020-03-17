@@ -10,10 +10,17 @@
         <form method="POST" action="{{ route("ProductManagement.LEDs.update", [$led->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <!---------------------------shop_product_id--------------------------->
+            <!-------------------------------------shop_product_id------------------------------------->
             <div class="form-group">
                 <label class="required" for="shop_product_id">{{ trans('cruds.fields.shop_product_id') }}</label>
-                <input class="form-control {{ $errors->has('shop_product_id') ? 'is-invalid' : '' }}" type="text" name="shop_product_id" id="shop_product_id" value="{{ old('shop_product_id', $led->shop_product_id) }}" required>
+                <select class="form-control select2 {{ $errors->has('shop_product_id') ? 'is-invalid' : '' }}" name="shop_product_id" id="shop_product_id" required>
+                    <option value disabled {{ old('shop_product_id', $led->shop_product_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach($shopProducts as $key => $shopProduct)
+                    <option value="{{ $shopProduct->id }}" {{ old('shop_product_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $shopProduct->hasProduct->name }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('shop_product_id'))
                 <span class="text-danger">{{ $errors->first('shop_product_id') }}</span>
                 @endif
@@ -28,7 +35,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

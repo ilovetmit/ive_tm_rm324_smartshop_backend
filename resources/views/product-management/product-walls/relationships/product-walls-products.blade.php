@@ -28,13 +28,16 @@
                                 {{ trans('cruds.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.tag') }}
+                                {{ trans('cruds.fields.price') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.category') }}
+                                {{ trans('cruds.fields.quantity') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.status') }}
+                                {{ trans('cruds.fields.image') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.description') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -46,34 +49,41 @@
                             <td>
 
                             </td>
+                            <!-- ----------------id---------------- -->
                             <td>
-                                {{ $product->id ?? '' }}
+                                {{ $product->id }}
                             </td>
+                            <!-- ----------------name---------------- -->
                             <td>
                                 {{ $product->name ?? '' }}
                             </td>
+                            <!-- ----------------price---------------- -->
                             <td>
-                                @foreach($product->hasTag as $key => $tag)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
-                                'element' => $tag->name,
+                                'element' => '$ '. $product->price ?? '',
                                 ])
-                                @endforeach
                             </td>
+                            <!-- ----------------quantity & status---------------- -->
                             <td>
-                                @foreach($product->hasCategory as $key => $category)
                                 @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $category->name,
+                                'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                                'element' => $product->quantity,
                                 ])
-                                @endforeach
-                            </td>
-                            <td>
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
                                 'element' => config('constant.product_status')[$product->status] ?? '',
                                 ])
                             </td>
+                            <!-- ----------------image---------------- -->
+                            <td>
+                                <img src="{{ asset('storage/products/image/'.$product->image) }}" width="150px">
+                            </td>
+                            <!-- ----------------description---------------- -->
+                            <td>
+                                {{ $product->description }}
+                            </td>
+                            <!-- ----------------action---------------- -->
                             <td>
                                 @include('module.datatable.action.index',[
                                 'permission_subject' => 'product',

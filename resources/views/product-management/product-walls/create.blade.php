@@ -19,10 +19,17 @@
                     </div>
                 </div>
             </div>
-            <!---------------------------product_id--------------------------->
+            <!-- --------------------------------------product_id-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
-                <input class="form-control {{ $errors->has('product_id') ? 'is-invalid' : '' }}" type="text" name="product_id" id="product_id" value="{{ old('product_id', '') }}" required>
+                <select class="form-control select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
+                    <option value disabled {{ old('product_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach($products as $key => $product)
+                    <option value="{{ $product->id }}" {{ old('product_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $product->name }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('product_id'))
                 <span class="text-danger">{{ $errors->first('product_id') }}</span>
                 @endif

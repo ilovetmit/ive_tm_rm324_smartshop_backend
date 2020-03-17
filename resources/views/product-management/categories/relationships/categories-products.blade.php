@@ -45,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($product as $key => $product)
+                        @foreach($products as $key => $product)
                         <tr data-entry-id="{{ $product->id }}">
                             <td>
 

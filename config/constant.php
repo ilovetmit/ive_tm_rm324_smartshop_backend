@@ -15,6 +15,9 @@ return [
         'tag_type_1'    => 'success',
         '2'             => 'expired',       // off
         'tag_type_2'    => 'secondary',
+    ],'advertisement_status_form' => [
+        '1'             => 'on promote',    // on
+        '2'             => 'expired',       // off
     ],
 
     'product_status' => [
@@ -31,6 +34,10 @@ return [
         'tag_type_2'    => 'warning',
         '3'             => 'off sell',
         'tag_type_3'    => 'secondary',
+    ],'shopProductInventories_isSold_form' => [
+        '1'             => 'on sell',
+        '2'             => 'sell out',
+        '3'             => 'off sell',
     ],
 
     'device_isActive' => [
@@ -72,6 +79,9 @@ return [
         'tag_type_1'    => 'success',
         '2'             => 'inactive',
         'tag_type_2'    => 'warning',
+    ],'locker_isActive_form' => [
+        '1'             => 'active',
+        '2'             => 'inactive',
     ],
 
     'locker_isUsing' => [
@@ -79,6 +89,9 @@ return [
         'tag_type_1'    => 'success',
         '2'             => 'using',
         'tag_type_2'    => 'warning',
+    ],'locker_isUsing_form' => [
+        '1'             => 'free',
+        '2'             => 'using',
     ],
 
     'user_gender' => [
@@ -87,6 +100,11 @@ return [
     ],
 
     'user_status' => [
+        '1'             => 'available',
+        'tag_type_1'    => 'success',
+        '2'             => 'unavailable',
+        'tag_type_2'    => 'secondary',
+    ],'user_status_form' => [
         '1' => 'available',
         '2' => 'unavailable',
     ],

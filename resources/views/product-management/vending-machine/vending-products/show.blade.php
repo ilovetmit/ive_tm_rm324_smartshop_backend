@@ -28,7 +28,11 @@
                             {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
-                            {{ $vendingProduct->product_id }}
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $vendingProduct->hasProduct->id ?? '',
+                            'suffix' => $vendingProduct->hasProduct->name ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +40,10 @@
                             {{ trans('cruds.fields.channel') }}
                         </th>
                         <td>
-                            {{ $vendingProduct->channel }}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'dark',
+                            'element' => $vendingProduct->channel ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>
@@ -63,7 +70,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="users_devices">
-            @includeIf('product-management.vending-machine.vending-products.relationships.vending-products-products', ['products' => $vendingProduct->hasProduct])
+            @includeIf('product-management.vending-machine.vending-products.relationships.vending-products-products', ['product' => $vendingProduct->hasProduct])
         </div>
     </div>
 </div>
