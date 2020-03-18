@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.userManagement.user.title') }}
     </div>
-
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -177,17 +175,17 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#users_devices" role="tab" data-toggle="tab">
-                {{ trans('cruds.informationManagement.sub_title_2.title') }}
+                {{ trans('cruds.informationManagement.device.title') }}
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#users_interests" role="tab" data-toggle="tab">
-                {{ trans('cruds.informationManagement.sub_title_3.title') }}
+                {{ trans('cruds.informationManagement.interest.title') }}
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#users_transactions" role="tab" data-toggle="tab">
-                {{ trans('cruds.informationManagement.sub_title_3.transaction') }}
+                {{ trans('cruds.informationManagement.transaction.transaction') }}
             </a>
         </li>
     </ul>
@@ -203,5 +201,4 @@
         </div>
     </div>
 </div>
-
 @endsection

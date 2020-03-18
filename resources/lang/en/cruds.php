@@ -3,15 +3,15 @@
 return [
     'userManagement' => [
         'title'             => 'User Management',
-        'sub_title_1' => [
+        'permission' => [
             'title'         => 'Permission',
             'title_s'       => 'Permissions',
         ],
-        'sub_title_2' => [
+        'role' => [
             'title'         => 'Role',
             'title_s'       => 'Roles',
         ],
-        'sub_title_3' => [
+        'user' => [
             'title'         => 'User',
             'title_s'       => 'Users',
         ],
@@ -19,19 +19,19 @@ return [
     ],
     'informationManagement' => [
         'title'             => 'User Information',
-        'sub_title_1' => [
+        'address' => [
             'title'         => 'Address',
             'title_s'       => 'Addresses',
         ],
-        'sub_title_2' => [
+        'device' => [
             'title'         => 'Device',
             'title_s'       => 'Devices',
         ],
-        'sub_title_3' => [
+        'interest' => [
             'title'         => 'Interest',
             'title_s'       => 'Interests',
         ],
-        'sub_title_4' => [
+        'vitcoin' => [
             'title'         => 'VITCoin',
             'title_s'       => 'VITCoins',
         ],
@@ -39,82 +39,84 @@ return [
     ],
     'tagManagement' => [
         'title'             => 'Tag Management',
-        'sub_title_1' => [
+        'tag' => [
             'title'         => 'Tag',
             'title_s'       => 'Tags',
         ],
     ],
     'productManagement' => [
         'title'             => 'Product Management',
-        'sub_title_1' => [
+        'sub_title_vending_machine' => 'Vending Machine',
+        'sub_title_on_sell_product' => 'On Sell Product',
+        'product' => [
             'title'         => 'Product',
             'title_s'       => 'Products',
         ],
-        'sub_title_2' => [
+        'category' => [
             'title'         => 'Category',
             'title_s'       => 'Categories',
         ],
-        'sub_title_3' => [
+        'vending_product' => [
             'title'         => 'Vending Product',
             'title_s'       => 'Vending Products',
         ],
-        'sub_title_4' => [
+        'shop_product' => [
             'title'         => 'Shop Product',
             'title_s'       => 'Shop Products',
         ],
-        'sub_title_5' => [
+        'led' => [
             'title'         => 'LED',
             'title_s'       => 'LEDs',
         ],
-        'sub_title_6' => [
+        'shop_product_inventory' => [
             'title'         => 'Shop Product Inventory',
             'title_s'       => 'Shop Product Inventories',
         ],
-        'sub_title_7' => [
+        'product_wall' => [
             'title'         => 'Product Wall',
             'title_s'       => 'Product Walls',
         ],
     ],
     'advertisementManagement' => [
         'title'             => 'Advertisement',
-        'sub_title_1' => [
+        'advertisement' => [
             'title'         => 'Advertisement',
             'title_s'       => 'Advertisements',
         ],
     ],
     'transactionManagement' => [
         'title'             => 'Transaction',
-        'sub_title_1' => [
+        'transaction' => [
             'title'         => 'All Transaction',
             'title_s'       => 'All Transactions',
         ],
-        'sub_title_2' => [
+        'remittance_transaction' => [
             'title'         => 'Remittance Transaction',
             'title_s'       => 'Remittance Transactions',
         ],
-        'sub_title_3' => [
+        'product_transaction' => [
             'title'         => 'Product Transaction',
             'title_s'       => 'Product Transactions',
         ],
-        'sub_title_4' => [
+        'locker_transaction' => [
             'title'         => 'Locker Transaction',
             'title_s'       => 'Locker Transactions',
         ],
     ],
     'lockerManagement' => [
         'title'             => 'Locker Management',
-        'sub_title_1' => [
+        'locker' => [
             'title'         => 'Locker',
             'title_s'       => 'Lockers',
         ],
     ],
     'smartBankManagement' => [
         'title'             => 'Smart Bank',
-        'sub_title_1' => [
+        'insurance' => [
             'title'         => 'Insurance',
             'title_s'       => 'Insurances',
         ],
-        'sub_title_2' => [
+        'stock' => [
             'title'         => 'Stock',
             'title_s'       => 'Stocks',
         ],
@@ -178,7 +180,7 @@ return [
         'address2'          => 'Address Line 2',
         'token'             => 'Token',
         'is_active'         => 'Status',
-        'address'           => 'VITCoin Link Address',
+        'vitcoin_address'   => 'VITCoin Link Address',
         'primary_key'       => 'VITCoin Primary Key',
         'category'          => 'Category',
         'quantity'          => 'Quantity',

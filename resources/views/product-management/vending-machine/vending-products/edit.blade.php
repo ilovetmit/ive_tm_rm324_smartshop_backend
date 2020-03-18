@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.productManagement.sub_title_3.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.productManagement.vending_product.title') }}
     </div>
 
     <div class="card-body">
@@ -44,7 +44,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

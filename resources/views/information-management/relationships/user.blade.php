@@ -1,20 +1,20 @@
 <div class="m-3">
-    @can('role_create')
+    @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("UserManagement.Roles.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.userManagement.role.title') }}
+            <a class="btn btn-success" href="{{ route("UserManagement.Users.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.userManagement.user.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.role.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.userManagement.user.title') }} {{ trans('global.list') }}
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-permission-Role">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-User">
                     <thead>
                         <tr>
                             <th width="10">
@@ -27,7 +27,13 @@
                                 {{ trans('cruds.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.title') }}
+                                {{ trans('cruds.fields.email') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.email_verified_at') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.fields.role') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -35,19 +41,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($roles as $key => $role)
-                        <tr data-entry-id="{{ $role->id }}">
+                        <tr data-entry-id="{{ $user->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $role->id ?? '' }}
+                                {{ $user->id ?? '' }}
                             </td>
                             <td>
-                                {{ $role->name ?? '' }}
+                                @include('module.datatable.badge_tag.tag_suffix',[
+                                'type' => 'info',
+                                'element' => $user->id ?? '',
+                                'suffix' => $user->getFullNameAttribute() ?? '',
+                                ])
                             </td>
                             <td>
-                                @foreach($role->hasPermission as $key => $item)
+                                {{ $user->email ?? '' }}
+                            </td>
+                            <td>
+                                {{ $user->email_verified_at ?? '' }}
+                            </td>
+                            <td>
+                                @foreach($user->hasRole as $key => $item)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => $item->name ?? '',
@@ -56,13 +71,12 @@
                             </td>
                             <td>
                                 @include('module.datatable.action.index',[
-                                'permission_subject' => 'role',
-                                'route_subject' => 'UserManagement.Roles',
-                                'id' => $role->id
+                                'permission_subject' => 'user',
+                                'route_subject' => 'UserManagement.Users',
+                                'id' => $user->id
                                 ])
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -72,9 +86,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'role_delete',
-'route' => route('UserManagement.Roles.massDestroy'),
+'permission_massDestory' => 'user_delete',
+'route' => route('UserManagement.Users.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-permission-Role'
+'class' => 'datatable-User'
 ])
 @endsection

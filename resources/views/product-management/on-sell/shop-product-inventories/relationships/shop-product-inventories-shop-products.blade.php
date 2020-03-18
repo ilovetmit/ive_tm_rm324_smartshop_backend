@@ -3,16 +3,15 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("ProductManagement.ShopProducts.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_4.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.productManagement.shop_product.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.productManagement.sub_title_4.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.productManagement.shop_product.title') }} {{ trans('global.list') }}
         </div>
-
         <div class="card-body">
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-shopProductInventory-ShopProduct">

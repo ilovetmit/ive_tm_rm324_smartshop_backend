@@ -4,14 +4,14 @@
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="{{ route("InformationManagement.Interests.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.informationManagement.sub_title_3.title') }}
+            {{ trans('global.add') }} {{ trans('cruds.informationManagement.interest.title') }}
         </a>
     </div>
 </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.informationManagement.sub_title_3.title') }} {{ trans('global.list') }}
+        {{ trans('cruds.informationManagement.interest.title') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
@@ -59,7 +59,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 @section('scripts')
 @parent

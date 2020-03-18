@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.userManagement.user.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("UserManagement.Users.store") }}" enctype="multipart/form-data">
             @csrf

@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.userManagement.user.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("UserManagement.Users.update", [$user->id]) }}" enctype="multipart/form-data">
             @method('PUT')

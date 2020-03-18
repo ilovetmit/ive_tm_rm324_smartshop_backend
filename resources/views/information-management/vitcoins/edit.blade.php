@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.informationManagement.sub_title_4.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.informationManagement.vitcoin.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("InformationManagement.Vitcoins.update", [$vitcoin->id]) }}" enctype="multipart/form-data">
             @method('PUT')
@@ -53,7 +51,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

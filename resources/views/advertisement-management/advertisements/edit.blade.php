@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.advertisementManagement.advertisement.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("AdvertisementManagement.ad.update", [$ad->id]) }}" enctype="multipart/form-data">
             @method('PUT')
@@ -80,7 +78,6 @@
         </form>
     </div>
 </div>
-
 @endsection
 @section('scripts')
     <script type="text/javascript">

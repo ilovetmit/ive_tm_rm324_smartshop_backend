@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.informationManagement.sub_title_2.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.informationManagement.device.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("InformationManagement.Devices.update", [$device->id]) }}" enctype="multipart/form-data">
             @method('PUT')
@@ -38,7 +36,7 @@
             <!-------------------------------------is_active------------------------------------->
             <div class="form-group">
                 <label class="required" for="is_active">{{ trans('cruds.fields.is_active') }}</label>
-                <select class="form-control select2 {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
+                <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
                     <option value disabled {{ old('is_active', $device->is_active) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.device_isActive_form') as $key => $label)
                     <option value="{{ $user->id }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
@@ -60,7 +58,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

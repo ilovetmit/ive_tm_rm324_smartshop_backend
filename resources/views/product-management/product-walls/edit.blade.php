@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.productManagement.sub_title_7.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.productManagement.product_wall.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("ProductManagement.ProductWalls.update", [$productWall->id]) }}" enctype="multipart/form-data">
             @method('PUT')
@@ -63,7 +61,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

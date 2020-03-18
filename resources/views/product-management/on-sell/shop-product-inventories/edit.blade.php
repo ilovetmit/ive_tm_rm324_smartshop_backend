@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.productManagement.sub_title_6.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.productManagement.shop_product_inventory.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("ProductManagement.ShopProductInventories.update", [$shopProductInventory->id]) }}" enctype="multipart/form-data">
             @method('PUT')

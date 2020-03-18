@@ -3,16 +3,15 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("ProductManagement.ShopProductInventories.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_6.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.productManagement.shop_product_inventory.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.productManagement.sub_title_6.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.productManagement.shop_product_inventory.title') }} {{ trans('global.list') }}
         </div>
-
         <div class="card-body">
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-shopProductInventory-Product">
@@ -75,7 +74,7 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'product_delete',
+'permission_massDestory' => 'shop_product_inventory_delete',
 'route' => route('ProductManagement.Products.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-shopProductInventory-Product'

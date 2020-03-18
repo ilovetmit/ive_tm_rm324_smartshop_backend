@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.productManagement.sub_title_6.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.productManagement.shop_product_inventory.title') }}
     </div>
-
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -75,7 +73,6 @@
                 {{ trans('cruds.productManagement.sub_title_4.title') }}
             </a>
         </li>
-
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="shopProductInventories_shopProducts">

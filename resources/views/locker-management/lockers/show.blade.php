@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.lockerManagement.sub_title_1.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.lockerManagement.locker.title') }}
     </div>
-
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -82,7 +80,7 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#lockers_locker_transactions" role="tab" data-toggle="tab">
-                {{ trans('cruds.transactionManagement.sub_title_4.title') }}
+                {{ trans('cruds.transactionManagement.transaction.title') }}
             </a>
         </li>
     </ul>
@@ -92,8 +90,4 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection

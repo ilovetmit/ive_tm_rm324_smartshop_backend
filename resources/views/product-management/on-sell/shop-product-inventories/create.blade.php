@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.productManagement.sub_title_6.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.productManagement.shop_product_inventory.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("ProductManagement.ShopProductInventories.store") }}" enctype="multipart/form-data">
             @csrf

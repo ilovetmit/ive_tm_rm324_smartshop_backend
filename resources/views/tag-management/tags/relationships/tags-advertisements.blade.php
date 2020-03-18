@@ -3,14 +3,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("AdvertisementManagement.ad.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.advertisementManagement.advertisement.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.advertisementManagement.sub_title_1.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.advertisementManagement.advertisement.title') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">

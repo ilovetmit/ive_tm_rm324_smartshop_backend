@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-@can('device_create')
+@can('tag_create')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="{{ route("TagManagement.Tags.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
+            {{ trans('global.add') }} {{ trans('cruds.tagManagement.tag.title') }}
         </a>
     </div>
 </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.tagManagement.sub_title_1.title') }} {{ trans('global.list') }}
+        {{ trans('cruds.tagManagement.tag.title') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
@@ -65,7 +65,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 @section('scripts')
 @parent

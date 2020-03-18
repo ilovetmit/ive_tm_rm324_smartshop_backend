@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.tagManagement.tag.title') }}
     </div>
-
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -61,12 +59,12 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#tags_advertisements" role="tab" data-toggle="tab">
-                {{ trans('cruds.advertisementManagement.sub_title_1.title') }}
+                {{ trans('cruds.advertisementManagement.advertisement.title') }}
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#tags_products" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_1.title') }}
+                {{ trans('cruds.productManagement.product.title') }}
             </a>
         </li>
     </ul>

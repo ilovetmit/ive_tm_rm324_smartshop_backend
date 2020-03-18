@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.smartBankManagement.sub_title_2.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.smartBankManagement.stock.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("SmartBankManagement.Stocks.update", [$stock->id]) }}" enctype="multipart/form-data">
             @method('PUT')
@@ -65,9 +63,7 @@
         </form>
     </div>
 </div>
-
 @endsection
-
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {

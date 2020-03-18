@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.lockerManagement.sub_title_1.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.lockerManagement.locker.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("LockerManagement.Lockers.update", [$locker->id]) }}" enctype="multipart/form-data">
             @method('PUT')
@@ -69,10 +67,8 @@
             </div>
         </form>
     </div>
-</div>
-
+</div>s
 @endsection
-
 @section('scripts')
 <script type="text/javascript">
     $(document).ready(function() {

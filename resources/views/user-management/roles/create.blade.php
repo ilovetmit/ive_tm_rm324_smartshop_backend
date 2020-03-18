@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.userManagement.sub_title_2.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.userManagement.role.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("UserManagement.Roles.store") }}" enctype="multipart/form-data">
             @csrf
@@ -53,7 +51,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

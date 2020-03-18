@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.tagManagement.tag.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("TagManagement.Tags.update", [$tag->id]) }}" enctype="multipart/form-data">
             @method('PUT')

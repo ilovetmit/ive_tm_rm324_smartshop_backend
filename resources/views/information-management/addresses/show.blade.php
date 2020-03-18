@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.informationManagement.sub_title_1.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.informationManagement.address.title') }}
     </div>
-
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -69,7 +67,6 @@
         </div>
     </div>
 </div>
-
 <div class="card">
     <div class="card-header">
         {{ trans('global.relatedData') }}
@@ -77,13 +74,13 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#addresses_users" role="tab" data-toggle="tab">
-                {{ trans('cruds.userManagement.sub_title_3.title') }}
+                {{ trans('cruds.userManagement.user.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="addresses_users">
-            @includeIf('InformationManagement.relationships.users', ['user' => $address->hasUser])
+            @includeIf('InformationManagement.relationships.user', ['user' => $address->hasUser])
         </div>
     </div>
 </div>

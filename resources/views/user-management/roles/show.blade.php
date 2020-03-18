@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.userManagement.sub_title_2.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.userManagement.role.title') }}
     </div>
-
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -44,12 +42,12 @@
                             {{ trans('cruds.fields.permission') }}
                         </th>
                         <td>
-                                @foreach($role->hasPermission as $key => $permissions)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $permissions->name ?? '',
-                                ])
-                                @endforeach
+                            @foreach($role->hasPermission as $key => $permissions)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $permissions->name ?? '',
+                            ])
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>
@@ -62,7 +60,6 @@
         </div>
     </div>
 </div>
-
 <div class="card">
     <div class="card-header">
         {{ trans('global.relatedData') }}
@@ -70,7 +67,7 @@
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#roles_users" role="tab" data-toggle="tab">
-                {{ trans('cruds.userManagement.sub_title_3.title') }}
+                {{ trans('cruds.userManagement.user.title') }}
             </a>
         </li>
     </ul>
@@ -80,5 +77,4 @@
         </div>
     </div>
 </div>
-
 @endsection

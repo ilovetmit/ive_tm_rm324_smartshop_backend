@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.productManagement.sub_title_1.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.productManagement.product.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("ProductManagement.Products.store") }}" enctype="multipart/form-data">
             @csrf
@@ -21,7 +19,7 @@
             <!---------------------------price--------------------------->
             <div class="form-group">
                 <label class="required" for="price">{{ trans('cruds.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="text" name="price" id="price" value="{{ old('price', '') }}" required>
+                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', '') }}" required>
                 @if($errors->has('price'))
                 <span class="text-danger">{{ $errors->first('price') }}</span>
                 @endif
@@ -30,7 +28,7 @@
             <!---------------------------quantity--------------------------->
             <div class="form-group">
                 <label class="required" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
-                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="text" name="quantity" id="quantity" value="{{ old('quantity', '') }}" required>
+                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity', '') }}" required>
                 @if($errors->has('quantity'))
                 <span class="text-danger">{{ $errors->first('quantity') }}</span>
                 @endif
@@ -114,7 +112,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

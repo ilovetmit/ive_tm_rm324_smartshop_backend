@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.smartBankManagement.sub_title_2.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.smartBankManagement.stock.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("SmartBankManagement.Stocks.store") }}" enctype="multipart/form-data">
             @csrf
@@ -64,11 +62,7 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection
-
 @section('scripts')
 <script type="text/javascript">
     $(document).ready(function() {

@@ -3,16 +3,15 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("UserManagement.Users.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.userManagement.sub_title_3.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.userManagement.user.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.userManagement.user.title') }} {{ trans('global.list') }}
         </div>
-
         <div class="card-body">
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-role-User">
@@ -83,7 +82,6 @@
         </div>
     </div>
 </div>
-
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[

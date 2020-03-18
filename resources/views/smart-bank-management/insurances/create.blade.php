@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.smartBankManagement.sub_title_1.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.smartBankManagement.insurance.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("SmartBankManagement.Insurances.store") }}" enctype="multipart/form-data">
             @csrf
@@ -55,11 +53,7 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection
-
 @section('scripts')
 <script type="text/javascript">
     $(document).ready(function() {

@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.informationManagement.sub_title_1.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.informationManagement.address.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("InformationManagement.Addresses.store") }}" enctype="multipart/form-data">
             @csrf
@@ -61,7 +59,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

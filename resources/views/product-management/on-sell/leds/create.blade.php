@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.productManagement.sub_title_5.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.productManagement.led.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("ProductManagement.LEDs.store") }}" enctype="multipart/form-data">
             @csrf

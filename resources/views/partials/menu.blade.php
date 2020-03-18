@@ -45,7 +45,7 @@
                             <a href="{{ route("UserManagement.Permissions.index") }}" class="nav-link {{ request()->is('SmartShop/UserManagement/Permissions*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-unlock-alt"></i>
                                 <p>
-                                    <span>{{ trans('cruds.userManagement.sub_title_1.title_s') }}</span>
+                                    <span>{{ trans('cruds.userManagement.permission.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -55,7 +55,7 @@
                             <a href="{{ route("UserManagement.Roles.index") }}" class="nav-link {{ request()->is('SmartShop/UserManagement/Roles*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-briefcase"></i>
                                 <p>
-                                    <span>{{ trans('cruds.userManagement.sub_title_2.title_s') }}</span>
+                                    <span>{{ trans('cruds.userManagement.role.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -65,7 +65,7 @@
                             <a href="{{ route("UserManagement.Users.index") }}" class="nav-link {{ request()->is('SmartShop/UserManagement/Users*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-user"></i>
                                 <p>
-                                    <span>{{ trans('cruds.userManagement.sub_title_3.title_s') }}</span>
+                                    <span>{{ trans('cruds.userManagement.user.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -90,7 +90,7 @@
                             <a href="{{ route("InformationManagement.Addresses.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/Addresses*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-unlock-alt"></i>
                                 <p>
-                                    <span>{{ trans('cruds.informationManagement.sub_title_1.title_s') }}</span>
+                                    <span>{{ trans('cruds.informationManagement.address.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -100,7 +100,7 @@
                             <a href="{{ route("InformationManagement.Devices.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/Devices*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-briefcase"></i>
                                 <p>
-                                    <span>{{ trans('cruds.informationManagement.sub_title_2.title_s') }}</span>
+                                    <span>{{ trans('cruds.informationManagement.device.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -110,7 +110,7 @@
                             <a href="{{ route("InformationManagement.Interests.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/Interests*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-user"></i>
                                 <p>
-                                    <span>{{ trans('cruds.informationManagement.sub_title_3.title_s') }}</span>
+                                    <span>{{ trans('cruds.informationManagement.interest.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -120,7 +120,7 @@
                             <a href="{{ route("InformationManagement.Vitcoins.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/Vitcoins*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-user"></i>
                                 <p>
-                                    <span>{{ trans('cruds.informationManagement.sub_title_4.title_s') }}</span>
+                                    <span>{{ trans('cruds.informationManagement.vitcoin.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -145,7 +145,7 @@
                             <a href="{{ route("SmartBankManagement.Insurances.index") }}" class="nav-link {{ request()->is('SmartShop/SmartBankManagement/Insurances*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-briefcase"></i>
                                 <p>
-                                    <span>{{ trans('cruds.smartBankManagement.sub_title_1.title_s') }}</span>
+                                    <span>{{ trans('cruds.smartBankManagement.insurance.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -155,7 +155,7 @@
                             <a href="{{ route("SmartBankManagement.Stocks.index") }}" class="nav-link {{ request()->is('SmartShop/SmartBankManagement/Stocks*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-unlock-alt"></i>
                                 <p>
-                                    <span>{{ trans('cruds.smartBankManagement.sub_title_2.title_s') }}</span>
+                                    <span>{{ trans('cruds.smartBankManagement.stock.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -180,7 +180,7 @@
                             <a class="nav-link nav-dropdown-toggle" href="#">
                                 <i class="fa-fw fas fa-users"></i>
                                 <p>
-                                    <span>Vending Machine</span>
+                                    <span>{{ trans('cruds.productManagement.sub_title_vending_machine') }}</span>
                                     <i class="right fa fa-fw fa-angle-left"></i>
                                 </p>
                             </a>
@@ -190,7 +190,7 @@
                                     <a href="{{ route("ProductManagement.VendingProducts.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/VendingMachine/VendingProducts*') ? 'active' : '' }}">
                                         <i class="fa-fw fas fa-user"></i>
                                         <p>
-                                            <span>{{ trans('cruds.productManagement.sub_title_3.title_s') }}</span>
+                                            <span>{{ trans('cruds.productManagement.vending_product.title_s') }}</span>
                                         </p>
                                     </a>
                                 </li>
@@ -202,7 +202,7 @@
                             <a class="nav-link nav-dropdown-toggle" href="#">
                                 <i class="fa-fw fas fa-users"></i>
                                 <p>
-                                    <span>On Sell Product</span>
+                                    <span>{{ trans('cruds.productManagement.sub_title_on_sell_product') }}</span>
                                     <i class="right fa fa-fw fa-angle-left"></i>
                                 </p>
                             </a>
@@ -212,7 +212,7 @@
                                     <a href="{{ route("ProductManagement.ShopProducts.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/ShopProducts*') ? 'active' : '' }}">
                                         <i class="fa-fw fas fa-briefcase"></i>
                                         <p>
-                                            <span>{{ trans('cruds.productManagement.sub_title_4.title_s') }}</span>
+                                            <span>{{ trans('cruds.productManagement.shop_product.title_s') }}</span>
                                         </p>
                                     </a>
                                 </li>
@@ -222,7 +222,7 @@
                                     <a href="{{ route("ProductManagement.LEDs.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/LEDs*') ? 'active' : '' }}">
                                         <i class="fa-fw fas fa-user"></i>
                                         <p>
-                                            <span>{{ trans('cruds.productManagement.sub_title_5.title_s') }}</span>
+                                            <span>{{ trans('cruds.productManagement.led.title_s') }}</span>
                                         </p>
                                     </a>
                                 </li>
@@ -232,7 +232,7 @@
                                     <a href="{{ route("ProductManagement.ShopProductInventories.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/ShopProductInventories*') ? 'active' : '' }}">
                                         <i class="fa-fw fas fa-user"></i>
                                         <p>
-                                            <span>{{ trans('cruds.productManagement.sub_title_6.title_s') }}</span>
+                                            <span>{{ trans('cruds.productManagement.shop_product_inventory.title_s') }}</span>
                                         </p>
                                     </a>
                                 </li>
@@ -244,7 +244,7 @@
                             <a href="{{ route("ProductManagement.Products.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/Products*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-unlock-alt"></i>
                                 <p>
-                                    <span>{{ trans('cruds.productManagement.sub_title_1.title_s') }}</span>
+                                    <span>{{ trans('cruds.productManagement.product.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -254,7 +254,7 @@
                             <a href="{{ route("ProductManagement.Categories.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/Categories*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-briefcase"></i>
                                 <p>
-                                    <span>{{ trans('cruds.productManagement.sub_title_2.title_s') }}</span>
+                                    <span>{{ trans('cruds.productManagement.category.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -264,13 +264,11 @@
                             <a href="{{ route("ProductManagement.ProductWalls.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/ProductWalls*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-user"></i>
                                 <p>
-                                    <span>{{ trans('cruds.productManagement.sub_title_7.title_s') }}</span>
+                                    <span>{{ trans('cruds.productManagement.product_wall.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
                         @endcan
-
-
                     </ul>
                 </li>
                 @endcan
@@ -291,7 +289,7 @@
                             <a href="{{ route("TransactionManagement.Transactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/Transactions*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-unlock-alt"></i>
                                 <p>
-                                    <span>{{ trans('cruds.transactionManagement.sub_title_1.title_s') }}</span>
+                                    <span>{{ trans('cruds.transactionManagement.transaction.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -301,7 +299,7 @@
                             <a href="{{ route("TransactionManagement.RemittanceTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/RemittanceTransactions*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-briefcase"></i>
                                 <p>
-                                    <span>{{ trans('cruds.transactionManagement.sub_title_2.title_s') }}</span>
+                                    <span>{{ trans('cruds.transactionManagement.remittance_transaction.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -311,7 +309,7 @@
                             <a href="{{ route("TransactionManagement.ProductTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/ProductTransactions*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-user"></i>
                                 <p>
-                                    <span>{{ trans('cruds.transactionManagement.sub_title_3.title_s') }}</span>
+                                    <span>{{ trans('cruds.transactionManagement.product_transaction.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -321,7 +319,7 @@
                             <a href="{{ route("TransactionManagement.LockerTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/LockerTransactions*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-user"></i>
                                 <p>
-                                    <span>{{ trans('cruds.transactionManagement.sub_title_4.title_s') }}</span>
+                                    <span>{{ trans('cruds.transactionManagement.locker_transaction.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -336,7 +334,7 @@
                     <a href="{{ route("TagManagement.Tags.index") }}" class="nav-link {{ request()->is('SmartShop/TagManagement/Tags*') ? 'active' : '' }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <p>
-                            <span>{{ trans('cruds.tagManagement.sub_title_1.title_s') }}</span>
+                            <span>{{ trans('cruds.tagManagement.tag.title_s') }}</span>
                         </p>
                     </a>
                 </li>
@@ -348,7 +346,7 @@
                     <a href="{{ route("AdvertisementManagement.ad.index") }}" class="nav-link {{ request()->is('SmartShop/AdvertisementManagement/ad*') ? 'active' : '' }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <p>
-                            <span>{{ trans('cruds.advertisementManagement.sub_title_1.title_s') }}</span>
+                            <span>{{ trans('cruds.advertisementManagement.advertisement.title_s') }}</span>
                         </p>
                     </a>
                 </li>
@@ -360,7 +358,7 @@
                     <a href="{{ route("LockerManagement.Lockers.index") }}" class="nav-link {{ request()->is('SmartShop/LockerManagement/Lockers*') ? 'active' : '' }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <p>
-                            <span>{{ trans('cruds.lockerManagement.sub_title_1.title_s') }}</span>
+                            <span>{{ trans('cruds.lockerManagement.locker.title_s') }}</span>
                         </p>
                     </a>
                 </li>

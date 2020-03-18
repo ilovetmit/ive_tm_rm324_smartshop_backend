@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.productManagement.sub_title_1.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("ProductManagement.Products.update", [$product->id]) }}" enctype="multipart/form-data">
             @method('PUT')
@@ -22,7 +20,7 @@
             <!---------------------------price--------------------------->
             <div class="form-group">
                 <label class="required" for="price">{{ trans('cruds.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="text" name="price" id="price" value="{{ old('price', $product->price) }}" required>
+                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', $product->price) }}" required>
                 @if($errors->has('price'))
                 <span class="text-danger">{{ $errors->first('price') }}</span>
                 @endif
@@ -31,7 +29,7 @@
             <!---------------------------quantity--------------------------->
             <div class="form-group">
                 <label class="required" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
-                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="text" name="quantity" id="quantity" value="{{ old('quantity', $product->quantity) }}" required>
+                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity', $product->quantity) }}" required>
                 @if($errors->has('quantity'))
                 <span class="text-danger">{{ $errors->first('quantity') }}</span>
                 @endif
@@ -115,7 +113,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

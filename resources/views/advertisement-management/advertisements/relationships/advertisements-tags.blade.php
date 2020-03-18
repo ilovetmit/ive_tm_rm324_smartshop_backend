@@ -3,16 +3,15 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("TagManagement.Tags.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.tagManagement.tag.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.tagManagement.sub_title_1.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.tagManagement.tag.title') }} {{ trans('global.list') }}
         </div>
-
         <div class="card-body">
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-advertisement-Tag">
@@ -65,11 +64,10 @@
         </div>
     </div>
 </div>
-
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'role_delete',
+'permission_massDestory' => 'tag_delete',
 'route' => route('AdvertisementManagement.ad.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-advertisement-Tag'

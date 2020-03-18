@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.tagManagement.sub_title_1.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.tagManagement.tag.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("TagManagement.Tags.store") }}" enctype="multipart/form-data">
             @csrf
@@ -36,7 +34,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection

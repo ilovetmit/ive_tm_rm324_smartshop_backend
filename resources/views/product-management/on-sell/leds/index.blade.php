@@ -4,16 +4,15 @@
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="{{ route("ProductManagement.LEDs.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_5.title') }}
+            {{ trans('global.add') }} {{ trans('cruds.productManagement.led.title') }}
         </a>
     </div>
 </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.productManagement.sub_title_5.title') }} {{ trans('global.list') }}
+        {{ trans('cruds.productManagement.led.title') }} {{ trans('global.list') }}
     </div>
-
     <div class="card-body">
         <div class="table-responsive">
             <table class=" table table-bordered table-striped table-hover datatable datatable-LED">
@@ -63,8 +62,6 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 @section('scripts')
 @parent

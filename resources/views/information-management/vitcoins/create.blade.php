@@ -1,11 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.informationManagement.sub_title_4.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.informationManagement.vitcoin.title') }}
     </div>
-
     <div class="card-body">
         <form method="POST" action="{{ route("InformationManagement.Vitcoins.store") }}" enctype="multipart/form-data">
             @csrf
@@ -52,7 +50,4 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection
