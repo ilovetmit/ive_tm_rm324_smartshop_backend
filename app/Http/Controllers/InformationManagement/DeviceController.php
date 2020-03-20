@@ -42,7 +42,7 @@ class DeviceController extends Controller
     public function edit(Device $device)
     {
         $users = User::all();
-        $device->load('hasUser');
+        // $device->load('hasUser');
         return view('information-management.devices.edit', compact('device', 'users'));
     }
 
