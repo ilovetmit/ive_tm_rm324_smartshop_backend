@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
             // http://127.0.0.1:8000/SmartShop/InformationManagement/Vitcoins
             Route::delete('Vitcoins/destroy', 'VitcoinController@massDestroy')->name('Vitcoins.massDestroy');
             Route::resource('Vitcoins', 'VitcoinController');
+            // http://127.0.0.1:8000/SmartShop/InformationManagement/BankAccounts
+            Route::delete('BankAccounts/destroy', 'BankAccountController@massDestroy')->name('BankAccounts.massDestroy');
+            Route::resource('BankAccounts', 'BankAccountController');
         });
 
         // http://127.0.0.1:8000/SmartShop/TagManagement/Tags
@@ -81,7 +84,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::delete('ad/destroy', 'AdvertisementController@massDestroy')->name('ad.massDestroy');
             Route::resource('ad', 'AdvertisementController');
         });
-
 
         // http://127.0.0.1:8000/SmartShop/TransactionManagement
         Route::group(['prefix' => 'TransactionManagement', 'as' => 'TransactionManagement.', 'namespace' => 'TransactionManagement'], function () {

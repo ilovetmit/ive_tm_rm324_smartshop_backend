@@ -109,6 +109,12 @@ class PermissionTableSeeder extends Seeder
                 ['name'=>'vitcoin_view'],
                 ['name'=>'vitcoin_delete'],
                 ['name'=>'vitcoin_access'],
+                // bank_account
+                ['name'=>'bank_account_create'],
+                ['name'=>'bank_account_edit'],
+                ['name'=>'bank_account_view'],
+                ['name'=>'bank_account_delete'],
+                ['name'=>'bank_account_access'],
             // ProductManagement
             ['name'=>'product_management_access'],
                 // product

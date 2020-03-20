@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-
+use App\Models\InformationManagement\BankAccount;
 use App\Models\InformationManagement\Interest;
 use App\Models\InformationManagement\Address;
 use App\Models\InformationManagement\Device;
@@ -89,6 +89,11 @@ class User extends Authenticatable
     }
 
     // relationship
+    public function hasBankAccount()
+    {
+        return $this->hasOne(BankAccount::class);
+    }
+    
     public function hasRole()
     {
         return $this->belongsToMany(Role::class);

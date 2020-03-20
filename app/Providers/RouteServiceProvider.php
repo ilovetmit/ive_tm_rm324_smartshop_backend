@@ -29,8 +29,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('Permission',              'App\Models\UserManagement\Permission');
         Route::model('Role',                    'App\Models\UserManagement\Role');
         Route::model('User',                    'App\Models\UserManagement\User');
-        Route::model('User',                    'App\Models\UserManagement\User');
         Route::model('Advertisement',           'App\Models\AdvertisementManagement\Advertisement');
+        Route::model('BankAccount',             'App\Models\InformationManagement\BankAccount');
         Route::model('Address',                 'App\Models\InformationManagement\Address');
         Route::model('Device',                  'App\Models\InformationManagement\Device');
         Route::model('Interest',                'App\Models\InformationManagement\Interest');
@@ -60,7 +60,6 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
 
         //
