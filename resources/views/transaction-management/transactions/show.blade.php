@@ -78,21 +78,21 @@
                         </th>
                         <!-- tohelp-todo -->
                         <td>
-                            {{ $transaction->hasLocker_transaction ?? '' }}L<br>
-                            {{ $transaction->hasProduct_transaction ?? '' }}P<br>
-                            {{ $transaction->hasRemittance_transaction ?? '' }}R<br>
+{{--                            {{ $transaction->hasLocker_transaction ?? '' }}L<br>--}}
+{{--                            {{ $transaction->hasProduct_transaction ?? '' }}P<br>--}}
+{{--                            {{ $transaction->hasRemittance_transaction ?? '' }}R<br>--}}
 
-                            @if (!empty($transaction->hasLocker_transaction))
+                            @if (count($transaction->hasLocker_transaction)>0)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => "Locker Transaction" ?? '',
                                 ])
-                            @elseif (!empty($transaction->hasProduct_transaction))
+                            @elseif (count($transaction->hasProduct_transaction)>0)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => "Product Transaction" ?? '',
                                 ])
-                            @elseif (!empty($transaction->hasRemittance_transaction))
+                            @elseif (count($transaction->hasRemittance_transaction)>0)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => "Remittannce Transaction" ?? '',

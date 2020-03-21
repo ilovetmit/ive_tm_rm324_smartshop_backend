@@ -191,5 +191,6 @@ return [
         'channel'           => 'Channel',
         'current_account'   => 'Current Account',
         'saving_account'    => 'Saving Account',
+        'transaction_type'    => 'Transaction Type',
     ],
 ];

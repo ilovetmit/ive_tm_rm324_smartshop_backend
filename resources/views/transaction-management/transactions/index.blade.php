@@ -67,7 +67,22 @@
                             ])
                         </td>
                         <td>
-                            {{ trans('cruds.fields.transaction_type') }}
+                            @if (count($transaction->hasLocker_transaction)>0)
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => "Locker Transaction" ?? '',
+                                ])
+                            @elseif (count($transaction->hasProduct_transaction)>0)
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => "Product Transaction" ?? '',
+                                ])
+                            @elseif (count($transaction->hasRemittance_transaction)>0)
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => 'info',
+                                'element' => "Remittannce Transaction" ?? '',
+                                ])
+                            @endif
                         </td>
                         <td>
                             @include('module.datatable.action.index',[
