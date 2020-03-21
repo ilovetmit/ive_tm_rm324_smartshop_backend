@@ -6,6 +6,7 @@ use App\Models\TransactionManagement\RemittanceTransaction;
 use App\Models\TransactionManagement\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UserManagement\User;
 
 class RemittanceTransactionController extends Controller
 {
@@ -17,8 +18,9 @@ class RemittanceTransactionController extends Controller
 
     public function create()
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        return view('transaction-management.remittance-transactions.create');
+        $transactions = Transaction::all();
+        $users = User::all();
+        return view('transaction-management.remittance-transactions.create', compact('transactions', 'users'));
     }
 
     public function store(Request $request)
@@ -36,9 +38,9 @@ class RemittanceTransactionController extends Controller
 
     public function edit(RemittanceTransaction $remittanceTransaction)
     {
-        $transactions = Transaction::all()->pluck('id');
-        $remittanceTransaction->load('hasTransaction');
-        return view('transaction-management.remittance-transactions.edit', compact('transactions', 'remittanceTransaction'));
+        $transactions = Transaction::all();
+        $users = User::all();
+        return view('transaction-management.remittance-transactions.edit', compact('transactions', 'users', 'remittanceTransaction'));
     }
 
     public function update(Request $request, RemittanceTransaction $remittanceTransaction)

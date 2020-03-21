@@ -6,6 +6,8 @@ use App\Models\TransactionManagement\LockerTransaction;
 use App\Models\TransactionManagement\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LockerManagement\Locker;
+use App\Models\UserManagement\User;
 
 class LockerTransactionController extends Controller
 {
@@ -17,7 +19,10 @@ class LockerTransactionController extends Controller
 
     public function create()
     {
-        return view('transaction-management.locker-transactions.create');
+        $users = User::all();
+        $lockers = Locker::all();
+        $transactions = Transaction::all();
+        return view('transaction-management.locker-transactions.create', compact('users', 'lockers', 'transactions'));
     }
 
     public function store(Request $request)
@@ -35,9 +40,10 @@ class LockerTransactionController extends Controller
 
     public function edit(LockerTransaction $lockerTransaction)
     {
-        $transactions = Transaction::all()->pluck('id');
-        $lockerTransaction->load('hasTransaction');
-        return view('transaction-management.locker-transactions.edit', compact('transactions', 'lockerTransaction'));
+        $users = User::all();
+        $lockers = Locker::all();
+        $transactions = Transaction::all();        
+        return view('transaction-management.locker-transactions.edit', compact('lockerTransaction', 'users', 'lockers', 'transactions'));
     }
 
     public function update(Request $request, LockerTransaction $lockerTransaction)

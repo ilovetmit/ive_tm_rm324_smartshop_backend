@@ -36,16 +36,16 @@ class Transaction extends Model
 
     public function hasLocker_transaction()
     {
-        return $this->hasMany(LockerTransaction::class);
+        return $this->hasOne(LockerTransaction::class);
     }
 
     public function hasProduct_transaction()
     {
-        return $this->hasMany(ProductTransaction::class);
+        return $this->hasOne(ProductTransaction::class);
     }
     
     public function hasRemittance_transaction()
     {
-        return $this->hasMany(RemittanceTransaction::class);
+        return $this->hasOne(RemittanceTransaction::class);
     }
 }

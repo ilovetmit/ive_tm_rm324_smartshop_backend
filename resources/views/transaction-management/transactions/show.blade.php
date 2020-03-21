@@ -76,27 +76,26 @@
                         <th>
                             {{ trans('cruds.fields.transaction_type') }}
                         </th>
-                        <!-- tohelp-todo -->
                         <td>
-{{--                            {{ $transaction->hasLocker_transaction ?? '' }}L<br>--}}
-{{--                            {{ $transaction->hasProduct_transaction ?? '' }}P<br>--}}
-{{--                            {{ $transaction->hasRemittance_transaction ?? '' }}R<br>--}}
-
-                            @if (count($transaction->hasLocker_transaction)>0)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => "Locker Transaction" ?? '',
-                                ])
-                            @elseif (count($transaction->hasProduct_transaction)>0)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => "Product Transaction" ?? '',
-                                ])
-                            @elseif (count($transaction->hasRemittance_transaction)>0)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => "Remittannce Transaction" ?? '',
-                                ])
+                            @if(!is_null($transaction->hasLocker_transaction)>0)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Locker Transaction" ?? '',
+                            ])
+                            @elseif(!is_null($transaction->hasProduct_transaction)>0)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Product Transaction" ?? '',
+                            ])
+                            @elseif(!is_null($transaction->hasRemittance_transaction)>0)
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Remittannce Transaction" ?? '',
+                            ])
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'primary',
+                            'element' => $transaction->hasRemittance_transaction->hasUser->getFullNameAttribute() ?? '',
+                            ])
                             @endif
                         </td>
                     </tr>
@@ -120,15 +119,23 @@
             <a class="nav-link" href="#transactions_users" role="tab" data-toggle="tab">
                 {{ trans('cruds.userManagement.user.title') }}
             </a>
+        </li>
+        <li>
             <a class="nav-link" href="#transactions_locker_transactions" role="tab" data-toggle="tab">
                 {{ trans('cruds.transactionManagement.locker_transaction.title') }}
             </a>
+        </li>
+        <li>
             <a class="nav-link" href="#transactions_product_transactions" role="tab" data-toggle="tab">
                 {{ trans('cruds.transactionManagement.product_transaction.title') }}
             </a>
+        </li>
+        <li>
             <a class="nav-link" href="#transactions_remittance_transactions" role="tab" data-toggle="tab">
                 {{ trans('cruds.transactionManagement.remittance_transaction.title') }}
             </a>
+        </li>
+        <li>
             <a class="nav-link" href="#transactions_products" role="tab" data-toggle="tab">
                 {{ trans('cruds.productManagement.product.title') }}
             </a>
@@ -139,16 +146,16 @@
             @includeIf('transaction-management.relationships.user', ['user' => $transaction->hasUser])
         </div>
         <div class="tab-pane" role="tabpanel" id="transactions_locker_transactions">
-            @includeIf('transaction-management.transactions.relationships.transactions-locker-transactions', ['locker_transactions' => $transaction->hasLockerTransaction])
+            @includeIf('transaction-management.transactions.relationships.locker-transactions', ['locker_transactions' => $transaction->hasLockerTransaction])
         </div>
         <div class="tab-pane" role="tabpanel" id="transactions_product_transactions">
-            @includeIf('transaction-management.transactions.relationships.transactions-product-transactions', ['product_transactions' => $transaction->hasLockerTransaction])
+            @includeIf('transaction-management.transactions.relationships.product-transactions', ['product_transactions' => $transaction->hasLockerTransaction])
         </div>
         <div class="tab-pane" role="tabpanel" id="transactions_remittance_transactions">
-            @includeIf('transaction-management.transactions.relationships.transactions-remittance-transactions', ['remittance_transactions' => $transaction->hasLockerTransaction])
+            @includeIf('transaction-management.transactions.relationships.remittance-transactions', ['remittance_transactions' => $transaction->hasLockerTransaction])
         </div>
         <div class="tab-pane" role="tabpanel" id="transactions_products">
-            @includeIf('transaction-management.transactions.relationships.transactions-products', ['products' => $transaction->hasLockerTransaction])
+            @includeIf('transaction-management.transactions.relationships.products', ['products' => $transaction->hasLockerTransaction])
         </div>
     </div>
 </div>

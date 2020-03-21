@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\TransactionManagement;
 
 use App\Models\TransactionManagement\Transaction;
+use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,8 +17,8 @@ class TransactionController extends Controller
 
     public function create()
     {
-        $transaction = Transaction::all()->pluck('id');
-        return view('transaction-management.transactions.create');
+        $users = User::all();
+        return view('transaction-management.transactions.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -37,7 +38,8 @@ class TransactionController extends Controller
     {
         // $permissions = Permission::all()->pluck('name', 'id');
         // $transaction->load('hasPermission');
-        return view('transaction-management.transactions.edit');
+        $users = User::all();
+        return view('transaction-management.transactions.edit', compact('transaction', 'users'));
     }
 
     public function update(Request $request, Transaction $transaction)

@@ -67,17 +67,17 @@
                             ])
                         </td>
                         <td>
-                            @if (count($transaction->hasLocker_transaction)>0)
+                            @if(!is_null($transaction->hasLocker_transaction)>0)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => "Locker Transaction" ?? '',
                                 ])
-                            @elseif (count($transaction->hasProduct_transaction)>0)
+                            @elseif(!is_null($transaction->hasProduct_transaction)>0)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => "Product Transaction" ?? '',
                                 ])
-                            @elseif (count($transaction->hasRemittance_transaction)>0)
+                            @elseif(!is_null($transaction->hasRemittance_transaction)>0)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => "Remittannce Transaction" ?? '',

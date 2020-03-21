@@ -30,7 +30,6 @@
                             'type' => 'info',
                             'element' => $led->hasShopProduct->id ?? '',
                             'suffix' => $led->hasShopProduct->hasProduct->name ?? '',
-                            'suffix' => $led->hasShopProduct->hasProduct->name ?? '',
                             ])
                         </td>
                     </tr>
