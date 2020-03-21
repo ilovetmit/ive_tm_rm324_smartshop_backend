@@ -35,6 +35,10 @@ return [
             'title'         => 'VITCoin',
             'title_s'       => 'VITCoins',
         ],
+        'bank_account' => [
+            'title'         => 'Bank Account',
+            'title_s'       => 'Bank Accounts',
+        ],
 
     ],
     'tagManagement' => [
@@ -185,5 +189,7 @@ return [
         'category'          => 'Category',
         'quantity'          => 'Quantity',
         'channel'           => 'Channel',
+        'current_account'   => 'Current Account',
+        'saving_account'    => 'Saving Account',
     ],
 ];

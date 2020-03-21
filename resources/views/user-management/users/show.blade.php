@@ -120,7 +120,6 @@
                             @endforeach
                         </td>
                     </tr>
-                    <!-- todo -->
                     <!------------------------address------------------------>
                     <tr>
                         <th>
@@ -153,8 +152,32 @@
                         </th>
                         <td>
                             @if(!is_null($user->hasVitcoin))
-                            {{ $user->hasVitcoin->address() ?? '-' }}
+                            {{ $user->hasVitcoin->address ?? '-' }}
                             @endif
+                        </td>
+                    </tr>
+                    <!------------------------current_account------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.current_account') }}
+                        </th>
+                        <td>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $user->hasBankAccount->current_account ?? '',
+                            ])
+                        </td>
+                    </tr>
+                    <!------------------------saving_account------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.saving_account') }}
+                        </th>
+                        <td>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $user->hasBankAccount->saving_account ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>
@@ -185,7 +208,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#users_transactions" role="tab" data-toggle="tab">
-                {{ trans('cruds.informationManagement.transaction.transaction') }}
+                {{ trans('cruds.transactionManagement.transaction.title') }}
             </a>
         </li>
     </ul>

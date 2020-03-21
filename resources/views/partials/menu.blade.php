@@ -85,6 +85,16 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('bank_account_access')
+                        <li class="nav-item">
+                            <a href="{{ route("InformationManagement.BankAccounts.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/BankAccount*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-unlock-alt"></i>
+                                <p>
+                                    <span>{{ trans('cruds.informationManagement.bank_account.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
                         @can('address_access')
                         <li class="nav-item">
                             <a href="{{ route("InformationManagement.Addresses.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/Addresses*') ? 'active' : '' }}">

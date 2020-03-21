@@ -1,22 +1,21 @@
 @extends('layouts.admin')
 @section('content')
-@can('device_create')
+@can('bank_account_create')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("InformationManagement.Devices.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.informationManagement.device.title') }}
+        <a class="btn btn-success" href="{{ route("InformationManagement.BankAccounts.create") }}">
+            {{ trans('global.add') }} {{ trans('cruds.informationManagement.bank_account.title') }}
         </a>
     </div>
 </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.informationManagement.device.title') }} {{ trans('global.list') }}
+        {{ trans('cruds.informationManagement.bank_account.title') }} {{ trans('global.list') }}
     </div>
-
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Device">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Bank-Account">
                 <thead>
                     <tr>
                         <th width="10">
@@ -29,7 +28,10 @@
                             {{ trans('cruds.fields.user') }}
                         </th>
                         <th>
-                            {{ trans('cruds.fields.is_active') }}
+                            {{ trans('cruds.fields.current_account') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.fields.saving_account') }}
                         </th>
                         <th>
                             &nbsp;
@@ -37,32 +39,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($devices as $key => $device)
-                    <tr data-entry-id="{{ $device->id }}">
+                    @foreach($bankAccounts as $key => $bankAccount)
+                    <tr data-entry-id="{{ $bankAccount->id }}">
                         <td>
 
                         </td>
                         <td>
-                            {{ $device->id ?? '' }}
+                            {{ $bankAccount->id ?? '' }}
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag_suffix',[
                             'type' => 'info',
-                            'element' => $device->hasUser->id ?? '',
-                            'suffix' => $device->hasUser->getFullNameAttribute() ?? 'Visitor',
+                            'element' => $bankAccount->hasUser->id ?? '',
+                            'suffix' => $bankAccount->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag',[
-                            'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
-                            'element' => config('constant.device_isActive')[$device->is_active] ?? '',
+                            'type' => 'info',
+                            'element' => '$ '. $bankAccount->current_account ?? '',
+                            ])
+                        </td>
+                        <td>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $bankAccount->saving_account ?? '',
                             ])
                         </td>
                         <td>
                             @include('module.datatable.action.index',[
-                            'permission_subject' => 'device',
-                            'route_subject' => 'InformationManagement.Devices',
-                            'id' => $device->id
+                            'permission_subject' => 'bank_account',
+                            'route_subject' => 'InformationManagement.BankAccounts',
+                            'id' => $bankAccount->id
                             ])
                         </td>
                     </tr>
@@ -76,9 +84,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'device_delete',
-'route' => route('InformationManagement.Devices.massDestroy'),
+'permission_massDestory' => 'bank_account_delete',
+'route' => route('InformationManagement.BankAccounts.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-Device'
+'class' => 'datatable-Bank-Account'
 ])
 @endsection

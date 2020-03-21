@@ -16,8 +16,8 @@ class BankAccountController extends Controller
 {
     public function index()
     {
-        $bankaccounts = BankAccount::all();
-        return view('information-management.bank-accounts.index', compact('bankaccounts'));
+        $bankAccounts = BankAccount::all();
+        return view('information-management.bank-accounts.index', compact('bankAccounts'));
     }
 
     public function create()

@@ -27,7 +27,14 @@
             <!---------------------------district--------------------------->
             <div class="form-group">
                 <label class="required" for="district">{{ trans('cruds.fields.district') }}</label>
-                <input class="form-control {{ $errors->has('district') ? 'is-invalid' : '' }}" type="text" name="district" id="district" value="{{ old('district', $address->district) }}" required>
+                <select class="form-control select {{ $errors->has('district') ? 'is-invalid' : '' }}" name="district" id="district" required>
+                    <option value disabled {{ old('district', $address->district) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(config('constant.address_district') as $key => $label)
+                    <option value="{{ $key }}" {{ old('district', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('district'))
                 <span class="text-danger">{{ $errors->first('district') }}</span>
                 @endif

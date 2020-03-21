@@ -7,16 +7,7 @@
     <div class="card-body">
         <form method="POST" action="{{ route("InformationManagement.Devices.store") }}" enctype="multipart/form-data">
             @csrf
-            <!---------------------------token--------------------------->
-            <div class="form-group">
-                <label class="required" for="token">{{ trans('cruds.fields.token') }}</label>
-                <input class="form-control {{ $errors->has('token') ? 'is-invalid' : '' }}" type="text" name="token" id="token" value="{{ old('token', '') }}" required>
-                @if($errors->has('token'))
-                <span class="text-danger">{{ $errors->first('token') }}</span>
-                @endif
-                <span class="help-block"></span>
-            </div>
-            <!-- --------------------------------------user_id-------------------------------------- -->
+            <!---------------------------user_id--------------------------->
             <div class="form-group">
                 <label class="required" for="user_id">{{ trans('cruds.fields.user_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
@@ -32,19 +23,21 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!-- --------------------------------------is_active-------------------------------------- -->
+            <!---------------------------current_account--------------------------->
             <div class="form-group">
-                <label class="required" for="is_active">{{ trans('cruds.fields.is_active') }}</label>
-                <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
-                    <option value disabled {{ old('is_active', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.device_isActive_form') as $key => $label)
-                    <option value="{{ $key }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
-                        {{ $label }}
-                    </option>
-                    @endforeach
-                </select>
-                @if($errors->has('is_active'))
-                <span class="text-danger">{{ $errors->first('is_active') }}</span>
+                <label class="required" for="current_account">{{ trans('cruds.fields.current_account') }}</label>
+                <input class="form-control date {{ $errors->has('current_account') ? 'is-invalid' : '' }}" type="number" name="current_account" id="current_account" value="{{ old('current_account') }}" required>
+                @if($errors->has('current_account'))
+                <span class="text-danger">{{ $errors->first('current_account') }}</span>
+                @endif
+                <span class="help-block"></span>
+            </div>
+            <!---------------------------saving_account--------------------------->
+            <div class="form-group">
+                <label class="required" for="saving_account">{{ trans('cruds.fields.saving_account') }}</label>
+                <input class="form-control date {{ $errors->has('saving_account') ? 'is-invalid' : '' }}" type="number" name="saving_account" id="saving_account" value="{{ old('saving_account') }}" required>
+                @if($errors->has('saving_account'))
+                <span class="text-danger">{{ $errors->first('saving_account') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>

@@ -13,5 +13,6 @@ $factory->define(ProductTransaction::class, function (Faker $faker) {
     return [
         'transaction_id'    => $faker->randomElement($transaction_id),
         'product_id'        => $faker->randomElement($product_id),
+        'quantity'          => 100,
     ];
 });
