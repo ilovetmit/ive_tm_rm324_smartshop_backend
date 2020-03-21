@@ -28,7 +28,7 @@
                             {{ trans('cruds.fields.header') }}
                         </th>
                         <th>
-                            {{ trans('cruds.fields.user_id') }}
+                            {{ trans('cruds.fields.user') }}
                         </th>
                         <th>
                             {{ trans('cruds.fields.amount') }}
@@ -54,23 +54,25 @@
                             {{ $transaction->header ?? '' }}
                         </td>
                         <td>
-                            {{ $transaction->user_id ?? '' }}
-                        </td>
-                        <td>
-                            {{ $transaction->amount ?? '' }}
-                        </td>
-                        <td>
-                            @foreach($transaction->hasRole as $key => $item)
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $item->name == 'Admin' ? 'danger' : 'info',
-                            'element' => $item->name ?? '',
+                            @include('module.datatable.badge_tag.tag_suffix',[
+                            'type' => 'info',
+                            'element' => $transaction->hasUser->id ?? '',
+                            'suffix' => $transaction->hasUser->getFullNameAttribute() ?? '',
                             ])
-                            @endforeach
+                        </td>
+                        <td>
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $transaction->amount ?? '',
+                            ])
+                        </td>
+                        <td>
+                            {{ trans('cruds.fields.transaction_type') }}
                         </td>
                         <td>
                             @include('module.datatable.action.index',[
-                            'permission_subject' => 'user',
-                            'route_subject' => 'UserManagement.Users',
+                            'permission_subject' => 'transaction',
+                            'route_subject' => 'TransactionManagement.Transactions',
                             'id' => $transaction->id
                             ])
                         </td>

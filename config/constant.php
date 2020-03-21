@@ -75,7 +75,7 @@ return [
         '18' => 'Southern, Hong Kong',
     ],
 
-    'transaction_curreny' => [
+    'transaction_currency' => [
         '1' => 'Cash',
         '2' => 'VITcoin',
     ],

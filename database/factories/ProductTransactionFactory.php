@@ -11,7 +11,7 @@ $factory->define(ProductTransaction::class, function (Faker $faker) {
     $transaction_id = Transaction::all()->pluck('id');
     $product_id = Product::all()->pluck('id');
     return [
-        'transaction_id'    => $faker->randomElement($transaction_id),
+        'transaction_id'    => 2,
         'product_id'        => $faker->randomElement($product_id),
         'quantity'          => 100,
     ];

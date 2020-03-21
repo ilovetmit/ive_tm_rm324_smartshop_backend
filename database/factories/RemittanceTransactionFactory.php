@@ -11,7 +11,7 @@ $factory->define(RemittanceTransaction::class, function (Faker $faker) {
     $user_id = User::all()->pluck('id');
     $transaction_id = Transaction::all()->pluck('id');
     return [
-        'transaction_id'    => $faker->randomElement($transaction_id),
-        'remittee_id'       => 1, // $faker->randomElement($user_id),
+        'transaction_id'    => 3,
+        'remittee_id'       => 2, // $faker->randomElement($user_id),
     ];
 });

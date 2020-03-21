@@ -13,7 +13,7 @@ $factory->define(LockerTransaction::class, function (Faker $faker) {
     $locker_id = Locker::all()->pluck('id');
     $receiver_id = User::all()->pluck('id');
     return [
-        'transaction_id'    => $faker->randomElement($transaction_id),
+        'transaction_id'    => 1,
         'locker_id'         => $faker->randomElement($locker_id),
         'receiver_id'       => $faker->randomElement($receiver_id),
         'item'              => $faker->word,

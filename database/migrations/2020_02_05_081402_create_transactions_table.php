@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('user_id')                  ->references('id')->on('users')->onDelete('cascade');
             $table->integer('amount');
             $table->integer('balance');
-            $table->integer('curreny');
+            $table->integer('currency');
             $table->timestamps();
             $table->softDeletes();
         });

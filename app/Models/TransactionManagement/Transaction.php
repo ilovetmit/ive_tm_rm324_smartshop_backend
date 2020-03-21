@@ -23,7 +23,7 @@ class Transaction extends Model
         'user_id',
         'amount',
         'balance',
-        'curreny',
+        'currency',
         'created_at',
         'updated_at',
         'deleted_at',

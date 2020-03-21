@@ -30,7 +30,7 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         // $role->load('hasUser', 'hasPermission');
-        return view('transaction-management.transactions.show');
+        return view('transaction-management.transactions.show', compact('transaction'));
     }
 
     public function edit(Transaction $transaction)
