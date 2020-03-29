@@ -17,8 +17,8 @@ class CreateRemittanceTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id');
             $table->foreign('transaction_id')               ->references('id')->on('transactions')->onDelete('cascade');
-            $table->unsignedBigInteger('remittee_id');
-            $table->foreign('remittee_id')                  ->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('payee_id');
+            $table->foreign('payee_id')                     ->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

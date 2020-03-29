@@ -148,7 +148,6 @@ return [
         'deadline'          => 'Deadline',
         'remark'            => 'Remark',
         'product_id'        => 'Product ID',
-        'remittee_user_id'  => 'Receiver User ID',
         'header'            => 'Header',
         'user_id'           => 'User ID',
         'amount'            => 'Amount',
@@ -191,6 +190,8 @@ return [
         'channel'           => 'Channel',
         'current_account'   => 'Current Account',
         'saving_account'    => 'Saving Account',
-        'transaction_type'    => 'Transaction Type',
+        'transaction_type'  => 'Transaction Type',
+        'payee_id'          => 'Payee',
+
     ],
 ];

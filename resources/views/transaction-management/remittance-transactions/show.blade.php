@@ -22,13 +22,13 @@
                             {{ $remittanceTransaction->transaction_id ?? '' }}
                         </td>
                     </tr>
-                    <!------------------------remittee_id------------------------>
+                    <!------------------------payee_id------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.fields.remittee_id') }}
+                            {{ trans('cruds.fields.payee_id') }}
                         </th>
                         <td>
-                            {{ $remittanceTransaction->remittee_id ?? '' }}
+                            {{ $remittanceTransaction->payee_id ?? '' }}
                         </td>
                     </tr>
                 </tbody>

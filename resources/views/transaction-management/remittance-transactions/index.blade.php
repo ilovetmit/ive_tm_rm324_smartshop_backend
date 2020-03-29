@@ -28,7 +28,7 @@
                             {{ trans('cruds.fields.transaction_id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.fields.remittee_id') }}
+                            {{ trans('cruds.fields.payee_id') }}
                         </th>
                         <th>
                             &nbsp;
@@ -48,7 +48,7 @@
                             {{ $remittanceTransaction->transaction_id ?? '' }}
                         </td>
                         <td>
-                            {{ $remittanceTransaction->remittee_id ?? '' }}
+                            {{ $remittanceTransaction->payee_id ?? '' }}
                         </td>
                         <td>
                             @include('module.datatable.action.index',[

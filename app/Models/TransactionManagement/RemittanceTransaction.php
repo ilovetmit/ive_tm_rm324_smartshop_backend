@@ -21,7 +21,7 @@ class RemittanceTransaction extends Model
 
     protected $fillable = [
         'transaction_id',
-        'remittee_id',
+        'payee_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -29,7 +29,7 @@ class RemittanceTransaction extends Model
 
     public function hasUser()
     {
-        return $this->belongsTo(User::class, 'remittee_id', 'id');
+        return $this->belongsTo(User::class, 'payee_id', 'id');
     }
 
     public function hasTransaction()
