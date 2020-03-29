@@ -19,8 +19,8 @@ class CreateLockerTransactionsTable extends Migration
             $table->foreign('transaction_id')               ->references('id')->on('transactions')->onDelete('cascade');
             $table->unsignedBigInteger('locker_id');
             $table->foreign('locker_id')                    ->references('id')->on('lockers')->onDelete('cascade');
-            $table->unsignedBigInteger('receiver_id');
-            $table->foreign('receiver_id')                  ->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('recipient_user_id');
+            $table->foreign('recipient_user_id')            ->references('id')->on('users')->onDelete('cascade');
             $table->string('item');
             $table->date('deadline');
             $table->text('remark');

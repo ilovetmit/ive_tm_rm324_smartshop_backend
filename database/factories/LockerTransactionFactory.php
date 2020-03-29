@@ -15,7 +15,7 @@ $factory->define(LockerTransaction::class, function (Faker $faker) {
     return [
         'transaction_id'    => 1,
         'locker_id'         => $faker->randomElement($locker_id),
-        'receiver_id'       => $faker->randomElement($receiver_id),
+        'recipient_user_id' => $faker->randomElement($receiver_id),
         'item'              => $faker->word,
         'deadline'          => $faker->dateTime($max = '+7 days'),
         'remark'            => $faker->text($maxNbChars = 20),

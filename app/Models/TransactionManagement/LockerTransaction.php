@@ -22,7 +22,7 @@ class LockerTransaction extends Model
     protected $fillable = [
         'transaction_id',
         'locker_id',
-        'receiver_id',
+        'recipient_user_id',
         'item',
         'deadline',
         'remark',
@@ -43,6 +43,6 @@ class LockerTransaction extends Model
 
     public function hasUser()
     {
-        return $this->belongsTo(User::class, 'receiver_id', 'id');
+        return $this->belongsTo(User::class, 'recipient_user_id', 'id');
     }
 }

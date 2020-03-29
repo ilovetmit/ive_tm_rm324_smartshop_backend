@@ -31,13 +31,13 @@
                             {{ $lockerTransaction->locker_id ?? '' }}
                         </td>
                     </tr>
-                    <!------------------------receiver_id------------------------>
+                    <!------------------------recipient_user_id------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.fields.receiver_id') }}
+                            {{ trans('cruds.fields.recipient_user_id') }}
                         </th>
                         <td>
-                            {{ $lockerTransaction->receiver_id ?? '' }}
+                            {{ $lockerTransaction->recipient_user_id ?? '' }}
                         </td>
                     </tr>
                     <!------------------------item------------------------>

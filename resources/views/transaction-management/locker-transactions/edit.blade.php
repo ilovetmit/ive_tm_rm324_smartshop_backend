@@ -40,19 +40,19 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!-- -----------------receiver_id----------------- -->
+            <!-- -----------------recipient_user_id----------------- -->
             <div class="form-group">
-                <label class="required" for="receiver_id">{{ trans('cruds.fields.receiver_id') }}</label>
-                <select class="form-control select2 {{ $errors->has('receiver_id') ? 'is-invalid' : '' }}" name="receiver_id" id="receiver_id" required>
-                    <option value disabled {{ old('receiver_id', $lockerTransaction->receiver_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <label class="required" for="recipient_user_id">{{ trans('cruds.fields.recipient_user_id') }}</label>
+                <select class="form-control select2 {{ $errors->has('recipient_user_id') ? 'is-invalid' : '' }}" name="recipient_user_id" id="recipient_user_id" required>
+                    <option value disabled {{ old('recipient_user_id', $lockerTransaction->recipient_user_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
-                    <option value="{{ $user->id }}" {{ old('receiver_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}" {{ old('recipient_user_id', '') === (string) $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
                     </option>
                     @endforeach
                 </select>
-                @if($errors->has('receiver_id'))
-                <span class="text-danger">{{ $errors->first('receiver_id') }}</span>
+                @if($errors->has('recipient_user_id'))
+                <span class="text-danger">{{ $errors->first('recipient_user_id') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>

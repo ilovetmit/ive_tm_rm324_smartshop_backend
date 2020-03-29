@@ -31,7 +31,7 @@
                             {{ trans('cruds.fields.locker_id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.fields.receiver_id') }}
+                            {{ trans('cruds.fields.recipient_user_id') }}
                         </th>
                         <th>
                             {{ trans('cruds.fields.item') }}
@@ -63,7 +63,7 @@
                             {{ $lockerTransaction->locker_id ?? '' }}
                         </td>
                         <td>
-                            {{ $lockerTransaction->receiver_id ?? '' }}
+                            {{ $lockerTransaction->recipient_user_id ?? '' }}
                         </td>
                         <td>
                             {{ $lockerTransaction->item ?? '' }}
