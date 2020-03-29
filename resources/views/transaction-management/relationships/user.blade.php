@@ -49,10 +49,9 @@
                                 {{ $user->id ?? '' }}
                             </td>
                             <td>
-                                @include('module.datatable.badge_tag.tag_suffix',[
+                                @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
-                                'element' => $user->id ?? '',
-                                'suffix' => $user->getFullNameAttribute() ?? '',
+                                'element' => $user->id . ". " . $user->getFullNameAttribute() ?? '',
                                 ])
                             </td>
                             <td>

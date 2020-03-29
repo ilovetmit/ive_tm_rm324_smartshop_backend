@@ -57,13 +57,25 @@
                             {{ $lockerTransaction->id ?? '' }}
                         </td>
                         <td>
-                            {{ $lockerTransaction->transaction_id ?? '' }}
+                            {{-- $lockerTransaction->transaction_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $lockerTransaction->hasTransaction->id . ". " . $lockerTransaction->hasTransaction->header . "." ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $lockerTransaction->locker_id ?? '' }}
+                            {{-- $lockerTransaction->locker_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Locker No. " . $lockerTransaction->locker_id ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $lockerTransaction->recipient_user_id ?? '' }}
+                            {{-- $lockerTransaction->recipient_user_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $lockerTransaction->hasUser->id . ". " . $lockerTransaction->hasUser->getFullNameAttribute() . "." ?? '',
+                            ])
                         </td>
                         <td>
                             {{ $lockerTransaction->item ?? '' }}
@@ -74,7 +86,7 @@
                         <td>
                             {{ $lockerTransaction->remark ?? '' }}
                         </td>
-                        
+
                         <td>
                             @include('module.datatable.action.index',[
                             'permission_subject' => 'locker_transaction',

@@ -48,10 +48,18 @@
                             {{ $productTransaction->id ?? '' }}
                         </td>
                         <td>
-                            {{ $productTransaction->transaction_id ?? '' }}
+                            {{-- $productTransaction->transaction_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $productTransaction->hasTransaction->id . ". " . $productTransaction->hasTransaction->header . "." ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $productTransaction->product_id ?? '' }}
+                            {{-- $productTransaction->product_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $productTransaction->hasProduct->id . ". " . $productTransaction->hasProduct->name ?? '',
+                            ])
                         </td>
                         <td>
                             {{ $productTransaction->quantity ?? '' }}

@@ -45,10 +45,18 @@
                             {{ $remittanceTransaction->id ?? '' }}
                         </td>
                         <td>
-                            {{ $remittanceTransaction->transaction_id ?? '' }}
+                            {{-- $remittanceTransaction->transaction_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $remittanceTransaction->hasTransaction->id . ". " . $remittanceTransaction->hasTransaction->header ?? '',
+                            ])
                         </td>
                         <td>
-                            {{ $remittanceTransaction->payee_id ?? '' }}
+                            {{-- $remittanceTransaction->payee_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $remittanceTransaction->hasUser->id . ". " . $remittanceTransaction->hasUser->getFullNameAttribute() ?? '',
+                            ])
                         </td>
                         <td>
                             @include('module.datatable.action.index',[

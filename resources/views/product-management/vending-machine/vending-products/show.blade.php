@@ -26,10 +26,9 @@
                             {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag_suffix',[
+                            @include('module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $vendingProduct->hasProduct->id ?? '',
-                            'suffix' => $vendingProduct->hasProduct->name ?? '',
+                            'element' => $vendingProduct->hasProduct->id . ". " . $vendingProduct->hasProduct->name ?? '',
                             ])
                         </td>
                     </tr>

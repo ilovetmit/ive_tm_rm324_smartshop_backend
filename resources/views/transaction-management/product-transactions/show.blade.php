@@ -16,19 +16,27 @@
                     <!------------------------transaction_id------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.fields.header') }}
+                            {{ trans('cruds.fields.transaction_id') }}
                         </th>
                         <td>
-                            {{ $productTransaction->transaction_id ?? '' }}
+                            {{-- $productTransaction->transaction_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $productTransaction->hasTransaction->id . ". " . $productTransaction->hasTransaction->header . "." ?? '',
+                            ])
                         </td>
                     </tr>
                     <!------------------------product_id------------------------>
                     <tr>
                         <th>
-                            {{ trans('cruds.fields.user_id') }}
+                            {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
-                            {{ $productTransaction->product_id ?? '' }}
+                            {{-- $productTransaction->product_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $productTransaction->hasProduct->id . ". " . $productTransaction->hasProduct->name ?? '',
+                            ])
                         </td>
                     </tr>
                     <!------------------------quantity------------------------>

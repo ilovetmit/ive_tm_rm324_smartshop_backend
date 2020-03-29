@@ -2,19 +2,19 @@
     @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("UserManagement.Users.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.userManagement.user.title') }}
+            <a class="btn btn-success" href="{{ route("TransactionManagement.LockerTransaction.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.transactionManagement.lockerTransaction.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.user.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.transactionManagement.lockerTransaction.title') }} {{ trans('global.list') }}
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-User">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Locker">
                     <thead>
                         <tr>
                             <th width="10">
@@ -49,10 +49,9 @@
                                 {{ $user->id ?? '' }}
                             </td>
                             <td>
-                                @include('module.datatable.badge_tag.tag_suffix',[
+                                @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
-                                'element' => $user->id ?? '',
-                                'suffix' => $user->getFullNameAttribute() ?? '',
+                                'element' => $user->id . ". " . $user->getFullNameAttribute() ?? '',
                                 ])
                             </td>
                             <td>

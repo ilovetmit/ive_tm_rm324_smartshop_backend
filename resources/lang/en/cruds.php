@@ -143,7 +143,7 @@ return [
         'is_using'          => 'Using',
         'transaction_id'    => 'Transaction ID',
         'locker_id'         => 'Locker ID',
-        'recipient_user_id' => 'Receiver User ID',
+        'recipient_user_id' => 'Receiver User',
         'item'              => 'Item',
         'deadline'          => 'Deadline',
         'remark'            => 'Remark',

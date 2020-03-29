@@ -26,10 +26,9 @@
                             {{ trans('cruds.fields.user') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag_suffix',[
+                            @include('module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $bankAccount->hasUser->id ?? '',
-                            'suffix' => $bankAccount->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $bankAccount->hasUser->id . ". " . $bankAccount->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                     </tr>

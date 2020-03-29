@@ -34,10 +34,9 @@
                             {{ trans('cruds.fields.user_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag_suffix',[
+                            @include('module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $device->hasUser->id ?? '',
-                            'suffix' => $device->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $device->hasUser->id . ". " . $device->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                     </tr>

@@ -19,7 +19,11 @@
                             {{ trans('cruds.fields.transaction_id') }}
                         </th>
                         <td>
-                            {{ $remittanceTransaction->transaction_id ?? '' }}
+                            {{-- $remittanceTransaction->transaction_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $remittanceTransaction->hasTransaction->id . ". " . $remittanceTransaction->hasTransaction->header ?? '',
+                            ])
                         </td>
                     </tr>
                     <!------------------------payee_id------------------------>
@@ -28,7 +32,11 @@
                             {{ trans('cruds.fields.payee_id') }}
                         </th>
                         <td>
-                            {{ $remittanceTransaction->payee_id ?? '' }}
+                            {{-- $remittanceTransaction->payee_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $remittanceTransaction->hasUser->id . ". " . $remittanceTransaction->hasUser->getFullNameAttribute() ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>
@@ -57,7 +65,6 @@
                 {{ trans('cruds.transactionManagement.transaction.title') }}
             </a>
         </li>
-     
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="transactions_users">

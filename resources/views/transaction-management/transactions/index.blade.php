@@ -54,10 +54,9 @@
                             {{ $transaction->header ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag_suffix',[
+                            @include('module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $transaction->hasUser->id ?? '',
-                            'suffix' => $transaction->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $transaction->hasUser->id . ". " . $transaction->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                         <td>

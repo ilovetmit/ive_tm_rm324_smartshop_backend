@@ -46,10 +46,9 @@
                             {{ $shopProductInventory->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag_suffix',[
+                            @include('module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id ?? '',
-                            'suffix' => $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
+                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " . $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
                             ])
                         </td>
                         <td>

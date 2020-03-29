@@ -19,7 +19,11 @@
                             {{ trans('cruds.fields.transaction_id') }}
                         </th>
                         <td>
-                            {{ $lockerTransaction->transaction_id ?? '' }}
+                            {{-- $lockerTransaction->transaction_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $lockerTransaction->hasTransaction->id . ". " . $lockerTransaction->hasTransaction->header . "." ?? '',
+                            ])
                         </td>
                     </tr>
                     <!------------------------locker_id------------------------>
@@ -28,7 +32,11 @@
                             {{ trans('cruds.fields.locker_id') }}
                         </th>
                         <td>
-                            {{ $lockerTransaction->locker_id ?? '' }}
+                            {{-- $lockerTransaction->locker_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Locker No. " . $lockerTransaction->locker_id ?? '',
+                            ])
                         </td>
                     </tr>
                     <!------------------------recipient_user_id------------------------>
@@ -37,7 +45,11 @@
                             {{ trans('cruds.fields.recipient_user_id') }}
                         </th>
                         <td>
-                            {{ $lockerTransaction->recipient_user_id ?? '' }}
+                            {{-- $lockerTransaction->recipient_user_id ?? '' --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $lockerTransaction->hasUser->id . ". " . $lockerTransaction->hasUser->getFullNameAttribute() . "." ?? '',
+                            ])
                         </td>
                     </tr>
                     <!------------------------item------------------------>

@@ -41,10 +41,9 @@
                                 {{ $led->id ?? '' }}
                             </td>
                             <td>
-                                @include('module.datatable.badge_tag.tag_suffix',[
+                                @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
-                                'element' => $led->hasShopProduct->hasProduct->id ?? '',
-                                'suffix' => $led->hasShopProduct->hasProduct->name ?? '',
+                                'element' => $led->hasShopProduct->hasProduct->id . ". " . $led->hasShopProduct->hasProduct->name ?? '',
                                 ])
                             </td>
                             <td>

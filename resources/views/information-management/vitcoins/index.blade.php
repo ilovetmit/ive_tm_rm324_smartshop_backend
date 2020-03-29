@@ -42,10 +42,9 @@
                             {{ $vitcoin->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag_suffix',[
+                            @include('module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $vitcoin->hasUser->id ?? '',
-                            'suffix' => $vitcoin->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $vitcoin->hasUser->id . ". " . $vitcoin->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                         <td>

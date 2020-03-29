@@ -50,10 +50,9 @@
                                 <img src="{{ asset('storage/productwalls/qrcode/'.$productWall->qrcode) }}" width="150px">
                             </td>
                             <td>
-                                @include('module.datatable.badge_tag.tag_suffix',[
+                                @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
-                                'element' => $productWall->hasProduct->id ?? '',
-                                'suffix' => $productWall->hasProduct->name ?? '',
+                                'element' => $productWall->hasProduct->id . ". " . $productWall->hasProduct->name ?? '',
                                 ])
                             </td>
                             <td>
