@@ -3,19 +3,18 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("ProductManagement.Products.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.productManagement.sub_title_1.title') }}
+                {{ trans('global.add') }} {{ trans('cruds.productManagement.product.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.productManagement.sub_title_1.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
         </div>
-
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-vendingProduct-Product">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Product">
                     <thead>
                         <tr>
                             <th width="10">
@@ -45,6 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($products as $key => $product)
                         <tr data-entry-id="{{ $product->id }}">
                             <td>
 
@@ -92,6 +92,7 @@
                                 ])
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -104,6 +105,6 @@
 'permission_massDestory' => 'product_delete',
 'route' => route('ProductManagement.Products.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-vendingProduct-Product'
+'class' => 'datatable-Product'
 ])
 @endsection

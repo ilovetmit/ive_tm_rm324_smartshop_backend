@@ -60,21 +60,26 @@
         </div>
     </div>
 </div>
+<!-- hasManyTable -->
 <div class="card">
     <div class="card-header">
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($role->hasUser)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#roles_users" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#users" role="tab" data-toggle="tab">
                 {{ trans('cruds.userManagement.user.title') }}
             </a>
         </li>
+        @endif
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="roles_users">
-            @includeIf('user-management.roles.relationships.roles-users', ['users' => $role->hasUser])
+        @if(!is_null($role->hasUser)>0)
+        <div class="tab-pane" role="tabpanel" id="users">
+            @includeIf('relationships.users', ['users' => $role->hasUser])
         </div>
+        @endif
     </div>
 </div>
 @endsection

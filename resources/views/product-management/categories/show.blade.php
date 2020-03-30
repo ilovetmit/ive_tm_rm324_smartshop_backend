@@ -53,16 +53,20 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($category->hasProduct)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#categories_products" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#products" role="tab" data-toggle="tab">
                 {{ trans('cruds.productManagement.product.title') }}
             </a>
         </li>
+        @endif
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="categories_products">
-            @includeIf('product-management.categories.relationships.categories-products', ['products' => $category->hasProduct])
+        @if(!is_null($category->hasProduct)>0)
+        <div class="tab-pane" role="tabpanel" id="products">
+            @includeIf('relationships.products', ['products' => $category->hasProduct])
         </div>
+        @endif
     </div>
 </div>
 @endsection

@@ -3,7 +3,7 @@
 <div class="card">
     <div class="card-header">
         {{ trans('global.show') }} {{ trans('cruds.productManagement.product.title') }}
-    </div>                                                                                      
+    </div>
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -94,32 +94,44 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($product->hasCategory)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#products_categories" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_2.title') }}
+            <a class="nav-link" href="#categories" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.category.title') }}
             </a>
         </li>
+        @endif
+        @if(!is_null($product->hasTag)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#products_tags" role="tab" data-toggle="tab">
-                {{ trans('cruds.tagManagement.product.title') }}
+            <a class="nav-link" href="#tags" role="tab" data-toggle="tab">
+                {{ trans('cruds.tagManagement.tag.title') }}
             </a>
         </li>
+        @endif
+        @if(!is_null($product->hasProductWall)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#products_productWalls" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.sub_title_7.title') }}
+            <a class="nav-link" href="#productWalls" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.product_wall.title') }}
             </a>
         </li>
+        @endif
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="products_categories">
-            @includeIf('product-management.products.relationships.products-categories', ['categories' => $product->hasCategory])
+        @if(!is_null($product->hasCategory)>0)
+        <div class="tab-pane" role="tabpanel" id="categories">
+            @includeIf('relationships.categories', ['categories' => $product->hasCategory])
         </div>
-        <div class="tab-pane" role="tabpanel" id="products_tags">
-            @includeIf('product-management.products.relationships.products-tags', ['tags' => $product->hasTag])
+        @endif
+        @if(!is_null($product->hasTag)>0)
+        <div class="tab-pane" role="tabpanel" id="tags">
+            @includeIf('relationships.tags', ['tags' => $product->hasTag])
         </div>
-        <div class="tab-pane" role="tabpanel" id="products_productWalls">
-            @includeIf('product-management.products.relationships.products-product-walls', ['productWalls' => $product->hasProductWall])
+        @endif
+        @if(!is_null($product->hasProductWall)>0)
+        <div class="tab-pane" role="tabpanel" id="productWalls">
+            @includeIf('relationships.product-walls', ['productWalls' => $product->hasProductWall])
         </div>
+        @endif
     </div>
 </div>
 @endsection

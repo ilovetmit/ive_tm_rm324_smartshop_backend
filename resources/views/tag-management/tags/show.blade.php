@@ -57,24 +57,32 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($tag->hasAdvertisement)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#tags_advertisements" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#advertisements" role="tab" data-toggle="tab">
                 {{ trans('cruds.advertisementManagement.advertisement.title') }}
             </a>
         </li>
+        @endif
+        @if(!is_null($tag->hasProduct)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#tags_products" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#products" role="tab" data-toggle="tab">
                 {{ trans('cruds.productManagement.product.title') }}
             </a>
         </li>
+        @endif
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="tags_advertisements">
-            @includeIf('tag-management.tags.relationships.tags-advertisements', ['ad' => $tag->hasAdvertisement])
+        @if(!is_null($tag->hasAdvertisement)>0)
+        <div class="tab-pane" role="tabpanel" id="advertisements">
+            @includeIf('relationships.advertisement-s', ['ad' => $tag->hasAdvertisement])
         </div>
-        <div class="tab-pane" role="tabpanel" id="tags_products">
-            @includeIf('tag-management.tags.relationships.tags-products', ['product' => $tag->hasProduct])
+        @endif
+        @if(!is_null($tag->hasProduct)>0)
+        <div class="tab-pane" role="tabpanel" id="products">
+            @includeIf('relationships.product-s', ['product' => $tag->hasProduct])
         </div>
+        @endif
     </div>
 </div>
 @endsection

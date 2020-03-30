@@ -196,32 +196,44 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($user->hasDevice)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#users_devices" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#devices" role="tab" data-toggle="tab">
                 {{ trans('cruds.informationManagement.device.title') }}
             </a>
         </li>
+        @endif
+        @if(!is_null($user->hasInterest)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#users_interests" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#devices" role="tab" data-toggle="tab">
                 {{ trans('cruds.informationManagement.interest.title') }}
             </a>
         </li>
+        @endif
+        @if(!is_null($user->hasTransaction)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#users_transactions" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#devices" role="tab" data-toggle="tab">
                 {{ trans('cruds.transactionManagement.transaction.title') }}
             </a>
         </li>
+        @endif
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="users_devices">
-            @includeIf('user-management.users.relationships.users-devices', ['devices' => $user->hasDevice])
+        @if(!is_null($user->hasTransaction)>0)
+        <div class="tab-pane" role="tabpanel" id="devices">
+            @includeIf('relationships.devices', ['devices' => $user->hasDevice])
         </div>
-        <div class="tab-pane" role="tabpanel" id="users_interests">
-            @includeIf('user-management.users.relationships.users-interests', ['interests' => $user->hasInterest])
+        @endif
+        @if(!is_null($user->hasInterest)>0)
+        <div class="tab-pane" role="tabpanel" id="devices">
+            @includeIf('relationships.interests', ['interests' => $user->hasInterest])
         </div>
-        <div class="tab-pane" role="tabpanel" id="users_transactions">
-            {{-- @includeIf('user-management.users.relationships.users-interests', ['transaction' => $user->hasTransaction]) --}}
+        @endif
+        @if(!is_null($user->hasTransaction)>0)
+        <div class="tab-pane" role="tabpanel" id="devices">
+            {{-- @includeIf('relationships.transactions', ['transaction' => $user->hasTransaction]) --}}
         </div>
+        @endif
     </div>
 </div>
 @endsection

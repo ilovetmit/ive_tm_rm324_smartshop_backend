@@ -58,23 +58,4 @@
         </div>
     </div>
 </div>
-<!-- hasManyTable -->
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.relatedData') }}
-    </div>
-    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#productWalls_products" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.product.title') }}
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="productWalls_products">
-            @includeIf('product-management.product-walls.relationships.product-walls-products', ['product' => $productWall->hasProduct])
-        </div>
-    </div>
-</div>
-
 @endsection

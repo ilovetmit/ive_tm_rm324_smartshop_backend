@@ -78,16 +78,20 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($locker->hasLockerTransaction)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#lockers_locker_transactions" role="tab" data-toggle="tab">
-                {{ trans('cruds.transactionManagement.transaction.title') }}
+            <a class="nav-link" href="#lockerTransactions" role="tab" data-toggle="tab">
+                {{ trans('cruds.transactionManagement.locker_transaction.title') }}
             </a>
         </li>
+        @endif
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="lockers_locker_transactions">
-            @includeIf('locker-management.lockers.relationships.lockers-locker-transactions', ['locker_transaction' => $locker->hasLockerTransaction])
+        @if(!is_null($locker->hasLockerTransaction)>0)
+        <div class="tab-pane" role="tabpanel" id="lockerTransactions">
+            @includeIf('relationships.locker-transactions', ['locker_transactions' => $locker->hasLockerTransaction])
         </div>
+        @endif
     </div>
 </div>
 @endsection

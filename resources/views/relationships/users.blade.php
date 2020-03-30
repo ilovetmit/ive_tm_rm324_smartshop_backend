@@ -41,6 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($users as $key => $user)
                         <tr data-entry-id="{{ $user->id }}">
                             <td>
 
@@ -49,10 +50,7 @@
                                 {{ $user->id ?? '' }}
                             </td>
                             <td>
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $user->id . ". " . $user->getFullNameAttribute() ?? '',
-                                ])
+                                {{ $user->first_name ?? '' }} {{ $user->last_name ?? '' }}
                             </td>
                             <td>
                                 {{ $user->email ?? '' }}
@@ -75,7 +73,9 @@
                                 'id' => $user->id
                                 ])
                             </td>
+
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-user-Interest">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Interest">
                     <thead>
                         <tr>
                             <th width="10">
@@ -28,7 +28,6 @@
                             </th>
                             <th>
                                 {{ trans('cruds.fields.description') }}
-
                             </th>
                             <th>
                                 &nbsp;
@@ -71,6 +70,6 @@
 'permission_massDestory' => 'interest_delete',
 'route' => route('InformationManagement.Interests.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-user-Interest'
+'class' => 'datatable-Interest'
 ])
 @endsection

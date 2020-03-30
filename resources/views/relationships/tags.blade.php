@@ -1,20 +1,20 @@
 <div class="m-3">
-    @can('role_create')
+    @can('tag_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("UserManagement.Roles.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.userManagement.role.title') }}
+            <a class="btn btn-success" href="{{ route("TagManagement.Tags.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.tagManagement.tag.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.role.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.tagManagement.tag.title') }} {{ trans('global.list') }}
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-permission-Role">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Tag">
                     <thead>
                         <tr>
                             <th width="10">
@@ -27,7 +27,7 @@
                                 {{ trans('cruds.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.title') }}
+                                {{ trans('cruds.fields.description') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -35,30 +35,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($roles as $key => $role)
-                        <tr data-entry-id="{{ $role->id }}">
+                        @foreach($tags as $key => $tag)
+                        <tr data-entry-id="{{ $tag->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $role->id ?? '' }}
+                                {{ $tag->id ?? '' }}
                             </td>
                             <td>
-                                {{ $role->name ?? '' }}
+                                {{ $tag->name ?? '' }}
                             </td>
                             <td>
-                                @foreach($role->hasPermission as $key => $item)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $item->name ?? '',
-                                ])
-                                @endforeach
+                                {{ $tag->description ?? '' }}
                             </td>
                             <td>
                                 @include('module.datatable.action.index',[
-                                'permission_subject' => 'role',
-                                'route_subject' => 'UserManagement.Roles',
-                                'id' => $role->id
+                                'permission_subject' => 'tag',
+                                'route_subject' => 'TagManagement.Tags',
+                                'id' => $tag->id
                                 ])
                             </td>
                         </tr>
@@ -72,9 +67,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'role_delete',
-'route' => route('UserManagement.Roles.massDestroy'),
+'permission_massDestory' => 'tag_delete',
+'route' => route('AdvertisementManagement.ad.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-permission-Role'
+'class' => 'datatable-Tag'
 ])
 @endsection

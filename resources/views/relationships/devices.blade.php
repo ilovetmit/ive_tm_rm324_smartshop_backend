@@ -1,20 +1,20 @@
 <div class="m-3">
-    @can('tag_create')
+    @can('device_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("TagManagement.Tags.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.tagManagement.tag.title') }}
+            <a class="btn btn-success" href="{{ route("InformationManagement.Devices.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.informationManagement.device.title') }}
             </a>
         </div>
     </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.tagManagement.tag.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.informationManagement.device.title') }} {{ trans('global.list') }}
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-advertisement-Tag">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Device">
                     <thead>
                         <tr>
                             <th width="10">
@@ -24,10 +24,10 @@
                                 {{ trans('cruds.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.name') }}
+                                {{ trans('cruds.fields.is_active') }}
                             </th>
                             <th>
-                                {{ trans('cruds.fields.description') }}
+                                {{ trans('cruds.fields.token') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -35,25 +35,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($tags as $key => $tag)
-                        <tr data-entry-id="{{ $tag->id }}">
+                        @foreach($devices as $key => $device)
+                        <tr data-entry-id="{{ $device->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $tag->id ?? '' }}
+                                {{ $device->id ?? '' }}
                             </td>
                             <td>
-                                {{ $tag->name ?? '' }}
+                                @include('module.datatable.badge_tag.tag',[
+                                'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
+                                'element' => config('constant.device_isActive')[$device->is_active] ?? '',
+                                ])
                             </td>
                             <td>
-                                {{ $tag->description ?? '' }}
+                                {{ $device->token ?? '' }}
                             </td>
                             <td>
                                 @include('module.datatable.action.index',[
-                                'permission_subject' => 'tag',
-                                'route_subject' => 'TagManagement.Tags',
-                                'id' => $tag->id
+                                'permission_subject' => 'device',
+                                'route_subject' => 'InformationManagement.Devices',
+                                'id' => $device->id
                                 ])
                             </td>
                         </tr>
@@ -67,9 +70,9 @@
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'tag_delete',
-'route' => route('AdvertisementManagement.ad.massDestroy'),
+'permission_massDestory' => 'device_delete',
+'route' => route('InformationManagement.Devices.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-advertisement-Tag'
+'class' => 'datatable-Device'
 ])
 @endsection

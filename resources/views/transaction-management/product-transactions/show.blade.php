@@ -58,30 +58,4 @@
         </div>
     </div>
 </div>
-<!-- hasManyTable -->
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.relatedData') }}
-    </div>
-    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#transactions_product_transactions" role="tab" data-toggle="tab">
-                {{ trans('cruds.transactionManagement.product_transaction.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#transactions_products" role="tab" data-toggle="tab">
-                {{ trans('cruds.productManagement.product.title') }}
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="transactions_locker_transactions">
-            @includeIf('transaction-management.relationships.transaction-undefine', ['transaction' => $productTransaction->hasTransaction])
-        </div>
-        <div class="tab-pane" role="tabpanel" id="transactions_product_transactions">
-            @includeIf('transaction-management.relationships.product-undefine', ['product' => $productTransaction->hasProduct])
-        </div>
-    </div>
-</div>
 @endsection

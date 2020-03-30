@@ -68,10 +68,10 @@
                         </th>
                         <td>
                             @foreach($ad->hasTag as $key => $tags)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => $tags->name ?? '',
-                                ])
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => $tags->name ?? '',
+                            ])
                             @endforeach
                         </td>
                     </tr>
@@ -85,21 +85,26 @@
         </div>
     </div>
 </div>
+<!-- hasManyTable -->
 <div class="card">
     <div class="card-header">
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($ad->hasTag)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#advertisements-tags" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#tags" role="tab" data-toggle="tab">
                 {{ trans('cruds.tagManagement.tag.title') }}
             </a>
         </li>
+        @endif
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="advertisements-tags">
-            @includeIf('advertisement-management.advertisements.relationships.advertisements-tags', ['tags' => $ad->hasTag])
+        @if(!is_null($ad->hasTag)>0)
+        <div class="tab-pane" role="tabpanel" id="tags">
+            @includeIf('relationships.tags', ['tags' => $ad->hasTag])
         </div>
+        @endif
     </div>
 </div>
 @endsection
