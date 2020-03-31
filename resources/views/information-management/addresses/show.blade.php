@@ -34,14 +34,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.fields.district') }}
-                        </th>
-                        <td>
-                            {{ $address->district }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.fields.address1') }}
                         </th>
                         <td>
@@ -54,6 +46,14 @@
                         </th>
                         <td>
                             {{ $address->address2 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.district') }}
+                        </th>
+                        <td>
+                            {{ config('constant.address_district')[$address->district] ?? '' }}
                         </td>
                     </tr>
                 </tbody>

@@ -43,7 +43,7 @@
             <!-- -----------------------quantity----------------------- -->
             <div class="form-group">
                 <label class="required" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
-                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="text" name="quantity" id="quantity" value="{{ old('quantity', $productTransaction->quantity) }}" required>
+                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity', $productTransaction->quantity) }}" required>
                 @if($errors->has('quantity'))
                 <span class="text-danger">{{ $errors->first('quantity') }}</span>
                 @endif

@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-shopProduct-LED">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-LED">
                     <thead>
                         <tr>
                             <th width="10">
@@ -67,6 +67,6 @@
 'permission_massDestory' => 'led_delete',
 'route' => route('ProductManagement.LEDs.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-shopProduct-LED'
+'class' => 'datatable-LED'
 ])
 @endsection

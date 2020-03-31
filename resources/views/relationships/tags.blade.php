@@ -68,7 +68,7 @@
 @parent
 @include('module.datatable.massdestory',[
 'permission_massDestory' => 'tag_delete',
-'route' => route('AdvertisementManagement.ad.massDestroy'),
+'route' => route('TagManagement.Tags.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Tag'
 ])

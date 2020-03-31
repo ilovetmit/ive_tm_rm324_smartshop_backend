@@ -25,6 +25,25 @@
                 @endif
                 <span class="help-block"></span>
             </div>
+            <!-- --------------------------------------products-------------------------------------- -->
+            <div class="form-group">
+                <label for="products">{{ trans('cruds.fields.product') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('products') ? 'is-invalid' : '' }}" name="products[]" id="products" multiple>
+                    @foreach($products as $id => $product)
+                    <option value="{{ $product->id }}" {{ in_array($id, old('products', [])) ? 'selected' : '' }}>
+                        {{ $product->name }}
+                    </option>
+                    @endforeach
+                </select>
+                @if($errors->has('products'))
+                <span class="text-danger">{{ $errors->first('products') }}</span>
+                @endif
+                <span class="help-block"></span>
+            </div>
             <!------------------------------------------------------>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

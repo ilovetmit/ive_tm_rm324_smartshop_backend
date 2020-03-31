@@ -5,7 +5,7 @@
         {{ trans('global.create') }} {{ trans('cruds.transactionManagement.transaction.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("TransactionManagement.Teansactions.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("TransactionManagement.Transactions.store") }}" enctype="multipart/form-data">
             @csrf
             <!-- ----------------header---------------- -->
             <div class="form-group">

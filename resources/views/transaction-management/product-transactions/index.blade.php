@@ -3,8 +3,8 @@
 @can('product_transaction_create')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("TransactionManagement.Transactions.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.transactionManagement.transaction.title') }}
+        <a class="btn btn-success" href="{{ route("TransactionManagement.ProductTransactions.create") }}">
+            {{ trans('global.add') }} {{ trans('cruds.transactionManagement.product_transaction.title') }}
         </a>
     </div>
 </div>

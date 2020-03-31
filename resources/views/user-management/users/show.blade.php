@@ -205,14 +205,14 @@
         @endif
         @if(!is_null($user->hasInterest)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#devices" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#interests" role="tab" data-toggle="tab">
                 {{ trans('cruds.informationManagement.interest.title') }}
             </a>
         </li>
         @endif
         @if(!is_null($user->hasTransaction)>0)
         <li class="nav-item">
-            <a class="nav-link" href="#devices" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#transactions" role="tab" data-toggle="tab">
                 {{ trans('cruds.transactionManagement.transaction.title') }}
             </a>
         </li>
@@ -225,13 +225,13 @@
         </div>
         @endif
         @if(!is_null($user->hasInterest)>0)
-        <div class="tab-pane" role="tabpanel" id="devices">
+        <div class="tab-pane" role="tabpanel" id="interests">
             @includeIf('relationships.interests', ['interests' => $user->hasInterest])
         </div>
         @endif
         @if(!is_null($user->hasTransaction)>0)
-        <div class="tab-pane" role="tabpanel" id="devices">
-            {{-- @includeIf('relationships.transactions', ['transaction' => $user->hasTransaction]) --}}
+        <div class="tab-pane" role="tabpanel" id="transactions">
+            @includeIf('relationships.transactions', ['transactions' => $user->hasTransaction])
         </div>
         @endif
     </div>

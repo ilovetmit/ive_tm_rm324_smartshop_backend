@@ -37,7 +37,11 @@
                             {{ trans('cruds.fields.current_account') }}
                         </th>
                         <td>
-                            {{ $bankAccount->current_account }}
+                            {{-- $bankAccount->current_account --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $bankAccount->current_account ?? '',
+                            ])
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +49,11 @@
                             {{ trans('cruds.fields.saving_account') }}
                         </th>
                         <td>
-                            {{ $bankAccount->saving_account }}
+                            {{-- $bankAccount->saving_account --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => '$ '. $bankAccount->saving_account ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>

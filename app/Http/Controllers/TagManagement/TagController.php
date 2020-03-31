@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyTagRequest;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use App\Models\AdvertisementManagement\Advertisement;
+use App\Models\ProductManagement\Product;
 use Symfony\Component\HttpFoundation\Response;
 
 class TagController extends Controller
@@ -21,12 +23,16 @@ class TagController extends Controller
 
     public function create()
     {
-        return view('tag-management.tags.create');
+        $products = Product::all()->pluck('name', 'id');
+        $advertisements = Advertisement::all()->pluck('header', 'id');
+        return view('tag-management.tags.create', compact('products', 'advertisements'));
     }
 
     public function store(Request $request)
     {
         $tag = Tag::create($request->all());
+        $tag->hasProduct()->sync($request->input('products', []));
+        $tag->hasAdvertisement()->sync($request->input('advertisements', []));
         return redirect()->route('TagManagement.Tags.index');
     }
 
@@ -38,15 +44,16 @@ class TagController extends Controller
 
     public function edit(Tag $tag)
     {
-        // $permissions = Permission::all()->pluck('name', 'id');
-        // $role->load('hasPermission');
-        return view('tag-management.tags.edit', compact('tag'));
+        $products = Product::all()->pluck('name', 'id');
+        $advertisements = Advertisement::all()->pluck('header', 'id');
+        return view('tag-management.tags.edit', compact('tag', 'products', 'advertisements'));
     }
 
     public function update(Request $request, Tag $tag)
     {
         $tag->update($request->all());
-        // $tag->hasPermission()->sync($request->input('permissions', []));
+        $tag->hasProduct()->sync($request->input('products', []));
+        $tag->hasAdvertisement()->sync($request->input('advertisements', []));
         return redirect()->route('TagManagement.Tags.index');
     }
 
@@ -55,7 +62,7 @@ class TagController extends Controller
         $tag->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyTagRequest $request)
     {
         Tag::whereIn('id', request('ids'))->delete();

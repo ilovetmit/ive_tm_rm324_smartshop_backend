@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-product-Category">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Category">
                     <thead>
                         <tr>
                             <th width="10">
@@ -70,6 +70,6 @@
 'permission_massDestory' => 'category_delete',
 'route' => route('ProductManagement.Categories.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-product-Category'
+'class' => 'datatable-Category'
 ])
 @endsection

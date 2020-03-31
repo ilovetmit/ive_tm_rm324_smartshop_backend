@@ -12,10 +12,9 @@
         <div class="card-header">
             {{ trans('cruds.advertisementManagement.advertisement.title') }} {{ trans('global.list') }}
         </div>
-
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-tag-Advertisement">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Advertisement">
                     <thead>
                         <tr>
                             <th width="10">
@@ -86,13 +85,12 @@
         </div>
     </div>
 </div>
-
 @section('scripts')
 @parent
 @include('module.datatable.massdestory',[
-'permission_massDestory' => 'role_delete',
+'permission_massDestory' => 'advertisement_delete',
 'route' => route('AdvertisementManagement.ad.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-tag-Advertisement'
+'class' => 'datatable-Advertisement'
 ])
 @endsection

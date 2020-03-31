@@ -6,6 +6,7 @@ use App\Models\TransactionManagement\ProductTransaction;
 use App\Models\TransactionManagement\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ProductManagement\Product;
 
 class ProductTransactionController extends Controller
 {
@@ -17,7 +18,9 @@ class ProductTransactionController extends Controller
 
     public function create()
     {
-        return view('transaction-management.product-transactions.create');
+        $transactions = Transaction::all();
+        $products = Product::all();
+        return view('transaction-management.product-transactions.create', compact('products', 'transactions'));
     }
 
     public function store(Request $request)
@@ -35,9 +38,9 @@ class ProductTransactionController extends Controller
 
     public function edit(ProductTransaction $productTransaction)
     {
-        $transactions = Transaction::all()->pluck('id');
-        $productTransaction->load('hasTransaction');
-        return view('transaction-management.product-transactions.edit', compact('transactions', 'productTransaction'));
+        $transactions = Transaction::all();
+        $products = Product::all();
+        return view('transaction-management.product-transactions.edit', compact('products', 'transactions', 'productTransaction'));
     }
 
     public function update(Request $request, ProductTransaction $productTransaction)

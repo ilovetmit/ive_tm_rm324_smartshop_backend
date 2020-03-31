@@ -45,7 +45,11 @@
                             {{ trans('cruds.fields.is_active') }}
                         </th>
                         <td>
-                            {{ $device->is_active }}
+                            {{-- $device->is_active --}}
+                            @include('module.datatable.badge_tag.tag',[
+                            'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
+                            'element' => config('constant.device_isActive')[$device->is_active] ?? '',
+                            ])
                         </td>
                     </tr>
                 </tbody>

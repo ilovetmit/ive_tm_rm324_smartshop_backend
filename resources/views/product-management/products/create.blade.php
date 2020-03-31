@@ -69,14 +69,14 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!-- --------------------------------------tag-------------------------------------- -->
+            <!-- --------------------------------------tags-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="tags">{{ trans('cruds.fields.tag') }}</label>
+                <label for="tags">{{ trans('cruds.fields.tag') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]" id="tags" multiple required>
+                <select class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]" id="tags" multiple>
                     @foreach($tags as $id => $tags)
                     <option value="{{ $id }}" {{ in_array($id, old('tags', [])) ? 'selected' : '' }}>{{ $tags }}</option>
                     @endforeach
@@ -86,14 +86,14 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!-- --------------------------------------category-------------------------------------- -->
+            <!-- --------------------------------------categories-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="categories">{{ trans('cruds.fields.category') }}</label>
+                <label for="categories">{{ trans('cruds.fields.category') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('categories') ? 'is-invalid' : '' }}" name="categories[]" id="categories" multiple required>
+                <select class="form-control select2 {{ $errors->has('categories') ? 'is-invalid' : '' }}" name="categories[]" id="categories" multiple>
                     @foreach($categories as $id => $categories)
                     <option value="{{ $id }}" {{ in_array($id, old('categories', [])) ? 'selected' : '' }}>{{ $categories }}</option>
                     @endforeach
@@ -112,4 +112,11 @@
         </form>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        bsCustomFileInput.init();
+    });
+</script>
 @endsection

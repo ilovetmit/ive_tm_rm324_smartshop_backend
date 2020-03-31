@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-shopProductInventory-Product">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-ShopProductInventory">
                     <thead>
                         <tr>
                             <th width="10">
@@ -74,8 +74,8 @@
 @parent
 @include('module.datatable.massdestory',[
 'permission_massDestory' => 'shop_product_inventory_delete',
-'route' => route('ProductManagement.Products.massDestroy'),
+'route' => route('ProductManagement.ShopProductInventories.massDestroy'),
 'pageLength' => 25,
-'class' => 'datatable-shopProductInventory-Product'
+'class' => 'datatable-ShopProductInventory'
 ])
 @endsection

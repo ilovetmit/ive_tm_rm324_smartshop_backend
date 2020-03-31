@@ -23,22 +23,6 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!---------------------------district--------------------------->
-            <div class="form-group">
-                <label class="required" for="district">{{ trans('cruds.fields.district') }}</label>
-                <select class="form-control select2 {{ $errors->has('district') ? 'is-invalid' : '' }}" name="district" id="district" required>
-                    <option value disabled {{ old('district', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.address_district') as $key => $label)
-                    <option value="{{ $key }}" {{ old('district', '') === (string) $key ? 'selected' : '' }}>
-                        {{ $label }}
-                    </option>
-                    @endforeach
-                </select>
-                @if($errors->has('district'))
-                <span class="text-danger">{{ $errors->first('district') }}</span>
-                @endif
-                <span class="help-block"></span>
-            </div>
             <!---------------------------address1--------------------------->
             <div class="form-group">
                 <label class="required" for="address1">{{ trans('cruds.fields.address1') }}</label>
@@ -54,6 +38,22 @@
                 <input class="form-control {{ $errors->has('address2') ? 'is-invalid' : '' }}" type="text" name="address2" id="address2" value="{{ old('address2', '') }}" required>
                 @if($errors->has('address2'))
                 <span class="text-danger">{{ $errors->first('address2') }}</span>
+                @endif
+                <span class="help-block"></span>
+            </div>
+            <!---------------------------district--------------------------->
+            <div class="form-group">
+                <label class="required" for="district">{{ trans('cruds.fields.district') }}</label>
+                <select class="form-control select2 {{ $errors->has('district') ? 'is-invalid' : '' }}" name="district" id="district" required>
+                    <option value disabled {{ old('district', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(config('constant.address_district') as $key => $label)
+                    <option value="{{ $key }}" {{ old('district', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </select>
+                @if($errors->has('district'))
+                <span class="text-danger">{{ $errors->first('district') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>

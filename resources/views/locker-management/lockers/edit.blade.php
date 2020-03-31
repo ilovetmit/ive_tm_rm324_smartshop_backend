@@ -21,7 +21,7 @@
             <!---------------------------per_hour_price--------------------------->
             <div class="form-group">
                 <label class="required" for="per_hour_price">{{ trans('cruds.fields.per_hour_price') }}</label>
-                <input class="form-control {{ $errors->has('per_hour_price') ? 'is-invalid' : '' }}" type="text" name="per_hour_price" id="per_hour_price" value="{{ old('per_hour_price', $locker->per_hour_price) }}" required>
+                <input class="form-control {{ $errors->has('per_hour_price') ? 'is-invalid' : '' }}" type="number" name="per_hour_price" id="per_hour_price" value="{{ old('per_hour_price', $locker->per_hour_price) }}" required>
                 @if($errors->has('per_hour_price'))
                 <span class="text-danger">{{ $errors->first('per_hour_price') }}</span>
                 @endif
@@ -67,7 +67,7 @@
             </div>
         </form>
     </div>
-</div>s
+</div>
 @endsection
 @section('scripts')
 <script type="text/javascript">

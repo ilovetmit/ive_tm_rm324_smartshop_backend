@@ -1,20 +1,19 @@
-@extends('layouts.admin')
-@section('content')
-@can('transaction_create')
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("TransactionManagement.Transactions.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.transactionManagement.transaction.title') }}
-        </a>
+<div class="m-3">
+    @can('transaction_create')
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route("TransactionManagement.Transactions.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.transactionManagement.transaction.title') }}
+            </a>
+        </div>
     </div>
-</div>
-@endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('cruds.transactionManagement.transaction.title') }} {{ trans('global.list') }}
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
+    @endcan
+    <div class="card">
+        <div class="card-header">
+            {{ trans('cruds.advertisementManagement.advertisement.title') }} {{ trans('global.list') }}
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
             <table class=" table table-bordered table-striped table-hover datatable datatable-Transaction">
                 <thead>
                     <tr>
@@ -26,9 +25,6 @@
                         </th>
                         <th>
                             {{ trans('cruds.fields.header') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.fields.user') }}
                         </th>
                         <th>
                             {{ trans('cruds.fields.amount') }}
@@ -52,12 +48,6 @@
                         </td>
                         <td>
                             {{ $transaction->header ?? '' }}
-                        </td>
-                        <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => $transaction->hasUser->id . ". " . $transaction->hasUser->getFullNameAttribute() ?? '',
-                            ])
                         </td>
                         <td>
                             @include('module.datatable.badge_tag.tag',[
@@ -94,11 +84,12 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>
-@endsection
 @section('scripts')
+@parent
 @include('module.datatable.massdestory',[
 'permission_massDestory' => 'transaction_delete',
 'route' => route('TransactionManagement.Transactions.massDestroy'),

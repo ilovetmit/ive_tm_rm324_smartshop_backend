@@ -22,14 +22,14 @@ class CategoryController extends Controller
 
     public function create()
     {
-        // $products = Product::all()->pluck('name', 'id');
+        $products = Product::all();
         return view('product-management.categories.create', compact('products'));
     }
 
     public function store(Request $request)
     {
         $category = Category::create($request->all());
-        // $category->hasProduct()->sync($request->input('product', []));
+        $category->hasProduct()->sync($request->input('products', []));
         return redirect()->route('ProductManagement.Categories.index');
     }
 
@@ -41,15 +41,15 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        // $transactions = Transaction::all()->pluck('id');
-        // $product->load('hasTransaction');
-        return view('product-management.categories.edit', compact('category'));
+        $products = Product::all()->pluck('name', 'id');
+        $category->load('hasProduct');
+        return view('product-management.categories.edit', compact('category', 'products'));
     }
 
     public function update(Request $request, Category $category)
     {
         $category->update($request->all());
-        // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
+        $category->hasProduct()->sync($request->input('products', []));
         return redirect()->route('ProductManagement.Categories.index');
     }
 

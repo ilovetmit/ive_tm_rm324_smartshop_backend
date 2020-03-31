@@ -58,7 +58,7 @@
             <div class="form-group">
                 <label class="required" for="status">{{ trans('cruds.fields.status') }}</label>
                 <select class="form-control select {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
-                    <option value disabled {{ old('status', $user->status) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    <option value disabled {{ old('status', $product->status) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.product_status_form') as $key => $label)
                     <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
@@ -70,16 +70,16 @@
                 @endif
                 <span class="help-block"></span>
             </div>
-            <!-------------------------------------tag------------------------------------->
+            <!-------------------------------------tags------------------------------------->
             <div class="form-group">
-                <label class="required" for="tags">{{ trans('cruds.fields.role') }}</label>
+                <label for="tags">{{ trans('cruds.fields.tag') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]" id="tags" multiple required>
+                <select class="form-control select2 {{ $errors->has('tags') ? 'is-invalid' : '' }}" name="tags[]" id="tags" multiple>
                     @foreach($tags as $id => $tags)
-                    <option value="{{ $id }}" {{ (in_array($id, old('tags', [])) || $user->hasTags->contains($id)) ? 'selected' : '' }}>{{ $tags }}</option>
+                    <option value="{{ $id }}" {{ (in_array($id, old('tags', [])) || $product->hasTag->contains($id)) ? 'selected' : '' }}>{{ $tags }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('tags'))
@@ -89,14 +89,14 @@
             </div>
             <!-------------------------------------category------------------------------------->
             <div class="form-group">
-                <label class="required" for="categories">{{ trans('cruds.fields.role') }}</label>
+                <label for="categories">{{ trans('cruds.fields.category') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('categories') ? 'is-invalid' : '' }}" name="categories[]" id="categories" multiple required>
+                <select class="form-control select2 {{ $errors->has('categories') ? 'is-invalid' : '' }}" name="categories[]" id="categories" multiple>
                     @foreach($categories as $id => $categories)
-                    <option value="{{ $id }}" {{ (in_array($id, old('categories', [])) || $user->hasCategory->contains($id)) ? 'selected' : '' }}>{{ $categories }}</option>
+                    <option value="{{ $id }}" {{ (in_array($id, old('categories', [])) || $product->hasCategory->contains($id)) ? 'selected' : '' }}>{{ $categories }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('categories'))
@@ -113,4 +113,11 @@
         </form>
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
 @endsection

@@ -89,7 +89,7 @@
     <div class="tab-content">
         @if(!is_null($locker->hasLockerTransaction)>0)
         <div class="tab-pane" role="tabpanel" id="lockerTransactions">
-            @includeIf('relationships.locker-transactions', ['locker_transactions' => $locker->hasLockerTransaction])
+            @includeIf('relationships.locker-transactions', ['lockerTransactions' => $locker->hasLockerTransaction])
         </div>
         @endif
     </div>

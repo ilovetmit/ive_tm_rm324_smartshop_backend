@@ -2,10 +2,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.userManagement.user.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.transactionManagement.product_transaction.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("UserManagement.Users.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("TransactionManagement.ProductTransactions.store") }}" enctype="multipart/form-data">
             @csrf
             <!-- -----------------------transaction_id----------------------- -->
             <div class="form-group">
@@ -42,7 +42,7 @@
             <!-- -----------------------quantity----------------------- -->
             <div class="form-group">
                 <label class="required" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
-                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="text" name="quantity" id="quantity" value="{{ old('quantity') }}" required>
+                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity') }}" required>
                 @if($errors->has('quantity'))
                 <span class="text-danger">{{ $errors->first('quantity') }}</span>
                 @endif

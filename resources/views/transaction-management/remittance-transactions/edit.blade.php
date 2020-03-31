@@ -31,7 +31,7 @@
                     <option value disabled {{ old('payee_id', $remittanceTransaction->payee_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
                     <option value="{{ $user->id }}" {{ old('payee_id', '') === (string) $key ? 'selected' : '' }}>
-                        {{ $user->id . $user->name }}
+                        {{ $user->id . $user->getFullNameAttribute() }}
                     </option>
                     @endforeach
                 </select>

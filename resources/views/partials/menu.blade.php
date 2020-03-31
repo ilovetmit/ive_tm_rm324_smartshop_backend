@@ -85,22 +85,22 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        @can('bank_account_access')
-                        <li class="nav-item">
-                            <a href="{{ route("InformationManagement.BankAccounts.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/BankAccount*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-unlock-alt"></i>
-                                <p>
-                                    <span>{{ trans('cruds.informationManagement.bank_account.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
                         @can('address_access')
                         <li class="nav-item">
                             <a href="{{ route("InformationManagement.Addresses.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/Addresses*') ? 'active' : '' }}">
                                 <i class="fa-fw fas fa-unlock-alt"></i>
                                 <p>
                                     <span>{{ trans('cruds.informationManagement.address.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('bank_account_access')
+                        <li class="nav-item">
+                            <a href="{{ route("InformationManagement.BankAccounts.index") }}" class="nav-link {{ request()->is('SmartShop/InformationManagement/BankAccount*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-unlock-alt"></i>
+                                <p>
+                                    <span>{{ trans('cruds.informationManagement.bank_account.title_s') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -139,6 +139,208 @@
                 </li>
                 @endcan
                 <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!-- LockerManagement -->
+                @can('locker_management_access')
+                <li class="nav-item">
+                    <a href="{{ route("LockerManagement.Lockers.index") }}" class="nav-link {{ request()->is('SmartShop/LockerManagement/Lockers*') ? 'active' : '' }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <p>
+                            <span>{{ trans('cruds.lockerManagement.locker.title_s') }}</span>
+                        </p>
+                    </a>
+                </li>
+                @endcan
+                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!-- TransactionManagement -->
+                @can('transaction_management_access')
+                <li class="nav-item has-treeview {{ request()->is('SmartShop/TransactionManagement*') ? 'menu-open' : '' }}">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                        <i class="fa-fw fas fa-users"></i>
+                        <p>
+                            <span>{{ trans('cruds.transactionManagement.title') }}</span>
+                            <i class="right fa fa-fw fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('transaction_access')
+                        <li class="nav-item">
+                            <a href="{{ route("TransactionManagement.Transactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/Transactions*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-unlock-alt"></i>
+                                <p>
+                                    <span>{{ trans('cruds.transactionManagement.transaction.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('locker_transaction_access')
+                        <li class="nav-item">
+                            <a href="{{ route("TransactionManagement.LockerTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/LockerTransactions*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-user"></i>
+                                <p>
+                                    <span>{{ trans('cruds.transactionManagement.locker_transaction.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('product_transaction_access')
+                        <li class="nav-item">
+                            <a href="{{ route("TransactionManagement.ProductTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/ProductTransactions*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-user"></i>
+                                <p>
+                                    <span>{{ trans('cruds.transactionManagement.product_transaction.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('remittance_transaction_access')
+                        <li class="nav-item">
+                            <a href="{{ route("TransactionManagement.RemittanceTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/RemittanceTransactions*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-briefcase"></i>
+                                <p>
+                                    <span>{{ trans('cruds.transactionManagement.remittance_transaction.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!-- AdvertisementManagement -->
+                @can('advertisement_management_access')
+                <li class="nav-item">
+                    <a href="{{ route("AdvertisementManagement.ad.index") }}" class="nav-link {{ request()->is('SmartShop/AdvertisementManagement/ad*') ? 'active' : '' }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <p>
+                            <span>{{ trans('cruds.advertisementManagement.advertisement.title_s') }}</span>
+                        </p>
+                    </a>
+                </li>
+                @endcan
+                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!-- TagManagement -->
+                @can('tag_management_access')
+                <li class="nav-item">
+                    <a href="{{ route("TagManagement.Tags.index") }}" class="nav-link {{ request()->is('SmartShop/TagManagement/Tags*') ? 'active' : '' }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <p>
+                            <span>{{ trans('cruds.tagManagement.tag.title_s') }}</span>
+                        </p>
+                    </a>
+                </li>
+                @endcan
+                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!-- ProductionManagement -->
+                @can('product_management_access')
+                <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement*') ? 'menu-open' : '' }}">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                        <i class="fa-fw fas fa-users"></i>
+                        <p>
+                            <span>{{ trans('cruds.productManagement.title') }}</span>
+                            <i class="right fa fa-fw fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('category_access')
+                        <li class="nav-item">
+                            <a href="{{ route("ProductManagement.Categories.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/Categories*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-briefcase"></i>
+                                <p>
+                                    <span>{{ trans('cruds.productManagement.category.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                        @canany(['led_access', 'shop_product_access', 'shop_product_inventory_access'])
+                        <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement/OnSell*') ? 'menu-open' : '' }}">
+                            <a class="nav-link nav-dropdown-toggle" href="#">
+                                <i class="fa-fw fas fa-users"></i>
+                                <p>
+                                    <span>{{ trans('cruds.productManagement.sub_title_on_sell_product') }}</span>
+                                    <i class="right fa fa-fw fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @can('led_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("ProductManagement.LEDs.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/LEDs*') ? 'active' : '' }}">
+                                        <i class="fa-fw fas fa-user"></i>
+                                        <p>
+                                            <span>{{ trans('cruds.productManagement.led.title_s') }}</span>
+                                        </p>
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('shop_product_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("ProductManagement.ShopProducts.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/ShopProducts*') ? 'active' : '' }}">
+                                        <i class="fa-fw fas fa-briefcase"></i>
+                                        <p>
+                                            <span>{{ trans('cruds.productManagement.shop_product.title_s') }}</span>
+                                        </p>
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('shop_product_inventory_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("ProductManagement.ShopProductInventories.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/ShopProductInventories*') ? 'active' : '' }}">
+                                        <i class="fa-fw fas fa-user"></i>
+                                        <p>
+                                            <span>{{ trans('cruds.productManagement.shop_product_inventory.title_s') }}</span>
+                                        </p>
+                                    </a>
+                                </li>
+                                @endcan
+                            </ul>
+                        </li>
+                        @endcanany
+                        @can('product_access')
+                        <li class="nav-item">
+                            <a href="{{ route("ProductManagement.Products.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/Products*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-unlock-alt"></i>
+                                <p>
+                                    <span>{{ trans('cruds.productManagement.product.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('product_wall_access')
+                        <li class="nav-item">
+                            <a href="{{ route("ProductManagement.ProductWalls.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/ProductWalls*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-user"></i>
+                                <p>
+                                    <span>{{ trans('cruds.productManagement.product_wall.title_s') }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('vending_product_access')
+                        <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement/VendingMachine*') ? 'menu-open' : '' }}">
+                            <a class="nav-link nav-dropdown-toggle" href="#">
+                                <i class="fa-fw fas fa-users"></i>
+                                <p>
+                                    <span>{{ trans('cruds.productManagement.sub_title_vending_machine') }}</span>
+                                    <i class="right fa fa-fw fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @can('vending_product_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("ProductManagement.VendingProducts.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/VendingMachine/VendingProducts*') ? 'active' : '' }}">
+                                        <i class="fa-fw fas fa-user"></i>
+                                        <p>
+                                            <span>{{ trans('cruds.productManagement.vending_product.title_s') }}</span>
+                                        </p>
+                                    </a>
+                                </li>
+                                @endcan
+                            </ul>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
                 <!-- SmartBankManagement -->
                 @can('smart_bank_management_access')
                 <li class="nav-item has-treeview {{ request()->is('SmartShop/SmartBankManagement*') ? 'menu-open' : '' }}">
@@ -171,206 +373,6 @@
                         </li>
                         @endcan
                     </ul>
-                </li>
-                @endcan
-                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
-                <!-- ProductionManagement -->
-                @can('product_management_access')
-                <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement*') ? 'menu-open' : '' }}">
-                    <a class="nav-link nav-dropdown-toggle" href="#">
-                        <i class="fa-fw fas fa-users"></i>
-                        <p>
-                            <span>{{ trans('cruds.productManagement.title') }}</span>
-                            <i class="right fa fa-fw fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @can('vending_product_access')
-                        <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement/VendingMachine*') ? 'menu-open' : '' }}">
-                            <a class="nav-link nav-dropdown-toggle" href="#">
-                                <i class="fa-fw fas fa-users"></i>
-                                <p>
-                                    <span>{{ trans('cruds.productManagement.sub_title_vending_machine') }}</span>
-                                    <i class="right fa fa-fw fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @can('vending_product_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("ProductManagement.VendingProducts.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/VendingMachine/VendingProducts*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-user"></i>
-                                        <p>
-                                            <span>{{ trans('cruds.productManagement.vending_product.title_s') }}</span>
-                                        </p>
-                                    </a>
-                                </li>
-                                @endcan
-                            </ul>
-                        </li>
-                        @endcan
-                        <li class="nav-item has-treeview {{ request()->is('SmartShop/ProductManagement/OnSell*') ? 'menu-open' : '' }}">
-                            <a class="nav-link nav-dropdown-toggle" href="#">
-                                <i class="fa-fw fas fa-users"></i>
-                                <p>
-                                    <span>{{ trans('cruds.productManagement.sub_title_on_sell_product') }}</span>
-                                    <i class="right fa fa-fw fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @can('vending_product_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("ProductManagement.ShopProducts.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/ShopProducts*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-briefcase"></i>
-                                        <p>
-                                            <span>{{ trans('cruds.productManagement.shop_product.title_s') }}</span>
-                                        </p>
-                                    </a>
-                                </li>
-                                @endcan
-                                @can('led_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("ProductManagement.LEDs.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/LEDs*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-user"></i>
-                                        <p>
-                                            <span>{{ trans('cruds.productManagement.led.title_s') }}</span>
-                                        </p>
-                                    </a>
-                                </li>
-                                @endcan
-                                @can('shop_product_inventory_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("ProductManagement.ShopProductInventories.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/OnSell/ShopProductInventories*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-user"></i>
-                                        <p>
-                                            <span>{{ trans('cruds.productManagement.shop_product_inventory.title_s') }}</span>
-                                        </p>
-                                    </a>
-                                </li>
-                                @endcan
-                            </ul>
-                        </li>
-                        @can('product_access')
-                        <li class="nav-item">
-                            <a href="{{ route("ProductManagement.Products.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/Products*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-unlock-alt"></i>
-                                <p>
-                                    <span>{{ trans('cruds.productManagement.product.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('category_access')
-                        <li class="nav-item">
-                            <a href="{{ route("ProductManagement.Categories.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/Categories*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-briefcase"></i>
-                                <p>
-                                    <span>{{ trans('cruds.productManagement.category.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('product_wall_access')
-                        <li class="nav-item">
-                            <a href="{{ route("ProductManagement.ProductWalls.index") }}" class="nav-link {{ request()->is('SmartShop/ProductManagement/ProductWalls*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-user"></i>
-                                <p>
-                                    <span>{{ trans('cruds.productManagement.product_wall.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
-                    </ul>
-                </li>
-                @endcan
-                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
-                <!-- TransactionManagement -->
-                @can('transaction_management_access')
-                <li class="nav-item has-treeview {{ request()->is('SmartShop/TransactionManagement*') ? 'menu-open' : '' }}">
-                    <a class="nav-link nav-dropdown-toggle" href="#">
-                        <i class="fa-fw fas fa-users"></i>
-                        <p>
-                            <span>{{ trans('cruds.transactionManagement.title') }}</span>
-                            <i class="right fa fa-fw fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @can('transaction_access')
-                        <li class="nav-item">
-                            <a href="{{ route("TransactionManagement.Transactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/Transactions*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-unlock-alt"></i>
-                                <p>
-                                    <span>{{ trans('cruds.transactionManagement.transaction.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('remittance_transaction_access')
-                        <li class="nav-item">
-                            <a href="{{ route("TransactionManagement.RemittanceTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/RemittanceTransactions*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-briefcase"></i>
-                                <p>
-                                    <span>{{ trans('cruds.transactionManagement.remittance_transaction.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('product_transaction_access')
-                        <li class="nav-item">
-                            <a href="{{ route("TransactionManagement.ProductTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/ProductTransactions*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-user"></i>
-                                <p>
-                                    <span>{{ trans('cruds.transactionManagement.product_transaction.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('locker_transaction_access')
-                        <li class="nav-item">
-                            <a href="{{ route("TransactionManagement.LockerTransactions.index") }}" class="nav-link {{ request()->is('SmartShop/TransactionManagement/LockerTransactions*') ? 'active' : '' }}">
-                                <i class="fa-fw fas fa-user"></i>
-                                <p>
-                                    <span>{{ trans('cruds.transactionManagement.locker_transaction.title_s') }}</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endcan
-                    </ul>
-                </li>
-                @endcan
-                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
-                <!-- TagManagement -->
-                @can('tag_management_access')
-                <li class="nav-item">
-                    <a href="{{ route("TagManagement.Tags.index") }}" class="nav-link {{ request()->is('SmartShop/TagManagement/Tags*') ? 'active' : '' }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <p>
-                            <span>{{ trans('cruds.tagManagement.tag.title_s') }}</span>
-                        </p>
-                    </a>
-                </li>
-                @endcan
-                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
-                <!-- AdvertisementManagement -->
-                @can('advertisement_management_access')
-                <li class="nav-item">
-                    <a href="{{ route("AdvertisementManagement.ad.index") }}" class="nav-link {{ request()->is('SmartShop/AdvertisementManagement/ad*') ? 'active' : '' }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <p>
-                            <span>{{ trans('cruds.advertisementManagement.advertisement.title_s') }}</span>
-                        </p>
-                    </a>
-                </li>
-                @endcan
-                <!----------------------------------------------------------------------------------------------------------------------------------------------------->
-                <!-- LockerManagement -->
-                @can('locker_management_access')
-                <li class="nav-item">
-                    <a href="{{ route("LockerManagement.Lockers.index") }}" class="nav-link {{ request()->is('SmartShop/LockerManagement/Lockers*') ? 'active' : '' }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <p>
-                            <span>{{ trans('cruds.lockerManagement.locker.title_s') }}</span>
-                        </p>
-                    </a>
                 </li>
                 @endcan
                 <!----------------------------------------------------------------------------------------------------------------------------------------------------->

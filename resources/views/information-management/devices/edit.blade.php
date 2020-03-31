@@ -8,15 +8,6 @@
         <form method="POST" action="{{ route("InformationManagement.Devices.update", [$device->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <!---------------------------token--------------------------->
-            <div class="form-group">
-                <label class="required" for="token">{{ trans('cruds.fields.token') }}</label>
-                <input class="form-control {{ $errors->has('token') ? 'is-invalid' : '' }}" type="text" name="token" id="token" value="{{ old('token', $device->token) }}" required>
-                @if($errors->has('token'))
-                <span class="text-danger">{{ $errors->first('token') }}</span>
-                @endif
-                <span class="help-block"></span>
-            </div>
             <!-------------------------------------user_id------------------------------------->
             <div class="form-group">
                 <label class="required" for="user_id">{{ trans('cruds.fields.user_id') }}</label>
@@ -30,6 +21,15 @@
                 </select>
                 @if($errors->has('user_id'))
                 <span class="text-danger">{{ $errors->first('user_id') }}</span>
+                @endif
+                <span class="help-block"></span>
+            </div>
+            <!---------------------------token--------------------------->
+            <div class="form-group">
+                <label class="required" for="token">{{ trans('cruds.fields.token') }}</label>
+                <input class="form-control {{ $errors->has('token') ? 'is-invalid' : '' }}" type="text" name="token" id="token" value="{{ old('token', $device->token) }}" required>
+                @if($errors->has('token'))
+                <span class="text-danger">{{ $errors->first('token') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>
