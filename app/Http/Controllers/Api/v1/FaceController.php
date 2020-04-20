@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Redis;
 class FaceController extends ApiController
 {
     public function face_scan(Request $request){
-
         // todo face test
         try {
             if (!$request->user_id) {

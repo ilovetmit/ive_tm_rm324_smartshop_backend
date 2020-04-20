@@ -11,7 +11,7 @@ $factory->define(Device::class, function (Faker $faker) {
     $is_active = $faker->randomElement(['1', '2']);
     return [
         'token'       => 'testToken',
-        'user_id'     => $faker->randomElement($user_id),
+        'user_id'     => $faker->randomElement($user_id), 
         'is_active'   => $is_active,
     ];
 });
