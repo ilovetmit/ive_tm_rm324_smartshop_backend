@@ -18,14 +18,15 @@ class ShopProductInventoryController extends Controller
 {
     public function index()
     {
-        $shopProducts = ShopProduct::all();
-        return view('product-management.on-sell.shop-product-inventories.index', compact('shopProducts'));
+        $shopProductInventories = ShopProductInventory::all();
+        return view('product-management.on-sell.shop-product-inventories.index', compact('shopProductInventories'));
     }
 
     public function create()
     {
+        $shopProductInventories = ShopProductInventory::all();
         $shopProducts = ShopProduct::all();
-        return view('product-management.on-sell.shop-product-inventories.create', compact('products', 'shopProducts'));
+        return view('product-management.on-sell.shop-product-inventories.create', compact('shopProducts', 'shopProductInventories'));
     }
 
     public function store(Request $request)
@@ -76,7 +77,8 @@ class ShopProductInventoryController extends Controller
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-        $shopProductInventory = ShopProductInventory::create($data);
+        $shopProductInventory->update($request->all());
+        // $shopProductInventory = ShopProductInventory::create($data);
         // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
         return redirect()->route('ProductManagement.ShopProductInventories.index');
     }
