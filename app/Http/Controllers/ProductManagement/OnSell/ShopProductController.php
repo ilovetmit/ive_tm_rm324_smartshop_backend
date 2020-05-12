@@ -73,9 +73,7 @@ class ShopProductController extends Controller
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-        // $user->update($data);
-        $shopProduct->update($request->all());
-        // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
+        $shopProduct->update($data);
         return redirect()->route('ProductManagement.ShopProducts.index');
     }
 

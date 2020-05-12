@@ -58,7 +58,6 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        // $transactions = Transaction::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
         $tags = Tag::all()->pluck('name', 'id');
         return view('product-management.products.edit', compact('product', 'tags', 'categories'));

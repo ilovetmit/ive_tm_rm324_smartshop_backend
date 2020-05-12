@@ -2,10 +2,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.informationManagement.device.title') }}
+        {{ trans('global.create') }} {{ trans('cruds.informationManagement.bank_account.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("InformationManagement.Devices.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("InformationManagement.BankAccounts.store") }}" enctype="multipart/form-data">
             @csrf
             <!---------------------------user_id--------------------------->
             <div class="form-group">
@@ -26,7 +26,7 @@
             <!---------------------------current_account--------------------------->
             <div class="form-group">
                 <label class="required" for="current_account">{{ trans('cruds.fields.current_account') }}</label>
-                <input class="form-control date {{ $errors->has('current_account') ? 'is-invalid' : '' }}" type="number" name="current_account" id="current_account" value="{{ old('current_account') }}" required>
+                <input class="form-control {{ $errors->has('current_account') ? 'is-invalid' : '' }}" type="number" name="current_account" id="current_account" value="{{ old('current_account') }}" required>
                 @if($errors->has('current_account'))
                 <span class="text-danger">{{ $errors->first('current_account') }}</span>
                 @endif
@@ -35,7 +35,7 @@
             <!---------------------------saving_account--------------------------->
             <div class="form-group">
                 <label class="required" for="saving_account">{{ trans('cruds.fields.saving_account') }}</label>
-                <input class="form-control date {{ $errors->has('saving_account') ? 'is-invalid' : '' }}" type="number" name="saving_account" id="saving_account" value="{{ old('saving_account') }}" required>
+                <input class="form-control {{ $errors->has('saving_account') ? 'is-invalid' : '' }}" type="number" name="saving_account" id="saving_account" value="{{ old('saving_account') }}" required>
                 @if($errors->has('saving_account'))
                 <span class="text-danger">{{ $errors->first('saving_account') }}</span>
                 @endif

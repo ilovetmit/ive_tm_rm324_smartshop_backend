@@ -78,8 +78,6 @@ class ShopProductInventoryController extends Controller
             }
         }
         $shopProductInventory->update($request->all());
-        // $shopProductInventory = ShopProductInventory::create($data);
-        // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
         return redirect()->route('ProductManagement.ShopProductInventories.index');
     }
 
