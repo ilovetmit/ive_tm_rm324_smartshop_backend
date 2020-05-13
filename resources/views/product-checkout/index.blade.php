@@ -6,8 +6,7 @@
     <link rel="shortcut icon" href="{{asset('images/S-Shop_logo.png')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <style>
         @media (min-width: 1300px) {
             .container {
@@ -83,7 +82,7 @@
         </div>
     </div>
     <div class="row">
-        <button id="confirm_button" type="button" class="btn btn-secondary text-light m-auto w-25">Confirm</button>
+        <button id="confirm_button" type="button" class="btn btn-secondary text-light m-auto w-25" disabled>Confirm</button>
     </div>
 </div>
 
@@ -142,6 +141,8 @@
 
 
 <script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script>
     var product_rfid_list = [];
     var product_list = [];
@@ -153,6 +154,10 @@
 
     $('#confirm_button').click(function () {
         if (product_rfid_list.length > 0) {
+
+            $('#confirm_button').prop('disabled', true);
+            $('#confirm_button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
+
             $('#totalamount_modal').text('HKD ' + totalamount.toFixed(2));
             var productJSONText = JSON.stringify(product_list);
             $.ajax({
@@ -170,14 +175,24 @@
                         countdown();
                         $("#qrcode_img").attr("src", qrcode_img+data.data);
                         $('#confirm_modal').modal('show');
+
+                        $('#confirm_button').prop('disabled', false);
+                        $('#confirm_button').html('Confirm');
+
                     } else {
                         console.log(xhr.status);
                         $('#fail_modal').modal('show');
+
+                        $('#confirm_button').prop('disabled', false);
+                        $('#confirm_button').html('Confirm');
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     console.log(textStatus);
                     $('#fail_modal').modal('show');
+
+                    $('#confirm_button').prop('disabled', false);
+                    $('#confirm_button').html('Confirm');
                 }
             });
 
@@ -190,6 +205,7 @@
             // console.log(e.data);
             // console.log(e.data.has_shop_product.has_product);
             if (!product_rfid_list.includes(e.data.rfid_code)) {
+                $('#confirm_button').prop('disabled', false);
                 $("#confirm_button").removeClass("btn-secondary");
                 $("#confirm_button").addClass("btn-success");
 
@@ -228,6 +244,7 @@
         });
         $('#totalamount').text('HKD ' + totalamount.toFixed(2));
         if (product_list.length === 0) {
+            $('#confirm_button').prop('disabled', true);
             $("#confirm_button").addClass("btn-secondary");
             $("#confirm_button").removeClass("btn-success");
         }
@@ -253,7 +270,7 @@
         cddisplay();
         if (count === 0) {
             // time is up
-            $('#confirm_modal').modal('toggle');
+            $('#confirm_modal').modal('hide');
         } else {
             count--;
             t = setTimeout(countdown, 1000);
