@@ -13,3 +13,5 @@ yarn-error.log
 
 \.idea/
 laravel-echo-server.json
+
+dump.rdb

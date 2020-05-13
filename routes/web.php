@@ -120,4 +120,5 @@ Route::group(['middleware' => ['auth']], function () {
  ***********************************************/
 Route::group(['prefix' => 'ProductCheckout', 'as' => 'ProductCheckout.', 'namespace' => 'ProductCheckout'], function () {
     Route::get('/', 'ProductCheckoutController@index')->name('index');
+    Route::post('checkout_temp','ProductCheckoutController@checkout_temp')->name('checkout_temp');
 });

@@ -18,6 +18,10 @@ class RFIDController extends ApiController {
 
             $rfid = $request->rfid;
             if($rfid = ShopProductInventory::with('hasShopProduct','hasShopProduct.hasProduct')->where('rfid_code', $rfid)->first()) {
+                if($rfid->is_sold!=1){ //todo Confirm is_sold data dictionary
+                    return parent::sendError('The product cannot be purchased', 215);
+                }
+
                 // todo update image link
                 $rfid->hasShopProduct->hasProduct->image = asset($rfid->hasShopProduct->hasProduct->image);
 
