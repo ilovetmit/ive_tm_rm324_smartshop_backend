@@ -31,4 +31,8 @@ class FaceController extends ApiController
             return parent::sendError($e->getMessage(), 216);
         }
     }
+
+    public function get_face_list(){
+//        todo get user face image folder list
+    }
 }

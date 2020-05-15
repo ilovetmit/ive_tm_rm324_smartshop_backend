@@ -37,7 +37,9 @@
                             {{ trans('cruds.fields.rfid_code') }}
                         </th>
                         <td>
+                            {{-- todo what is this image?--}}
                             <img src="{{ asset('storage/shop_product_inventory/rfid_code/'.$shopProductInventory->rfid_code) }}" width="150px">
+                            {{$shopProductInventory->rfid_code}}
                         </td>
                     </tr>
                     <tr>

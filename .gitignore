@@ -12,3 +12,8 @@ npm-debug.log
 yarn-error.log
 
 \.idea/
+laravel-echo-server.json
+
+dump.rdb
+
+laravel-echo-server.lock

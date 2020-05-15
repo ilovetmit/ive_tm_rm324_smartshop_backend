@@ -14,7 +14,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    You are logged in!
+                    <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">Product Checkout</a>
                 </div>
             </div>
 
