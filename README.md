@@ -20,6 +20,10 @@ php artisan passport:install
 php artisan serve
 ```
 
+# Login
+admin@admin.com | password | $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+user@user.com   | password | $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+
 # Publish UpGrade
 https://huanxiang.codes/smart-shop
 # git pull smart shop repo
