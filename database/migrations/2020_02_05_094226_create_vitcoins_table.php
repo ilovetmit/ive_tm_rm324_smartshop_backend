@@ -16,7 +16,7 @@ class CreateVitcoinsTable extends Migration
         Schema::create('vitcoins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')                     ->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('address');
             $table->text('primary_key');
             $table->timestamps();
