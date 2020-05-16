@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.productManagement.sub_title_1.title') }}
+        {{ trans('global.edit') }} {{ trans('cruds.productManagement.product.title') }}
     </div>
     <div class="card-body">
         <form method="POST" action="{{ route("ProductManagement.Products.update", [$product->id]) }}" enctype="multipart/form-data">

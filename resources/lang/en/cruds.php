@@ -192,6 +192,6 @@ return [
         'saving_account'    => 'Saving Account',
         'transaction_type'  => 'Transaction Type',
         'payee_id'          => 'Payee',
-
+        'advertisement'     => 'Advertisement',
     ],
 ];
