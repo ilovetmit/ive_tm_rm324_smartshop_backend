@@ -76,8 +76,9 @@ return [
     ],
 
     'transaction_currency' => [
-        '1' => 'Cash',
-        '2' => 'VITcoin',
+        '0' => 'Current',
+        '1' => 'Saving',
+        '2' => 'Vitcoin',
     ],
 
     'locker_isActive' => [

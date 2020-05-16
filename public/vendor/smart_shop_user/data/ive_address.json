@@ -1,0 +1,24 @@
+[
+    {
+        "_id": "59c0c8e33b1527bfe2abaf92",
+        "index": 0,
+        "guid": "53178f64-9f01-4394-b9f1-4f2f83bb5924",
+        "isActive": true,
+        "icon": "http://placehold.it/32x32",
+        "logo": "http://placehold.it/32x32",
+        "image": "http://tmintra.stu.vtc.edu.hk/image/yc.jpg",
+        "link": "detail.html",
+        "url": "#",
+        "name": "Hong Kong Institute of Vocational Education (Tuen Mun)",
+        "email": "tm-cs@vtc.edu.hk",
+        "phone": "+852 2463 0066",
+        "address": "18 Tsing Wun Road, Tuen Mun, New Territories",
+        "about": "Located on a 2.4-hectare site adjacent to the Tuen Mun Town Centre, IVE (Tuen Mun) is equipped with facilities to provide simulated working environment, including Image Gallery and Hair Studio, Moot Court of Centre for Legal and Administrative Practices, Centre for Accounting Services and Training, Construction Material & Science Laboratory, and Audio and Video Production Rooms.\r\n",
+        "latitude": 22.3930672,
+        "longitude": 113.9664712,
+        "tags": [
+            "ive",
+            "tm"
+        ]
+    }
+]

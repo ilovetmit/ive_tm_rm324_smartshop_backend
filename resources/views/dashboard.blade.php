@@ -1,163 +1,173 @@
 @extends('layouts.admin')
 @section('content')
-<div class="content">
+    <div class="content">
 
-    <div class="row">
-        <div class="col-lg-12">
-
-            <div class="card">
-                <div class="card-header">
-                    Dashboard
-                </div>
-                <div class="card-body">
-                    @if(session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">Product Checkout</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <!-- interactive chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Real-time visitors
-                        </h3>
+            <div class="col-lg-12">
 
-                        <div class="card-tools">
-                            Real time
-                            <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                                <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On</button>
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
+                <div class="card">
+                    <div class="card-header">
+                        Dashboard
+                    </div>
+                    <div class="card-body">
+                        @if(session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">Product Checkout</a>
+                        <a class="btn btn-primary" target="_blank" href="{{ route('sbanking.login') }}">Smart Banking Login</a>
+                        <a class="btn btn-primary" target="_blank" href="{{route('sshop.advertisement')}}">S-Shop</a>
+                        <a class="btn btn-primary" target="_blank" href="{{route('smonitor.index')}}">S-Shop Monitor</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- interactive chart -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="far fa-chart-bar"></i>
+                                Real-time visitors
+                            </h3>
+
+                            <div class="card-tools">
+                                Real time
+                                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                                    <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
+                                </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <div id="interactive" style="height: 300px;"></div>
+                        </div>
+                        <!-- /.card-body-->
                     </div>
-                    <div class="card-body">
-                        <div id="interactive" style="height: 300px;"></div>
-                    </div>
-                    <!-- /.card-body-->
-                </div>
-                <!-- /.card -->
+                    <!-- /.card -->
 
+                </div>
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
+            <!-- /.row -->
 
-        <div class="row">
-            <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
 
-                <!-- Area chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Today's sales
-                        </h3>
+                    <!-- Area chart -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="far fa-chart-bar"></i>
+                                Today's sales
+                            </h3>
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                            </button>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                        class="fas fa-times"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="area-chart" style="height: 338px;" class="full-width-chart"></div>
-                    </div>
-                    <!-- /.card-body-->
-                </div>
-                <!-- /.card -->
-
-                <!-- Donut chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Product Types
-                        </h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                            </button>
+                        <div class="card-body">
+                            <div id="area-chart" style="height: 338px;" class="full-width-chart"></div>
                         </div>
+                        <!-- /.card-body-->
                     </div>
-                    <div class="card-body">
-                        <div id="donut-chart" style="height: 300px;"></div>
-                    </div>
-                    <!-- /.card-body-->
-                </div>
-                <!-- /.card -->
+                    <!-- /.card -->
 
+                    <!-- Donut chart -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="far fa-chart-bar"></i>
+                                Product Types
+                            </h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                        class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="donut-chart" style="height: 300px;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+                <!-- /.col -->
+
+                <div class="col-md-6">
+                    <!-- Bar chart -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="far fa-chart-bar"></i>
+                                Monthly sales
+                            </h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="bar-chart" style="height: 300px;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                    </div>
+                    <!-- /.card -->
+
+                    <!-- Line chart -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="far fa-chart-bar"></i>
+                                Customer satisfaction
+                            </h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                        class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="line-chart" style="height: 300px;"></div>
+                        </div>
+                        <!-- /.card-body-->
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
 
-            <div class="col-md-6">
-                <!-- Bar chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Monthly sales
-                        </h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="bar-chart" style="height: 300px;"></div>
-                    </div>
-                    <!-- /.card-body-->
-                </div>
-                <!-- /.card -->
-
-                <!-- Line chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Customer satisfaction
-                        </h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="line-chart" style="height: 300px;"></div>
-                    </div>
-                    <!-- /.card-body-->
-                </div>
-                <!-- /.card -->
-
-
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
-
-</div>
+    </div>
 @endsection
 
 @section('scripts')
@@ -179,7 +189,7 @@
              */
             // We use an inline data source in the example, usually data would
             // be fetched from a server
-            var data        = [],
+            var data = [],
                 totalPoints = 100
 
             function getRandomData() {
@@ -192,7 +202,7 @@
                 while (data.length < totalPoints) {
 
                     var prev = data.length > 0 ? data[data.length - 1] : 50,
-                        y    = prev + Math.random() * 10 - 5
+                        y = prev + Math.random() * 10 - 5
 
                     if (y < 0) {
                         y = 0
@@ -243,7 +253,7 @@
             )
 
             var updateInterval = 500 //Fetch data ever x milliseconds
-            var realtime       = 'on' //If == to on then fetch data every x seconds. else stop fetching
+            var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
             function update() {
 
                 interactive_plot.setData([getRandomData()])
@@ -263,8 +273,7 @@
             $('#realtime .btn').click(function () {
                 if ($(this).data('toggle') === 'on') {
                     realtime = 'on'
-                }
-                else {
+                } else {
                     realtime = 'off'
                 }
                 update()
@@ -287,45 +296,45 @@
                 cos.push([i, Math.cos(i)])
             }
             var line_data1 = {
-                data : sin,
+                data: sin,
                 color: '#3c8dbc'
             }
             var line_data2 = {
-                data : cos,
+                data: cos,
                 color: '#00c0ef'
             }
             $.plot('#line-chart', [line_data1, line_data2], {
-                grid  : {
-                    hoverable  : true,
+                grid: {
+                    hoverable: true,
                     borderColor: '#f3f3f3',
                     borderWidth: 1,
-                    tickColor  : '#f3f3f3'
+                    tickColor: '#f3f3f3'
                 },
                 series: {
                     shadowSize: 0,
-                    lines     : {
+                    lines: {
                         show: true
                     },
-                    points    : {
+                    points: {
                         show: true
                     }
                 },
-                lines : {
-                    fill : false,
+                lines: {
+                    fill: false,
                     color: ['#3c8dbc', '#f56954']
                 },
-                yaxis : {
+                yaxis: {
                     show: true
                 },
-                xaxis : {
+                xaxis: {
                     show: true
                 }
             })
             //Initialize tooltip on hover
             $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
                 position: 'absolute',
-                display : 'none',
-                opacity : 0.8
+                display: 'none',
+                opacity: 0.8
             }).appendTo('body')
             $('#line-chart').bind('plothover', function (event, pos, item) {
 
@@ -335,7 +344,7 @@
 
                     $('#line-chart-tooltip').html(item.series.label + ' of ' + x + ' = ' + y)
                         .css({
-                            top : item.pageY + 5,
+                            top: item.pageY + 5,
                             left: item.pageX + 5
                         })
                         .fadeIn(200)
@@ -354,20 +363,20 @@
                 [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.7], [14, 159.9],
                 [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]]
             $.plot('#area-chart', [areaData], {
-                grid  : {
+                grid: {
                     borderWidth: 0
                 },
                 series: {
                     shadowSize: 0, // Drawing is faster without shadows
-                    color     : '#00c0ef',
-                    lines : {
+                    color: '#00c0ef',
+                    lines: {
                         fill: true //Converts the line chart to area chart
                     },
                 },
-                yaxis : {
+                yaxis: {
                     show: false
                 },
-                xaxis : {
+                xaxis: {
                     show: false
                 }
             })
@@ -380,14 +389,14 @@
              */
 
             var bar_data = {
-                data : [[1,10], [2,8], [3,4], [4,13], [5,17], [6,9]],
-                bars: { show: true }
+                data: [[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],
+                bars: {show: true}
             }
             $.plot('#bar-chart', [bar_data], {
-                grid  : {
+                grid: {
                     borderWidth: 1,
                     borderColor: '#f3f3f3',
-                    tickColor  : '#f3f3f3'
+                    tickColor: '#f3f3f3'
                 },
                 series: {
                     bars: {
@@ -395,8 +404,8 @@
                     },
                 },
                 colors: ['#3c8dbc'],
-                xaxis : {
-                    ticks: [[1,'January'], [2,'February'], [3,'March'], [4,'April'], [5,'May'], [6,'June']]
+                xaxis: {
+                    ticks: [[1, 'January'], [2, 'February'], [3, 'March'], [4, 'April'], [5, 'May'], [6, 'June']]
                 }
             })
             /* END BAR CHART */
@@ -409,29 +418,29 @@
             var donutData = [
                 {
                     label: 'Technology',
-                    data : 30,
+                    data: 30,
                     color: '#3c8dbc'
                 },
                 {
                     label: 'Homeware',
-                    data : 20,
+                    data: 20,
                     color: '#0073b7'
                 },
                 {
                     label: 'Food',
-                    data : 50,
+                    data: 50,
                     color: '#00c0ef'
                 }
             ]
             $.plot('#donut-chart', donutData, {
                 series: {
                     pie: {
-                        show       : true,
-                        radius     : 1,
+                        show: true,
+                        radius: 1,
                         innerRadius: 0.5,
-                        label      : {
-                            show     : true,
-                            radius   : 2 / 3,
+                        label: {
+                            show: true,
+                            radius: 2 / 3,
                             formatter: labelFormatter,
                             threshold: 0.1
                         }

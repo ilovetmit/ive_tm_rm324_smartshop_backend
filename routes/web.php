@@ -122,3 +122,59 @@ Route::group(['prefix' => 'ProductCheckout', 'as' => 'ProductCheckout.', 'namesp
     Route::get('/', 'ProductCheckoutController@index')->name('index');
     Route::post('checkout_temp','ProductCheckoutController@checkout_temp')->name('checkout_temp');
 });
+
+/***********************************************
+ * S-Shop
+ ***********************************************/
+Route::group(['prefix' => 's-shop', 'as' => 'sshop.'], function () {
+    Route::get('/', 'SShopController@advertisement');
+    Route::get('advertisement', 'SShopController@advertisement')->name('advertisement');
+    Route::get('maps', 'SShopController@maps');
+    Route::get('shopping', 'SShopController@shopping')->name('shopping');
+    Route::get('shopping/detail/{id}', 'SShopController@shopping_detail')->name('shopping.detail');
+    Route::get('splash', 'SShopController@splash')->name('splash');
+    Route::get('test', 'SShopController@test');
+
+    Route::get('login-qr-approve', 'SShopController@login_qr_approve');
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('history', 'SShopController@history');
+        Route::get('profile', 'SShopController@profile')->name('profile');
+        Route::post('logout', 'SShopController@logout');
+    });
+
+    Route::get('history', 'SShopController@history');
+});
+
+/***********************************************
+ * Smart Banking
+ ***********************************************/
+Route::group(['prefix' => 'smart-banking', 'as' => 'sbanking.'], function () {
+    Route::get('/', 'SmartBankingController@login_qr');
+    Route::get('login', 'SmartBankingController@login_qr')->name('login');
+    Route::get('login-text', 'SmartBankingController@login');
+    Route::get('login-qr-approve', 'SmartBankingController@login_qr_approve');
+    Route::post('login-text', 'Auth\SmartBankingLoginController@login');
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('dashboard', 'SmartBankingController@dashboard')->name('dash');
+        Route::get('insurance', 'SmartBankingController@insurance');
+        Route::get('insurance/detail/{id}', 'SmartBankingController@insurance_detail');
+        Route::get('insurance/subscribe/{id}/{type}', 'SmartBankingController@insurance_subscribe');
+
+        Route::get('stock', 'SmartBankingController@stock');
+        Route::get('transaction', 'SmartBankingController@transaction');
+        Route::get('transfer', 'SmartBankingController@transfer');
+        Route::post('transfer', 'SmartBankingController@transfer_action');
+
+        Route::post('logout', 'Auth\SmartBankingLoginController@logout');
+    });
+});
+
+/***********************************************
+ * S_Shop Monitor
+ ***********************************************/
+
+Route::group(['prefix' => 's-shop-monitor', 'as' => 'smonitor.'], function () {
+    Route::get('/', 'SShopMonitorController@index')->name('index');
+});
