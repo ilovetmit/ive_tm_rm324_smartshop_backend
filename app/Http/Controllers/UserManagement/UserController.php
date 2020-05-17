@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         if (isset($request->avatar)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG');
             $extension = $request->file('avatar')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 

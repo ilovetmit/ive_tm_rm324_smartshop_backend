@@ -31,16 +31,13 @@ return [
     ],
 
     'shopProductInventories_isSold' => [
-        '1'             => 'on sell',
+        '1'             => 'not sold',
         'tag_type_1'    => 'success',
-        '2'             => 'sell out',
-        'tag_type_2'    => 'warning',
-        '3'             => 'off sell',
-        'tag_type_3'    => 'secondary',
+        '2'             => 'is sold',
+        'tag_type_2'    => 'secondary',
     ], 'shopProductInventories_isSold_form' => [
-        '1'             => 'on sell',
-        '2'             => 'sell out',
-        '3'             => 'off sell',
+        '1'             => 'not sold',
+        '2'             => 'is sold',
     ],
 
     'device_isActive' => [

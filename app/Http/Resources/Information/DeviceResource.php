@@ -14,11 +14,12 @@ class DeviceResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
-        // return [
-        //     'user_id'               => $this->user_id,
-        //     'current_account'       => $this->current_account,
-        //     'saving_account'        => $this->saving_account,
-        // ];
+        // return parent::toArray($request);
+        return [
+            // 'user_id'               => $this->user_id,
+            'user_id'               => $this->hasUser->id,
+            'current_account'       => $this->current_account,
+            'saving_account'        => $this->saving_account,
+        ];
     }
 }

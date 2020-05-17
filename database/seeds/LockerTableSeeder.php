@@ -21,12 +21,15 @@ class LockerTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
+
+
         for ($i = 1; $i <= 6; $i++) {
+            $pattern = $faker->randomElement(['1', '2']);
             Locker::create([
                 'qrcode'            =>  '',
-                'per_hour_price'    =>  $faker->numberBetween($min = 50, $max = 200),
-                'is_active'         =>  $faker->randomElement(['1', '2']),
-                'is_using'          =>  $faker->randomElement(['1', '2']),
+                'per_hour_price'    =>  $faker->numberBetween($min = 10, $max = 30),
+                'is_active'         =>  $pattern,
+                'is_using'          =>  $pattern,
             ]);
         }
     }

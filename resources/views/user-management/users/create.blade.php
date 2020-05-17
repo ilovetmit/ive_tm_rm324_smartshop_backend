@@ -28,7 +28,7 @@
             </div>
             <!-- --------------------------------------avatar-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="avatar">{{ trans('cruds.fields.avatar') }}</label>
+                <label class="" for="avatar">{{ trans('cruds.fields.avatar') }}</label>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="avatar" name="avatar">
@@ -38,7 +38,7 @@
             </div>
             <!-- --------------------------------------birthday-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="birthday">{{ trans('cruds.fields.birthday') }}</label>
+                <label class="" for="birthday">{{ trans('cruds.fields.birthday') }}</label>
                 <input class="form-control date {{ $errors->has('birthday') ? 'is-invalid' : '' }}" type="text" name="birthday" id="birthday" value="{{ old('birthday') }}" required>
                 @if($errors->has('birthday'))
                 <span class="text-danger">{{ $errors->first('birthday') }}</span>
@@ -47,7 +47,7 @@
             </div>
             <!-- --------------------------------------gender-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="gender">{{ trans('cruds.fields.gender') }}</label>
+                <label class="" for="gender">{{ trans('cruds.fields.gender') }}</label>
                 <select class="form-control select {{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender" id="gender" required>
                     <option value disabled {{ old('gender', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.gender') as $key => $label)
@@ -63,7 +63,7 @@
             </div>
             <!-- --------------------------------------telephone-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="telephone">{{ trans('cruds.fields.telephone') }}</label>
+                <label class="" for="telephone">{{ trans('cruds.fields.telephone') }}</label>
                 <input class="form-control {{ $errors->has('telephone') ? 'is-invalid' : '' }}" type="text" name="telephone" id="telephone" value="{{ old('telephone') }}" required>
                 @if($errors->has('telephone'))
                 <span class="text-danger">{{ $errors->first('telephone') }}</span>
@@ -72,7 +72,7 @@
             </div>
             <!-- --------------------------------------bio-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="bio">{{ trans('cruds.fields.bio') }}</label>
+                <label class="" for="bio">{{ trans('cruds.fields.bio') }}</label>
                 <input class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}" type="text" name="bio" id="bio" value="{{ old('bio') }}" required>
                 @if($errors->has('bio'))
                 <span class="text-danger">{{ $errors->first('bio') }}</span>

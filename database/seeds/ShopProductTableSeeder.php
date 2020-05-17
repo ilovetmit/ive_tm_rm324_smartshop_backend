@@ -16,20 +16,11 @@ class ShopProductTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
-        for ($i = 1; $i <= 23; $i++) {
+        for ($i = 1; $i <= 35; $i++) {
             ShopProduct::create([
                 'product_id'    => $i,
                 'qrcode'        => '',
             ]);
         }
-
-        for ($ia = 29; $ia <= 35; $ia++) {
-            ShopProduct::create([
-                'product_id'    => $ia,
-                'qrcode'        => '',
-            ]);
-        }
-
-        
     }
 }
