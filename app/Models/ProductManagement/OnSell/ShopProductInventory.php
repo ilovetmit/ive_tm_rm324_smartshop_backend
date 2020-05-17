@@ -5,7 +5,7 @@ namespace App\Models\ProductManagement\OnSell;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ProductManagement\OnSell\ShopProduct;
-   
+
 class ShopProductInventory extends Model
 {
     use SoftDeletes;
@@ -21,10 +21,7 @@ class ShopProductInventory extends Model
     protected $fillable = [
         'shop_product_id',
         'rfid_code',
-        'is_sold',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'is_sold'
     ];
 
     public function hasShopProduct()

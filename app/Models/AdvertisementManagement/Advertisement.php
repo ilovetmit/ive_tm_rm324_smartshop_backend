@@ -5,7 +5,7 @@ namespace App\Models\AdvertisementManagement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\TagManagement\Tag;
-   
+
 class Advertisement extends Model
 {
     use SoftDeletes;
@@ -22,10 +22,7 @@ class Advertisement extends Model
         'header',
         'image',
         'description',
-        'status',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'status'
     ];
 
     public function hasTag()

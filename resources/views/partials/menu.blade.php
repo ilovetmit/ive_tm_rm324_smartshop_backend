@@ -265,7 +265,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route("ProductManagement.VendingProducts.index") }}"
                                         class="nav-link {{ request()->is('SmartShop/ProductManagement/VendingMachine/VendingProducts*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-user"></i>
+                                        <i class="fas fa-vector-square"></i>
                                         <p>
                                             <span>{{ trans('cruds.productManagement.vending_product.title_s') }}</span>
                                         </p>

@@ -5,7 +5,7 @@ namespace App\Models\ProductManagement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ProductManagement\Product;
-   
+
 class ProductWall extends Model
 {
     use SoftDeletes;
@@ -21,10 +21,7 @@ class ProductWall extends Model
     protected $fillable = [
         'qrcode',
         'product_id',
-        'message',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'message'
     ];
 
     public function hasProduct()

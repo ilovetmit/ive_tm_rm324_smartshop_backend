@@ -25,10 +25,7 @@ class LockerTransaction extends Model
         'recipient_user_id',
         'item',
         'deadline',
-        'remark',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'remark'
     ];
 
     public function hasTransaction()

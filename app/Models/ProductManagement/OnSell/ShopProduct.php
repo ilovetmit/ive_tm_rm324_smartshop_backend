@@ -22,10 +22,7 @@ class ShopProduct extends Model
 
     protected $fillable = [
         'product_id',
-        'qrcode',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'qrcode'
     ];
 
     public function hasProduct()

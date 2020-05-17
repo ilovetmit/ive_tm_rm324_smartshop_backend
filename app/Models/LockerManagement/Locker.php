@@ -22,10 +22,7 @@ class Locker extends Model
         'qrcode',
         'per_hour_price',
         'is_active',
-        'is_using',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'is_using'
     ];
 
     public function hasLockerTransaction()

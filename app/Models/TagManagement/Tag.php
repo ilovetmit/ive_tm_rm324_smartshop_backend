@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\AdvertisementManagement\Advertisement;
 use App\Models\ProductManagement\Product;
-   
+
 class Tag extends Model
 {
     use SoftDeletes;
@@ -21,10 +21,7 @@ class Tag extends Model
 
     protected $fillable = [
         'name',
-        'description',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'description'
     ];
 
     public function hasProduct()

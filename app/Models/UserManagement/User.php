@@ -51,14 +51,12 @@ class User extends Authenticatable
         'telephone',
         'bio',
         'status',
-        'created_at',
-        'updated_at',
-        'deleted_at',
         'remember_token',
         'email_verified_at',
     ];
 
-    public function getFullNameAttribute() {
+    public function getFullNameAttribute()
+    {
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 
@@ -94,7 +92,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(BankAccount::class);
     }
-    
+
     public function hasRole()
     {
         return $this->belongsToMany(Role::class);
