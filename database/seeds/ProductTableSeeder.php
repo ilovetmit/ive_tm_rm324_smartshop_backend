@@ -95,7 +95,7 @@ class ProductTableSeeder extends Seeder
             Product::create([
                 'name'          => $name[$i],
                 'price'         => $faker->numberBetween($min = 0, $max = 200),
-                'quantity'      => $faker->numberBetween($min = 100, $max = 200),
+                'quantity'      => $faker->numberBetween($min = 10, $max = 15),
                 'image'         => $image[$i],
                 'description'   => $faker->realText($maxNbChars = 60, $indexSize = 2),
                 'status'        => $faker->randomElement(['1', '2']),

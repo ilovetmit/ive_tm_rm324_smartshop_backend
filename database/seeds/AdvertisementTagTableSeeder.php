@@ -12,12 +12,10 @@ class AdvertisementTagTableSeeder extends Seeder
      */
     public function run()
     {
-        Tag::findOrFail(9)->hasAdvertisement()->sync(1);
-        Tag::findOrFail(9)->hasAdvertisement()->sync(2);
-        Tag::findOrFail(9)->hasAdvertisement()->sync(3);
-        Tag::findOrFail(9)->hasAdvertisement()->sync(4);
-        Tag::findOrFail(9)->hasAdvertisement()->sync(5);
-        Tag::findOrFail(9)->hasAdvertisement()->sync(6);
-        Tag::findOrFail(9)->hasAdvertisement()->sync(7);
+        // $tag = ['Soft Drink', 'Health', 'Juice', 'Tea', 'Trend', 'Homeware', 'Hot', 'Smart', 'On Sale', 'New'];
+
+        Tag::findOrFail(9)->hasAdvertisement()->sync([1,4,5,6]);
+        Tag::findOrFail(10)->hasAdvertisement()->sync([1,5,7,3]);
+
     }
 }

@@ -27,12 +27,11 @@
             <!-------------------------------------qrcode------------------------------------->
             <div class="form-group">
                 <label class="required" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" id="qrcode" name="qrcode">
-                        <label class="custom-file-label" for="qrcode">{{ old('qrcode', $shopProduct->qrcode) }}</label>
-                    </div>
-                </div>
+                <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode" id="qrcode" value="{{ old('qrcode', $shopProduct->qrcode) }}" required>
+                @if($errors->has('qrcode'))
+                <span class="text-danger">{{ $errors->first('qrcode') }}</span>
+                @endif
+                <span class="help-block"> </span>
             </div>
             <!------------------------------------------------------>
             <div class="form-group">

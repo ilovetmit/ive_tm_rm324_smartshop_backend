@@ -32,6 +32,7 @@
                 @endif
                 <span class="help-block"></span>
             </div>
+            
             <!-- --------------------------------------is_sold-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="is_sold">{{ trans('cruds.fields.is_sold') }}</label>
