@@ -26,13 +26,12 @@
             </div>
             <!-------------------------------------rfid_code------------------------------------->
             <div class="form-group">
-                <label class="required" for="rfid_code">{{ trans('cruds.fields.rfid_code') }}</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input {{ $errors->has('rfid_code') ? 'is-invalid' : '' }}" id="rfid_code" name="rfid_code">
-                        <label class="custom-file-label" for="rfid_code">{{ old('rfid_code', $shopProductInventory->rfid_code) }}</label>
-                    </div>
-                </div>
+                <label class="" for="rfid_code">{{ trans('cruds.fields.rfid_code') }}</label>
+                <input class="form-control {{ $errors->has('rfid_code') ? 'is-invalid' : '' }}" type="text" name="rfid_code" id="rfid_code" value="{{ old('rfid_code', $shopProductInventory->rfid_code) }}" required>
+                @if($errors->has('rfid_code'))
+                <span class="text-danger">{{ $errors->first('rfid_code') }}</span>
+                @endif
+                <span class="help-block"> </span>
             </div>
             <!-------------------------------------is_sold------------------------------------->
             <div class="form-group">
