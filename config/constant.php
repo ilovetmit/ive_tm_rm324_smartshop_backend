@@ -119,7 +119,6 @@ return [
     'gender' => [
         '1' => 'Male',
         '2' => 'Woman',
-        '3' => 'Other',
     ]
 
 ];
