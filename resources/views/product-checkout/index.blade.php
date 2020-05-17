@@ -253,7 +253,7 @@
     function append_product(no, product_data) {
         $('#product_data').append('<tr id="tr_' + no + '">\n' +
             '        <th>' + no + '</th>\n' +
-            '        <th><img height="100" src="' + product_data.image + '"></th>\n' +
+            '        <th><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
             '        <td>' + product_data.name + '</td>\n' +
             '        <td>HKD ' + product_data.price.toFixed(2) + '</td>\n' +
             '        <td class="align-middle text-center">1</td>\n' +
