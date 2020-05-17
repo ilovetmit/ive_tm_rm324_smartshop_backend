@@ -21,10 +21,7 @@ class BankAccount extends Model
     protected $fillable = [
         'user_id',
         'current_account',
-        'saving_account',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'saving_account'
     ];
 
     public function hasUser()

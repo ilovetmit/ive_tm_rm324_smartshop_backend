@@ -21,10 +21,8 @@ class Vitcoin extends Model
     protected $fillable = [
         'user_id',
         'address',
-        'primary_key',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'public_key',
+        'primary_key'
     ];
 
     public function hasUser()

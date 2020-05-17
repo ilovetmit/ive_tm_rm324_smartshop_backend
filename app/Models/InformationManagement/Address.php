@@ -22,10 +22,7 @@ class Address extends Model
         'user_id',
         'district',
         'address1',
-        'address2',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'address2'
     ];
 
     public function hasUser()

@@ -11,43 +11,43 @@ return [
     // dark
 
     'advertisement_status' => [
-        '1'             => 'on promote',    // on
-        'tag_type_1'    => 'success',
-        '2'             => 'expired',       // off
-        'tag_type_2'    => 'secondary',
+        '1'             => 'Promoting',    // on
+        'tag_type_1'    => 'Success',
+        '2'             => 'Expired',       // off
+        'tag_type_2'    => 'Secondary',
     ], 'advertisement_status_form' => [
-        '1'             => 'on promote',    // on
-        '2'             => 'expired',       // off
+        '1'             => 'Promoting',    // on
+        '2'             => 'Expired',       // off
     ],
 
     'product_status' => [
-        '1'             => 'unavailable',
-        'tag_type_1'    => 'danger',
-        '2'             => 'available',
-        'tag_type_2'    => 'success',
+        '1'             => 'Unavailable',
+        'tag_type_1'    => 'Danger',
+        '2'             => 'Available',
+        'tag_type_2'    => 'Success',
     ], 'product_status_form' => [
-        '1'             => 'unavailable',
-        '2'             => 'available',
+        '1'             => 'Unavailable',
+        '2'             => 'Available',
     ],
 
     'shopProductInventories_isSold' => [
-        '1'             => 'not sold',
-        'tag_type_1'    => 'success',
-        '2'             => 'is sold',
-        'tag_type_2'    => 'secondary',
+        '1'             => 'Instock',
+        'tag_type_1'    => 'Success',
+        '2'             => 'Sold',
+        'tag_type_2'    => 'Secondary',
     ], 'shopProductInventories_isSold_form' => [
-        '1'             => 'not sold',
-        '2'             => 'is sold',
+        '1'             => 'Instock',
+        '2'             => 'Sold',
     ],
 
     'device_isActive' => [
-        '1'             => 'inactive',
-        'tag_type_1'    => 'warning',
-        '2'             => 'active',
-        'tag_type_2'    => 'success',
+        '1'             => 'Inactive',
+        'tag_type_1'    => 'Warning',
+        '2'             => 'Active',
+        'tag_type_2'    => 'Success',
     ], 'device_isActive_form' => [
-        '1'             => 'inactive',
-        '2'             => 'active',
+        '1'             => 'Inactive',
+        '2'             => 'Active',
     ],
 
     'address_district' => [
@@ -79,23 +79,23 @@ return [
     ],
 
     'locker_isActive' => [
-        '1'             => 'active',
-        'tag_type_1'    => 'success',
-        '2'             => 'inactive',
-        'tag_type_2'    => 'warning',
+        '1'             => 'Active',
+        'tag_type_1'    => 'Success',
+        '2'             => 'Inactive',
+        'tag_type_2'    => 'Warning',
     ], 'locker_isActive_form' => [
-        '1'             => 'active',
-        '2'             => 'inactive',
+        '1'             => 'Active',
+        '2'             => 'Inactive',
     ],
 
     'locker_isUsing' => [
-        '1'             => 'free',
-        'tag_type_1'    => 'success',
-        '2'             => 'using',
-        'tag_type_2'    => 'warning',
+        '1'             => 'Free',
+        'tag_type_1'    => 'Success',
+        '2'             => 'Using',
+        'tag_type_2'    => 'Warning',
     ], 'locker_isUsing_form' => [
-        '1'             => 'free',
-        '2'             => 'using',
+        '1'             => 'Free',
+        '2'             => 'Using',
     ],
 
     'user_gender' => [
@@ -104,13 +104,13 @@ return [
     ],
 
     'user_status' => [
-        '1'             => 'available',
-        'tag_type_1'    => 'success',
-        '2'             => 'unavailable',
-        'tag_type_2'    => 'secondary',
+        '1'             => 'Available',
+        'tag_type_1'    => 'Success',
+        '2'             => 'Unavailable',
+        'tag_type_2'    => 'Secondary',
     ], 'user_status_form' => [
-        '1' => 'available',
-        '2' => 'unavailable',
+        '1' => 'Available',
+        '2' => 'Unavailable',
     ],
 
     'gender' => [
