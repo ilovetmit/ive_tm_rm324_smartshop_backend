@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\LockerManagement\Locker;
+use Illuminate\Support\Str;
 
 class LockerTableSeeder extends Seeder
 {
@@ -26,7 +27,7 @@ class LockerTableSeeder extends Seeder
         for ($i = 1; $i <= 6; $i++) {
             $pattern = $faker->randomElement(['1', '2']);
             Locker::create([
-                'qrcode'            =>  '',
+                'qrcode'            =>  'LOCKER-' . Str::random(12),
                 'per_hour_price'    =>  $faker->numberBetween($min = 10, $max = 30),
                 'is_active'         =>  $pattern,
                 'is_using'          =>  $pattern,

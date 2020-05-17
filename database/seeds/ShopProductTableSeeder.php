@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\ProductManagement\OnSell\ShopProduct;
+use Illuminate\Support\Str;
 
 class ShopProductTableSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class ShopProductTableSeeder extends Seeder
         for ($i = 1; $i <= 35; $i++) {
             ShopProduct::create([
                 'product_id'    => $i,
-                'qrcode'        => '',
+                'qrcode'        => 'PRODUCT-' . Str::random(8),
             ]);
         }
     }

@@ -20,7 +20,7 @@ class InterestUserTableSeeder extends Seeder
 
         $array = [];
 
-        for ($i = 2; $i <= 10; $i++) {
+        for ($i = 2; $i <= 11; $i++) {
 
             (int)$count = 0;
             (int)$random_1 = $faker->numberBetween($min = 1, $max = 10);
