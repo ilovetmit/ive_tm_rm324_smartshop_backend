@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             // VitcoinTableSeeder::class,
             BankAccountTableSeeder::class,
 
-            ProductTableSeeder::class,
             CategoryTableSeeder::class,
+            ProductTableSeeder::class,
             CategoryProductTableSeeder::class,
             ProductWallTableSeeder::class,
             VendingProductTableSeeder::class,

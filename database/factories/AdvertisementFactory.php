@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Advertisement::class, function (Faker $faker) {
     $status = $faker->randomElement(['1', '2']);
     return [
-        'header'        => $faker->text($maxNbChars = 10),
+        'header'        => $faker->text($maxNbChars = 3),
         'image'         => 'icon_advertisement.jpg',
         'description'   => $faker->text($maxNbChars = 20),
         'status'        => $status,

@@ -12,6 +12,6 @@ class RemittanceTransactionTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(RemittanceTransaction::class,1)->create();
+        // factory(RemittanceTransaction::class,1)->create();
     }
 }

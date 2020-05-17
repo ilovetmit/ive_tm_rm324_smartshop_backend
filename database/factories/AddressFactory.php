@@ -8,14 +8,16 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 $factory->define(Address::class, function (Faker $faker) {
-    $user_id = User::all()->pluck('id');
-    $district = $faker->randomElement(['1', '2', '3', '4', '5', '6']);
-    $address1 = $faker->streetName;
-    $address2 = $faker->buildingNumber;
+    // $user_id = User::all()->pluck('id');
+    static $user_id = 1;  
+    $district = $faker->numberBetween($min = 1, $max = 18);
+    $address1 = $faker->streetAddress;
+    $address2 = $faker->streetName;
+    $address3 = $faker->city;
     return [
-        'user_id'           => $faker->randomElement($user_id),
+        'user_id'           => $user_id++,
         'district'          => $district,
         'address1'          => $address1,
-        'address2'          => $address2,
+        'address2'          => $address2 . " " . $address3,
     ];
 });

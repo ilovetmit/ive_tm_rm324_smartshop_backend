@@ -12,6 +12,6 @@ class LockerTransactionTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(LockerTransaction::class,1)->create();
+        // factory(LockerTransaction::class,1)->create();
     }
 }

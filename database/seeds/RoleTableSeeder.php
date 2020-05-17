@@ -19,8 +19,8 @@ class RoleTableSeeder extends Seeder
             ],
             [
                 'name'  => 'User',
-                'description'   => '[UserManagement - Can not create][ProductManagement - Can not edit]',
-            ],
+                'description'   => '[UserManagement - Can not create] [ProductManagement - Can not edit]',
+            ], 
         ];
 
         Role::insert($roles);

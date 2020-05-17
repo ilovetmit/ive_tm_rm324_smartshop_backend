@@ -12,6 +12,6 @@ class DeviceTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Device::class,1)->create();
+        // factory(Device::class,1)->create();
     }
 }

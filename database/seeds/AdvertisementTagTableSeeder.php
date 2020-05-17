@@ -12,7 +12,12 @@ class AdvertisementTagTableSeeder extends Seeder
      */
     public function run()
     {
-        Tag::findOrFail(1)->hasAdvertisement()->sync(1);
-        // Tag::findOrFail(2)->hasAdvertisement()->sync(1);
+        Tag::findOrFail(9)->hasAdvertisement()->sync(1);
+        Tag::findOrFail(9)->hasAdvertisement()->sync(2);
+        Tag::findOrFail(9)->hasAdvertisement()->sync(3);
+        Tag::findOrFail(9)->hasAdvertisement()->sync(4);
+        Tag::findOrFail(9)->hasAdvertisement()->sync(5);
+        Tag::findOrFail(9)->hasAdvertisement()->sync(6);
+        Tag::findOrFail(9)->hasAdvertisement()->sync(7);
     }
 }

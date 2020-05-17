@@ -17,38 +17,22 @@ class UserTableSeeder extends Seeder
         $user = [
             [
                 'email'                 => 'admin@admin.com',
-                'first_name'            => 'firstName',
-                'last_name'             => 'lastName',
+                'first_name'            => 'Smart Shop',
+                'last_name'             => 'FYP',
                 'password'              => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'avatar'                => 'avatar',
-                'birthday'              => '1999-09-19',
-                'telephone'             => '99999999',
-                'bio'                   => 'bio',
+                'avatar'                => 'person.png',
+                'birthday'              => '1921-09-28',
+                'telephone'             => '24605375',
+                'bio'                   => 'This is VTC(TM) student Final Year Project',
                 'gender'                => 1,
                 'status'                => 1,
                 'email_verified_at'     => now(),
-                'remember_token'        => Str::random(10),
-                'created_at'            => now(),
-                'updated_at'            => now(),
-            ],
-            [
-                'email'                 => 'user@user.com',
-                'first_name'            => 'firstName',
-                'last_name'             => 'lastName',
-                'password'              => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'avatar'                => 'avatar',
-                'birthday'              => '1999-09-19',
-                'telephone'             => '99999999',
-                'bio'                   => 'bio',
-                'gender'                => 2,
-                'status'                => 2,
-                'email_verified_at'     => now(),
-                'remember_token'        => Str::random(10),
+                'remember_token'        => '',
                 'created_at'            => now(),
                 'updated_at'            => now(),
             ],
         ];
         User::insert($user);
-        // factory(\App\Models\UserManagement\User::class,1)->create();
+        factory(\App\Models\UserManagement\User::class,9)->create();
     }
 }
