@@ -5,7 +5,7 @@ namespace App\Models\ProductManagement\VendingMachine;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ProductManagement\Product;
-   
+
 class VendingProduct extends Model
 {
     use SoftDeletes;
@@ -20,10 +20,7 @@ class VendingProduct extends Model
 
     protected $fillable = [
         'product_id',
-        'channel',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'channel'
     ];
 
     public function hasProduct()

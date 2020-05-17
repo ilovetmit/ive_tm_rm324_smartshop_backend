@@ -28,10 +28,7 @@ class Product extends Model
         'quantity',
         'image',
         'description',
-        'status',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'status'
     ];
 
     public function hasTag()

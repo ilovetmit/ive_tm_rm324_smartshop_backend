@@ -5,7 +5,7 @@ namespace App\Models\TransactionManagement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ProductManagement\Product;
-   
+
 class ProductTransaction extends Model
 {
     use SoftDeletes;
@@ -21,10 +21,7 @@ class ProductTransaction extends Model
     protected $fillable = [
         'transaction_id',
         'product_id',
-        'quantity',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'quantity'
     ];
 
     public function hasProduct()

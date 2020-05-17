@@ -21,10 +21,7 @@ class Device extends Model
     protected $fillable = [
         'token',
         'user_id',
-        'is_active',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'is_active'
     ];
 
     public function hasUser()
