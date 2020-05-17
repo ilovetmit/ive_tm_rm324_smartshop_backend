@@ -60,13 +60,35 @@
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => '$ '. $transaction->amount ?? '',
-                            ])
+                            {{ '$ '. $transaction->amount ?? '' }}
+                            
                         </td>
                         <td>
-                            @if(!is_null($transaction->hasLocker_transaction)>0)
+                    {{-- 
+                        @if (fmod($transaction->id,4) == 0)
+                                @include('module.datatable.badge_tag.tag',[
+                                    'type' => 'secondary',
+                                    'element' => "Locker Transaction" ?? '',
+                                ])
+                            @elseif (fmod($transaction->id,3) == 0)
+                                @include('module.datatable.badge_tag.tag',[
+                                    'type' => 'warning',
+                                    'element' => "Product Transaction" ?? '',
+                                ])
+                            @elseif (fmod($transaction->id,2) == 0)
+                                @include('module.datatable.badge_tag.tag',[
+                                    'type' => 'primary',
+                                    'element' => "Remittannce Transaction" ?? '',
+                                    ])
+                            @else
+                                @include('module.datatable.badge_tag.tag',[
+                                    'type' => 'info',
+                                    'element' => "Product Transaction" ?? '',
+                                ])
+                            @endif
+                    --}}
+                           
+                        @if(!is_null($transaction->hasLocker_transaction)>0)
                                 @include('module.datatable.badge_tag.tag',[
                                 'type' => 'info',
                                 'element' => "Locker Transaction" ?? '',
@@ -81,7 +103,8 @@
                                 'type' => 'info',
                                 'element' => "Remittannce Transaction" ?? '',
                                 ])
-                            @endif
+                            @endif  
+                    
                         </td>
                         <td>
                             @include('module.datatable.action.index',[
