@@ -34,7 +34,7 @@ class BankAccountTableSeeder extends Seeder
             'current_account'   => 99999,
             'saving_account'    => 99999
         ]);
-        for ($i = 2; $i <= 10; $i++) {
+        for ($i = 2; $i <= 11; $i++) {
             BankAccount::create([
                 'user_id'           => $i,
                 'current_account'   => $faker->numberBetween($min = 50, $max = 200),

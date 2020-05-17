@@ -12,6 +12,6 @@ class LEDTableSeeder extends Seeder
      */
     public function run()
     {
-        // factory(LED::class,1)->create();
+        factory(LED::class,3)->create();
     }
 }

@@ -124,6 +124,13 @@ Route::group(['prefix' => 'ProductCheckout', 'as' => 'ProductCheckout.', 'namesp
 });
 
 /***********************************************
+ * Face-api.js
+ ***********************************************/
+Route::group(['prefix' => 'face', 'as' => 'face.', 'namespace' => 'Face'], function () {
+    Route::get('/', 'FaceController@index')->name('index');
+});
+
+/***********************************************
  * S-Shop
  ***********************************************/
 Route::group(['prefix' => 's-shop', 'as' => 'sshop.'], function () {

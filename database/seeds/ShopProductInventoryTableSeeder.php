@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\ProductManagement\OnSell\ShopProductInventory;
+use Illuminate\Support\Str;
 
 class ShopProductInventoryTableSeeder extends Seeder
 {
@@ -16,13 +17,14 @@ class ShopProductInventoryTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
-        for ($i = 0; $i <= 50; $i++) {
-            $is_sold = $faker->randomElement(['1', '2']);
-            ShopProductInventory::create([
-                'shop_product_id'   => 35,
-                'rfid_code'         => $faker->md5,
-                'is_sold'           => $is_sold,
-            ]);
+        for ($i = 1; $i <= 35; $i++) {
+            for ($ix = 1; $ix <= 5; $ix++) {
+                ShopProductInventory::create([
+                    'shop_product_id'   => $i,
+                    'rfid_code'         => Str::random(16),
+                    'is_sold'           => 1,
+                ]);
+            }
         }
     }
 }

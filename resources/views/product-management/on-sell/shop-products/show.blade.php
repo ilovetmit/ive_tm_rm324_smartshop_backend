@@ -37,7 +37,9 @@
                             {{ trans('cruds.fields.qrcode') }}
                         </th>
                         <td>
-                            <img src="{{ asset('storage/shop_product/qrcode/'.$shopProduct->qrcode) }}" width="150px">
+                            <img src="{{ 'https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L%7C0&chl=' . $shopProduct->qrcode }}" width="150px">
+                            <br>
+                            {{ $shopProduct->qrcode }}
                         </td>
                     </tr>
                 </tbody>

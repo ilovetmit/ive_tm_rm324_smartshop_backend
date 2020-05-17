@@ -16,6 +16,7 @@
                             </div>
                         @endif
                         <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">Product Checkout</a>
+                        <a class="btn btn-primary" href="{{route('face.index')}}" target="_blank">Face</a>
                         <a class="btn btn-primary" target="_blank" href="{{ route('sbanking.login') }}">Smart Banking Login</a>
                         <a class="btn btn-primary" target="_blank" href="{{route('sshop.advertisement')}}">S-Shop</a>
                         <a class="btn btn-primary" target="_blank" href="{{route('smonitor.index')}}">S-Shop Monitor</a>

@@ -19,7 +19,6 @@ class VendingProductTableSeeder extends Seeder
         static $product_id = 24;  
 
         for ($i = 1; $i <= 5; $i++) {
-
             VendingProduct::create([
                 'product_id'    => $product_id++,
                 'channel'       => $i,

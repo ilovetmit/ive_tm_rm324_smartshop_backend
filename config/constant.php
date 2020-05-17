@@ -21,13 +21,13 @@ return [
     ],
 
     'product_status' => [
-        '1'             => 'Shortage',
+        '1'             => 'Unavailable',
         'tag_type_1'    => 'Danger',
-        '2'             => 'Enough',
+        '2'             => 'Available',
         'tag_type_2'    => 'Success',
     ], 'product_status_form' => [
-        '1'             => 'Shortage',
-        '2'             => 'Enough',
+        '1'             => 'Unavailable',
+        '2'             => 'Available',
     ],
 
     'shopProductInventories_isSold' => [
