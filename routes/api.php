@@ -14,42 +14,32 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// xxxxxxxx
-Route::prefix('v1')->group(function () {
-    //todo Route group
-    Route::post('face', 'Api\v1\FaceController@face_scan');
-    Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
-    Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
-});
-
 Route::post('login', 'Api\v1\AuthController@login');
 Route::post('register', 'Api\v1\AuthController@register');
 
 Route::prefix('v1')->group(function () {
-    Route::group(
-        [
-            'middleware' => 'auth:api',
-        ],
-        function () {
-            Route::get('logout', 'Api\v1\AuthController@logout');
-            // Route::get('user', 'Api\v1\AuthController@user');
+    Route::post('face', 'Api\v1\FaceController@face_scan');
+    Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
+    Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
 
-            // v1
-            Route::get('index', 'Api\v1\User\UserController@index');
-            Route::post('update', 'Api\v1\User\UserController@update');
-            Route::post('update_avatar', 'Api\v1\User\UserController@update_avatar');
-            Route::post('update_password', 'Api\v1\User\UserController@update_password');
-        }
-    );
+    Route::group(['middleware' => 'auth:api',], function () {
+        Route::get('logout', 'Api\v1\AuthController@logout');
+        // Route::get('user', 'Api\v1\AuthController@user');
+
+        // v1
+        Route::get('index', 'Api\v1\User\UserController@index');
+        Route::post('update', 'Api\v1\User\UserController@update');
+        Route::post('update_avatar', 'Api\v1\User\UserController@update_avatar');
+        Route::post('update_password', 'Api\v1\User\UserController@update_password');
+    });
 });
-
 
 
 // test getAllinformation
 // api/test/
 Route::prefix('test')->group(function () {
 //     Route::get('advertisement',             'Api\v1\Advertisement\AdvertisementController@getAll');
-    Route::get('address',                   'Api\v1\Information\AddressController@getAll');
+    Route::get('address', 'Api\v1\Information\AddressController@getAll');
 //     Route::get('bankaccount',               'Api\v1\Information\BankAccountController@getAll');
 //     Route::get('device',                    'Api\v1\Information\DeviceController@getAll');
 //     Route::get('interest',                  'Api\v1\Information\InterestController@getAll');
