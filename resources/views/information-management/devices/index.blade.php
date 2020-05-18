@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('device_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -45,19 +45,21 @@
                             {{ $device->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $device->hasUser->id . ". " . $device->hasUser->getFullNameAttribute() ?? 'Visitor',
+                            'element' => $device->hasUser->id . ". " . $device->hasUser->getFullNameAttribute() ??
+                            'Visitor',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] :
+                            config('constant.device_isActive')['tag_type_2'],
                             'element' => config('constant.device_isActive')[$device->is_active] ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'device',
                             'route_subject' => 'InformationManagement.Devices',
                             'id' => $device->id
@@ -73,7 +75,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'device_delete',
 'route' => route('InformationManagement.Devices.massDestroy'),
 'pageLength' => 25,

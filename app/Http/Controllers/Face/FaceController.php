@@ -11,7 +11,6 @@ class FaceController extends Controller
 {
     public function index()
     {
-        return view('face.index');
+        return view('user-panel.face-recognition.index');
     }
-
 }

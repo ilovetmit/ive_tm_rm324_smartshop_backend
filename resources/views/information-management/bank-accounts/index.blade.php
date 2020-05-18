@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('bank_account_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -48,25 +48,26 @@
                             {{ $bankAccount->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $bankAccount->hasUser->id . ". " . $bankAccount->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $bankAccount->hasUser->id . ". " .
+                            $bankAccount->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $bankAccount->current_account ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $bankAccount->saving_account ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'bank_account',
                             'route_subject' => 'InformationManagement.BankAccounts',
                             'id' => $bankAccount->id
@@ -82,7 +83,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'bank_account_delete',
 'route' => route('InformationManagement.BankAccounts.massDestroy'),
 'pageLength' => 25,

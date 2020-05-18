@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('vitcoin_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -42,13 +42,13 @@
                             {{ $vitcoin->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $vitcoin->hasUser->id . ". " . $vitcoin->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'vitcoin',
                             'route_subject' => 'InformationManagement.Vitcoins',
                             'id' => $vitcoin->id
@@ -64,7 +64,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'vitcoin_delete',
 'route' => route('InformationManagement.Vitcoins.massDestroy'),
 'pageLength' => 25,

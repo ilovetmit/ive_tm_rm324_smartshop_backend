@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('shop_product_inventory_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -45,19 +45,25 @@
                             {{ $shopProductInventory->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " . $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
+                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " .
+                            $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $shopProductInventory->is_sold == 1 ? config('constant.shopProductInventories_isSold')['tag_type_1'] : ($shopProductInventory->is_sold == 2 ? config('constant.shopProductInventories_isSold')['tag_type_2'] : config('constant.shopProductInventories_isSold')['tag_type_3']),
-                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $shopProductInventory->is_sold == 1 ?
+                            config('constant.shopProductInventories_isSold')['tag_type_1'] :
+                            ($shopProductInventory->is_sold == 2 ?
+                            config('constant.shopProductInventories_isSold')['tag_type_2'] :
+                            config('constant.shopProductInventories_isSold')['tag_type_3']),
+                            'element' =>
+                            config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'shop_product_inventory',
                             'route_subject' => 'ProductManagement.ShopProductInventories',
                             'id' => $shopProductInventory->id
@@ -73,7 +79,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'shop_product_inventory_delete',
 'route' => route('ProductManagement.ShopProductInventories.massDestroy'),
 'pageLength' => 25,

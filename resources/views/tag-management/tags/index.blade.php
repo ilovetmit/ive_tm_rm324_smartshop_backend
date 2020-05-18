@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('tag_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -52,7 +52,7 @@
                             {{ $tag->description ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'tag',
                             'route_subject' => 'TagManagement.Tags',
                             'id' => $tag->id
@@ -68,7 +68,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'tag_delete',
 'route' => route('TagManagement.Tags.massDestroy'),
 'pageLength' => 25,

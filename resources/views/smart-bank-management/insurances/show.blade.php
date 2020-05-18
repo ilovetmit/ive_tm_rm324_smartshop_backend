@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -34,7 +34,7 @@
                             {{ trans('cruds.fields.price') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $insurance->price ?? '',
                             ])
@@ -68,7 +68,7 @@
 </div>
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'product_delete',
 'route' => route('ProductManagement.Products.massDestroy'),
 'pageLength' => 25,

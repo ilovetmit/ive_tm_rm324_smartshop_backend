@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -28,9 +28,10 @@
                             {{ trans('cruds.fields.user_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $transaction->hasUser->id . ". " . $transaction->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $transaction->hasUser->id . ". " .
+                            $transaction->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                     </tr>
@@ -40,7 +41,7 @@
                             {{ trans('cruds.fields.amount') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $transaction->amount ?? '',
                             ])
@@ -52,7 +53,7 @@
                             {{ trans('cruds.fields.account_balance') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $transaction->balance ?? '',
                             ])
@@ -64,7 +65,7 @@
                             {{ trans('cruds.fields.currency') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => config('constant.transaction_currency')[$transaction->currency] ?? '',
                             ])
@@ -77,21 +78,21 @@
                         </th>
                         <td>
                             @if(!is_null($transaction->hasLocker_transaction)>0)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => "Locker Transaction" ?? '',
                             ])
                             @elseif(!is_null($transaction->hasProduct_transaction)>0)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => "Product Transaction" ?? '',
                             ])
                             @elseif(!is_null($transaction->hasRemittance_transaction)>0)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => "Remittannce Transaction" ?? '',
                             ])
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'primary',
                             'element' => $transaction->hasRemittance_transaction->hasUser->getFullNameAttribute() ?? '',
                             ])

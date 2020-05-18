@@ -1,19 +1,23 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
         {{ trans('global.create') }} {{ trans('cruds.transactionManagement.locker_transaction.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("TransactionManagement.LockerTransactions.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("TransactionManagement.LockerTransactions.store") }}"
+            enctype="multipart/form-data">
             @csrf
             <!-- -----------------transaction_id----------------- -->
             <div class="form-group">
                 <label class="required" for="transaction_id">{{ trans('cruds.fields.transaction_id') }}</label>
-                <select class="form-control select2 {{ $errors->has('transaction_id') ? 'is-invalid' : '' }}" name="transaction_id" id="transaction_id" required>
-                    <option value disabled {{ old('transaction_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select2 {{ $errors->has('transaction_id') ? 'is-invalid' : '' }}"
+                    name="transaction_id" id="transaction_id" required>
+                    <option value disabled {{ old('transaction_id', null) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach($transactions as $key => $transaction)
-                    <option value="{{ $transaction->id }}" {{ old('transaction_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $transaction->id }}"
+                        {{ old('transaction_id', '') === (string) $key ? 'selected' : '' }}>
                         {{ $transaction->id . $transaction->header }}
                     </option>
                     @endforeach
@@ -26,8 +30,10 @@
             <!-- -----------------locker_id----------------- -->
             <div class="form-group">
                 <label class="required" for="locker_id">{{ trans('cruds.fields.locker_id') }}</label>
-                <select class="form-control select2 {{ $errors->has('locker_id') ? 'is-invalid' : '' }}" name="locker_id" id="locker_id" required>
-                    <option value disabled {{ old('locker_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select2 {{ $errors->has('locker_id') ? 'is-invalid' : '' }}"
+                    name="locker_id" id="locker_id" required>
+                    <option value disabled {{ old('locker_id', null) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach($lockers as $key => $locker)
                     <option value="{{ $locker->id }}" {{ old('locker_id', '') === (string) $key ? 'selected' : '' }}>
                         Locker {{ $locker->id }}
@@ -42,10 +48,13 @@
             <!-- -----------------recipient_user_id----------------- -->
             <div class="form-group">
                 <label class="required" for="recipient_user_id">{{ trans('cruds.fields.recipient_user_id') }}</label>
-                <select class="form-control select2 {{ $errors->has('recipient_user_id') ? 'is-invalid' : '' }}" name="recipient_user_id" id="recipient_user_id" required>
-                    <option value disabled {{ old('recipient_user_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select2 {{ $errors->has('recipient_user_id') ? 'is-invalid' : '' }}"
+                    name="recipient_user_id" id="recipient_user_id" required>
+                    <option value disabled {{ old('recipient_user_id', null) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
-                    <option value="{{ $user->id }}" {{ old('recipient_user_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}"
+                        {{ old('recipient_user_id', '') === (string) $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
                     </option>
                     @endforeach
@@ -58,7 +67,8 @@
             <!-- -----------------item----------------- -->
             <div class="form-group">
                 <label class="required" for="item">{{ trans('cruds.fields.item') }}</label>
-                <input class="form-control {{ $errors->has('item') ? 'is-invalid' : '' }}" type="text" name="item" id="item" value="{{ old('item') }}" required>
+                <input class="form-control {{ $errors->has('item') ? 'is-invalid' : '' }}" type="text" name="item"
+                    id="item" value="{{ old('item') }}" required>
                 @if($errors->has('item'))
                 <span class="text-danger">{{ $errors->first('item') }}</span>
                 @endif
@@ -67,7 +77,8 @@
             <!-- -----------------deadline----------------- -->
             <div class="form-group">
                 <label class="required" for="deadline">{{ trans('cruds.fields.deadline') }}</label>
-                <input class="form-control date {{ $errors->has('deadline') ? 'is-invalid' : '' }}" type="text" name="deadline" id="deadline" value="{{ old('deadline') }}" required>
+                <input class="form-control date {{ $errors->has('deadline') ? 'is-invalid' : '' }}" type="text"
+                    name="deadline" id="deadline" value="{{ old('deadline') }}" required>
                 @if($errors->has('deadline'))
                 <span class="text-danger">{{ $errors->first('deadline') }}</span>
                 @endif
@@ -76,7 +87,8 @@
             <!-- -----------------remark----------------- -->
             <div class="form-group">
                 <label class="required" for="remark">{{ trans('cruds.fields.remark') }}</label>
-                <input class="form-control {{ $errors->has('remark') ? 'is-invalid' : '' }}" type="text" name="remark" id="remark" value="{{ old('remark') }}" required>
+                <input class="form-control {{ $errors->has('remark') ? 'is-invalid' : '' }}" type="text" name="remark"
+                    id="remark" value="{{ old('remark') }}" required>
                 @if($errors->has('remark'))
                 <span class="text-danger">{{ $errors->first('remark') }}</span>
                 @endif

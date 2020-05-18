@@ -1,18 +1,21 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.informationManagement.device.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("InformationManagement.Devices.update", [$device->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("InformationManagement.Devices.update", [$device->id]) }}"
+            enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <!-------------------------------------user_id------------------------------------->
             <div class="form-group">
                 <label class="required" for="user_id">{{ trans('cruds.fields.user_id') }}</label>
-                <select class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
-                    <option value disabled {{ old('user_id', $device->user_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}" name="user_id"
+                    id="user_id" required>
+                    <option value disabled {{ old('user_id', $device->user_id) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
                     <option value="{{ $user->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
@@ -27,7 +30,8 @@
             <!---------------------------token--------------------------->
             <div class="form-group">
                 <label class="required" for="token">{{ trans('cruds.fields.token') }}</label>
-                <input class="form-control {{ $errors->has('token') ? 'is-invalid' : '' }}" type="text" name="token" id="token" value="{{ old('token', $device->token) }}" required>
+                <input class="form-control {{ $errors->has('token') ? 'is-invalid' : '' }}" type="text" name="token"
+                    id="token" value="{{ old('token', $device->token) }}" required>
                 @if($errors->has('token'))
                 <span class="text-danger">{{ $errors->first('token') }}</span>
                 @endif
@@ -36,8 +40,10 @@
             <!-------------------------------------is_active------------------------------------->
             <div class="form-group">
                 <label class="required" for="is_active">{{ trans('cruds.fields.is_active') }}</label>
-                <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
-                    <option value disabled {{ old('is_active', $device->is_active) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active"
+                    id="is_active" required>
+                    <option value disabled {{ old('is_active', $device->is_active) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.device_isActive_form') as $key => $label)
                     <option value="{{ $user->id }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}

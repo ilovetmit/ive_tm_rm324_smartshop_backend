@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -56,7 +56,7 @@
     <div class="tab-content">
         @if(!is_null($permission->hasRole)>0)
         <div class="tab-pane" role="tabpanel" id="roles">
-            @includeIf('relationships.roles', ['roles' => $permission->hasRole])
+            @includeIf('_relationships.roles', ['roles' => $permission->hasRole])
         </div>
         @endif
     </div>

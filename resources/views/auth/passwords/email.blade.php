@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('_layout.app')
 @section('content')
 <div class="login-box">
     <div class="login-logo">
@@ -15,9 +15,9 @@
             </p>
 
             @if(session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
             @endif
 
             <form method="POST" action="{{ route('password.email') }}">
@@ -25,12 +25,15 @@
 
                 <div>
                     <div class="form-group">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required autocomplete="email" autofocus placeholder="{{ trans('global.login_email') }}" value="{{ old('email') }}">
+                        <input id="email" type="email"
+                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required
+                            autocomplete="email" autofocus placeholder="{{ trans('global.login_email') }}"
+                            value="{{ old('email') }}">
 
                         @if($errors->has('email'))
-                            <span class="text-danger">
-                                {{ $errors->first('email') }}
-                            </span>
+                        <span class="text-danger">
+                            {{ $errors->first('email') }}
+                        </span>
                         @endif
                     </div>
                 </div>

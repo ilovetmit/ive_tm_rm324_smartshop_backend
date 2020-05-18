@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('product_wall_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -46,7 +46,7 @@
                             {{ $productWall->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $productWall->hasProduct->id . ". " . $productWall->hasProduct->name ?? '',
                             ])
@@ -55,7 +55,7 @@
                             {{ $productWall->message ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'product_wall',
                             'route_subject' => 'ProductManagement.ProductWalls',
                             'id' => $productWall->id
@@ -71,7 +71,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'product_wall_delete',
 'route' => route('ProductManagement.ProductWalls.massDestroy'),
 'pageLength' => 25,

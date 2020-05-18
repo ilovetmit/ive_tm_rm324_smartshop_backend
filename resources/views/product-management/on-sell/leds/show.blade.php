@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -26,7 +26,7 @@
                             {{ trans('cruds.fields.shop_product_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $led->hasShopProduct->id . ". " . $led->hasShopProduct->hasProduct->name ?? '',
                             ])

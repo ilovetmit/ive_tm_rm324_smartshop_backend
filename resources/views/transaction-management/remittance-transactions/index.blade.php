@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('transaction_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -46,20 +46,22 @@
                         </td>
                         <td>
                             {{-- $remittanceTransaction->transaction_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $remittanceTransaction->hasTransaction->id . ". " . $remittanceTransaction->hasTransaction->header ?? '',
+                            'element' => $remittanceTransaction->hasTransaction->id . ". " .
+                            $remittanceTransaction->hasTransaction->header ?? '',
                             ])
                         </td>
                         <td>
                             {{-- $remittanceTransaction->payee_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $remittanceTransaction->hasUser->id . ". " . $remittanceTransaction->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $remittanceTransaction->hasUser->id . ". " .
+                            $remittanceTransaction->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'remittance_transaction',
                             'route_subject' => 'TransactionManagement.RemittanceTransactions',
                             'id' => $remittanceTransaction->id
@@ -74,7 +76,7 @@
 </div>
 @endsection
 @section('scripts')
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'remittance_transaction_delete',
 'route' => route('TransactionManagement.RemittanceTransactions.massDestroy'),
 'pageLength' => 25,

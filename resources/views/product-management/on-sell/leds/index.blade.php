@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('led_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -42,13 +42,14 @@
                             {{ $led->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $led->hasShopProduct->hasProduct->id . ". " . $led->hasShopProduct->hasProduct->name ?? '',
+                            'element' => $led->hasShopProduct->hasProduct->id . ". " .
+                            $led->hasShopProduct->hasProduct->name ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'led',
                             'route_subject' => 'ProductManagement.LEDs',
                             'id' => $led->id
@@ -64,7 +65,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'led_delete',
 'route' => route('ProductManagement.LEDs.massDestroy'),
 'pageLength' => 25,

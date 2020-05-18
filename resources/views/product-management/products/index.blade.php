@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('product_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -57,19 +57,21 @@
                         </td>
                         <!-- ----------------quantity & status---------------- -->
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
+                            config('constant.product_status')['tag_type_2'],
                             'element' => $product->quantity,
                             ])
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
+                            config('constant.product_status')['tag_type_2'],
                             'element' => config('constant.product_status')[$product->status] ?? '',
                             ])
                         </td>
                         <!-- ----------------tag---------------- -->
                         <td>
                             @foreach($product->hasTag as $key => $tag)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $tag->name,
                             ])
@@ -78,7 +80,7 @@
                         <!-- ----------------category---------------- -->
                         <td>
                             @foreach($product->hasCategory as $key => $category)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $category->name,
                             ])
@@ -86,7 +88,7 @@
                         </td>
                         <!-- ----------------action---------------- -->
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'product',
                             'route_subject' => 'ProductManagement.Products',
                             'id' => $product->id
@@ -102,7 +104,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'product_delete',
 'route' => route('ProductManagement.Products.massDestroy'),
 'pageLength' => 25,

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('transaction_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -54,60 +54,61 @@
                             {{ $transaction->header ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $transaction->hasUser->id . ". " . $transaction->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $transaction->hasUser->id . ". " .
+                            $transaction->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                         <td>
                             {{ '$ '. $transaction->amount ?? '' }}
-                            
+
                         </td>
                         <td>
-                    {{-- 
+                            {{--
                         @if (fmod($transaction->id,4) == 0)
-                                @include('module.datatable.badge_tag.tag',[
+                                @include('_module.datatable.badge_tag.tag',[
                                     'type' => 'secondary',
                                     'element' => "Locker Transaction" ?? '',
                                 ])
                             @elseif (fmod($transaction->id,3) == 0)
-                                @include('module.datatable.badge_tag.tag',[
+                                @include('_module.datatable.badge_tag.tag',[
                                     'type' => 'warning',
                                     'element' => "Product Transaction" ?? '',
                                 ])
                             @elseif (fmod($transaction->id,2) == 0)
-                                @include('module.datatable.badge_tag.tag',[
+                                @include('_module.datatable.badge_tag.tag',[
                                     'type' => 'primary',
                                     'element' => "Remittannce Transaction" ?? '',
                                     ])
                             @else
-                                @include('module.datatable.badge_tag.tag',[
+                                @include('_module.datatable.badge_tag.tag',[
                                     'type' => 'info',
                                     'element' => "Product Transaction" ?? '',
                                 ])
                             @endif
                     --}}
-                           
-                        @if(!is_null($transaction->hasLocker_transaction)>0)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => "Locker Transaction" ?? '',
-                                ])
+
+                            @if(!is_null($transaction->hasLocker_transaction)>0)
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Locker Transaction" ?? '',
+                            ])
                             @elseif(!is_null($transaction->hasProduct_transaction)>0)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => "Product Transaction" ?? '',
-                                ])
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Product Transaction" ?? '',
+                            ])
                             @elseif(!is_null($transaction->hasRemittance_transaction)>0)
-                                @include('module.datatable.badge_tag.tag',[
-                                'type' => 'info',
-                                'element' => "Remittannce Transaction" ?? '',
-                                ])
-                            @endif  
-                    
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => 'info',
+                            'element' => "Remittannce Transaction" ?? '',
+                            ])
+                            @endif
+
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'transaction',
                             'route_subject' => 'TransactionManagement.Transactions',
                             'id' => $transaction->id
@@ -122,7 +123,7 @@
 </div>
 @endsection
 @section('scripts')
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'transaction_delete',
 'route' => route('TransactionManagement.Transactions.massDestroy'),
 'pageLength' => 25,

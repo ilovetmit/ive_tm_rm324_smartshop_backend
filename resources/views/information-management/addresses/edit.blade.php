@@ -1,18 +1,21 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.informationManagement.address.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("InformationManagement.Addresses.update", [$address->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("InformationManagement.Addresses.update", [$address->id]) }}"
+            enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <!-------------------------------------user_id------------------------------------->
             <div class="form-group">
                 <label class="required" for="user_id">{{ trans('cruds.fields.user_id') }}</label>
-                <select class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
-                    <option value disabled {{ old('user_id', $address->user_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}" name="user_id"
+                    id="user_id" required>
+                    <option value disabled {{ old('user_id', $address->user_id) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
                     <option value="{{ $user->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
@@ -27,7 +30,8 @@
             <!---------------------------address1--------------------------->
             <div class="form-group">
                 <label class="required" for="address1">{{ trans('cruds.fields.address1') }}</label>
-                <input class="form-control {{ $errors->has('address1') ? 'is-invalid' : '' }}" type="text" name="address1" id="address1" value="{{ old('address1', $address->address1) }}" required>
+                <input class="form-control {{ $errors->has('address1') ? 'is-invalid' : '' }}" type="text"
+                    name="address1" id="address1" value="{{ old('address1', $address->address1) }}" required>
                 @if($errors->has('address1'))
                 <span class="text-danger">{{ $errors->first('address1') }}</span>
                 @endif
@@ -36,7 +40,8 @@
             <!---------------------------address2--------------------------->
             <div class="form-group">
                 <label class="required" for="address2">{{ trans('cruds.fields.address2') }}</label>
-                <input class="form-control {{ $errors->has('address2') ? 'is-invalid' : '' }}" type="text" name="address2" id="address2" value="{{ old('address2', $address->address2) }}" required>
+                <input class="form-control {{ $errors->has('address2') ? 'is-invalid' : '' }}" type="text"
+                    name="address2" id="address2" value="{{ old('address2', $address->address2) }}" required>
                 @if($errors->has('address2'))
                 <span class="text-danger">{{ $errors->first('address2') }}</span>
                 @endif
@@ -45,8 +50,10 @@
             <!---------------------------district--------------------------->
             <div class="form-group">
                 <label class="required" for="district">{{ trans('cruds.fields.district') }}</label>
-                <select class="form-control select {{ $errors->has('district') ? 'is-invalid' : '' }}" name="district" id="district" required>
-                    <option value disabled {{ old('district', $address->district) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select {{ $errors->has('district') ? 'is-invalid' : '' }}" name="district"
+                    id="district" required>
+                    <option value disabled {{ old('district', $address->district) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.address_district') as $key => $label)
                     <option value="{{ $key }}" {{ old('district', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}

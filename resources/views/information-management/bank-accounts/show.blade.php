@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -26,9 +26,10 @@
                             {{ trans('cruds.fields.user') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $bankAccount->hasUser->id . ". " . $bankAccount->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $bankAccount->hasUser->id . ". " .
+                            $bankAccount->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                     </tr>
@@ -38,7 +39,7 @@
                         </th>
                         <td>
                             {{-- $bankAccount->current_account --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $bankAccount->current_account ?? '',
                             ])
@@ -50,7 +51,7 @@
                         </th>
                         <td>
                             {{-- $bankAccount->saving_account --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $bankAccount->saving_account ?? '',
                             ])

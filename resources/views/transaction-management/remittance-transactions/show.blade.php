@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -20,9 +20,10 @@
                         </th>
                         <td>
                             {{-- $remittanceTransaction->transaction_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $remittanceTransaction->hasTransaction->id . ". " . $remittanceTransaction->hasTransaction->header ?? '',
+                            'element' => $remittanceTransaction->hasTransaction->id . ". " .
+                            $remittanceTransaction->hasTransaction->header ?? '',
                             ])
                         </td>
                     </tr>
@@ -33,9 +34,10 @@
                         </th>
                         <td>
                             {{-- $remittanceTransaction->payee_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $remittanceTransaction->hasUser->id . ". " . $remittanceTransaction->hasUser->getFullNameAttribute() ?? '',
+                            'element' => $remittanceTransaction->hasUser->id . ". " .
+                            $remittanceTransaction->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>
                     </tr>

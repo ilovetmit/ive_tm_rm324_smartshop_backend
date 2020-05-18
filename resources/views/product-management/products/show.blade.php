@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -34,7 +34,7 @@
                             {{ trans('cruds.fields.price') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $product->price ?? '',
                             ])
@@ -45,8 +45,9 @@
                             {{ trans('cruds.fields.quantity') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
+                            config('constant.product_status')['tag_type_2'],
                             'element' => $product->quantity,
                             ])
                         </td>
@@ -72,8 +73,9 @@
                             {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] : config('constant.product_status')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
+                            config('constant.product_status')['tag_type_2'],
                             'element' => config('constant.product_status')[$product->status] ?? '',
                             ])
                         </td>
@@ -119,17 +121,17 @@
     <div class="tab-content">
         @if(!is_null($product->hasCategory)>0)
         <div class="tab-pane" role="tabpanel" id="categories">
-            @includeIf('relationships.categories', ['categories' => $product->hasCategory])
+            @includeIf('_relationships.categories', ['categories' => $product->hasCategory])
         </div>
         @endif
         @if(!is_null($product->hasTag)>0)
         <div class="tab-pane" role="tabpanel" id="tags">
-            @includeIf('relationships.tags', ['tags' => $product->hasTag])
+            @includeIf('_relationships.tags', ['tags' => $product->hasTag])
         </div>
         @endif
         @if(!is_null($product->hasProductWall)>0)
         <div class="tab-pane" role="tabpanel" id="productWalls">
-            @includeIf('relationships.product-walls', ['productWalls' => $product->hasProductWall])
+            @includeIf('_relationships.product-walls', ['productWalls' => $product->hasProductWall])
         </div>
         @endif
     </div>

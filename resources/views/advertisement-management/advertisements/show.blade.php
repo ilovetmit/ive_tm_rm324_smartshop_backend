@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -55,8 +55,9 @@
                             {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $ad->status == 1 ? config('constant.advertisement_status')['tag_type_1'] : config('constant.advertisement_status')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $ad->status == 1 ? config('constant.advertisement_status')['tag_type_1'] :
+                            config('constant.advertisement_status')['tag_type_2'],
                             'element' => config('constant.advertisement_status')[$ad->status] ?? '',
                             ])
                         </td>
@@ -68,7 +69,7 @@
                         </th>
                         <td>
                             @foreach($ad->hasTag as $key => $tags)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $tags->name ?? '',
                             ])
@@ -102,7 +103,7 @@
     <div class="tab-content">
         @if(!is_null($ad->hasTag)>0)
         <div class="tab-pane" role="tabpanel" id="tags">
-            @includeIf('relationships.tags', ['tags' => $ad->hasTag])
+            @includeIf('_relationships.tags', ['tags' => $ad->hasTag])
         </div>
         @endif
     </div>

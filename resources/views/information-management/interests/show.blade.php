@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -64,7 +64,7 @@
     <div class="tab-content">
         @if(!is_null($interest->hasUser)>0)
         <div class="tab-pane" role="tabpanel" id="users">
-            @includeIf('relationships.users', ['users' => $interest->hasUser])
+            @includeIf('_relationships.users', ['users' => $interest->hasUser])
         </div>
         @endif
     </div>

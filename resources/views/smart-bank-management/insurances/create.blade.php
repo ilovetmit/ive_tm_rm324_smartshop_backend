@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -10,7 +10,8 @@
             <!---------------------------name--------------------------->
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', '') }}" required>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
+                    id="name" value="{{ old('name', '') }}" required>
                 @if($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
@@ -19,7 +20,8 @@
             <!---------------------------price--------------------------->
             <div class="form-group">
                 <label class="required" for="price">{{ trans('cruds.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="text" name="price" id="price" value="{{ old('price', '') }}" required>
+                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="text" name="price"
+                    id="price" value="{{ old('price', '') }}" required>
                 @if($errors->has('price'))
                 <span class="text-danger">{{ $errors->first('price') }}</span>
                 @endif
@@ -38,7 +40,8 @@
             <!---------------------------description--------------------------->
             <div class="form-group">
                 <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
-                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', '') }}" required>
+                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text"
+                    name="description" id="description" value="{{ old('description', '') }}" required>
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -43,7 +43,7 @@
                         </th>
                         <td>
                             @foreach($role->hasPermission as $key => $permissions)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $permissions->name ?? '',
                             ])
@@ -77,7 +77,7 @@
     <div class="tab-content">
         @if(!is_null($role->hasUser)>0)
         <div class="tab-pane" role="tabpanel" id="users">
-            @includeIf('relationships.users', ['users' => $role->hasUser])
+            @includeIf('_relationships.users', ['users' => $role->hasUser])
         </div>
         @endif
     </div>

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -20,9 +20,10 @@
                         </th>
                         <td>
                             {{-- $productTransaction->transaction_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $productTransaction->hasTransaction->id . ". " . $productTransaction->hasTransaction->header . "." ?? '',
+                            'element' => $productTransaction->hasTransaction->id . ". " .
+                            $productTransaction->hasTransaction->header . "." ?? '',
                             ])
                         </td>
                     </tr>
@@ -33,9 +34,10 @@
                         </th>
                         <td>
                             {{-- $productTransaction->product_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $productTransaction->hasProduct->id . ". " . $productTransaction->hasProduct->name ?? '',
+                            'element' => $productTransaction->hasProduct->id . ". " .
+                            $productTransaction->hasProduct->name ?? '',
                             ])
                         </td>
                     </tr>

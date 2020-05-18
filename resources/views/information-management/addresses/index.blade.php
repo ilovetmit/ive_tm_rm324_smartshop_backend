@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('address_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -45,7 +45,7 @@
                             {{ $address->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $address->hasUser->id . ". " . $address->hasUser->getFullNameAttribute() ?? '',
                             ])
@@ -54,7 +54,7 @@
                             {{ config('constant.address_district')[$address->district] ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'address',
                             'route_subject' => 'InformationManagement.Addresses',
                             'id' => $address->id
@@ -70,7 +70,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'address_delete',
 'route' => route('InformationManagement.Addresses.massDestroy'),
 'pageLength' => 25,

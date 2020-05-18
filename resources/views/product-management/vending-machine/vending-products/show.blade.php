@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -26,9 +26,10 @@
                             {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $vendingProduct->hasProduct->id . ". " . $vendingProduct->hasProduct->name ?? '',
+                            'element' => $vendingProduct->hasProduct->id . ". " . $vendingProduct->hasProduct->name ??
+                            '',
                             ])
                         </td>
                     </tr>
@@ -37,7 +38,7 @@
                             {{ trans('cruds.fields.channel') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'dark',
                             'element' => $vendingProduct->channel ?? '',
                             ])

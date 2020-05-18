@@ -12,7 +12,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="users_devices">
-            @includeIf('user-management.users.relationships.users-devices', ['devices' => $user->hasDevice])
+            @includeIf('user-management.users._relationships.users-devices', ['devices' => $user->hasDevice])
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
 @endsection
 
 <!-- action -->
-@include('module.datatable.action.index',[
+@include('_module.datatable.action.index',[
 'permission_subject' => 'user',
 'route_subject' => 'UserManagement.Users',
 'id' => $user->id

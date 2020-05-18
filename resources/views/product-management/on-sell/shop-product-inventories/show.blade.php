@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -26,9 +26,10 @@
                             {{ trans('cruds.fields.shop_product_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " . $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
+                            'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " .
+                            $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
                             ])
                         </td>
                     </tr>
@@ -47,9 +48,12 @@
                             {{ trans('cruds.fields.is_sold') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $shopProductInventory->is_sold == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
-                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $shopProductInventory->is_sold == 1 ?
+                            config('constant.device_isActive')['tag_type_1'] :
+                            config('constant.device_isActive')['tag_type_2'],
+                            'element' =>
+                            config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                             ])
                         </td>
                     </tr>

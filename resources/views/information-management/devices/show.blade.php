@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -34,7 +34,7 @@
                             {{ trans('cruds.fields.user_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $device->hasUser->id . ". " . $device->hasUser->getFullNameAttribute() ?? '',
                             ])
@@ -46,8 +46,9 @@
                         </th>
                         <td>
                             {{-- $device->is_active --}}
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] : config('constant.device_isActive')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] :
+                            config('constant.device_isActive')['tag_type_2'],
                             'element' => config('constant.device_isActive')[$device->is_active] ?? '',
                             ])
                         </td>

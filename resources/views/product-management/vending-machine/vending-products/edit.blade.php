@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 
 <div class="card">
@@ -7,14 +7,18 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("ProductManagement.VendingProducts.update", [$vendingProduct->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("ProductManagement.VendingProducts.update", [$vendingProduct->id]) }}"
+            enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <!-- --------------------------------------product_id-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
-                <select class="form-control select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
-                    <option value disabled {{ old('product_id', $vendingProduct->product_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
+                    name="product_id" id="product_id" required>
+                    <option value disabled
+                        {{ old('product_id', $vendingProduct->product_id) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
                     <option value="{{ $product->id }}" {{ old('product_id', '') === (string) $key ? 'selected' : '' }}>
                         {{ $product->name }}
@@ -29,7 +33,8 @@
             <!---------------------------channel--------------------------->
             <div class="form-group">
                 <label class="required" for="channel">{{ trans('cruds.fields.channel') }}</label>
-                <input class="form-control {{ $errors->has('channel') ? 'is-invalid' : '' }}" type="text" name="channel" id="channel" value="{{ old('channel', $vendingProduct->channel) }}" required>
+                <input class="form-control {{ $errors->has('channel') ? 'is-invalid' : '' }}" type="text" name="channel"
+                    id="channel" value="{{ old('channel', $vendingProduct->channel) }}" required>
                 @if($errors->has('channel'))
                 <span class="text-danger">{{ $errors->first('channel') }}</span>
                 @endif

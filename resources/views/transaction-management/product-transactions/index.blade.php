@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('product_transaction_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -49,23 +49,25 @@
                         </td>
                         <td>
                             {{-- $productTransaction->transaction_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $productTransaction->hasTransaction->id . ". " . $productTransaction->hasTransaction->header . "." ?? '',
+                            'element' => $productTransaction->hasTransaction->id . ". " .
+                            $productTransaction->hasTransaction->header . "." ?? '',
                             ])
                         </td>
                         <td>
                             {{-- $productTransaction->product_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $productTransaction->hasProduct->id . ". " . $productTransaction->hasProduct->name ?? '',
+                            'element' => $productTransaction->hasProduct->id . ". " .
+                            $productTransaction->hasProduct->name ?? '',
                             ])
                         </td>
                         <td>
                             {{ $productTransaction->quantity ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'product_transaction',
                             'route_subject' => 'TransactionManagement.ProductTransactions',
                             'id' => $productTransaction->id
@@ -80,7 +82,7 @@
 </div>
 @endsection
 @section('scripts')
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'product_transaction_delete',
 'route' => route('TransactionManagement.Transactions.massDestroy'),
 'pageLength' => 25,

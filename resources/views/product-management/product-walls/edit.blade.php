@@ -1,17 +1,19 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.productManagement.product_wall.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("ProductManagement.ProductWalls.update", [$productWall->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("ProductManagement.ProductWalls.update", [$productWall->id]) }}"
+            enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <!-------------------------------------qrcode------------------------------------->
             <div class="form-group">
                 <label class="required" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
-                <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode" id="qrcode" value="{{ old('qrcode', $productWall->qrcode) }}" required>
+                <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode"
+                    id="qrcode" value="{{ old('qrcode', $productWall->qrcode) }}" required>
                 @if($errors->has('qrcode'))
                 <span class="text-danger">{{ $errors->first('qrcode') }}</span>
                 @endif
@@ -20,7 +22,9 @@
             <!---------------------------product_id--------------------------->
             <div class="form-group">
                 <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
-                <input class="form-control {{ $errors->has('product_id') ? 'is-invalid' : '' }}" type="text" name="product_id" id="product_id" value="{{ old('product_id', $productWall->product_id) }}" required>
+                <input class="form-control {{ $errors->has('product_id') ? 'is-invalid' : '' }}" type="text"
+                    name="product_id" id="product_id" value="{{ old('product_id', $productWall->product_id) }}"
+                    required>
                 @if($errors->has('product_id'))
                 <span class="text-danger">{{ $errors->first('product_id') }}</span>
                 @endif
@@ -29,8 +33,10 @@
             <!-------------------------------------product_id------------------------------------->
             <div class="form-group">
                 <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
-                <select class="form-control select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
-                    <option value disabled {{ old('product_id', $productWall->product_id) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
+                    name="product_id" id="product_id" required>
+                    <option value disabled {{ old('product_id', $productWall->product_id) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
                     <option value="{{ $product->id }}" {{ old('product_id', '') === (string) $key ? 'selected' : '' }}>
                         {{ $product->name }}
@@ -45,7 +51,8 @@
             <!---------------------------message--------------------------->
             <div class="form-group">
                 <label class="required" for="message">{{ trans('cruds.fields.message') }}</label>
-                <input class="form-control {{ $errors->has('message') ? 'is-invalid' : '' }}" type="text" name="message" id="message" value="{{ old('message', $productWall->message) }}" required>
+                <input class="form-control {{ $errors->has('message') ? 'is-invalid' : '' }}" type="text" name="message"
+                    id="message" value="{{ old('message', $productWall->message) }}" required>
                 @if($errors->has('message'))
                 <span class="text-danger">{{ $errors->first('message') }}</span>
                 @endif

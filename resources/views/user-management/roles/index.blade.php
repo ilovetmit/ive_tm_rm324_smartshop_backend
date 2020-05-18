@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('role_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -51,7 +51,7 @@
                             {{ $role->description ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'role',
                             'route_subject' => 'UserManagement.Roles',
                             'id' => $role->id
@@ -68,7 +68,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'role_delete',
 'route' => route('UserManagement.Roles.massDestroy'),
 'pageLength' => 25,

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('category_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -51,7 +51,7 @@
                             {{ $category->description ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'category',
                             'route_subject' => 'ProductManagement.Categories',
                             'id' => $category->id
@@ -67,7 +67,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'category_delete',
 'route' => route('ProductManagement.Categories.massDestroy'),
 'pageLength' => 25,

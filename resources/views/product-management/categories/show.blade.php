@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -64,7 +64,7 @@
     <div class="tab-content">
         @if(!is_null($category->hasProduct)>0)
         <div class="tab-pane" role="tabpanel" id="products">
-            @includeIf('relationships.products', ['products' => $category->hasProduct])
+            @includeIf('_relationships.products', ['products' => $category->hasProduct])
         </div>
         @endif
     </div>

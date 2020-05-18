@@ -32,7 +32,7 @@ class SShopController extends Controller
   public function advertisement()
   {
     $rows = Advertisement::where('status', config('constants.STATUS.ACTIVE'))->get();
-    return view('s_shop.advertisement.index', compact('rows'));
+    return view('user-panel.s-shop.advertisement.index', compact('rows'));
   }
 
   /**
@@ -40,7 +40,7 @@ class SShopController extends Controller
    */
   public function maps()
   {
-    return view('s_shop.maps.index');
+    return view('user-panel.s-shop.maps.index');
   }
 
   /**
@@ -48,34 +48,34 @@ class SShopController extends Controller
    */
   public function shopping()
   {
-      //todo Shop-product with product
+    //todo Shop-product with product
     // Do some sorting for better user experience
-//    if (Auth::check() && count(ProductTransaction::where('user_id', Auth::id())->get()) != 0) {
-//      $asc_list = ProductTransaction::rightJoin('products', 'product_transactions.product_qrcode', 'products.qrcode')
-//        ->selectRaw('category, COUNT(product_transactions.product_qrcode) AS total_quantity')->groupBy('category')->orderBy('total_quantity', 'desc')->get();
-//
-//      foreach ($asc_list as $item) {
-//        $category_array[] = "'$item->category'";
-//      }
-//      $category_string = implode(', ', $category_array);
-//      $rows = Product::orderByRaw("FIELD(category,$category_string)")->get();
-//      $sorted = $category_array[0];
-//    } else {
-      $rows = Product::all();
-      $sorted = false;
-//    }
+    //    if (Auth::check() && count(ProductTransaction::where('user_id', Auth::id())->get()) != 0) {
+    //      $asc_list = ProductTransaction::rightJoin('products', 'product_transactions.product_qrcode', 'products.qrcode')
+    //        ->selectRaw('category, COUNT(product_transactions.product_qrcode) AS total_quantity')->groupBy('category')->orderBy('total_quantity', 'desc')->get();
+    //
+    //      foreach ($asc_list as $item) {
+    //        $category_array[] = "'$item->category'";
+    //      }
+    //      $category_string = implode(', ', $category_array);
+    //      $rows = Product::orderByRaw("FIELD(category,$category_string)")->get();
+    //      $sorted = $category_array[0];
+    //    } else {
+    $rows = Product::all();
+    $sorted = false;
+    //    }
 
-    return view('s_shop.shopping.index', compact('rows', 'sorted'));
-//    return view('s_shop.shopping.index');
+    return view('user-panel.s-shop.shopping.index', compact('rows', 'sorted'));
+    //    return view('user-panel.s-shop.shopping.index');
   }
   public function shopping_detail($id)
   {
     $row = Product::findOrFail(ShopProduct::find($id)->product_id);
-    return view('s_shop.shopping.detail', compact('row'));
+    return view('user-panel.s-shop.shopping.detail', compact('row'));
   }
   public function shopping_receipts()
   {
-    return view('s_shop.shopping.receipts');
+    return view('user-panel.s-shop.shopping.receipts');
   }
 
   /**
@@ -86,7 +86,7 @@ class SShopController extends Controller
 
     $token = Str::random(64);              // token for generating qr code and the name of event
     Redis::set($token, 'waiting-auth');
-    return view('s_shop.splash.index', compact('token'));
+    return view('user-panel.s-shop.splash.index', compact('token'));
   }
 
   public function login_qr_approve(Request $request)
@@ -124,12 +124,12 @@ class SShopController extends Controller
    */
   public function history()
   {
-//    $rows = ProductTransaction::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
-      $rows = ProductTransaction::with('hasProduct','hasTransaction')->whereHas('hasTransaction',function ($query){
-          $query->where('user_id',Auth::id());
-      })->orderBy('created_at', 'desc')->get();
+    //    $rows = ProductTransaction::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+    $rows = ProductTransaction::with('hasProduct', 'hasTransaction')->whereHas('hasTransaction', function ($query) {
+      $query->where('user_id', Auth::id());
+    })->orderBy('created_at', 'desc')->get();
 
-    return view('s_shop.history.index', compact('rows'));
+    return view('user-panel.s-shop.history.index', compact('rows'));
   }
 
   /**
@@ -138,7 +138,7 @@ class SShopController extends Controller
   public function profile()
   {
     $user = User::with('hasBankAccount')->where('id', Auth::id())->first();
-    return view('s_shop.profile.index', compact('user'));
+    return view('user-panel.s-shop.profile.index', compact('user'));
   }
 
   public function logout(Request $request)

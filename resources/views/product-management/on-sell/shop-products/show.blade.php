@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -26,7 +26,7 @@
                             {{ trans('cruds.fields.product_id') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $shopProduct->hasProduct->id . ". " . $shopProduct->hasProduct->name ?? '',
                             ])
@@ -37,7 +37,8 @@
                             {{ trans('cruds.fields.qrcode') }}
                         </th>
                         <td>
-                            <img src="{{ 'https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L%7C0&chl=' . $shopProduct->qrcode }}" width="150px">
+                            <img src="{{ 'https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L%7C0&chl=' . $shopProduct->qrcode }}"
+                                width="150px">
                             <br>
                             {{ $shopProduct->qrcode }}
                         </td>
@@ -76,12 +77,13 @@
     <div class="tab-content">
         @if(!is_null($shopProduct->hasShopProductInventory)>0)
         <div class="tab-pane" role="tabpanel" id="products">
-            @includeIf('relationships.shop-product-inventories', ['shopProductInventories' => $shopProduct->hasShopProductInventory])
+            @includeIf('_relationships.shop-product-inventories', ['shopProductInventories' =>
+            $shopProduct->hasShopProductInventory])
         </div>
         @endif
         @if(!is_null($shopProduct->hasLED)>0)
         <div class="tab-pane" role="tabpanel" id="products">
-            @includeIf('relationships.leds', ['leds' => $shopProduct->hasLED])
+            @includeIf('_relationships.leds', ['leds' => $shopProduct->hasLED])
         </div>
         @endif
     </div>

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('shop_product_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -42,13 +42,13 @@
                             {{ $shopProduct->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $shopProduct->hasProduct->id . ". " . $shopProduct->hasProduct->name ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'shop_product',
                             'route_subject' => 'ProductManagement.ShopProducts',
                             'id' => $shopProduct->id
@@ -64,7 +64,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'shop_product_delete',
 'route' => route('ProductManagement.ShopProducts.massDestroy'),
 'pageLength' => 25,

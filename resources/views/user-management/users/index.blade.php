@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('user_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -61,14 +61,14 @@
                         </td>
                         <td>
                             @foreach($user->hasRole as $key => $item)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => $item->name == 'Admin' ? 'danger' : 'info',
                             'element' => $item->name ?? '',
                             ])
                             @endforeach
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'user',
                             'route_subject' => 'UserManagement.Users',
                             'id' => $user->id
@@ -83,7 +83,7 @@
 </div>
 @endsection
 @section('scripts')
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'user_delete',
 'route' => route('UserManagement.Users.massDestroy'),
 'pageLength' => 25,

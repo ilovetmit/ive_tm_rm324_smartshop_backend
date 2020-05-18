@@ -1,17 +1,19 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.smartBankManagement.insurance.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("SmartBankManagement.Insurances.update", [$insurance->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("SmartBankManagement.Insurances.update", [$insurance->id]) }}"
+            enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <!---------------------------name--------------------------->
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $insurance->name) }}" required>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
+                    id="name" value="{{ old('name', $insurance->name) }}" required>
                 @if($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
@@ -20,7 +22,8 @@
             <!---------------------------price--------------------------->
             <div class="form-group">
                 <label class="required" for="price">{{ trans('cruds.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="text" name="price" id="price" value="{{ old('price', $insurance->price) }}" required>
+                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="text" name="price"
+                    id="price" value="{{ old('price', $insurance->price) }}" required>
                 @if($errors->has('price'))
                 <span class="text-danger">{{ $errors->first('price') }}</span>
                 @endif
@@ -31,7 +34,8 @@
                 <label class="required" for="image">{{ trans('cruds.fields.image') }}</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image" name="image">
+                        <input type="file" class="custom-file-input {{ $errors->has('image') ? 'is-invalid' : '' }}"
+                            id="image" name="image">
                         <label class="custom-file-label" for="image">{{ old('image', $insurance->image) }}</label>
                     </div>
                 </div>
@@ -39,7 +43,9 @@
             <!---------------------------description--------------------------->
             <div class="form-group">
                 <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
-                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', $insurance->description) }}" required>
+                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text"
+                    name="description" id="description" value="{{ old('description', $insurance->description) }}"
+                    required>
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif

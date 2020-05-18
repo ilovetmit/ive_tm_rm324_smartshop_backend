@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('insurance_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -51,7 +51,7 @@
                             {{ $insurance->description ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'insurance',
                             'route_subject' => 'SmartBankManagement.Insurances',
                             'id' => $insurance->id
@@ -67,7 +67,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'insurance_delete',
 'route' => route('SmartBankManagement.Insurances.massDestroy'),
 'pageLength' => 25,

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('advertisement_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -51,21 +51,23 @@
                             {{ $advertisement->header ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $advertisement->status == 1 ? config('constant.advertisement_status')['tag_type_1'] : config('constant.advertisement_status')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $advertisement->status == 1 ?
+                            config('constant.advertisement_status')['tag_type_1'] :
+                            config('constant.advertisement_status')['tag_type_2'],
                             'element' => config('constant.advertisement_status')[$advertisement->status] ?? '',
                             ])
                         </td>
                         <td>
                             @foreach($advertisement->hasTag as $key => $item)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $item->name,
                             ])
                             @endforeach
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'advertisement',
                             'route_subject' => 'AdvertisementManagement.ad',
                             'id' => $advertisement->id
@@ -81,7 +83,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'advertisement_delete',
 'route' => route('AdvertisementManagement.ad.massDestroy'),
 'pageLength' => 100,

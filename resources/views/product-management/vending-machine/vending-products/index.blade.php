@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('vending_product_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -45,19 +45,20 @@
                             {{ $vendingProduct->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $vendingProduct->hasProduct->id . ". " . $vendingProduct->hasProduct->name ?? '',
+                            'element' => $vendingProduct->hasProduct->id . ". " . $vendingProduct->hasProduct->name ??
+                            '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'dark',
                             'element' => $vendingProduct->channel ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'vending_product',
                             'route_subject' => 'ProductManagement.VendingProducts',
                             'id' => $vendingProduct->id
@@ -73,7 +74,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'vending_product_delete',
 'route' => route('ProductManagement.VendingProducts.massDestroy'),
 'pageLength' => 25,

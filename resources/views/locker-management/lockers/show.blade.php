@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -26,7 +26,8 @@
                             {{ trans('cruds.fields.qrcode') }}
                         </th>
                         <td>
-                            <img src="{{ 'https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L%7C0&chl=' . $locker->qrcode }}" width="150px">
+                            <img src="{{ 'https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L%7C0&chl=' . $locker->qrcode }}"
+                                width="150px">
                             <br>
                             {{ $locker->qrcode }}
                         </td>
@@ -36,7 +37,7 @@
                             {{ trans('cruds.fields.per_hour_price') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $locker->per_hour_price ?? '',
                             ])
@@ -47,8 +48,9 @@
                             {{ trans('cruds.fields.is_active') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_active == 1 ? config('constant.locker_isActive')['tag_type_1'] : config('constant.locker_isActive')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $locker->is_active == 1 ? config('constant.locker_isActive')['tag_type_1'] :
+                            config('constant.locker_isActive')['tag_type_2'],
                             'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
                             ])
                         </td>
@@ -58,8 +60,9 @@
                             {{ trans('cruds.fields.is_using') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_using == 1 ? config('constant.locker_isUsing')['tag_type_1'] : config('constant.locker_isUsing')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $locker->is_using == 1 ? config('constant.locker_isUsing')['tag_type_1'] :
+                            config('constant.locker_isUsing')['tag_type_2'],
                             'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
                             ])
                         </td>
@@ -91,7 +94,7 @@
     <div class="tab-content">
         @if(!is_null($locker->hasLockerTransaction)>0)
         <div class="tab-pane" role="tabpanel" id="lockerTransactions">
-            @includeIf('relationships.locker-transactions', ['lockerTransactions' => $locker->hasLockerTransaction])
+            @includeIf('_relationships.locker-transactions', ['lockerTransactions' => $locker->hasLockerTransaction])
         </div>
         @endif
     </div>

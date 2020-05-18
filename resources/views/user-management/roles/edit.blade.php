@@ -1,17 +1,19 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.userManagement.role.title') }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route("UserManagement.Roles.update", [$role->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("UserManagement.Roles.update", [$role->id]) }}"
+            enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <!---------------------------name--------------------------->
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $role->name) }}" required>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
+                    id="name" value="{{ old('name', $role->name) }}" required>
                 @if($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
@@ -20,7 +22,8 @@
             <!---------------------------description--------------------------->
             <div class="form-group">
                 <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
-                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('description', $role->description) }}" required>
+                <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text"
+                    name="description" id="description" value="{{ old('description', $role->description) }}" required>
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif

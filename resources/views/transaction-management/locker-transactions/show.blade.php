@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -20,9 +20,10 @@
                         </th>
                         <td>
                             {{-- $lockerTransaction->transaction_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $lockerTransaction->hasTransaction->id . ". " . $lockerTransaction->hasTransaction->header . "." ?? '',
+                            'element' => $lockerTransaction->hasTransaction->id . ". " .
+                            $lockerTransaction->hasTransaction->header . "." ?? '',
                             ])
                         </td>
                     </tr>
@@ -33,7 +34,7 @@
                         </th>
                         <td>
                             {{-- $lockerTransaction->locker_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => "Locker No. " . $lockerTransaction->locker_id ?? '',
                             ])
@@ -46,9 +47,10 @@
                         </th>
                         <td>
                             {{-- $lockerTransaction->recipient_user_id ?? '' --}}
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
-                            'element' => $lockerTransaction->hasUser->id . ". " . $lockerTransaction->hasUser->getFullNameAttribute() . "." ?? '',
+                            'element' => $lockerTransaction->hasUser->id . ". " .
+                            $lockerTransaction->hasUser->getFullNameAttribute() . "." ?? '',
                             ])
                         </td>
                     </tr>

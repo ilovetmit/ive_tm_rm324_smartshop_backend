@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('stock_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -51,7 +51,7 @@
                             {{ $stock->name ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'stock',
                             'route_subject' => 'SmartBankManagement.Stocks',
                             'id' => $stock->id
@@ -67,7 +67,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'stock_delete',
 'route' => route('SmartBankManagement.Stocks.massDestroy'),
 'pageLength' => 25,

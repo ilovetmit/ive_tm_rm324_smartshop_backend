@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('interest_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -46,7 +46,7 @@
                             {{ $interest->name ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'interest',
                             'route_subject' => 'InformationManagement.Interests',
                             'id' => $interest->id
@@ -62,7 +62,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'interest_delete',
 'route' => route('InformationManagement.Interests.massDestroy'),
 'pageLength' => 25,

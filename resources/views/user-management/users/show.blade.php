@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -91,8 +91,9 @@
                             {{ trans('cruds.fields.status') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $user->status == 1 ? config('constant.user_status')['tag_type_1'] : config('constant.user_status')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $user->status == 1 ? config('constant.user_status')['tag_type_1'] :
+                            config('constant.user_status')['tag_type_2'],
                             'element' => config('constant.user_status')[$user->status] ?? '',
                             ])
                         </td>
@@ -113,7 +114,7 @@
                         </th>
                         <td>
                             @foreach($user->hasRole as $key => $roles)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $roles->name ?? '',
                             ])
@@ -138,7 +139,7 @@
                         </th>
                         <td>
                             @foreach($user->hasInterest as $key => $interests)
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => $interests->name ?? '',
                             ])
@@ -162,7 +163,7 @@
                             {{ trans('cruds.fields.current_account') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $user->hasBankAccount->current_account ?? '',
                             ])
@@ -174,7 +175,7 @@
                             {{ trans('cruds.fields.saving_account') }}
                         </th>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $user->hasBankAccount->saving_account ?? '',
                             ])
@@ -221,17 +222,17 @@
     <div class="tab-content">
         @if(!is_null($user->hasTransaction)>0)
         <div class="tab-pane" role="tabpanel" id="devices">
-            @includeIf('relationships.devices', ['devices' => $user->hasDevice])
+            @includeIf('_relationships.devices', ['devices' => $user->hasDevice])
         </div>
         @endif
         @if(!is_null($user->hasInterest)>0)
         <div class="tab-pane" role="tabpanel" id="interests">
-            @includeIf('relationships.interests', ['interests' => $user->hasInterest])
+            @includeIf('_relationships.interests', ['interests' => $user->hasInterest])
         </div>
         @endif
         @if(!is_null($user->hasTransaction)>0)
         <div class="tab-pane" role="tabpanel" id="transactions">
-            @includeIf('relationships.transactions', ['transactions' => $user->hasTransaction])
+            @includeIf('_relationships.transactions', ['transactions' => $user->hasTransaction])
         </div>
         @endif
     </div>

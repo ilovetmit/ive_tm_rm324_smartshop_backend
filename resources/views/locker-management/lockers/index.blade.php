@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 @can('locker_create')
 <div style="margin-bottom: 10px;" class="row">
@@ -48,25 +48,27 @@
                             {{ $locker->id ?? '' }}
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
+                            @include('_module.datatable.badge_tag.tag',[
                             'type' => 'info',
                             'element' => '$ '. $locker->per_hour_price ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_active == 1 ? config('constant.locker_isActive')['tag_type_1'] : config('constant.locker_isActive')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $locker->is_active == 1 ? config('constant.locker_isActive')['tag_type_1'] :
+                            config('constant.locker_isActive')['tag_type_2'],
                             'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_using == 1 ? config('constant.locker_isUsing')['tag_type_1'] : config('constant.locker_isUsing')['tag_type_2'],
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => $locker->is_using == 1 ? config('constant.locker_isUsing')['tag_type_1'] :
+                            config('constant.locker_isUsing')['tag_type_2'],
                             'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
                             ])
                         </td>
                         <td>
-                            @include('module.datatable.action.index',[
+                            @include('_module.datatable.action.index',[
                             'permission_subject' => 'locker',
                             'route_subject' => 'LockerManagement.Lockers',
                             'id' => $locker->id
@@ -82,7 +84,7 @@
 @endsection
 @section('scripts')
 @parent
-@include('module.datatable.massdestory',[
+@include('_module.datatable.massdestory',[
 'permission_massDestory' => 'locker_delete',
 'route' => route('LockerManagement.Lockers.massDestroy'),
 'pageLength' => 25,

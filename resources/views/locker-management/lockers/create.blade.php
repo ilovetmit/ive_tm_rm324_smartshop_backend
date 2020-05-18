@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -10,7 +10,8 @@
             <!-- --------------------------------------qrcode-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
-                <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode" id="qrcode" value="{{ old('qrcode') }}" required>
+                <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode"
+                    id="qrcode" value="{{ old('qrcode') }}" required>
                 @if($errors->has('qrcode'))
                 <span class="text-danger">{{ $errors->first('qrcode') }}</span>
                 @endif
@@ -19,7 +20,8 @@
             <!---------------------------per_hour_price--------------------------->
             <div class="form-group">
                 <label class="required" for="per_hour_price">{{ trans('cruds.fields.per_hour_price') }}</label>
-                <input class="form-control {{ $errors->has('per_hour_price') ? 'is-invalid' : '' }}" type="number" name="per_hour_price" id="per_hour_price" value="{{ old('per_hour_price', '') }}" required>
+                <input class="form-control {{ $errors->has('per_hour_price') ? 'is-invalid' : '' }}" type="number"
+                    name="per_hour_price" id="per_hour_price" value="{{ old('per_hour_price', '') }}" required>
                 @if($errors->has('per_hour_price'))
                 <span class="text-danger">{{ $errors->first('per_hour_price') }}</span>
                 @endif
@@ -28,8 +30,10 @@
             <!-- --------------------------------------is_active-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="is_active">{{ trans('cruds.fields.is_active') }}</label>
-                <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active" id="is_active" required>
-                    <option value disabled {{ old('is_active', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select {{ $errors->has('is_active') ? 'is-invalid' : '' }}" name="is_active"
+                    id="is_active" required>
+                    <option value disabled {{ old('is_active', null) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.locker_isActive_form') as $key => $label)
                     <option value="{{ $key }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
@@ -44,8 +48,10 @@
             <!-- --------------------------------------is_using-------------------------------------- -->
             <div class="form-group">
                 <label class="required" for="is_using">{{ trans('cruds.fields.is_using') }}</label>
-                <select class="form-control select {{ $errors->has('is_using') ? 'is-invalid' : '' }}" name="is_using" id="is_using" required>
-                    <option value disabled {{ old('is_using', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                <select class="form-control select {{ $errors->has('is_using') ? 'is-invalid' : '' }}" name="is_using"
+                    id="is_using" required>
+                    <option value disabled {{ old('is_using', null) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.locker_isUsing_form') as $key => $label)
                     <option value="{{ $key }}" {{ old('is_using', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}

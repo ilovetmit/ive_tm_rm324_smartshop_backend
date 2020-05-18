@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('_layout.admin')
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -9,9 +9,10 @@
             @csrf
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', '') }}" required>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
+                    id="name" value="{{ old('name', '') }}" required>
                 @if($errors->has('name'))
-                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
                 <span class="help-block"> </span>
             </div>
