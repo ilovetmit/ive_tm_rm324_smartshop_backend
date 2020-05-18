@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Redis;
 
 class FaceController extends ApiController
 {
-    public function face_scan(Request $request){
+    public function face_scan(Request $request)
+    {
         // todo face test
         try {
             if (!$request->user_id) {
@@ -21,18 +22,17 @@ class FaceController extends ApiController
             }
 
             $user_id = $request->user_id;
-            if($user = User::find($user_id)){
-                $name = $user->first_name.' '.$user->last_name;
+            if ($user = User::find($user_id)) {
                 return parent::sendResponse('user', $user->email, 'Face Scan successfully');
             }
             return parent::sendError('Not fount user', 215);
-
         } catch (\Exception $e) {
             return parent::sendError($e->getMessage(), 216);
         }
     }
 
-    public function get_face_list(){
-//        todo get user face image folder list
+    public function get_face_list()
+    {
+        //        todo get user face image folder list
     }
 }

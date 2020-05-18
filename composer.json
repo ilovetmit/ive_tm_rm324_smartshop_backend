@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
         "jeroennoten/laravel-adminlte": "^3.0",
+        "kunstmaan/libphp-multichain": "^1.1",
         "laravel/framework": "^6.2",
         "laravel/passport": "^8.4",
         "laravel/tinker": "^2.0",

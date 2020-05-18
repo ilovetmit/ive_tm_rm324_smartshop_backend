@@ -28,7 +28,7 @@
                             {{ trans('cruds.fields.name') }}
                         </th>
                         <td>
-                            {{ $user->getFullNameAttribute() }}
+                            {{ $user->full_name }}
                         </td>
                     </tr>
                     <!------------------------email------------------------>
