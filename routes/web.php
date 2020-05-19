@@ -1,5 +1,7 @@
 <?php
 
+Auth::routes(['register' => false]);
+
 Route::get('/', 'HomeController@index')->name('home');
 /***********************************************
  * Smart-Shop-FYP (admin side) Controller
@@ -107,7 +109,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'SmartShop'], function () {
     });
 });
 
-
 /***********************************************
  * Smart-Shop-FYP (checkout side)
  ***********************************************/
@@ -124,7 +125,7 @@ Route::group(['prefix' => 'face', 'as' => 'face.', 'namespace' => 'Face'], funct
 });
 
 /***********************************************
- * S-Shop
+ * S-Shop - todo
  ***********************************************/
 Route::group(['prefix' => 's-shop', 'as' => 'sshop.'], function () {
     Route::get('/', 'SShopController@advertisement');
@@ -147,7 +148,7 @@ Route::group(['prefix' => 's-shop', 'as' => 'sshop.'], function () {
 });
 
 /***********************************************
- * Smart Banking
+ * Smart Banking - todo
  ***********************************************/
 Route::group(['prefix' => 'smart-banking', 'as' => 'sbanking.'], function () {
     Route::get('/', 'SmartBankingController@login_qr');
@@ -172,9 +173,8 @@ Route::group(['prefix' => 'smart-banking', 'as' => 'sbanking.'], function () {
 });
 
 /***********************************************
- * S_Shop Monitor
+ * S_Shop Monitor - todo #blockchains
  ***********************************************/
-
 Route::group(['prefix' => 's-shop-monitor', 'as' => 'smonitor.'], function () {
     Route::get('/', 'SShopMonitorController@index')->name('index');
 });
