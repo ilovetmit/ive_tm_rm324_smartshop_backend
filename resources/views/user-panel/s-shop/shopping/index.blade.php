@@ -19,7 +19,7 @@
                 <div class="card">
                     <a href="{{ route('sshop.shopping.detail',$row->id) }}" data-lightbox="gallery"
                         data-title="{{$row->name}}">
-                        <img src="{{asset($row->url)}}" alt="{{$row->name}}" class="img-fluid">
+                        <img src="{{asset('storage/products/image/' . $row->image)}}" alt="{{$row->name}}" class="img-fluid">
                     </a>
                     <div class="card-body">
                         <h4 class="card-title mb-1">{{$row->name}}</h4>

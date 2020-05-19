@@ -1,8 +1,6 @@
 {{-- Parent Layout --}}
 @extends('_layout.user-panel.master.s_shop_layout')
 
-
-
 @section('page_header','Advertisement')
 
 {{-- Body Main Content --}}
@@ -19,8 +17,10 @@
         <div class="row">
             <div class="card-columns">
                 @foreach ($rows as $row)
-                <div class="card"><a href="{{$row->image}}" data-lightbox="gallery" data-title="{{$row->title}}"><img
-                            src="{{$row->image}}" alt="{{$row->title}}" class="img-fluid"></a>
+                <div class="card">
+                    <a href="{{asset('storage/ad/ad/' . $row->image)}}" data-lightbox="gallery" data-title="{{$row->title}}">
+                        <img src="{{asset('storage/ad/ad/' . $row->image)}}" alt="{{$row->title}}" class="img-fluid">
+                    </a>
                     <div class="card-body">
                         <h6 class="card-title mb-1">{{$row->title}}</h6>
                         <p class="card-text text-small text-muted">{{$row->description}}</p>

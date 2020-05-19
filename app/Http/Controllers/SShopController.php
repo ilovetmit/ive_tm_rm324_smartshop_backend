@@ -31,7 +31,8 @@ class SShopController extends Controller
    */
   public function advertisement()
   {
-    $rows = Advertisement::where('status', config('constants.STATUS.ACTIVE'))->get();
+    $rows = Advertisement::where('status', 1)->get();
+    // $rows = Advertisement::all();
     return view('user-panel.s-shop.advertisement.index', compact('rows'));
   }
 
