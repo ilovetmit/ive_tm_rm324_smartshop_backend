@@ -1,5 +1,5 @@
 <?php
-
+Auth::routes(['register' => false]);
 Route::get('/', 'HomeController@index')->name('home');
 /***********************************************
  * Smart-Shop-FYP (admin side) Controller
