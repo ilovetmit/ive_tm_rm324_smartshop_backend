@@ -104,7 +104,7 @@
 'permission_subjects' => 'led',
 'location' => 'ProductManagement.LEDs.index',
 'icon' => 'fas fa-tv',
-'menu_name' => trans('cruds.productManagement.product.title_s')
+'menu_name' => trans('cruds.productManagement.led.title_s')
 ])
 
 @include('_component.menu-button.child',[

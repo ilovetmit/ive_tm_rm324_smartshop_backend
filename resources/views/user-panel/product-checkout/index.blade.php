@@ -24,7 +24,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5 mb-5">Product Checkout</h1>
+            <h1 class="mt-4 mb-4">Product Checkout</h1>
         </div>
     </div>
     <div class="row mt-3">
