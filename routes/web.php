@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
-
 Auth::routes(['register' => false]);
 
-=======
-Auth::routes(['register' => false]);
->>>>>>> master
 Route::get('/', 'HomeController@index')->name('home');
 /***********************************************
  * Smart-Shop-FYP (admin side) Controller
