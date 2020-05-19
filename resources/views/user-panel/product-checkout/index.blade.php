@@ -7,23 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <style>
-        @media (min-width: 1300px) {
-            .container {
-                max-width: 95%;
-            }
-        }
+    <link rel="stylesheet" href="{{asset('css/checkout.css')}}">
 
-        .modal-body > .text-center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .total {
-            font-weight: 900;
-        }
-    </style>
 </head>
 
 <body>
@@ -39,7 +24,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5">Product Checkout</h1>
+            <h1 class="mt-5 mb-5">Product Checkout</h1>
         </div>
     </div>
     <div class="row mt-3">
@@ -51,21 +36,20 @@
                 <div class="card-body text-center">
                     {{-- todo change to object detection path--}}
                     <img class="img-fluid" src="http://127.0.0.1:8080/video_feed">
-                    <p class="card-text" id="time"></p>
+                    <p class="card-text mt-3" id="time"></p>
                 </div>
             </div>
         </div>
         <div class="col-lg-12 col-xl-7">
-            <div class="table-responsive-xl">
-                <table class="table table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover table-fixed">
                     <thead>
                     <tr>
-                        <th class="align-middle">#</th>
-                        <th class="align-middle">Product Image</th>
-                        <th class="align-middle">Product Name</th>
-                        <th class="align-middle">Product Price</th>
-                        <th class="text-center">Qty.</th>
-                        <th class="text-center">Action</th>
+                        <th scope="col" class="col-1 align-middle text-center">#</th>
+                        <th scope="col" class="col-3 align-middle text-center">Product Image</th>
+                        <th scope="col" class="col-4 align-middle text-center">Product Name</th>
+                        <th scope="col" class="col-2 align-middle text-center">Product Price</th>
+                        <th scope="col" class="col-2 align-middle text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody id="product_data">
@@ -73,8 +57,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th colspan="5" class="text-right">Total Amount:</th>
-                        <th class="text-center" id="totalamount">HKD 0.00</th>
+                        <th scope="col" class="col-12 text-center">Total Amount<h3 id="totalamount" style="font-weight: 900">HKD 0.00</h3></th>
                     </tr>
                     </tfoot>
                 </table>
@@ -82,7 +65,7 @@
         </div>
     </div>
     <div class="row">
-        <button id="confirm_button" type="button" class="btn btn-secondary text-light m-auto w-25" disabled>Confirm</button>
+        <button id="confirm_button" type="button" class="btn btn-secondary btn-lg text-light m-auto w-25" disabled>Confirm</button>
     </div>
 </div>
 
@@ -152,6 +135,10 @@
     var CCOUNT = 120;
     var t, count;
 
+    $(document).ready(function () {
+        ShowTime()
+    });
+
     $('#confirm_button').click(function () {
         if (product_rfid_list.length > 0) {
 
@@ -203,7 +190,7 @@
     window.Echo.channel('smartshop_database_rfid_scan')
         .listen('RFID', (e) => {
             // console.log(e.data);
-            // console.log(e.data.has_shop_product.has_product);
+            console.log(e.data.has_shop_product.has_product);
             if (!product_rfid_list.includes(e.data.rfid_code)) {
                 $('#confirm_button').prop('disabled', false);
                 $("#confirm_button").removeClass("btn-secondary");
@@ -252,12 +239,11 @@
 
     function append_product(no, product_data) {
         $('#product_data').append('<tr id="tr_' + no + '">\n' +
-            '        <th>' + no + '</th>\n' +
-            '        <th><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
-            '        <td>' + product_data.name + '</td>\n' +
-            '        <td>HKD ' + product_data.price.toFixed(2) + '</td>\n' +
-            '        <td class="align-middle text-center">1</td>\n' +
-            '        <td class="text-center"><button name="delete_button" onclick="" class="btn btn-danger text-light" data-row="' + no + '">Delete</button></td>\n' +
+            '        <th scope="row" class="col-1 align-middle text-center">' + no + '</th>\n' +
+            '        <td class="col-3 align-middle text-center"><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
+            '        <td class="col-4 align-middle text-center">' + product_data.name + '</td>\n' +
+            '        <td class="col-2 align-middle text-center">HKD ' + product_data.price.toFixed(2) + '</td>\n' +
+            '        <td class="col-2 align-middle text-center"><button name="delete_button" onclick="" class="btn btn-danger text-light" data-row="' + no + '">Delete</button></td>\n' +
             '    </tr>');
     }
 
@@ -287,6 +273,11 @@
         cdpause();
         count = CCOUNT;
         cddisplay();
+    }
+
+    function ShowTime(){
+        document.getElementById('time').innerText = new Date();
+        setTimeout('ShowTime()',1000);
     }
 
 </script>
