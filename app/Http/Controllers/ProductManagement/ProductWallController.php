@@ -28,19 +28,17 @@ class ProductWallController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        if (isset($request->qrcode)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('qrcode')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'qrcode.regex' => 'The qrcode format should start with "wall-"',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('qrcode')->store('public/productwalls/qrcode');
-                $data['qrcode'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'qrcode'        => 'required|regex:((wall-)([0-9]){3})|unique:product_walls',
+            'product_id'    => 'required',
+            'message'       => 'nullable',
+        ], $messages);
+        
+        $data = $request->all();
         $productWall = ProductWall::create($data);
         return redirect()->route('ProductManagement.ProductWalls.index');
     }
@@ -61,19 +59,17 @@ class ProductWallController extends Controller
 
     public function update(Request $request, ProductWall $productWall)
     {
-        $data = $request->all();
-        if (isset($request->qrcode)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('qrcode')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'qrcode.regex' => 'The qrcode format should start with "wall-"',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('qrcode')->store('public/productwalls/qrcode');
-                $data['qrcode'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'qrcode'        => 'required|regex:((wall-)([0-9]){3})|unique:product_walls,qrcode' . ($productWall->id ? ",$productWall->id" : ''),
+            'product_id'    => 'required',
+            'message'       => 'nullable',
+        ], $messages);
+        
+        $data = $request->all();
         $productWall->update($data);
         return redirect()->route('ProductManagement.ProductWalls.index');
     }

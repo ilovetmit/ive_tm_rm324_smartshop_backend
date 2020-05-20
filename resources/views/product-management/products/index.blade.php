@@ -58,13 +58,11 @@
                         <!-- ----------------quantity & status---------------- -->
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
-                            config('constant.product_status')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.product_status')[$product->status]],
                             'element' => $product->quantity,
                             ])
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
-                            config('constant.product_status')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.product_status')[$product->status]],
                             'element' => config('constant.product_status')[$product->status] ?? '',
                             ])
                         </td>
@@ -72,7 +70,7 @@
                         <td>
                             @foreach($product->hasTag as $key => $tag)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['tag'],
                             'element' => $tag->name,
                             ])
                             @endforeach
@@ -81,7 +79,7 @@
                         <td>
                             @foreach($product->hasCategory as $key => $category)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['category'],
                             'element' => $category->name,
                             ])
                             @endforeach

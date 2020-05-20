@@ -28,9 +28,16 @@ class AdvertisementController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'header'            => 'required|unique:advertisements',
+            'image'             => 'required',
+            'description'       => 'nullable|String',
+            'status'            => 'required',
+            'tag'               => 'nullable',
+        ]);
         $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -61,9 +68,15 @@ class AdvertisementController extends Controller
 
     public function update(Request $request, Advertisement $ad)
     {
+        $request->validate([
+            'header'            => 'required|unique:advertisements,header' . ($ad->id ? ",$ad->id" : ''),
+            'description'       => 'nullable|String',
+            'status'            => 'required',
+            'tag'               => 'nullable',
+        ]);
         $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 

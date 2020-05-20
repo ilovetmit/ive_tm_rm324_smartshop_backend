@@ -21,7 +21,7 @@
                         <td>
                             {{-- $lockerTransaction->transaction_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['header'],
                             'element' => $lockerTransaction->hasTransaction->id . ". " .
                             $lockerTransaction->hasTransaction->header . "." ?? '',
                             ])
@@ -35,7 +35,7 @@
                         <td>
                             {{-- $lockerTransaction->locker_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['id'],
                             'element' => "Locker No. " . $lockerTransaction->locker_id ?? '',
                             ])
                         </td>
@@ -48,7 +48,7 @@
                         <td>
                             {{-- $lockerTransaction->recipient_user_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $lockerTransaction->hasUser->id . ". " .
                             $lockerTransaction->hasUser->getFullNameAttribute() . "." ?? '',
                             ])

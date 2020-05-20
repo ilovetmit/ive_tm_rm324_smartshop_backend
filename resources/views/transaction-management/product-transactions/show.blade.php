@@ -21,7 +21,7 @@
                         <td>
                             {{-- $productTransaction->transaction_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['header'],
                             'element' => $productTransaction->hasTransaction->id . ". " .
                             $productTransaction->hasTransaction->header . "." ?? '',
                             ])
@@ -35,7 +35,7 @@
                         <td>
                             {{-- $productTransaction->product_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $productTransaction->hasProduct->id . ". " .
                             $productTransaction->hasProduct->name ?? '',
                             ])

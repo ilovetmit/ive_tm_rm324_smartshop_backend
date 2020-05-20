@@ -35,7 +35,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['price'],
                             'element' => '$ '. $insurance->price ?? '',
                             ])
                         </td>
@@ -66,12 +66,4 @@
         </div>
     </div>
 </div>
-@section('scripts')
-@parent
-@include('_module.datatable.massdestory',[
-'permission_massDestory' => 'product_delete',
-'route' => route('ProductManagement.Products.massDestroy'),
-'pageLength' => 25,
-'class' => 'datatable-tag-Product'
-])
 @endsection

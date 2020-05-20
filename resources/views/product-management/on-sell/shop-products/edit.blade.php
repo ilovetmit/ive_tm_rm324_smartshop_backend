@@ -11,9 +11,9 @@
             @csrf
             <!-------------------------------------product_id------------------------------------->
             <div class="form-group">
-                <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
+                <label class="" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
-                    name="product_id" id="product_id" required>
+                    name="product_id" id="product_id" >
                     <option value disabled {{ old('product_id', $shopProduct->product_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
@@ -29,9 +29,9 @@
             </div>
             <!-------------------------------------qrcode------------------------------------->
             <div class="form-group">
-                <label class="required" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
+                <label class="" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
                 <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode"
-                    id="qrcode" value="{{ old('qrcode', $shopProduct->qrcode) }}" required>
+                    id="qrcode" value="{{ old('qrcode', $shopProduct->qrcode) }}" >
                 @if($errors->has('qrcode'))
                 <span class="text-danger">{{ $errors->first('qrcode') }}</span>
                 @endif

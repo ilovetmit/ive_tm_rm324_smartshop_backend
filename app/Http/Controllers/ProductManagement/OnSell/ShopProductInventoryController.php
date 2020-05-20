@@ -31,19 +31,17 @@ class ShopProductInventoryController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        if (isset($request->rfid_code)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('rfid_code')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'rfid_code.regex' => 'The rfid_code format should be 16 character',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('rfid_code')->store('public/shop_product_inventory/rfid_code');
-                $data['rfid_code'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'shop_product_id'   => 'required',
+            'rfid_code'         => 'required|regex:(([a-zA-Z0-9]){16})|unique:shop_product_inventories',
+            'is_sold'           => 'required',
+        ], $messages);
+
+        $data = $request->all();
         $shopProductInventory = ShopProductInventory::create($data);
         // $remittanceTransaction->hasTransaction()->sync($request->input('hasTransaction', []));
         return redirect()->route('ProductManagement.ShopProductInventories.index');
@@ -64,19 +62,17 @@ class ShopProductInventoryController extends Controller
 
     public function update(Request $request, ShopProductInventory $shopProductInventory)
     {
-        $data = $request->all();
-        if (isset($request->rfid_code)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('rfid_code')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'rfid_code.regex' => 'The rfid_code format should be 16 character',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('rfid_code')->store('public/shop_product_inventory/rfid_code');
-                $data['rfid_code'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'shop_product_id'   => 'required',
+            'rfid_code'         => 'required|regex:(([a-zA-Z0-9]){16})|unique:shop_product_inventories,rfid_code' . ($shopProductInventory->id ? ",$shopProductInventory->id" : ''),
+            'is_sold'           => 'required',
+        ], $messages);
+        
+        $data = $request->all();
         $shopProductInventory->update($request->all());
         return redirect()->route('ProductManagement.ShopProductInventories.index');
     }

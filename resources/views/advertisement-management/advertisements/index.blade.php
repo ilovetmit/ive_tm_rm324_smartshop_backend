@@ -52,16 +52,14 @@
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $advertisement->status == 1 ?
-                            config('constant.advertisement_status')['tag_type_1'] :
-                            config('constant.advertisement_status')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.advertisement_status')[$advertisement->status]],
                             'element' => config('constant.advertisement_status')[$advertisement->status] ?? '',
                             ])
                         </td>
                         <td>
                             @foreach($advertisement->hasTag as $key => $item)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $item->name,
                             ])
                             @endforeach

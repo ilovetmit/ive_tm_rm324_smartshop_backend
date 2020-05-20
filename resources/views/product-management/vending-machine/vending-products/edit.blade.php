@@ -13,9 +13,9 @@
             @csrf
             <!-- --------------------------------------product_id-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
-                <select class="form-control select {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
-                    name="product_id" id="product_id" required>
+                <label class="" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
+                <select class="form-control select2 {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
+                    name="product_id" id="product_id" >
                     <option value disabled
                         {{ old('product_id', $vendingProduct->product_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
@@ -32,9 +32,17 @@
             </div>
             <!---------------------------channel--------------------------->
             <div class="form-group">
-                <label class="required" for="channel">{{ trans('cruds.fields.channel') }}</label>
-                <input class="form-control {{ $errors->has('channel') ? 'is-invalid' : '' }}" type="text" name="channel"
-                    id="channel" value="{{ old('channel', $vendingProduct->channel) }}" required>
+                <label class="" for="channel">{{ trans('cruds.fields.channel') }}</label>
+                <select class="form-control select {{ $errors->has('channel') ? 'is-invalid' : '' }}" name="channel"
+                    id="channel" >
+                    <option value disabled {{ old('channel', $product->channel) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
+                    @foreach(config('constant.vending_channel') as $key => $label)
+                    <option value="{{ $key }}" {{ old('channel', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </select>
                 @if($errors->has('channel'))
                 <span class="text-danger">{{ $errors->first('channel') }}</span>
                 @endif

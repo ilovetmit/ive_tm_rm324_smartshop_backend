@@ -30,6 +30,10 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'          => 'required|String|unique:tags',
+            'description'   => 'nullable|String',
+        ]);
         $tag = Tag::create($request->all());
         $tag->hasProduct()->sync($request->input('products', []));
         $tag->hasAdvertisement()->sync($request->input('advertisements', []));
@@ -51,6 +55,10 @@ class TagController extends Controller
 
     public function update(Request $request, Tag $tag)
     {
+        $request->validate([
+            'name'          => 'required|String|unique:tags,name' . ($tag->id ? ",$tag->id" : ''),
+            'description'   => 'nullable|String',
+        ]);
         $tag->update($request->all());
         $tag->hasProduct()->sync($request->input('products', []));
         $tag->hasAdvertisement()->sync($request->input('advertisements', []));

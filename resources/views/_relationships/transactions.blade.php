@@ -53,24 +53,24 @@
                             </td>
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['amount'],
                                 'element' => '$ '. $transaction->amount ?? '',
                                 ])
                             </td>
                             <td>
                                 @if(!is_null($transaction->hasLocker_transaction)>0)
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['lt'],
                                 'element' => "Locker Transaction" ?? '',
                                 ])
                                 @elseif(!is_null($transaction->hasProduct_transaction)>0)
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['pt'],
                                 'element' => "Product Transaction" ?? '',
                                 ])
                                 @elseif(!is_null($transaction->hasRemittance_transaction)>0)
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['rt'],
                                 'element' => "Remittannce Transaction" ?? '',
                                 ])
                                 @endif

@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'vitcoin_primary_key'   => $this->vitcoin_primary_key,
             'avatar'                => $this->avatar,
             'birthday'              => $this->birthday,
-            'gender'                => config('constant.user_gender')[$this->gender],
+            'gender'                => config('constant.gender')[$this->gender],
             'telephone'             => $this->telephone,
             'bio'                   => $this->bio,
             'status'                => config('constant.user_status')[$this->status],

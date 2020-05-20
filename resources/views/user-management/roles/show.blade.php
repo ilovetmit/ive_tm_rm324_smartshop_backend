@@ -44,7 +44,7 @@
                         <td>
                             @foreach($role->hasPermission as $key => $permissions)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $permissions->name ?? '',
                             ])
                             @endforeach

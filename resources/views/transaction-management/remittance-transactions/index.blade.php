@@ -47,7 +47,7 @@
                         <td>
                             {{-- $remittanceTransaction->transaction_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['header'],
                             'element' => $remittanceTransaction->hasTransaction->id . ". " .
                             $remittanceTransaction->hasTransaction->header ?? '',
                             ])
@@ -55,7 +55,7 @@
                         <td>
                             {{-- $remittanceTransaction->payee_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $remittanceTransaction->hasUser->id . ". " .
                             $remittanceTransaction->hasUser->getFullNameAttribute() ?? '',
                             ])

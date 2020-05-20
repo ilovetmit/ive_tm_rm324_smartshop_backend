@@ -47,7 +47,7 @@
 ])
 
 @include('_component.menu-button.child',[
-'permission_subjects' => 'bank',
+'permission_subjects' => 'bank_account',
 'location' => 'InformationManagement.BankAccounts.index',
 'icon' => 'fas fa-money-check-alt',
 'menu_name' => trans('cruds.informationManagement.bank_account.title_s')

@@ -40,6 +40,34 @@
                             {{ $tag->description }}
                         </td>
                     </tr>
+                    <!------------------------product------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.product') }}
+                        </th>
+                        <td>
+                            @foreach($tag->hasProduct as $key => $products)
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => config('constant.badge_type')['name'],
+                            'element' => $products->name ?? '',
+                            ])
+                            @endforeach
+                        </td>
+                    </tr>
+                    <!------------------------advertisement------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.advertisement') }}
+                        </th>
+                        <td>
+                            @foreach($tag->hasAdvertisement as $key => $advertisements)
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => config('constant.badge_type')['header'],
+                            'element' => $advertisements->header ?? '',
+                            ])
+                            @endforeach
+                        </td>
+                    </tr>
                     <!------------------------------------------------>
                 </tbody>
             </table>
@@ -75,12 +103,12 @@
     <div class="tab-content">
         @if(!is_null($tag->hasAdvertisement)>0)
         <div class="tab-pane" role="tabpanel" id="advertisements">
-            @includeIf('_relationships.advertisement-s', ['ad' => $tag->hasAdvertisement])
+            @includeIf('_relationships.advertisements', ['ad' => $tag->hasAdvertisement])
         </div>
         @endif
         @if(!is_null($tag->hasProduct)>0)
         <div class="tab-pane" role="tabpanel" id="products">
-            @includeIf('_relationships.product-s', ['product' => $tag->hasProduct])
+            @includeIf('_relationships.products', ['products' => $tag->hasProduct])
         </div>
         @endif
     </div>

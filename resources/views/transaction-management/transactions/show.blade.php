@@ -29,7 +29,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $transaction->hasUser->id . ". " .
                             $transaction->hasUser->getFullNameAttribute() ?? '',
                             ])
@@ -42,7 +42,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['amount'],
                             'element' => '$ '. $transaction->amount ?? '',
                             ])
                         </td>
@@ -54,7 +54,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['balance'],
                             'element' => '$ '. $transaction->balance ?? '',
                             ])
                         </td>
@@ -66,7 +66,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['currency'],
                             'element' => config('constant.transaction_currency')[$transaction->currency] ?? '',
                             ])
                         </td>
@@ -79,22 +79,22 @@
                         <td>
                             @if(!is_null($transaction->hasLocker_transaction)>0)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => "Locker Transaction" ?? '',
+                                'type' => config('constant.badge_type')['lt'],
+                                'element' => "Locker Transaction" ?? '',
                             ])
                             @elseif(!is_null($transaction->hasProduct_transaction)>0)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => "Product Transaction" ?? '',
+                                'type' => config('constant.badge_type')['pt'],
+                                'element' => "Product Transaction" ?? '',
                             ])
                             @elseif(!is_null($transaction->hasRemittance_transaction)>0)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => "Remittannce Transaction" ?? '',
+                                'type' => config('constant.badge_type')['rt'],,
+                                'element' => "Remittannce Transaction" ?? '',
                             ])
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'primary',
-                            'element' => $transaction->hasRemittance_transaction->hasUser->getFullNameAttribute() ?? '',
+                                'type' => config('constant.badge_type')['name'],
+                                'element' => $transaction->hasRemittance_transaction->hasUser->getFullNameAttribute() ?? '',
                             ])
                             @endif
                         </td>

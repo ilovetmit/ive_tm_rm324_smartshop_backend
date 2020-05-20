@@ -10,18 +10,18 @@
             <!-- --------------------------------------first_name & last_name-------------------------------------- -->
             <div class="form-group row">
                 <div class="col-5">
-                    <label class="required" for="first_name">{{ trans('cruds.fields.first_name') }}</label>
+                    <label class="" for="first_name">{{ trans('cruds.fields.first_name') }}</label>
                     <input class="form-control {{ $errors->has('first_name') ? 'is-invalid' : '' }}" type="text"
-                        name="first_name" id="first_name" value="{{ old('first_name') }}" required>
+                        name="first_name" id="first_name" value="{{ old('first_name') }}" >
                     @if($errors->has('first_name'))
                     <span class="text-danger">{{ $errors->first('first_name') }}</span>
                     @endif
                     <span class="help-block"></span>
                 </div>
                 <div class="col-7">
-                    <label class="required" for="last_name">{{ trans('cruds.fields.last_name') }}</label>
+                    <label class="" for="last_name">{{ trans('cruds.fields.last_name') }}</label>
                     <input class="form-control {{ $errors->has('last_name') ? 'is-invalid' : '' }}" type="text"
-                        name="last_name" id="last_name" value="{{ old('last_name') }}" required>
+                        name="last_name" id="last_name" value="{{ old('last_name') }}" >
                     @if($errors->has('last_name'))
                     <span class="text-danger">{{ $errors->first('last_name') }}</span>
                     @endif
@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label class="" for="birthday">{{ trans('cruds.fields.birthday') }}</label>
                 <input class="form-control date {{ $errors->has('birthday') ? 'is-invalid' : '' }}" type="text"
-                    name="birthday" id="birthday" value="{{ old('birthday') }}" required>
+                    name="birthday" id="birthday" value="{{ old('birthday') }}" >
                 @if($errors->has('birthday'))
                 <span class="text-danger">{{ $errors->first('birthday') }}</span>
                 @endif
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label class="" for="gender">{{ trans('cruds.fields.gender') }}</label>
                 <select class="form-control select {{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender"
-                    id="gender" required>
+                    id="gender" >
                     <option value disabled {{ old('gender', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.gender') as $key => $label)
@@ -70,7 +70,7 @@
             <div class="form-group">
                 <label class="" for="telephone">{{ trans('cruds.fields.telephone') }}</label>
                 <input class="form-control {{ $errors->has('telephone') ? 'is-invalid' : '' }}" type="text"
-                    name="telephone" id="telephone" value="{{ old('telephone') }}" required>
+                    name="telephone" id="telephone" value="{{ old('telephone') }}" >
                 @if($errors->has('telephone'))
                 <span class="text-danger">{{ $errors->first('telephone') }}</span>
                 @endif
@@ -80,7 +80,7 @@
             <div class="form-group">
                 <label class="" for="bio">{{ trans('cruds.fields.bio') }}</label>
                 <input class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}" type="text" name="bio"
-                    id="bio" value="{{ old('bio') }}" required>
+                    id="bio" value="{{ old('bio') }}" >
                 @if($errors->has('bio'))
                 <span class="text-danger">{{ $errors->first('bio') }}</span>
                 @endif
@@ -88,12 +88,12 @@
             </div>
             <!-- --------------------------------------status-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="status">{{ trans('cruds.fields.status') }}</label>
+                <label class="" for="status">{{ trans('cruds.fields.status') }}</label>
                 <select class="form-control select {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status"
-                    id="status" required>
+                    id="status" >
                     <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.user_status_form') as $key => $label)
+                    @foreach(config('constant.user_status') as $key => $label)
                     <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
@@ -106,9 +106,9 @@
             </div>
             <!-- --------------------------------------email-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="email">{{ trans('cruds.fields.email') }}</label>
+                <label class="" for="email">{{ trans('cruds.fields.email') }}</label>
                 <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email"
-                    id="email" value="{{ old('email') }}" required>
+                    id="email" value="{{ old('email') }}" >
                 @if($errors->has('email'))
                 <span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
@@ -116,9 +116,9 @@
             </div>
             <!-- --------------------------------------password-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="password">{{ trans('cruds.fields.password') }}</label>
+                <label class="" for="password">{{ trans('cruds.fields.password') }}</label>
                 <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
-                    name="password" id="password" required>
+                    name="password" id="password" >
                 @if($errors->has('password'))
                 <span class="text-danger">{{ $errors->first('password') }}</span>
                 @endif
@@ -126,7 +126,7 @@
             </div>
             <!-- --------------------------------------roles-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="roles">{{ trans('cruds.fields.role') }}</label>
+                <label class="" for="roles">{{ trans('cruds.fields.role') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all"
                         style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -134,7 +134,7 @@
                         style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
                 <select class="form-control select2 {{ $errors->has('roles') ? 'is-invalid' : '' }}" name="roles[]"
-                    id="roles" multiple required>
+                    id="roles" multiple >
                     @foreach($roles as $id => $roles)
                     <option value="{{ $id }}" {{ in_array($id, old('roles', [])) ? 'selected' : '' }}>{{ $roles }}
                     </option>

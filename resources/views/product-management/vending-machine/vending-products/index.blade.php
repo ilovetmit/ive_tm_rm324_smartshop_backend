@@ -46,14 +46,14 @@
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $vendingProduct->hasProduct->id . ". " . $vendingProduct->hasProduct->name ??
                             '',
                             ])
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'dark',
+                            'type' => config('constant.badge_type')['channel'],
                             'element' => $vendingProduct->channel ?? '',
                             ])
                         </td>

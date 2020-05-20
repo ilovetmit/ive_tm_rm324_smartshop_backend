@@ -29,26 +29,23 @@ class ShopProductController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        if (isset($request->qrcode)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('qrcode')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'qrcode.regex' => 'The qrcode format should start with "PRODUCT-"',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('qrcode')->store('public/shop_product/qrcode');
-                $data['qrcode'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'product_id'    => 'required',
+            'qrcode'        => 'required|regex:((PRODUCT-)([a-zA-Z0-9]){1,})|unique:shop_products',
+        ], $messages);
+
+        $data = $request->all();
         $shopProduct = ShopProduct::create($data);
         return redirect()->route('ProductManagement.ShopProducts.index');
     }
 
     public function show(ShopProduct $shopProduct)
     {
-        // $shopProduct->load('hasTransaction');
+        $shopProduct->load('hasShopProductInventory', 'hasLED');
         return view('product-management.on-sell.shop-products.show', compact('shopProduct'));
     }
 
@@ -60,19 +57,16 @@ class ShopProductController extends Controller
 
     public function update(Request $request, ShopProduct $shopProduct)
     {
-        $data = $request->all();
-        if (isset($request->qrcode)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('qrcode')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'qrcode.regex' => 'The qrcode format should start with "PRODUCT-"',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('qrcode')->store('public/shop_product/qrcode');
-                $data['qrcode'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'product_id'    => 'required',
+            'qrcode'        => 'required|regex:((PRODUCT-)([a-zA-Z0-9]){1,})|unique:shop_products',
+        ], $messages);
+
+        $data = $request->all();
         $shopProduct->update($data);
         return redirect()->route('ProductManagement.ShopProducts.index');
     }

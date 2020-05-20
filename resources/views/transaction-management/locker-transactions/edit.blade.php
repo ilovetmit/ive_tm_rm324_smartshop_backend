@@ -12,9 +12,9 @@
             @csrf
             <!-- -----------------transaction_id----------------- -->
             <div class="form-group">
-                <label class="required" for="transaction_id">{{ trans('cruds.fields.transaction_id') }}</label>
+                <label class="" for="transaction_id">{{ trans('cruds.fields.transaction_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('transaction_id') ? 'is-invalid' : '' }}"
-                    name="transaction_id" id="transaction_id" required>
+                    name="transaction_id" id="transaction_id" >
                     <option value disabled
                         {{ old('transaction_id', $lockerTransaction->transaction_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
@@ -32,9 +32,9 @@
             </div>
             <!-- -----------------locker_id----------------- -->
             <div class="form-group">
-                <label class="required" for="locker_id">{{ trans('cruds.fields.locker_id') }}</label>
+                <label class="" for="locker_id">{{ trans('cruds.fields.locker_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('locker_id') ? 'is-invalid' : '' }}"
-                    name="locker_id" id="locker_id" required>
+                    name="locker_id" id="locker_id" >
                     <option value disabled
                         {{ old('locker_id', $lockerTransaction->locker_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
@@ -51,9 +51,9 @@
             </div>
             <!-- -----------------recipient_user_id----------------- -->
             <div class="form-group">
-                <label class="required" for="recipient_user_id">{{ trans('cruds.fields.recipient_user_id') }}</label>
+                <label class="" for="recipient_user_id">{{ trans('cruds.fields.recipient_user_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('recipient_user_id') ? 'is-invalid' : '' }}"
-                    name="recipient_user_id" id="recipient_user_id" required>
+                    name="recipient_user_id" id="recipient_user_id" >
                     <option value disabled
                         {{ old('recipient_user_id', $lockerTransaction->recipient_user_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
@@ -71,9 +71,9 @@
             </div>
             <!-- -----------------item----------------- -->
             <div class="form-group">
-                <label class="required" for="item">{{ trans('cruds.fields.item') }}</label>
+                <label class="" for="item">{{ trans('cruds.fields.item') }}</label>
                 <input class="form-control {{ $errors->has('item') ? 'is-invalid' : '' }}" type="text" name="item"
-                    id="item" value="{{ old('item', $lockerTransaction->item) }}" required>
+                    id="item" value="{{ old('item', $lockerTransaction->item) }}" >
                 @if($errors->has('item'))
                 <span class="text-danger">{{ $errors->first('item') }}</span>
                 @endif
@@ -81,9 +81,9 @@
             </div>
             <!-- -----------------deadline----------------- -->
             <div class="form-group">
-                <label class="required" for="deadline">{{ trans('cruds.fields.deadline') }}</label>
+                <label class="" for="deadline">{{ trans('cruds.fields.deadline') }}</label>
                 <input class="form-control data {{ $errors->has('deadline') ? 'is-invalid' : '' }}" type="text"
-                    name="deadline" id="deadline" value="{{ old('deadline', $lockerTransaction->deadline) }}" required>
+                    name="deadline" id="deadline" value="{{ old('deadline', $lockerTransaction->deadline) }}" >
                 @if($errors->has('deadline'))
                 <span class="text-danger">{{ $errors->first('deadline') }}</span>
                 @endif
@@ -91,9 +91,9 @@
             </div>
             <!-- -----------------remark----------------- -->
             <div class="form-group">
-                <label class="required" for="remark">{{ trans('cruds.fields.remark') }}</label>
+                <label class="" for="remark">{{ trans('cruds.fields.remark') }}</label>
                 <input class="form-control {{ $errors->has('remark') ? 'is-invalid' : '' }}" type="text" name="remark"
-                    id="remark" value="{{ old('remark', $lockerTransaction->remark) }}" required>
+                    id="remark" value="{{ old('remark', $lockerTransaction->remark) }}" >
                 @if($errors->has('remark'))
                 <span class="text-danger">{{ $errors->first('remark') }}</span>
                 @endif

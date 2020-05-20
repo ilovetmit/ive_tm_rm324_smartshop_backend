@@ -46,20 +46,15 @@
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " .
                             $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
                             ])
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $shopProductInventory->is_sold == 1 ?
-                            config('constant.shopProductInventories_isSold')['tag_type_1'] :
-                            ($shopProductInventory->is_sold == 2 ?
-                            config('constant.shopProductInventories_isSold')['tag_type_2'] :
-                            config('constant.shopProductInventories_isSold')['tag_type_3']),
-                            'element' =>
-                            config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            'type' => config('constant.badge_type')[config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold]]),
+                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                             ])
                         </td>
                         <td>

@@ -38,7 +38,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['price'],
                             'element' => '$ '. $locker->per_hour_price ?? '',
                             ])
                         </td>
@@ -49,8 +49,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_active == 1 ? config('constant.locker_isActive')['tag_type_1'] :
-                            config('constant.locker_isActive')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.locker_isActive')[$locker->is_active]],
                             'element' => config('constant.locker_isActive')[$locker->is_active] ?? '',
                             ])
                         </td>
@@ -61,8 +60,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $locker->is_using == 1 ? config('constant.locker_isUsing')['tag_type_1'] :
-                            config('constant.locker_isUsing')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.locker_isUsing')[$locker->is_using]],,
                             'element' => config('constant.locker_isUsing')[$locker->is_using] ?? '',
                             ])
                         </td>

@@ -100,7 +100,7 @@
                         @foreach($rows as $row)
                         <a href="javascript:setData('{{$row->code}}')" class="message d-flex align-items-center"
                             onclick="setData('{{$row->code}}')">
-                            <div class="profile"><img src="{{$row->image[0]}}" alt="{{$row->name}}" class="logo-photo">
+                            <div class="profile"><img src="{{asset('storage/insurances/image/' . $row->image)}}" alt="{{$row->name}}" class="logo-photo">
                             </div>
                             <div class="content"><strong class="d-block">{{$row->name}}</strong><span
                                     class="d-block">{{$row->code}}.HK</span></div>

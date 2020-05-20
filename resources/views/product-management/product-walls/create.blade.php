@@ -9,9 +9,9 @@
             @csrf
             <!-- --------------------------------------qrcode-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
+                <label class="" for="qrcode">{{ trans('cruds.fields.qrcode') }}</label>
                 <input class="form-control {{ $errors->has('qrcode') ? 'is-invalid' : '' }}" type="text" name="qrcode"
-                    id="qrcode" value="{{ old('qrcode') }}" required>
+                    id="qrcode" value="{{ old('qrcode') }}" >
                 @if($errors->has('qrcode'))
                 <span class="text-danger">{{ $errors->first('qrcode') }}</span>
                 @endif
@@ -19,9 +19,9 @@
             </div>
             <!-- --------------------------------------product_id-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
+                <label class="" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
                 <select class="form-control select {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
-                    name="product_id" id="product_id" required>
+                    name="product_id" id="product_id" >
                     <option value disabled {{ old('product_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
@@ -37,9 +37,9 @@
             </div>
             <!---------------------------message--------------------------->
             <div class="form-group">
-                <label class="required" for="message">{{ trans('cruds.fields.message') }}</label>
+                <label class="" for="message">{{ trans('cruds.fields.message') }}</label>
                 <input class="form-control {{ $errors->has('message') ? 'is-invalid' : '' }}" type="text" name="message"
-                    id="message" value="{{ old('message', '') }}" required>
+                    id="message" value="{{ old('message', '') }}" >
                 @if($errors->has('message'))
                 <span class="text-danger">{{ $errors->first('message') }}</span>
                 @endif

@@ -29,12 +29,16 @@ class LEDController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'shop_product_id'   => 'required',
+        ]);
         $led = LED::create($request->all());
         return redirect()->route('ProductManagement.LEDs.index');
     }
 
     public function show(LED $led)
     {
+        $led->load('hasShopProduct');
         return view('product-management.on-sell.leds.show', compact('led'));
     }
 
@@ -46,6 +50,9 @@ class LEDController extends Controller
 
     public function update(Request $request, LED $led)
     {
+        $request->validate([
+            'shop_product_id'   => 'required',
+        ]);
         $led->update($request->all());
         return redirect()->route('ProductManagement.LEDs.index');
     }

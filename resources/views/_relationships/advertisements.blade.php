@@ -67,8 +67,7 @@
                             <!-- ----------------status---------------- -->
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => $ad->status == 1 ? config('constant.advertisement_status')['tag_type_1'] :
-                                config('constant.advertisement_status')['tag_type_2'],
+                                'type' => config('constant.badge_type')[config('constant.advertisement_status')[$ad->status]],
                                 'element' => config('constant.advertisement_status')[$ad->status] ?? '',
                                 ])
                             </td>

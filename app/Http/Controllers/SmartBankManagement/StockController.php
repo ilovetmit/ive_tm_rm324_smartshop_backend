@@ -26,9 +26,16 @@ class StockController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'code'          => 'required|unique:stocks',
+            'name'          => 'required|unique:stocks',
+            'icon'          => 'required',
+            'data'          => 'required',
+            'description'   => 'nullable',
+        ]);
         $data = $request->all();
         if (isset($request->icon)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
             $extension = $request->file('icon')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -55,9 +62,15 @@ class StockController extends Controller
 
     public function update(Request $request, Stock $stock)
     {
+        $request->validate([
+            'code'          => 'required|unique:stocks,code' . ($stock->id ? ",$stock->id" : ''),
+            'name'          => 'required|unique:stocks,name' . ($stock->id ? ",$stock->id" : ''),
+            'data'          => 'required',
+            'description'   => 'nullable',
+        ]);
         $data = $request->all();
         if (isset($request->icon)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
             $extension = $request->file('icon')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 

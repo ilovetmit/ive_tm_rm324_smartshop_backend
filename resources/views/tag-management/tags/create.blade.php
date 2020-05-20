@@ -9,9 +9,9 @@
             @csrf
             <!-- ------------------------------------name------------------------------------ -->
             <div class="form-group">
-                <label class="required" for="name">{{ trans('cruds.fields.name') }}</label>
+                <label class="" for="name">{{ trans('cruds.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
-                    id="name" value="{{ old('name', '') }}" required>
+                    id="name" value="{{ old('name', '') }}" >
                 @if($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
@@ -19,9 +19,9 @@
             </div>
             <!-- ------------------------------------description------------------------------------ -->
             <div class="form-group">
-                <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
+                <label class="" for="description">{{ trans('cruds.fields.description') }}</label>
                 <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text"
-                    name="description" id="description" value="{{ old('description', '') }}" required>
+                    name="description" id="description" value="{{ old('description', '') }}" >
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif

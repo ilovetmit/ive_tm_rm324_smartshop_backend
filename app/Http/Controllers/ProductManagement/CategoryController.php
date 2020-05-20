@@ -28,6 +28,11 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'          => 'required|unique:categories',
+            'description'   => 'nullable',
+            'products'      => 'required',
+        ]);
         $category = Category::create($request->all());
         $category->hasProduct()->sync($request->input('products', []));
         return redirect()->route('ProductManagement.Categories.index');
@@ -48,6 +53,11 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
+        $request->validate([
+            'name'          => 'required|unique:categories,name' . ($category->id ? ",$category->id" : ''),
+            'description'   => 'nullable',
+            'products'      => 'required',
+        ]);
         $category->update($request->all());
         $category->hasProduct()->sync($request->input('products', []));
         return redirect()->route('ProductManagement.Categories.index');

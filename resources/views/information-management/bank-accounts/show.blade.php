@@ -27,7 +27,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $bankAccount->hasUser->id . ". " .
                             $bankAccount->hasUser->getFullNameAttribute() ?? '',
                             ])
@@ -40,7 +40,7 @@
                         <td>
                             {{-- $bankAccount->current_account --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['account'],
                             'element' => '$ '. $bankAccount->current_account ?? '',
                             ])
                         </td>
@@ -52,7 +52,7 @@
                         <td>
                             {{-- $bankAccount->saving_account --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['account'],
                             'element' => '$ '. $bankAccount->saving_account ?? '',
                             ])
                         </td>

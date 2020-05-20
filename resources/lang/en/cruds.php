@@ -152,6 +152,7 @@ return [
         'user_id'           => 'User ID',
         'amount'            => 'Amount',
         'balance'           => 'Balance',
+        'account_balance'   => 'Balance',
         'currency'          => 'Currency',
         'tag'               => 'Tag',
         'status'            => 'Status',
@@ -181,6 +182,8 @@ return [
         'district'          => 'District',
         'address1'          => 'Address Line 1',
         'address2'          => 'Address Line 2',
+        'addressLine1'      => 'Address Line 1',
+        'addressLine2'      => 'Address Line 2',
         'token'             => 'Token',
         'is_active'         => 'Status',
         'vitcoin_address'   => 'VITCoin Link Address',
@@ -193,5 +196,7 @@ return [
         'transaction_type'  => 'Transaction Type',
         'payee_id'          => 'Payee',
         'advertisement'     => 'Advertisement',
+        'message'           => 'Message',
+
     ],
 ];

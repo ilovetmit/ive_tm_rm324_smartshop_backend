@@ -54,7 +54,7 @@
                             </td>
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['name'],
                                 'element' => $productWall->hasProduct->id . ". " . $productWall->hasProduct->name ?? '',
                                 ])
                             </td>

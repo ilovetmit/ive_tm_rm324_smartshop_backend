@@ -10,9 +10,9 @@
             @csrf
             <!-- --------------------------------------shop_product_id-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="shop_product_id">{{ trans('cruds.fields.shop_product_id') }}</label>
+                <label class="" for="shop_product_id">{{ trans('cruds.fields.shop_product_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('shop_product_id') ? 'is-invalid' : '' }}"
-                    name="shop_product_id" id="shop_product_id" required>
+                    name="shop_product_id" id="shop_product_id" >
                     <option value disabled {{ old('shop_product_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($shopProducts as $key => $shopProduct)
@@ -31,21 +31,20 @@
             <div class="form-group">
                 <label class="" for="rfid_code">{{ trans('cruds.fields.rfid_code') }}</label>
                 <input class="form-control {{ $errors->has('rfid_code') ? 'is-invalid' : '' }}" type="text"
-                    name="rfid_code" id="rfid_code" value="{{ old('rfid_code') }}" required>
+                    name="rfid_code" id="rfid_code" value="{{ old('rfid_code') }}" >
                 @if($errors->has('rfid_code'))
                 <span class="text-danger">{{ $errors->first('rfid_code') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>
-
             <!-- --------------------------------------is_sold-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="is_sold">{{ trans('cruds.fields.is_sold') }}</label>
+                <label class="" for="is_sold">{{ trans('cruds.fields.is_sold') }}</label>
                 <select class="form-control select {{ $errors->has('is_sold') ? 'is-invalid' : '' }}" name="is_sold"
-                    id="is_sold" required>
+                    id="is_sold" >
                     <option value disabled {{ old('is_sold', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.shopProductInventories_isSold_form') as $key => $label)
+                    @foreach(config('constant.shopProductInventories_isSold') as $key => $label)
                     <option value="{{ $key }}" {{ old('is_sold', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>

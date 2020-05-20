@@ -35,7 +35,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($products as $key => $product)
                         <tr data-entry-id="{{ $product->id }}">
                             <td>
 
@@ -83,7 +82,6 @@
                                 ])
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>

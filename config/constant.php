@@ -10,46 +10,83 @@ return [
     // light
     // dark
 
+    'badge_type' => [
+        'User'          => 'info',
+        'Admin'         => 'danger',
+        
+        'Available'     => 'success',
+        'Unavailable'   => 'danger',
+
+        'Promoting'     => 'success',
+        'Expired'       => 'secondary',
+
+        'Instock'       => 'success',
+        'Sold'          => 'secondary',
+
+        'Active'        => 'success',
+        'Inactive'      => 'secondary',
+        
+        'Free'          => 'success',
+        'Using'         => 'danger',
+
+        'name'          => 'primary',
+        'header'        => 'primary',
+        'id'            => 'primary',
+        'price'         => 'info',
+        'amount'        => 'info',
+        'balance'       => 'info',
+        'account'       => 'info',
+        'currency'      => 'info',
+        'category'      => 'light',
+        'tag'           => 'secondary',
+        'channel'       => 'dark',
+        'pt'            => 'success',              // product transaction
+        'rt'            => 'secondary',              // remittance transaction
+        'lt'            => 'info',              // locker transaction
+    ],
+
     'advertisement_status' => [
         '1'             => 'Promoting',    // on
-        'tag_type_1'    => 'Success',
-        '2'             => 'Expired',       // off
-        'tag_type_2'    => 'Secondary',
-    ], 'advertisement_status_form' => [
-        '1'             => 'Promoting',    // on
         '2'             => 'Expired',       // off
     ],
-
     'product_status' => [
         '1'             => 'Unavailable',
-        'tag_type_1'    => 'Danger',
-        '2'             => 'Available',
-        'tag_type_2'    => 'Success',
-    ], 'product_status_form' => [
-        '1'             => 'Unavailable',
         '2'             => 'Available',
     ],
-
     'shopProductInventories_isSold' => [
         '1'             => 'Instock',
-        'tag_type_1'    => 'Success',
-        '2'             => 'Sold',
-        'tag_type_2'    => 'Secondary',
-    ], 'shopProductInventories_isSold_form' => [
-        '1'             => 'Instock',
         '2'             => 'Sold',
     ],
-
     'device_isActive' => [
         '1'             => 'Inactive',
-        'tag_type_1'    => 'Warning',
-        '2'             => 'Active',
-        'tag_type_2'    => 'Success',
-    ], 'device_isActive_form' => [
-        '1'             => 'Inactive',
         '2'             => 'Active',
     ],
+    'locker_isActive' => [
+        '1'             => 'Active',
+        '2'             => 'Inactive',
+    ],
+    'locker_isUsing' => [
+        '1'             => 'Free',
+        '2'             => 'Using',
+    ],
+    'user_status' => [
+        '1' => 'Available',
+        '2' => 'Unavailable',
+    ],
 
+
+    'gender' => [
+        '1' => 'Male',
+        '2' => 'Woman',
+    ],
+    'vending_channel' => [
+        '1' => '1',
+        '2' => '2',
+        '3' => '3',
+        '4' => '4',
+        '5' => '5',
+        // '6' => '6',
+    ],
     'address_district' => [
         // ref: https://www.rvd.gov.hk/doc/tc/hkpr13/06.pdf
         '1'  => 'Kwai Tsing, New Territories',
@@ -71,51 +108,9 @@ return [
         '17' => 'Eastern, Hong Kong',
         '18' => 'Southern, Hong Kong',
     ],
-
     'transaction_currency' => [
         '0' => 'Current',
         '1' => 'Saving',
         '2' => 'Vitcoin',
     ],
-
-    'locker_isActive' => [
-        '1'             => 'Active',
-        'tag_type_1'    => 'Success',
-        '2'             => 'Inactive',
-        'tag_type_2'    => 'Warning',
-    ], 'locker_isActive_form' => [
-        '1'             => 'Active',
-        '2'             => 'Inactive',
-    ],
-
-    'locker_isUsing' => [
-        '1'             => 'Free',
-        'tag_type_1'    => 'Success',
-        '2'             => 'Using',
-        'tag_type_2'    => 'Warning',
-    ], 'locker_isUsing_form' => [
-        '1'             => 'Free',
-        '2'             => 'Using',
-    ],
-
-    'user_gender' => [
-        '1' => 'Male',
-        '2' => 'Woman',
-    ],
-
-    'user_status' => [
-        '1'             => 'Available',
-        'tag_type_1'    => 'Success',
-        '2'             => 'Unavailable',
-        'tag_type_2'    => 'Secondary',
-    ], 'user_status_form' => [
-        '1' => 'Available',
-        '2' => 'Unavailable',
-    ],
-
-    'gender' => [
-        '1' => 'Male',
-        '2' => 'Woman',
-    ]
-
 ];

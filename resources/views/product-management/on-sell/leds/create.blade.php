@@ -9,9 +9,9 @@
             @csrf
             <!-- --------------------------------------shop_product_id-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="shop_product_id">{{ trans('cruds.fields.shop_product_id') }}</label>
+                <label class="" for="shop_product_id">{{ trans('cruds.fields.shop_product_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('shop_product_id') ? 'is-invalid' : '' }}"
-                    name="shop_product_id" id="shop_product_id" required>
+                    name="shop_product_id" id="shop_product_id" >
                     <option value disabled {{ old('shop_product_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($shopProducts as $key => $shopProduct)

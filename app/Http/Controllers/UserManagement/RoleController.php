@@ -29,6 +29,11 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'           => 'required|string|unique:roles',
+            'description'    => 'nullable|string',
+            'permission'     => 'nullable'
+        ]);
         $role = Role::create($request->all());
         $role->hasPermission()->sync($request->input('hasPermission', []));
         return redirect()->route('UserManagement.Roles.index');
@@ -49,6 +54,11 @@ class RoleController extends Controller
 
     public function update(Request $request, Role $role)
     {
+        $request->validate([
+            'name'           => 'required|string|unique:roles,name' . ($role->id ? ",$role->id" : ''),
+            'description'    => 'nullable|string',
+            'permission'     => 'nullable'
+        ]);
         $role->update($request->all());
         $role->hasPermission()->sync($request->input('permissions', []));
         return redirect()->route('UserManagement.Roles.index');

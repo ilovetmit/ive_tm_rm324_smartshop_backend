@@ -10,9 +10,9 @@
             @csrf
             <!-- -------------------transaction_id------------------- -->
             <div class="form-group">
-                <label class="required" for="transaction_id">{{ trans('cruds.fields.transaction_id') }}</label>
+                <label class="" for="transaction_id">{{ trans('cruds.fields.transaction_id') }}</label>
                 <select class="form-control select {{ $errors->has('transaction_id') ? 'is-invalid' : '' }}"
-                    name="transaction_id" id="transaction_id" required>
+                    name="transaction_id" id="transaction_id" >
                     <option value disabled {{ old('transaction_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($transactions as $key => $transaction)
@@ -29,9 +29,9 @@
             </div>
             <!-- -------------------payee_id------------------- -->
             <div class="form-group">
-                <label class="required" for="payee_id">{{ trans('cruds.fields.payee_id') }}</label>
+                <label class="" for="payee_id">{{ trans('cruds.fields.payee_id') }}</label>
                 <select class="form-control select {{ $errors->has('payee_id') ? 'is-invalid' : '' }}" name="payee_id"
-                    id="payee_id" required>
+                    id="payee_id" >
                     <option value disabled {{ old('payee_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)

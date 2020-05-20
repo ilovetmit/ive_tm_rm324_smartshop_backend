@@ -25,7 +25,7 @@ class UserController extends Controller
         $model = User::all();
         return UserResource::collection($model)->where('id', $user);
 
-        // $user['gender'] = config('constant.user_gender')[$user['gender']];
+        // $user['gender'] = config('constant.gender')[$user['gender']];
         // $user['status'] = config('constant.user_status')[$user['status']];
         // return UserResource::collection($user);
     }
@@ -88,7 +88,7 @@ class UserController extends Controller
         $user = Auth::guard('api')->user();
 
         if ($request->hasFile('avatar')) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('avatar')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 

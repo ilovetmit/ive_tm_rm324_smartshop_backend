@@ -1,12 +1,21 @@
 @extends('_layout.admin')
 @section('content')
+@can('interest_create')
+<div style="margin-bottom: 10px;" class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-success" href="{{ route("InformationManagement.Vitcoins.create") }}">
+            {{ trans('global.add') }} {{ trans('cruds.informationManagement.vitcoin.title') }}
+        </a>
+    </div>
+</div>
+@endcan
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.informationManagement.vitcoin.title') }} {{ trans('global.list') }}
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Vitcoin">
                 <thead>
                     <tr>
                         <th width="10">
@@ -18,6 +27,9 @@
                         <th>
                             {{ trans('cruds.fields.address') }}
                         </th>
+                        <th>
+                            &nbsp;
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,10 +39,17 @@
 
                         </td>
                         <td>
-                            {{ $vitcoin->user->full_name ?? '' }}
+                            {{ $vitcoin->hasUser->full_name ?? '' }}
                         </td>
                         <td>
                             {{ $vitcoin->address ?? '' }}
+                        </td>
+                        <td>
+                            @include('_module.datatable.action.index',[
+                            'permission_subject' => 'vitcoin',
+                            'route_subject' => 'InformationManagement.Vitcoins',
+                            'id' => $vitcoin->id
+                            ])
                         </td>
                     </tr>
                     @endforeach
