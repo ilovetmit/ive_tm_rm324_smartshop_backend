@@ -6,8 +6,9 @@
     <link rel="shortcut icon" href="{{asset('images/S-Shop_logo.png')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/checkout.css')}}">
 
 </head>
@@ -59,7 +60,9 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th scope="col" class="col-12 text-center">Total Amount<h3 id="totalamount" style="font-weight: 900">HKD 0.00</h3></th>
+                        <th scope="col" class="col-12 text-center">Total Amount<h3 id="totalamount"
+                                                                                   style="font-weight: 900">HKD
+                                0.00</h3></th>
                     </tr>
                     </tfoot>
                 </table>
@@ -67,7 +70,9 @@
         </div>
     </div>
     <div class="row">
-        <button id="confirm_button" type="button" class="btn btn-secondary btn-lg text-light m-auto w-25" disabled>Confirm</button>
+        <button id="confirm_button" type="button" class="btn btn-secondary btn-lg text-light m-auto w-25" disabled>
+            Confirm
+        </button>
     </div>
 </div>
 
@@ -126,8 +131,12 @@
 
 
 <script src="{{asset('js/app.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
 <script>
     var product_rfid_list = [];
     var product_list = [];
@@ -162,7 +171,7 @@
                     if (xhr.status === 200) {
                         cdreset();
                         countdown();
-                        $("#qrcode_img").attr("src", qrcode_img+data.data);
+                        $("#qrcode_img").attr("src", qrcode_img + data.data);
                         $('#confirm_modal').modal('show');
 
                         $('#confirm_button').prop('disabled', false);
@@ -216,13 +225,13 @@
     window.Echo.channel('smartshop_database_object')
         .listen('ObjectDetection', (e) => {
             // console.log(e.data);
-            const idList = Object.keys(e.data);
-            idList.forEach(function (elem,i) {
+            var idList = Object.keys(e.data);
+            idList.forEach(function (elem, i) {
                 var data = e.data[elem];
-                if(isInteger(data['amount']) && data['amount']>0){
-                    for(var i = 0;i<data['amount'];i++){
-                        if(i<=$('td[name="product_'+data['id']+'"]').length){
-                            $('td[name="product_'+data['id']+'"]').eq(i)[0].innerHTML='<i class="fas fa-check-circle text-success" style="font-size:30px"></i>'
+                if (isInteger(data['amount']) && data['amount'] > 0) {
+                    for (var i = 0; i < data['amount']; i++) {
+                        if (i < $('td[name="product_' + data['id'] + '"]').length) {
+                            $('td[name="product_' + data['id'] + '"]').eq(i)[0].innerHTML = '<i class="fas fa-check-circle text-success" style="font-size:30px"></i>'
                         }
                     }
                 }
@@ -262,13 +271,13 @@
             '        <td class="col-2 align-middle text-center"><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
             '        <td class="col-3 align-middle text-center">' + product_data.name + '</td>\n' +
             '        <td class="col-2 align-middle text-center">HKD ' + product_data.price.toFixed(2) + '</td>\n' +
-            '        <td class="col-2 align-middle text-center" name="product_'+product_data.id+'"><i class="fas fa-exclamation-circle text-warning" style="font-size:30px"></i></td>\n' +
+            '        <td class="col-2 align-middle text-center" name="product_' + product_data.id + '"><i class="fas fa-exclamation-circle text-warning" style="font-size:30px"></i></td>\n' +
             '        <td class="col-2 align-middle text-center"><button name="delete_button" onclick="" class="btn btn-danger text-light" data-row="' + no + '">Delete</button></td>\n' +
             '    </tr>');
     }
 
     function cddisplay() {
-        document.getElementById('timespan').innerHTML = count+'s';
+        document.getElementById('timespan').innerHTML = count + 's';
     }
 
     function countdown() {
@@ -295,13 +304,13 @@
         cddisplay();
     }
 
-    function ShowTime(){
+    function ShowTime() {
         document.getElementById('time').innerText = new Date();
-        setTimeout('ShowTime()',1000);
+        setTimeout('ShowTime()', 1000);
     }
 
     function isInteger(obj) {
-        return obj%1 === 0
+        return obj % 1 === 0
     }
 
 </script>
