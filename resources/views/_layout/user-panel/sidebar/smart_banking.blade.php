@@ -1,7 +1,7 @@
 <!-- Sidebar Header-->
 <!-- TODO: load user profile pic and name -->
 <div class="sidebar-header d-flex align-items-center"><a href="{{URL::action('SmartBankingController@dashboard')}}">
-        <div class="avatar"><img src="{{ auth()->user()->avatar }}" class="img-fluid rounded-circle">
+        <div class="avatar"><img src="{{ asset('storage/users/avatar/'. auth()->user()->avatar) }}" class="img-fluid rounded-circle">
         </div>
     </a>
     <div class="title">

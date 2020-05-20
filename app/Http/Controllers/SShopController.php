@@ -84,7 +84,6 @@ class SShopController extends Controller
    */
   public function splash()
   {
-
     $token = Str::random(64);              // token for generating qr code and the name of event
     Redis::set($token, 'waiting-auth');
     return view('user-panel.s-shop.splash.index', compact('token'));
@@ -92,7 +91,6 @@ class SShopController extends Controller
 
   public function login_qr_approve(Request $request)
   {
-
     if (!isset($request->one_time_password)) {
       return redirect()->route('sshop.splash');
     }
