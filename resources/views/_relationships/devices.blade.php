@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('device_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.informationManagement.device.title') }} {{ trans('global.list') }}
@@ -71,7 +73,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'device_delete',
+'permission_massDestory' => '{{--device_delete--}}',
 'route' => route('InformationManagement.Devices.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Device'

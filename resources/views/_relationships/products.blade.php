@@ -1,16 +1,7 @@
 <div class="m-3">
-    @can('product_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("ProductManagement.Products.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.productManagement.product.title') }}
-            </a>
-        </div>
-    </div>
-    @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.sub_title_3.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.productManagement.product.title') }} {{ trans('global.list') }}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -104,7 +95,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'product_delete',
+'permission_massDestory' => '',
 'route' => route('ProductManagement.Products.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Product'

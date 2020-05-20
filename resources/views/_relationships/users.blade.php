@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.userManagement.user.title') }} {{ trans('global.list') }}
@@ -85,7 +87,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'user_delete',
+'permission_massDestory' => '{{--user_delete--}}',
 'route' => route('UserManagement.Users.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-User'

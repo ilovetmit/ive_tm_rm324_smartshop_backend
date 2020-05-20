@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('transaction_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.advertisementManagement.advertisement.title') }} {{ trans('global.list') }}
@@ -91,7 +93,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'transaction_delete',
+'permission_massDestory' => '{{--transaction_delete--}}',
 'route' => route('TransactionManagement.Transactions.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Transaction'

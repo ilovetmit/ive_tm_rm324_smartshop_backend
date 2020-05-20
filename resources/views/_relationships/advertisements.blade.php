@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('advertisement_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.advertisementManagement.advertisement.title') }} {{ trans('global.list') }}
@@ -89,7 +91,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'advertisement_delete',
+'permission_massDestory' => '{{--advertisement_delete--}}',
 'route' => route('AdvertisementManagement.ad.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Advertisement'

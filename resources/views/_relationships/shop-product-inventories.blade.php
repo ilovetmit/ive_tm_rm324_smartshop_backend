@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('shop_product_inventory_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.productManagement.shop_product_inventory.title') }} {{ trans('global.list') }}
@@ -79,7 +81,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'shop_product_inventory_delete',
+'permission_massDestory' => '{{--shop_product_inventory_delete--}}',
 'route' => route('ProductManagement.ShopProductInventories.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-ShopProductInventory'
