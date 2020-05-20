@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="{{asset('images/S-Shop_logo.png')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/checkout.css')}}">
 
@@ -46,9 +47,10 @@
                     <thead>
                     <tr>
                         <th scope="col" class="col-1 align-middle text-center">#</th>
-                        <th scope="col" class="col-3 align-middle text-center">Product Image</th>
-                        <th scope="col" class="col-4 align-middle text-center">Product Name</th>
+                        <th scope="col" class="col-2 align-middle text-center">Product Image</th>
+                        <th scope="col" class="col-3 align-middle text-center">Product Name</th>
                         <th scope="col" class="col-2 align-middle text-center">Product Price</th>
+                        <th scope="col" class="col-2 align-middle text-center">Check</th>
                         <th scope="col" class="col-2 align-middle text-center">Action</th>
                     </tr>
                     </thead>
@@ -87,7 +89,7 @@
 
 
                 <span class="text-center mt-3">Please use your mobile phone to scan the QR code to pay.</span>
-                {{-- todo change to one_time_password--}}
+
                 {{-- todo app api--}}
                 <img width="400" height="400" class="text-center" id="qrcode_img"
                      src="">
@@ -167,7 +169,7 @@
                         $('#confirm_button').html('Confirm');
 
                     } else {
-                        console.log(xhr.status);
+                        // console.log(xhr.status);
                         $('#fail_modal').modal('show');
 
                         $('#confirm_button').prop('disabled', false);
@@ -175,7 +177,7 @@
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    console.log(textStatus);
+                    // console.log(textStatus);
                     $('#fail_modal').modal('show');
 
                     $('#confirm_button').prop('disabled', false);
@@ -190,7 +192,7 @@
     window.Echo.channel('smartshop_database_rfid_scan')
         .listen('RFID', (e) => {
             // console.log(e.data);
-            console.log(e.data.has_shop_product.has_product);
+            // console.log(e.data.has_shop_product.has_product);
             if (!product_rfid_list.includes(e.data.rfid_code)) {
                 $('#confirm_button').prop('disabled', false);
                 $("#confirm_button").removeClass("btn-secondary");
@@ -208,6 +210,23 @@
                 console.log('rfid exists: ' + e.data.rfid_code);
             }
 
+        });
+
+
+    window.Echo.channel('smartshop_database_object')
+        .listen('ObjectDetection', (e) => {
+            // console.log(e.data);
+            const idList = Object.keys(e.data);
+            idList.forEach(function (elem,i) {
+                var data = e.data[elem];
+                if(isInteger(data['amount']) && data['amount']>0){
+                    for(var i = 0;i<data['amount'];i++){
+                        if(i<=$('td[name="product_'+data['id']+'"]').length){
+                            $('td[name="product_'+data['id']+'"]').eq(i)[0].innerHTML='<i class="fas fa-check-circle text-success" style="font-size:30px"></i>'
+                        }
+                    }
+                }
+            })
         });
 
 
@@ -240,9 +259,10 @@
     function append_product(no, product_data) {
         $('#product_data').append('<tr id="tr_' + no + '">\n' +
             '        <th scope="row" class="col-1 align-middle text-center">' + no + '</th>\n' +
-            '        <td class="col-3 align-middle text-center"><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
-            '        <td class="col-4 align-middle text-center">' + product_data.name + '</td>\n' +
+            '        <td class="col-2 align-middle text-center"><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
+            '        <td class="col-3 align-middle text-center">' + product_data.name + '</td>\n' +
             '        <td class="col-2 align-middle text-center">HKD ' + product_data.price.toFixed(2) + '</td>\n' +
+            '        <td class="col-2 align-middle text-center" name="product_'+product_data.id+'"><i class="fas fa-exclamation-circle text-warning" style="font-size:30px"></i></td>\n' +
             '        <td class="col-2 align-middle text-center"><button name="delete_button" onclick="" class="btn btn-danger text-light" data-row="' + no + '">Delete</button></td>\n' +
             '    </tr>');
     }
@@ -278,6 +298,10 @@
     function ShowTime(){
         document.getElementById('time').innerText = new Date();
         setTimeout('ShowTime()',1000);
+    }
+
+    function isInteger(obj) {
+        return obj%1 === 0
     }
 
 </script>

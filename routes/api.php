@@ -20,6 +20,7 @@ Route::post('register', 'Api\v1\AuthController@register');
 Route::prefix('v1')->group(function () {
     Route::post('face', 'Api\v1\FaceController@face_scan');
     Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
+    Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
     Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
 
     Route::group(['middleware' => 'auth:api',], function () {
