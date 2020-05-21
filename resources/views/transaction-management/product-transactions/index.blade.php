@@ -67,13 +67,13 @@
                             ])
                         </td>
                         <td>
+                            {{ $productTransaction->quantity ?? '' }}
+                        </td>
+                        <td>
                             @include('_module.datatable.badge_tag.tag',[
                             'type' => config('constant.badge_type')[config('constant.shop_type')[$productTransaction->shop_type]],
                             'element' => config('constant.shop_type')[$productTransaction->shop_type],
                             ])
-                        </td>
-                        <td>
-                            {{ $productTransaction->quantity ?? '' }}
                         </td>
                         <td>
                             @include('_module.datatable.action.index',[
