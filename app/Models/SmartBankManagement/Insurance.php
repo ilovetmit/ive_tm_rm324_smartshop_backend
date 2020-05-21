@@ -23,4 +23,9 @@ class Insurance extends Model
         'image',
         'description'
     ];
+
+    public function unserialize($value)
+    {
+        return unserialize($value);
+    }
 }

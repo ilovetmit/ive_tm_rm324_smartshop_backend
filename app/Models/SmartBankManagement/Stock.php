@@ -24,4 +24,9 @@ class Stock extends Model
         'data',
         'description'
     ];
+
+    public function unserialize($value)
+    {
+        return unserialize($value);
+    }
 }
