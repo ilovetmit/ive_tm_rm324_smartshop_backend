@@ -32,8 +32,7 @@
                         <thead>
                             <tr>
                                 <th>Date/Time</th>
-                                <th>A/C</th>
-                                <th>Item</th>
+                                <th>Header</th>
                                 <th>Amount</th>
                                 <th>Balance</th>
                             </tr>
@@ -43,10 +42,10 @@
                             <tr>
                                 <td><a href="javascript: return(void(0));" class="text-muted">{{$row->created_at}}</a>
                                 </td>
-                                <td>
+                                <!-- <td> -->
                                     {!! config('variables.money_type.'.$row->account) !!}
-                                </td>
-                                <td>{{$row->title}}</td>
+                                <!-- </td> -->
+                                <td>{{$row->header}}</td>
                                 <td>{{($row->account=='VitCoin')?$row->amount:"$ ".$row->amount}}</td>
                                 <td>{{($row->account=='VitCoin')?$row->balance:"$ ".$row->balance}}</td>
                             </tr>

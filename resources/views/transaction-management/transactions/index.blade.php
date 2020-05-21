@@ -87,7 +87,7 @@
                                     'element' => "Product Transaction" ?? '',
                                 ])
                             @endif
-                            
+                            <!-- end of user for demo case -->
                             {{-- 
                             <!-- user for actual case -->
                             @if(!is_null($transaction->hasLocker_transaction)>0)
@@ -106,6 +106,7 @@
                                 'element' => "Remittannce Transaction" ?? '',
                             ])
                             @endif
+                            <!-- end of user for actual case -->
                             --}}
                         </td>
                         <td>

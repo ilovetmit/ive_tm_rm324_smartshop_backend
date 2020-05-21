@@ -13,7 +13,7 @@
                 <img src="{{asset('storage\users\avatar\person.png')}}" alt=" " class="img-circle elevation-2">
             </div>
             <div class="info">
-                <a href="{{route('UserManagement.Users.show',Auth::id())}}" class="d-block">Alexander Pierce</a>
+                <a href="{{route('UserManagement.Users.show',Auth::id())}}" class="d-block">{{Auth::user()->getFullNameAttribute()}}</a>
             </div>
         </div>
         <!-- Sidebar Menu -->

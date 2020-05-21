@@ -28,7 +28,7 @@ return [
         
         'Free'          => 'success',
         'Using'         => 'danger',
-
+        // field name
         'name'          => 'primary',
         'header'        => 'primary',
         'id'            => 'primary',
@@ -36,13 +36,13 @@ return [
         'amount'        => 'info',
         'balance'       => 'info',
         'account'       => 'info',
-        'currency'      => 'info',
+        'currency'      => 'dark',
         'category'      => 'light',
         'tag'           => 'secondary',
         'channel'       => 'dark',
-        'pt'            => 'success',              // product transaction
-        'rt'            => 'secondary',              // remittance transaction
-        'lt'            => 'info',              // locker transaction
+        'pt'            => 'light',              // product transaction
+        'rt'            => 'info',            // remittance transaction
+        'lt'            => 'secondary',                 // locker transaction
     ],
 
     'advertisement_status' => [

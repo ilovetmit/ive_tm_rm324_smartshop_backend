@@ -137,7 +137,7 @@ class SmartBankingController extends Controller
      */
     public function transaction()
     {
-        $rows = Transaction::where('user_id', auth()->user()->user_id)->get();
+        $rows = Transaction::where('user_id', auth::id())->get();
         return view('user-panel.smart-banking.transaction.index', compact('rows'));
     }
 

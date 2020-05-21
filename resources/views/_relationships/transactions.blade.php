@@ -12,7 +12,7 @@
     --}}
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.advertisementManagement.advertisement.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.transactionManagement.transaction.title') }} {{ trans('global.list') }}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -58,22 +58,49 @@
                                 ])
                             </td>
                             <td>
-                                @if(!is_null($transaction->hasLocker_transaction)>0)
-                                @include('_module.datatable.badge_tag.tag',[
-                                'type' => config('constant.badge_type')['lt'],
-                                'element' => "Locker Transaction" ?? '',
-                                ])
-                                @elseif(!is_null($transaction->hasProduct_transaction)>0)
-                                @include('_module.datatable.badge_tag.tag',[
-                                'type' => config('constant.badge_type')['pt'],
-                                'element' => "Product Transaction" ?? '',
-                                ])
-                                @elseif(!is_null($transaction->hasRemittance_transaction)>0)
-                                @include('_module.datatable.badge_tag.tag',[
-                                'type' => config('constant.badge_type')['rt'],
-                                'element' => "Remittannce Transaction" ?? '',
-                                ])
+                                <!-- user for demo case -->
+                                @if (fmod($transaction->id,4) == 0)
+                                    @include('_module.datatable.badge_tag.tag',[
+                                        'type' => config('constant.badge_type')['lt'],
+                                        'element' => "Locker Transaction" ?? '',
+                                    ])
+                                @elseif (fmod($transaction->id,3) == 0)
+                                    @include('_module.datatable.badge_tag.tag',[
+                                        'type' => config('constant.badge_type')['pt'],
+                                        'element' => "Product Transaction" ?? '',
+                                    ])
+                                @elseif (fmod($transaction->id,2) == 0)
+                                    @include('_module.datatable.badge_tag.tag',[
+                                        'type' => config('constant.badge_type')['rt'],
+                                        'element' => "Remittannce Transaction" ?? '',
+                                        ])
+                                @else
+                                    @include('_module.datatable.badge_tag.tag',[
+                                        'type' => config('constant.badge_type')['pt'],
+                                        'element' => "Product Transaction" ?? '',
+                                    ])
                                 @endif
+                                <!-- end of user for demo case -->
+                                {{-- 
+                                <!-- user for actual case -->
+                                @if(!is_null($transaction->hasLocker_transaction)>0)
+                                    @include('_module.datatable.badge_tag.tag',[
+                                        'type' => config('constant.badge_type')['lt'],
+                                        'element' => "Locker Transaction" ?? '',
+                                    ])
+                                @elseif(!is_null($transaction->hasProduct_transaction)>0)
+                                    @include('_module.datatable.badge_tag.tag',[
+                                        'type' => config('constant.badge_type')['pt'],
+                                        'element' => "Product Transaction" ?? '',
+                                    ])
+                                @elseif(!is_null($transaction->hasRemittance_transaction)>0)
+                                    @include('_module.datatable.badge_tag.tag',[
+                                        'type' => config('constant.badge_type')['rt'],
+                                        'element' => "Remittannce Transaction" ?? '',
+                                    ])
+                                @endif
+                                <!-- end of user for actual case -->
+                                --}}
                             </td>
                             <td>
                                 @include('_module.datatable.action.index',[
