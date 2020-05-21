@@ -22,7 +22,7 @@ class CreateLockerTransactionsTable extends Migration
             $table->unsignedBigInteger('recipient_user_id');
             $table->foreign('recipient_user_id')            ->references('id')->on('users')->onDelete('cascade');
             $table->string('item');
-            $table->date('deadline');
+            $table->date('deadline')->nullable();
             $table->text('remark');
             $table->timestamps();
             $table->softDeletes();
