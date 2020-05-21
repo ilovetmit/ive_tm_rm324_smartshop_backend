@@ -89,7 +89,7 @@ class AuthController extends Controller {
     }
 
     public function refresh() {
-        $data = (new Client())->post('http://127.0.0.1:8001/api/v1/auth/oauth/token', [
+        $data = (new Client())->post(assert('api/v1/auth/oauth/token'), [
             'form_params' => [
                 'grant_type' => 'refresh_token',
                 'refresh_token' => request('refresh_token'),
@@ -104,7 +104,7 @@ class AuthController extends Controller {
     }
 
     private function getToken() {
-        $data = (new Client())->post('http://127.0.0.1:8001/api/v1/auth/oauth/token', [
+        $data = (new Client())->post(asset('api/v1/auth/oauth/token'), [
             'form_params' => [
                 'grant_type' => 'password',
                 'username' => request('email'),
