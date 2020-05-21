@@ -50,6 +50,18 @@
                             {{ $productTransaction->quantity ?? '' }}
                         </td>
                     </tr>
+                    <!------------------------shop_type------------------------>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.shop_type') }}
+                        </th>
+                        <td>
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => config('constant.badge_type')[config('constant.shop_type')[$productTransaction->shop_type]],
+                            'element' => config('constant.shop_type')[$productTransaction->shop_type],
+                            ])
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

@@ -41,12 +41,14 @@ return [
         'tag'           => 'secondary',
         'channel'       => 'dark',
         'pt'            => 'light',              // product transaction
-        'rt'            => 'info',            // remittance transaction
-        'lt'            => 'secondary',                 // locker transaction
+        'rt'            => 'info',               // remittance transaction
+        'lt'            => 'secondary',          // locker transaction
+        'Vending'       => 'dark',
+        'WindowShop'    => 'dark',             
     ],
 
     'advertisement_status' => [
-        '1' => 'Promoting',    // on
+        '1' => 'Promoting',     // on
         '2' => 'Expired',       // off
     ],
     'product_status' => [
@@ -58,8 +60,8 @@ return [
         '2' => 'Sold',
     ],
     'device_isActive' => [
-        '1' => 'Inactive',
-        '2' => 'Active',
+        '1' => 'Active',
+        '2' => 'Inactive',
     ],
     'locker_isActive' => [
         '1' => 'Active',
@@ -118,4 +120,8 @@ return [
         'Saving'  => '1',
         'Vitcoin' => '2',
     ],
+    'shop_type' => [
+        '1' => 'Vending',
+        '2' => 'WindowShop'
+    ]
 ];

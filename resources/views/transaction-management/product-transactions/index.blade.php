@@ -34,6 +34,9 @@
                             {{ trans('cruds.fields.quantity') }}
                         </th>
                         <th>
+                            {{ trans('cruds.fields.shop_type') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -61,6 +64,12 @@
                             'type' => config('constant.badge_type')['name'],
                             'element' => $productTransaction->hasProduct->id . ". " .
                             $productTransaction->hasProduct->name ?? '',
+                            ])
+                        </td>
+                        <td>
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => config('constant.badge_type')[config('constant.shop_type')[$productTransaction->shop_type]],
+                            'element' => config('constant.shop_type')[$productTransaction->shop_type],
                             ])
                         </td>
                         <td>
