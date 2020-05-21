@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class SmartBankingLoginController extends Controller {
+class SmartBankingLoginController extends Controller
+{
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -27,18 +28,21 @@ class SmartBankingLoginController extends Controller {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest')->except('logout');
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $this->guard()->logout();
         $request->session()->flush();
         $request->session()->regenerate();
         return redirect($this->redirectAfterLogout);
     }
 
-    protected function authenticated() {
+    protected function authenticated()
+    {
         return redirect('/smart-banking/dashboard');
     }
 }
