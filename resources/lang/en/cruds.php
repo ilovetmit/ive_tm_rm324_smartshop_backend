@@ -197,6 +197,6 @@ return [
         'payee_id'          => 'Payee',
         'advertisement'     => 'Advertisement',
         'message'           => 'Message',
-
+        'shop_type'         => 'Shopping Type'
     ],
 ];

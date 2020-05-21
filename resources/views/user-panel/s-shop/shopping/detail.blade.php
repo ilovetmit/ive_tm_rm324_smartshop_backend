@@ -41,9 +41,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="media">
-                            <div class="ml-5 pr-3">
+                            <div class="">
                                 <img width="150"
-                                    src="https://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl={{$row->qrcode}}">
+                                    src="https://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl={{$row->hasShopProduct->first()->qrcode}}">
                             </div>
                             <div class="media-body m-auto text-center">
                                 <h3>Scan to buy</h3>

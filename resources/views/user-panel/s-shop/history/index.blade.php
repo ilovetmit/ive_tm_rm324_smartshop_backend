@@ -21,6 +21,7 @@
                         <tr>
                             <th>Date Time</th>
                             <th>Order ID</th>
+                            <th>Transaction Header</th>
                             <th>Product</th>
                             <th>Total Price</th>
                         </tr>
@@ -31,7 +32,8 @@
                         <tr>
                             <td>{{$row->created_at}}</td>
                             <td>{{$row->id}}</td>
-                            <td>{{$row->product_id}}</td>
+                            <td>{{$row->header}}</td>
+                            <td>{{$row->name}}</td>
                             <td>{{"$ ".$row->amount}}
                                 <span class="ml-3">{!!
                                     config('variables.money_type.'.$row->amount)

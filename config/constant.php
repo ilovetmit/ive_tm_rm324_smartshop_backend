@@ -41,33 +41,35 @@ return [
         'tag'           => 'secondary',
         'channel'       => 'dark',
         'pt'            => 'light',              // product transaction
-        'rt'            => 'info',            // remittance transaction
-        'lt'            => 'secondary',                 // locker transaction
+        'rt'            => 'info',               // remittance transaction
+        'lt'            => 'secondary',          // locker transaction
+        'Vending'       => 'dark',
+        'WindowShop'    => 'dark',             
     ],
 
     'advertisement_status' => [
-        '1'             => 'Promoting',    // on
-        '2'             => 'Expired',       // off
+        '1' => 'Promoting',     // on
+        '2' => 'Expired',       // off
     ],
     'product_status' => [
-        '1'             => 'Unavailable',
-        '2'             => 'Available',
+        '1' => 'Unavailable',
+        '2' => 'Available',
     ],
     'shopProductInventories_isSold' => [
-        '1'             => 'Instock',
-        '2'             => 'Sold',
+        '1' => 'Instock',
+        '2' => 'Sold',
     ],
     'device_isActive' => [
-        '1'             => 'Inactive',
-        '2'             => 'Active',
+        '1' => 'Active',
+        '2' => 'Inactive',
     ],
     'locker_isActive' => [
-        '1'             => 'Active',
-        '2'             => 'Inactive',
+        '1' => 'Active',
+        '2' => 'Inactive',
     ],
     'locker_isUsing' => [
-        '1'             => 'Free',
-        '2'             => 'Using',
+        '1' => 'Free',
+        '2' => 'Using',
     ],
     'user_status' => [
         '1' => 'Available',
@@ -113,4 +115,13 @@ return [
         '1' => 'Saving',
         '2' => 'Vitcoin',
     ],
+    '_transaction_currency' => [
+        'Current' => '0',
+        'Saving'  => '1',
+        'Vitcoin' => '2',
+    ],
+    'shop_type' => [
+        '1' => 'Vending',
+        '2' => 'WindowShop'
+    ]
 ];

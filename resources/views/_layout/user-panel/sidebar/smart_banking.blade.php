@@ -5,7 +5,8 @@
         </div>
     </a>
     <div class="title">
-        <h1 class="h5">{{auth()->user()->name}}</h1>
+        {{-- todo lastname firstname--}}
+        <h1 class="h5">{{auth()->user()->getFullNameAttribute()}}</h1>
         <p>VIP</p>
     </div>
 </div>

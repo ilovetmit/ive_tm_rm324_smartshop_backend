@@ -16,15 +16,25 @@ class ProductTransactionTableSeeder extends Seeder
         // factory(ProductTransaction::class,1)->create();
 
         $faker = Faker\Factory::create();
-        $product_id = Product::all()->pluck('id');
-        $transaction_id = array(1,3,5,6,7,9);
-        
+        $transaction_id = [1, 3, 5, 6, 7, 9];
+
         for ($i = 1; $i <= 6; $i++) {
-            ProductTransaction::create([
-                'transaction_id'        => $transaction_id[$i-1],
-                'product_id'            => $faker->randomElement($product_id),
-                'quantity'              => $faker->numberBetween($min = 1, $max = 3),
-            ]);
+            $product_id = $faker->numberBetween($min = 1, $max = 35);
+            if ($product_id == 24 || $product_id == 25 || $product_id == 26 || $product_id == 27 || $product_id == 28) {
+                ProductTransaction::create([
+                    'transaction_id'        => $transaction_id[$i - 1],
+                    'product_id'            => $product_id,
+                    'quantity'              => $faker->numberBetween($min = 1, $max = 3),
+                    'shop_type'             => $faker->numberBetween($min = 1, $max = 2),
+                ]);
+            }else{
+                ProductTransaction::create([
+                    'transaction_id'        => $transaction_id[$i - 1],
+                    'product_id'            => $product_id,
+                    'quantity'              => $faker->numberBetween($min = 1, $max = 3),
+                    'shop_type'             => 2,
+                ]);
+            }
         }
     }
 }

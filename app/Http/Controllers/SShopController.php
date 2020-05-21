@@ -72,7 +72,7 @@ class SShopController extends Controller
     }
     public function shopping_detail($id)
     {
-        $row = Product::findOrFail(ShopProduct::find($id)->product_id);
+        $row = Product::findOrFail($id);
         return view('user-panel.s-shop.shopping.detail', compact('row'));
     }
     public function shopping_receipts()
@@ -129,9 +129,10 @@ class SShopController extends Controller
         //   $query->where('user_id', Auth::id());
         // })->orderBy('created_at', 'desc')->get();
 
-        $rows = DB::table('transactions')
-            ->join('product_transactions', 'product_transactions.transaction_id', '=', 'transactions.id')
-            ->select('product_transactions.created_at', 'transactions.id', 'product_transactions.product_id', 'transactions.amount')
+        $rows = DB::table('product_transactions')
+            ->join('transactions', 'product_transactions.transaction_id', '=', 'transactions.id')
+            ->join('products', 'products.id', '=', 'product_transactions.product_id')
+            ->select('product_transactions.created_at', 'transactions.id', 'transactions.header', 'products.name', 'transactions.amount')
             ->orderBy('created_at', 'desc')->get();
         return view('user-panel.s-shop.history.index', compact('rows'));
     }

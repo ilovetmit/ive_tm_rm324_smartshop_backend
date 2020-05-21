@@ -47,6 +47,9 @@ class DatabaseSeeder extends Seeder
             LockerTransactionTableSeeder::class,
             ProductTransactionTableSeeder::class,
             RemittanceTransactionTableSeeder::class,
+
+            InsuranceTableSeeder::class,
+            StockTableSeeder::class,
         ]);
         // Model::reguard();
     }

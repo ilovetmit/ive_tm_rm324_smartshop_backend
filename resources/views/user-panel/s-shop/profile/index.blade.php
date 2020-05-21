@@ -186,7 +186,8 @@
                     <div class="card-body text-center"><img src="{{ asset('storage/users/avatar/' . $user->avatar) }}" class="card-profile-img"
                             style="object-fit: cover;display: inline-block;width: 150px;height: 150px;max-width:150px;border-radius: 100%;"
                             alt="avatar">
-                        <h4 class="mb-3 text-gray-light">{{$user->name}}</h4>
+                        {{-- todo fix user name--}}
+                        <h4 class="mb-3 text-gray-light">{{$user->getFullNameAttribute()}}</h4>
                         <p class="mb-4">{{$user->bio}}</p>
                         <!-- <button class="btn btn-outline-secondary"><span class="fa fa-twitter"></span> Follow</button> -->
                     </div>
