@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserManagement\User;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,7 +89,7 @@ class AuthController extends Controller {
     }
 
     public function refresh() {
-        $response = (new Client())->post(asset('api/v1/auth/oauth/token'), [
+        $data = (new Client())->post('http://127.0.0.1:8001/api/v1/auth/oauth/token', [
             'form_params' => [
                 'grant_type' => 'refresh_token',
                 'refresh_token' => request('refresh_token'),
@@ -97,11 +98,13 @@ class AuthController extends Controller {
                 'scope' => '*',
             ],
         ]);
-        return $response->getBody();
+        $response = Response::make($data->getBody(), 200);
+        $response->header('Content-Type', 'application/json');
+        return $response;
     }
 
     private function getToken() {
-        $response = (new Client())->post(asset('api/v1/auth/oauth/token'), [
+        $data = (new Client())->post('http://127.0.0.1:8001/api/v1/auth/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'username' => request('email'),
@@ -111,6 +114,8 @@ class AuthController extends Controller {
                 'scope' => '*',
             ],
         ]);
-        return $response->getBody();
+        $response = Response::make($data->getBody(), 200);
+        $response->header('Content-Type', 'application/json');
+        return $response;
     }
 }
