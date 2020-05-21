@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{$row->created_at}}</td>
                             <td>{{$row->id}}</td>
-                            <td>{{$row->product_id}}</td>
+                            <td>{{$row->name}}</td>
                             <td>{{"$ ".$row->amount}}
                                 <span class="ml-3">{!!
                                     config('variables.money_type.'.$row->amount)
