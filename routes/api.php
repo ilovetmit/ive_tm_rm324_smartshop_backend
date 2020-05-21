@@ -17,6 +17,15 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::prefix('v1')->group(function () {
+
+    Route::prefix('auth')->group(function () {
+        Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
+        Route::post('login', 'Api\v1\AuthController@login');
+        Route::post('register', 'Api\v1\AuthController@register');
+        Route::post('refresh', 'Api\v1\AuthController@register');
+        Route::post('logout', 'Api\v1\AuthController@logout');
+    });
+
     Route::post('face', 'Api\v1\FaceController@face_scan');
     Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
     Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
