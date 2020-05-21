@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <label>Email Address</label>
                         <input name="email" type="email" placeholder="name@address.com" autocomplete="off" required
-                            data-msg="Please enter your email" class="form-control" value="leonardo-dicaprio@gmail.com">
+                            data-msg="Please enter your email" class="form-control" value="s-shop-tmit@vtc.edu.hk">
                         @if ($errors->has('email'))
                         <span class="form-text text-danger">
                             <small>{{ $errors->first('email') }}</small>
