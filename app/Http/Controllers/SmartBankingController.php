@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Events\QRCodeLogin;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class SmartBankingController extends Controller
 {
@@ -49,6 +50,8 @@ class SmartBankingController extends Controller
 
     public function insurance_subscribe($id, $type)
     {
+        // todo
+
         //        $insurance = Insurance::find($id);
         //        $user = User::find(auth()->user()->user_id);
         //
@@ -98,7 +101,7 @@ class SmartBankingController extends Controller
         if (Auth::check())
             return redirect()->route('sbanking.dash');
 
-        $token = str_random(64);              // token for generating qr code and the name of event
+        $token = Str::random(64);              // token for generating qr code and the name of event
         Redis::set($token, 'waiting-auth');
         return view('user-panel.smart-banking.login.qr', compact('token'));
     }
@@ -153,6 +156,7 @@ class SmartBankingController extends Controller
     public function transfer_action(Request $request)
     {
         //todo update transfer action
+
         //        $this->validate($request, [
         //            'from' => 'required',
         //            'to' => 'required',

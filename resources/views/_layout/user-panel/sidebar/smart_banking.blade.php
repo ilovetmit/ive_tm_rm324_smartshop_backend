@@ -5,6 +5,7 @@
         </div>
     </a>
     <div class="title">
+        {{-- todo lastname firstname--}}
         <h1 class="h5">{{auth()->user()->name}}</h1>
         <p>VIP</p>
     </div>
