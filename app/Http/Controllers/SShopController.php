@@ -132,7 +132,7 @@ class SShopController extends Controller
         $rows = DB::table('product_transactions')
             ->join('transactions', 'product_transactions.transaction_id', '=', 'transactions.id')
             ->join('products', 'products.id', '=', 'product_transactions.product_id')
-            ->select('product_transactions.created_at', 'transactions.id', 'products.name', 'transactions.amount')
+            ->select('product_transactions.created_at', 'transactions.id', 'transactions.header', 'products.name', 'transactions.amount')
             ->orderBy('created_at', 'desc')->get();
         return view('user-panel.s-shop.history.index', compact('rows'));
     }
