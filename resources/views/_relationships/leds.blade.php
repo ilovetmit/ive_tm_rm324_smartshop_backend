@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('led_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.productManagement.led.title') }} {{ trans('global.list') }}
@@ -42,7 +44,7 @@
                             </td>
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['name'],
                                 'element' => $led->hasShopProduct->hasProduct->id . ". " .
                                 $led->hasShopProduct->hasProduct->name ?? '',
                                 ])
@@ -65,7 +67,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'led_delete',
+'permission_massDestory' => '{{--led_delete--}}',
 'route' => route('ProductManagement.LEDs.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-LED'

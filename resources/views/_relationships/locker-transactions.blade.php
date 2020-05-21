@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('locker_transaction_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.transactionManagement.locker_transaction.title') }} {{ trans('global.list') }}
@@ -52,7 +54,7 @@
                             <td>
                                 {{-- $lockerTransaction->transaction_id ?? '' --}}
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['header'],
                                 'element' => $lockerTransaction->hasTransaction->id . ". " .
                                 $lockerTransaction->hasTransaction->header . "." ?? '',
                                 ])
@@ -60,14 +62,14 @@
                             <td>
                                 {{-- $lockerTransaction->locker_id ?? '' --}}
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['id'],
                                 'element' => "Locker No. " . $lockerTransaction->locker_id ?? '',
                                 ])
                             </td>
                             <td>
                                 {{-- $lockerTransaction->recipient_user_id ?? '' --}}
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['name'],
                                 'element' => $lockerTransaction->hasUser->id . ". " .
                                 $lockerTransaction->hasUser->getFullNameAttribute() . "." ?? '',
                                 ])
@@ -93,7 +95,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'locker_transaction_delete',
+'permission_massDestory' => '{{--locker_transaction_delete--}}',
 'route' => route('TransactionManagement.LockerTransactions.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-LockerTransaction'

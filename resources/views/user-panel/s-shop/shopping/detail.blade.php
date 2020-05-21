@@ -32,7 +32,7 @@
                     <div style="background-image: url({{asset("vendor/smart_shop_user/img/photos/paul-morris-116514-unsplash.jpg")}});"
                         class="card-header"></div>
                     <div class="card-body text-center">
-                        <img src="{{$row->url}}" class="logo-photo">
+                        <img src="{{asset('storage/products/image/' . $row->image)}}" class="logo-photo">
                         <h4 class="mb-3 text-gray-light">{{$row->name}}</h4>
                         <p class="mb-4 h5">HK$ {{$row->price}}</p>
                         <button class="btn btn-outline-success"><span class="fa fa-thumbs-up"></span> Like</button>
@@ -41,9 +41,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="media">
-                            <div class="ml-5 pr-3">
+                            <div class="">
                                 <img width="150"
-                                    src="https://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl={{$row->qrcode}}">
+                                    src="https://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl={{$row->hasShopProduct->first()->qrcode}}">
                             </div>
                             <div class="media-body m-auto text-center">
                                 <h3>Scan to buy</h3>

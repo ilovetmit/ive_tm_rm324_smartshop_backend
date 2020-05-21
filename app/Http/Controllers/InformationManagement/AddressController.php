@@ -28,6 +28,12 @@ class AddressController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id'       => 'required',
+            'addressLine1'  => 'required|String',
+            'addressLine2'  => 'nullable|String',
+            'district'      => 'required',
+        ]);
         $addresses = Address::create($request->all());
         return redirect()->route('InformationManagement.Addresses.index');
     }
@@ -47,6 +53,12 @@ class AddressController extends Controller
 
     public function update(Request $request, Address $address)
     {
+        $request->validate([
+            'user_id'       => 'required',
+            'addressLine1'  => 'required|String',
+            'addressLine2'  => 'nullable|String',
+            'district'      => 'required',
+        ]);
         $address->update($request->all());
         // $address->hasUser()->sync($request->input('user', []));
         return redirect()->route('InformationManagement.Addresses.index');

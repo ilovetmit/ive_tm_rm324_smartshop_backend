@@ -28,6 +28,10 @@ class VendingProductController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'product_id'    => 'required',
+            'channel'       => 'required|unique:vending_products',
+        ]);
         $vendingProduct = VendingProduct::create($request->all());
         // $remittanceTransaction->hasTransaction()->sync($request->input('hasTransaction', []));
         return redirect()->route('ProductManagement.VendingProducts.index');
@@ -49,6 +53,10 @@ class VendingProductController extends Controller
 
     public function update(Request $request, VendingProduct $vendingProduct)
     {
+        $request->validate([
+            'product_id'    => 'required',
+            'channel'       => 'required|unique:vending_products,channel' . ($vendingProduct->id ? ",$vendingProduct->id" : ''),
+        ]);
         $vendingProduct->update($request->all());
         // $remittanceTransaction->hasPermission()->sync($request->input('permissions', []));
         return redirect()->route('ProductManagement.VendingProducts.index');

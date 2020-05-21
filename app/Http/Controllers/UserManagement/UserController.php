@@ -12,6 +12,7 @@ use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -29,9 +30,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'email'         => 'unique:users|required|email',
+            'password'      => 'required',
+            'first_name'    => 'required|String',
+            'last_name'     => 'required|String',
+            'avatar'        => 'nullable',
+            'birthday'      => 'before_or_equal:now|nullable',
+            'gender'        => 'required',
+            'telephone'     => 'digits:8|nullable',
+            'bio'           => 'nullable',
+            'status'        => 'required',
+            'roles'         => 'required',
+        ]);
         $data = $request->all();
         if (isset($request->avatar)) {
-            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('avatar')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -41,6 +55,8 @@ class UserController extends Controller
             } else {
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
+        } else {
+            $data['avatar'] = 'person.png';
         }
         $user = User::create($data);
         $user->hasRole()->sync($request->input('roles', []));
@@ -62,9 +78,21 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $request->validate([
+            'email'         => 'required|email|unique:users,email' . ($user->id ? ",$user->id" : ''),
+            'password'      => 'required',
+            'first_name'    => 'required|String',
+            'last_name'     => 'required|String',
+            'birthday'      => 'before_or_equal:now|nullable',
+            'gender'        => 'required',
+            'telephone'     => 'digits:8|nullable',
+            'bio'           => 'nullable',
+            'status'        => 'required',
+            'roles'         => 'required',
+        ]);
         $data = $request->all();
         if (isset($request->avatar)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('avatar')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -74,6 +102,8 @@ class UserController extends Controller
             } else {
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
+        } else {
+            $data['avatar'] = 'person.png';
         }
         $user->update($data);
         $user->hasRole()->sync($request->input('roles', []));

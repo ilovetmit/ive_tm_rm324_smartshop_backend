@@ -27,7 +27,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " .
                             $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
                             ])
@@ -38,8 +38,6 @@
                             {{ trans('cruds.fields.rfid_code') }}
                         </th>
                         <td>
-                            {{-- todo what is this image?--}}
-                            <!-- <img src="{{ asset('storage/shop_product_inventory/rfid_code/'.$shopProductInventory->rfid_code) }}" width="150px"> -->
                             {{$shopProductInventory->rfid_code}}
                         </td>
                     </tr>
@@ -49,11 +47,8 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $shopProductInventory->is_sold == 1 ?
-                            config('constant.device_isActive')['tag_type_1'] :
-                            config('constant.device_isActive')['tag_type_2'],
-                            'element' =>
-                            config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                            'type' => config('constant.badge_type')[config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold]],
+                            'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                             ])
                         </td>
                     </tr>
@@ -65,6 +60,28 @@
                 </a>
             </div>
         </div>
+    </div>
+</div>
+<!-- hasManyTable -->
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($shopProductInventory->hasShopProduct)>0)
+        <li class="nav-item">
+            <a class="nav-link" href="#product" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.product.title') }}
+            </a>
+        </li>
+        @endif
+    </ul>
+    <div class="tab-content">
+        @if(!is_null($shopProductInventory->hasShopProduct)>0)
+        <div class="tab-pane" role="tabpanel" id="product">
+            @includeIf('_relationships.product', ['product' => $shopProductInventory->hasShopProduct->hasProduct])
+        </div>
+        @endif
     </div>
 </div>
 @endsection

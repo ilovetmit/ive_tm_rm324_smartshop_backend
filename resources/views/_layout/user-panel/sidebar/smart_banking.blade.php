@@ -1,11 +1,12 @@
 <!-- Sidebar Header-->
 <!-- TODO: load user profile pic and name -->
 <div class="sidebar-header d-flex align-items-center"><a href="{{URL::action('SmartBankingController@dashboard')}}">
-        <div class="avatar"><img src="{{ auth()->user()->avatar }}" class="img-fluid rounded-circle">
+        <div class="avatar"><img src="{{ asset('storage/users/avatar/'. auth()->user()->avatar) }}" class="img-fluid rounded-circle">
         </div>
     </a>
     <div class="title">
-        <h1 class="h5">{{auth()->user()->name}}</h1>
+        {{-- todo lastname firstname--}}
+        <h1 class="h5">{{auth()->user()->getFullNameAttribute()}}</h1>
         <p>VIP</p>
     </div>
 </div>

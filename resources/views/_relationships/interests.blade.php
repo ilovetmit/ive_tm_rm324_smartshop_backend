@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('interest_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,9 +9,10 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.userManagement.interest.title') }} {{ trans('global.list') }}
+            {{ trans('cruds.informationManagement.interest.title') }} {{ trans('global.list') }}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -67,7 +69,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'interest_delete',
+'permission_massDestory' => '{{--interest_delete--}}',
 'route' => route('InformationManagement.Interests.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Interest'

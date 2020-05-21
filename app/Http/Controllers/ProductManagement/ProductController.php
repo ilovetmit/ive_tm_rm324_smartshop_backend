@@ -31,9 +31,19 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'          => 'unique:products|required',
+            'price'         => 'required',
+            'image'         => 'required',
+            'quantity'      => 'required',
+            'description'   => 'nullable',
+            'status'        => 'required',
+            'tags'          => 'nullable',
+            'categories'    => 'nullable',
+        ]);
         $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -65,9 +75,18 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $request->validate([
+            'name'          => 'required|unique:products,name' . ($product->id ? ",$product->id" : ''),
+            'price'         => 'required',
+            'quantity'      => 'required',
+            'description'   => 'nullable',
+            'status'        => 'required',
+            'tags'          => 'nullable',
+            'categories'    => 'nullable',
+        ]);
         $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 

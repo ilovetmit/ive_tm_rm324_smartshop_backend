@@ -28,6 +28,11 @@ class BankAccountController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id'           => 'required|unique:bank_accounts',
+            'current_account'   => 'required',
+            'saving_account'    => 'required',
+        ]);
         $bankaccounts = BankAccount::create($request->all());
         return redirect()->route('InformationManagement.BankAccounts.index');
     }
@@ -46,6 +51,11 @@ class BankAccountController extends Controller
 
     public function update(Request $request, BankAccount $bankAccount)
     {
+        $request->validate([
+            'user_id'           => 'required|unique:bank_accounts,user_id' . ($bankAccount->id ? ",$bankAccount->id" : ''),
+            'current_account'   => 'required',
+            'saving_account'    => 'required',
+        ]);
         $bankAccount->update($request->all());
         return redirect()->route('InformationManagement.BankAccounts.index');
     }

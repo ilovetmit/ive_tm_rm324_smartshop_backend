@@ -29,6 +29,10 @@ class PermissionController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'           => 'required|string|unique:permissions',
+            'description'    => 'nullable|string',
+        ]);
         $permission = Permission::create($request->all());
         return redirect()->route('UserManagement.Permissions.index');
     }
@@ -46,6 +50,10 @@ class PermissionController extends Controller
 
     public function update(Request $request, Permission $permission)
     {
+        $request->validate([
+            'name'           => 'required|string|unique:permissions,name' . ($permission->id ? ",$permission->id" : ''),
+            'description'    => 'nullable|string',
+        ]);
         $permission->update($request->all());
         return redirect()->route('UserManagement.Permissions.index');
     }

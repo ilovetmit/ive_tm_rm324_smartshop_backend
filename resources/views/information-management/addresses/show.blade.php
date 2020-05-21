@@ -27,7 +27,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $address->hasUser->id . ". " . $address->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>

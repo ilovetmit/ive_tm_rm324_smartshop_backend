@@ -9,9 +9,9 @@
             @csrf
             <!---------------------------name--------------------------->
             <div class="form-group">
-                <label class="required" for="name">{{ trans('cruds.fields.name') }}</label>
+                <label class="" for="name">{{ trans('cruds.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
-                    id="name" value="{{ old('name', '') }}" required>
+                    id="name" value="{{ old('name', '') }}" >
                 @if($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
@@ -19,9 +19,9 @@
             </div>
             <!---------------------------price--------------------------->
             <div class="form-group">
-                <label class="required" for="price">{{ trans('cruds.fields.price') }}</label>
+                <label class="" for="price">{{ trans('cruds.fields.price') }}</label>
                 <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price"
-                    id="price" value="{{ old('price', '') }}" required>
+                    id="price" value="{{ old('price', '') }}" >
                 @if($errors->has('price'))
                 <span class="text-danger">{{ $errors->first('price') }}</span>
                 @endif
@@ -29,9 +29,9 @@
             </div>
             <!---------------------------quantity--------------------------->
             <div class="form-group">
-                <label class="required" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
+                <label class="" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
                 <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number"
-                    name="quantity" id="quantity" value="{{ old('quantity', '') }}" required>
+                    name="quantity" id="quantity" value="{{ old('quantity', '') }}" >
                 @if($errors->has('quantity'))
                 <span class="text-danger">{{ $errors->first('quantity') }}</span>
                 @endif
@@ -39,7 +39,7 @@
             </div>
             <!-- --------------------------------------image-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="image">{{ trans('cruds.fields.image') }}</label>
+                <label class="" for="image">{{ trans('cruds.fields.image') }}</label>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="image" name="image">
@@ -49,9 +49,9 @@
             </div>
             <!---------------------------description--------------------------->
             <div class="form-group">
-                <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
+                <label class="" for="description">{{ trans('cruds.fields.description') }}</label>
                 <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text"
-                    name="description" id="description" value="{{ old('description', '') }}" required>
+                    name="description" id="description" value="{{ old('description', '') }}" >
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif
@@ -59,12 +59,12 @@
             </div>
             <!-- --------------------------------------status-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="status">{{ trans('cruds.fields.status') }}</label>
+                <label class="" for="status">{{ trans('cruds.fields.status') }}</label>
                 <select class="form-control select {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status"
-                    id="status" required>
+                    id="status" >
                     <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.product_status_form') as $key => $label)
+                    @foreach(config('constant.product_status') as $key => $label)
                     <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>

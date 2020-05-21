@@ -55,7 +55,7 @@
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $transaction->hasUser->id . ". " .
                             $transaction->hasUser->getFullNameAttribute() ?? '',
                             ])
@@ -65,47 +65,49 @@
 
                         </td>
                         <td>
-                            {{--
-                        @if (fmod($transaction->id,4) == 0)
+                            <!-- user for demo case -->
+                            @if (fmod($transaction->id,4) == 0)
                                 @include('_module.datatable.badge_tag.tag',[
-                                    'type' => 'secondary',
+                                    'type' => config('constant.badge_type')['lt'],
                                     'element' => "Locker Transaction" ?? '',
                                 ])
                             @elseif (fmod($transaction->id,3) == 0)
                                 @include('_module.datatable.badge_tag.tag',[
-                                    'type' => 'warning',
+                                    'type' => config('constant.badge_type')['pt'],
                                     'element' => "Product Transaction" ?? '',
                                 ])
                             @elseif (fmod($transaction->id,2) == 0)
                                 @include('_module.datatable.badge_tag.tag',[
-                                    'type' => 'primary',
+                                    'type' => config('constant.badge_type')['rt'],
                                     'element' => "Remittannce Transaction" ?? '',
                                     ])
                             @else
                                 @include('_module.datatable.badge_tag.tag',[
-                                    'type' => 'info',
+                                    'type' => config('constant.badge_type')['pt'],
                                     'element' => "Product Transaction" ?? '',
                                 ])
                             @endif
-                    --}}
-
+                            <!-- end of user for demo case -->
+                            {{-- 
+                            <!-- user for actual case -->
                             @if(!is_null($transaction->hasLocker_transaction)>0)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => "Locker Transaction" ?? '',
+                                'type' => config('constant.badge_type')['lt'],
+                                'element' => "Locker Transaction" ?? '',
                             ])
                             @elseif(!is_null($transaction->hasProduct_transaction)>0)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => "Product Transaction" ?? '',
+                                'type' => config('constant.badge_type')['pt'],
+                                'element' => "Product Transaction" ?? '',
                             ])
                             @elseif(!is_null($transaction->hasRemittance_transaction)>0)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
-                            'element' => "Remittannce Transaction" ?? '',
+                                'type' => config('constant.badge_type')['rt'],
+                                'element' => "Remittannce Transaction" ?? '',
                             ])
                             @endif
-
+                            <!-- end of user for actual case -->
+                            --}}
                         </td>
                         <td>
                             @include('_module.datatable.action.index',[

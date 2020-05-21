@@ -35,7 +35,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['price'],
                             'element' => '$ '. $product->price ?? '',
                             ])
                         </td>
@@ -46,8 +46,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
-                            config('constant.product_status')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.product_status')[$product->status]],
                             'element' => $product->quantity,
                             ])
                         </td>
@@ -74,10 +73,35 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $product->status == 1 ? config('constant.product_status')['tag_type_1'] :
-                            config('constant.product_status')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.product_status')[$product->status]],
                             'element' => config('constant.product_status')[$product->status] ?? '',
                             ])
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.category') }}
+                        </th>
+                        <td>
+                            @foreach($product->hasCategory as $key => $categories)
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => config('constant.badge_type')['category'],
+                            'element' => $categories->name ?? '',
+                            ])
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.fields.tag') }}
+                        </th>
+                        <td>
+                            @foreach($product->hasTag as $key => $tags)
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => config('constant.badge_type')['tag'],
+                            'element' => $tags->name ?? '',
+                            ])
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

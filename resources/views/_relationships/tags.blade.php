@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('tag_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.tagManagement.tag.title') }} {{ trans('global.list') }}
@@ -67,7 +69,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'tag_delete',
+'permission_massDestory' => '{{--tag_delete--}}',
 'route' => route('TagManagement.Tags.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Tag'

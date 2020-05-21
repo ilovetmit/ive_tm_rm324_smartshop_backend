@@ -21,19 +21,22 @@
                         <tr>
                             <th>Date Time</th>
                             <th>Order ID</th>
+                            <th>Transaction Header</th>
                             <th>Product</th>
                             <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
+                    {{--$rows--}}
                         @foreach ($rows as $row)
                         <tr>
                             <td>{{$row->created_at}}</td>
                             <td>{{$row->id}}</td>
-                            <td>{{$row->hasProduct['name']}}</td>
-                            <td>{{($row->hasTransaction['currency'] == 2)?$row->hasTransaction['amount']:"$ ".$row->hasTransaction['amount']}}
+                            <td>{{$row->header}}</td>
+                            <td>{{$row->name}}</td>
+                            <td>{{"$ ".$row->amount}}
                                 <span class="ml-3">{!!
-                                    config('variables.money_type.'.$row->hasTransaction['currency'])
+                                    config('variables.money_type.'.$row->amount)
                                     !!}</span></td>
                         </tr>
                         @endforeach

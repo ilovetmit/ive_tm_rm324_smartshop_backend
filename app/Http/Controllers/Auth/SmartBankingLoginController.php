@@ -20,8 +20,8 @@ class SmartBankingLoginController extends Controller
     */
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/smart-banking';
-    protected $redirectAfterLogout = '/smart-banking';
+    protected $redirectTo = '/smart-banking/dashboard';
+    protected $redirectAfterLogout = '/smart-banking/login';
 
     /**
      * Create a new controller instance.
@@ -43,11 +43,6 @@ class SmartBankingLoginController extends Controller
 
     protected function authenticated()
     {
-        $role = auth()->user()->role;
-        if (auth()->user()->hasRole('admin')) {
-            return redirect()->route('dashboard');
-        } else {
-            return redirect('/smart-banking');
-        }
+        return redirect('/smart-banking/dashboard');
     }
 }

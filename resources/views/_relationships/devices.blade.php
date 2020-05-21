@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('device_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.informationManagement.device.title') }} {{ trans('global.list') }}
@@ -45,8 +47,7 @@
                             </td>
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] :
-                                config('constant.device_isActive')['tag_type_2'],
+                                'type' => config('constant.badge_type')[config('constant.device_isActive')[$device->is_active]],
                                 'element' => config('constant.device_isActive')[$device->is_active] ?? '',
                                 ])
                             </td>
@@ -71,7 +72,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'device_delete',
+'permission_massDestory' => '{{--device_delete--}}',
 'route' => route('InformationManagement.Devices.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-Device'

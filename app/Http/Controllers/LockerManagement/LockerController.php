@@ -28,19 +28,18 @@ class LockerController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        if (isset($request->qrcode)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('qrcode')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'qrcode.regex' => 'The qrcode format should start with "LOCKER-"',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('qrcode')->store('public/lockers/qrcode');
-                $data['qrcode'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'qrcode'            => 'required|regex:((LOCKER-)([a-zA-Z0-9]){1,})|unique:lockers',
+            'per_hour_price'    => 'required|integer',
+            'is_active'         => 'required',
+            'is_using'          => 'required',
+        ], $messages);
+
+        $data = $request->all();
         $locker = Locker::create($data);
         return redirect()->route('LockerManagement.Lockers.index');
     }
@@ -58,19 +57,18 @@ class LockerController extends Controller
 
     public function update(Request $request, Locker $locker)
     {
-        $data = $request->all();
-        if (isset($request->qrcode)) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
-            $extension = $request->file('qrcode')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        $messages = [
+            'qrcode.regex' => 'The qrcode format should start with "LOCKER-"',
+        ];
 
-            if ($isInFileType) {
-                $file = $request->file('qrcode')->store('public/lockers/qrcode');
-                $data['qrcode'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        $request->validate([
+            'qrcode'            => 'required|regex:((LOCKER-)([a-zA-Z0-9]){1,})|unique:lockers,qrcode' . ($locker->id ? ",$locker->id" : ''),
+            'per_hour_price'    => 'required|integer',
+            'is_active'         => 'required',
+            'is_using'          => 'required',
+        ], $messages);
+        
+        $data = $request->all();
         $locker->update($data);
         return redirect()->route('LockerManagement.Lockers.index');
     }

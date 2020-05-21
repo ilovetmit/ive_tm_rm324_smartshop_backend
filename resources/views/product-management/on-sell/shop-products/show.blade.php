@@ -27,7 +27,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $shopProduct->hasProduct->id . ". " . $shopProduct->hasProduct->name ?? '',
                             ])
                         </td>
@@ -59,6 +59,13 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        @if(!is_null($shopProduct->hasProduct)>0)
+        <li class="nav-item">
+            <a class="nav-link" href="#product" role="tab" data-toggle="tab">
+                {{ trans('cruds.productManagement.product.title') }}
+            </a>
+        </li>
+        @endif
         @if(!is_null($shopProduct->hasShopProductInventory)>0)
         <li class="nav-item">
             <a class="nav-link" href="#shopProductInventories" role="tab" data-toggle="tab">
@@ -75,14 +82,20 @@
         @endif
     </ul>
     <div class="tab-content">
+        @if(!is_null($shopProduct->hasProduct)>0)
+        <div class="tab-pane" role="tabpanel" id="product">
+            @includeIf('_relationships.product', ['product' =>
+            $shopProduct->hasProduct])
+        </div>
+        @endif
         @if(!is_null($shopProduct->hasShopProductInventory)>0)
-        <div class="tab-pane" role="tabpanel" id="products">
+        <div class="tab-pane" role="tabpanel" id="shopProductInventories">
             @includeIf('_relationships.shop-product-inventories', ['shopProductInventories' =>
             $shopProduct->hasShopProductInventory])
         </div>
         @endif
         @if(!is_null($shopProduct->hasLED)>0)
-        <div class="tab-pane" role="tabpanel" id="products">
+        <div class="tab-pane" role="tabpanel" id="LEDs">
             @includeIf('_relationships.leds', ['leds' => $shopProduct->hasLED])
         </div>
         @endif

@@ -29,6 +29,10 @@ class InterestController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'           => 'required|string|unique:interests',
+            'description'    => 'nullable|string',
+        ]);
         $interest = Interest::create($request->all());
         // $interest->hasUser()->sync($request->input('hasUser', []));
         return redirect()->route('InformationManagement.Interests.index');
@@ -49,17 +53,21 @@ class InterestController extends Controller
 
     public function update(Request $request, Interest $interest)
     {
+        $request->validate([
+            'name'           => 'required|string|unique:interests,name' . ($interest->id ? ",$interest->id" : ''),
+            'description'    => 'nullable|string',
+        ]);
         $interest->update($request->all());
         // $interest->hasUser()->sync($request->input('hasUser', []));
         return redirect()->route('InformationManagement.Interests.index');
     }
-    
+
     public function destroy(Interest $interest)
     {
         $interest->delete();
         return back();
     }
-    
+
     public function massDestroy(MassDestroyInterestRequest $request)
     {
         Interest::whereIn('id', request('ids'))->delete();

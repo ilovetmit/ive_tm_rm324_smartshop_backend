@@ -30,3 +30,6 @@ https://huanxiang.codes/smart-shop
 https://huanxiang.codes/aws_setting/ive_tm_fyp_smart_shop/git-pull
 # migrate server DB data -> fresh --seed
 https://huanxiang.codes/aws_setting/ive_tm_fyp_smart_shop/migrate
+
+# demo case
+

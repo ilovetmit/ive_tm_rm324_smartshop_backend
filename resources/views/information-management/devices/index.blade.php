@@ -46,15 +46,14 @@
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $device->hasUser->id . ". " . $device->hasUser->getFullNameAttribute() ??
                             'Visitor',
                             ])
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $device->is_active == 1 ? config('constant.device_isActive')['tag_type_1'] :
-                            config('constant.device_isActive')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.device_isActive')[$device->is_active]],
                             'element' => config('constant.device_isActive')[$device->is_active] ?? '',
                             ])
                         </td>

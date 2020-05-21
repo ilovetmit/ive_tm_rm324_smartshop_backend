@@ -11,9 +11,9 @@
             @csrf
             <!---------------------------header--------------------------->
             <div class="form-group">
-                <label class="required" for="header">{{ trans('cruds.fields.header') }}</label>
+                <label class="" for="header">{{ trans('cruds.fields.header') }}</label>
                 <input class="form-control {{ $errors->has('header') ? 'is-invalid' : '' }}" type="text" name="header"
-                    id="header" value="{{ old('header', $ad->header) }}" required>
+                    id="header" value="{{ old('header', $ad->header) }}" >
                 @if($errors->has('header'))
                 <span class="text-danger">{{ $errors->first('header') }}</span>
                 @endif
@@ -21,7 +21,7 @@
             </div>
             <!-------------------------------------image------------------------------------->
             <div class="form-group">
-                <label class="required" for="image">{{ trans('cruds.fields.image') }}</label>
+                <label class="" for="image">{{ trans('cruds.fields.image') }}</label>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input {{ $errors->has('image') ? 'is-invalid' : '' }}"
@@ -42,12 +42,12 @@
             </div>
             <!-------------------------------------status------------------------------------->
             <div class="form-group">
-                <label class="required" for="status">{{ trans('cruds.fields.status') }}</label>
+                <label class="" for="status">{{ trans('cruds.fields.status') }}</label>
                 <select class="form-control select {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status"
-                    id="status" required>
+                    id="status" >
                     <option value disabled {{ old('status', $ad->status) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
-                    @foreach(config('constant.advertisement_status_form') as $key => $label)
+                    @foreach(config('constant.advertisement_status') as $key => $label)
                     <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>

@@ -27,7 +27,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['namespace'],
                             'element' => $vitcoin->hasUser->id . ". " . $vitcoin->hasUser->getFullNameAttribute() ?? '',
                             ])
                         </td>

@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('product_wall_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.productManagement.product_wall.title') }} {{ trans('global.list') }}
@@ -52,7 +54,7 @@
                             </td>
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['name'],
                                 'element' => $productWall->hasProduct->id . ". " . $productWall->hasProduct->name ?? '',
                                 ])
                             </td>
@@ -77,7 +79,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'product_wall_delete',
+'permission_massDestory' => '{{--product_wall_delete--}}',
 'route' => route('ProductManagement.ProductWalls.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-ProductWalls'

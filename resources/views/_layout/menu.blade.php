@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
     <a href="{{route('Dashboard')}}" class="brand-link">
-        <img src="/ss.png" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{asset('images/icon/ss.png')}}" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ trans('panel.site_header_title') }}</span>
     </a>
     <!-- Sidebar -->
@@ -9,10 +9,11 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="\storage\users\avatar\person.png" alt=" " class="img-circle elevation-2">
+                {{-- todo User Icon --}}
+                <img src="{{asset('storage\users\avatar\person.png')}}" alt=" " class="img-circle elevation-2">
             </div>
             <div class="info">
-                <a href="{{route('UserManagement.Users.show',Auth::id())}}" class="d-block">Alexander Pierce</a>
+                <a href="{{route('UserManagement.Users.show',Auth::id())}}" class="d-block">{{Auth::user()->getFullNameAttribute()}}</a>
             </div>
         </div>
         <!-- Sidebar Menu -->

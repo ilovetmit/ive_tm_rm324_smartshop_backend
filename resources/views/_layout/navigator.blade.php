@@ -47,7 +47,7 @@
 ])
 
 @include('_component.menu-button.child',[
-'permission_subjects' => 'bank',
+'permission_subjects' => 'bank_account',
 'location' => 'InformationManagement.BankAccounts.index',
 'icon' => 'fas fa-money-check-alt',
 'menu_name' => trans('cruds.informationManagement.bank_account.title_s')
@@ -104,7 +104,7 @@
 'permission_subjects' => 'led',
 'location' => 'ProductManagement.LEDs.index',
 'icon' => 'fas fa-tv',
-'menu_name' => trans('cruds.productManagement.product.title_s')
+'menu_name' => trans('cruds.productManagement.led.title_s')
 ])
 
 @include('_component.menu-button.child',[

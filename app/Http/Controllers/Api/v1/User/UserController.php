@@ -2,21 +2,33 @@
 
 namespace App\Http\Controllers\Api\v1\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\v1\ApiController;
 use Illuminate\Http\Request;
 use App\Models\UserManagement\User;
 use App\http\Resources\User\UserResource;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
-    public function getAll()
+    public function get_pofile()
     {
-        $model = User::all();
-        return UserResource::collection($model);
+        try {
+            $user = User::find(Auth::guard('api')->user()->user_id);
+            $query = [
+                'id' => $user->user_id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'detail' => $user,
+            ];
+            return parent::sendResponse('data', $query, 'Profile Data');
+        } catch (\Exception $e) {
+            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+        }
     }
 
     public function index()
@@ -25,7 +37,7 @@ class UserController extends Controller
         $model = User::all();
         return UserResource::collection($model)->where('id', $user);
 
-        // $user['gender'] = config('constant.user_gender')[$user['gender']];
+        // $user['gender'] = config('constant.gender')[$user['gender']];
         // $user['status'] = config('constant.user_status')[$user['status']];
         // return UserResource::collection($user);
     }
@@ -48,44 +60,42 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        // update : telephone and bio
-        $user = Auth::guard('api')->user();
+        try {
 
-        if (!$user) {
-            return response(['message' => 'Unexpected error occurs, please contact admin and see what happen.']);
+            $user = User::find(Auth::guard('api')->user()->user_id);
+            if (!$user) {
+                return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+            }
+            if ($request->type == "name") {
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
+            } elseif ($request->type == "telephone") {
+                $user->telephone = $request->telephone;
+            } elseif ($request->type == "birthday") {
+                $user->birthday = $request->birthday;
+            } elseif ($request->type == "bio") {
+                $user->bio = $request->bio;
+            } elseif ($request->type == "gender") {
+                $user->gender = $request->gender;
+            } else {
+                return parent::sendError('asdUnexpected error occurs, please contact admin and see what happen.', 216);
+            }
+            $user->save();
+            $query = [
+                'id' => $user->user_id,
+                'name' => $user->first_name + " " + $user->last_name,
+                'email' => $user->email,
+                'detail' => $user,
+            ];
+            return parent::sendResponse('data', $query, 'Update Profile Data successfully.');
+        } catch (\Exception $e) {
+            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
         }
-
-        // depend on design UI : one form or one by one
-        // one form
-        if ((int) $user->telephone != (int) $request->telephone) {
-            $user->telephone = (int) $request->telephone;
-        } elseif ($user->bio != $request->bio) {
-            $user->bio = $request->bio;
-        } else {
-            return response(['message' => 'Unexpected error occurs, please contact admin and see what happen.']);
-        }
-
-        // one by one
-        // if ($request->type == "telephone") {
-        //     $user->telephone = $request->telephone;
-        // } elseif ($request->type == "bio") {
-        //     $user->bio = $request->bio;
-        // } else {
-        //     return response(['message' => 'Unexpected error occurs, please contact admin and see what happen.']);
-        // }
-
-        $user->save();
-
-        return response([
-            '$request->type' => $request->type,
-            'user' => $user,
-            'message' => 'Update Profile Data successfully.',
-        ]);
     }
 
     public function update_avatar(Request $request)
     {
-        $user = Auth::guard('api')->user();
+        $user = User::find(Auth::guard('api')->user()->user_id);
 
         if ($request->hasFile('avatar')) {
             $photoTypes = array('png', 'jpg', 'jpeg');
@@ -98,52 +108,40 @@ class UserController extends Controller
                 $user->save();
                 $query = [
                     'id' => $user->user_id,
-                    'name' => $user->name,
+                    'name' => $user->first_name + " " + $user->last_name,
                     'email' => $user->email,
                     'detail' => $user,
                 ];
-                return response([
-                    'user' => $query,
-                    'message' => 'Update successfully.'
-                ]);
+                return parent::sendResponse('data', $query, 'Update successfully.');
             } else {
-                return response(['message' => 'Cannot Update, please check your information again']);
+                return parent::sendError('Cannot Update, please check your information again', 215);
             }
         } else {
-            return response(['message' => 'Cannot Update, please check your information again']);
+            return parent::sendError('Cannot Update, please check your information again', 215);
         }
     }
 
     public function update_password(Request $request)
     {
-        $user = Auth::guard('api')->user();
+        try {
+            $user = User::find(Auth::guard('api')->user()->user_id);
 
-        if (!$user) {
-            return response(['message' => 'Unexpected error occurs, please contact admin and see what happen.']);
+            if (!$user) {
+                return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+            }
+
+            if (!Hash::check($request->password_current, $user->password)) {
+                return parent::sendError('The current password is incorrect. Please check and re-enter.', 217);
+            }
+
+            $user->password = $request->password;
+            $user->api_token = Str::random(64);
+            $user->save();
+
+            return parent::sendResponse('status', "success", 'OK');
+        } catch (\Exception $e) {
+            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
         }
-
-        if (!Hash::check($request->password_current, $user->password)) {
-            return response(['message' => 'The current password is incorrect. Please check and re-enter.']);
-        }
-
-        $user->password = $request->password;
-        $user->api_token = str_random(64);
-        $user->save();
-
-        return response(['message' => "success"]);
-        
-        // refresh token fail
-        // $client = new Client;
-        // $response = $client->post('http://127.0.0.1:8000/oauth/token', [
-        //     'form_params' => [
-        //         'grant_type' => 'refresh_token',
-        //         'refresh_token' => 'the-refresh-token',
-        //         'client_id' => 'client-id',
-        //         'client_secret' => 'client-secret',
-        //         'scope' => '',
-        //     ],
-        // ]);
-        // return json_decode((string) $response->getBody(), true);
     }
 
     public function destroy($id)

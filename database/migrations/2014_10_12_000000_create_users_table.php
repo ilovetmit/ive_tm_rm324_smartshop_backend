@@ -16,15 +16,15 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             // $table->engine = 'MyISAM';                           -> (unknow)
-            
+
             $table->bigIncrements('id');
             $table->string('email')                 ->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('password');
-            $table->text('avatar');
+            $table->text('avatar')->default('person.png');
             $table->date('birthday')                ->nullable();
-            $table->integer('gender');
+            $table->integer('gender')               ->nullable();
             $table->integer('telephone')            ->nullable();
             $table->text('bio')                     ->nullable();
             $table->integer('status');

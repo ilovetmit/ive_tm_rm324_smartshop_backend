@@ -1,8 +1,5 @@
 {{-- Parent Layout --}}
 @extends('_layout.user-panel.master.smart_banking_layout')
-
-
-
 @section('page_header')
 <div class="page-header">
     <div class="container-fluid">
@@ -100,7 +97,7 @@
                         @foreach($rows as $row)
                         <a href="javascript:setData('{{$row->code}}')" class="message d-flex align-items-center"
                             onclick="setData('{{$row->code}}')">
-                            <div class="profile"><img src="{{$row->image[0]}}" alt="{{$row->name}}" class="logo-photo">
+                            <div class="profile"><img src="{{unserialize($row->icon)[0]}}" alt="{{$row->name}}" class="logo-photo">
                             </div>
                             <div class="content"><strong class="d-block">{{$row->name}}</strong><span
                                     class="d-block">{{$row->code}}.HK</span></div>
@@ -217,16 +214,18 @@
 
         function setData(type) {
             switch (type) {
+                
                 @foreach($rows as $row)
                 case "{{$row->code}}":
                     name = "{{$row->name}}";
                     data = [
-                        @foreach($row->data as $data)
+                        @foreach(unserialize($row->data) as $data)
                         {{$data}},
                         @endforeach
                     ];
                     break;
                 @endforeach
+                
             }
             $('#yesterdayNum').text(data[1]);
             $('#todayNum').text(data[0]);

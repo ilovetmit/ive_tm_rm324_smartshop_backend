@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ trans('panel.site_title') }}</title>
+    <link rel="shortcut icon" href="{{asset("images/icon/favicon.ico")}}">
     <link href="{{ asset('css/OverlayScrollbars.css') }}" rel="stylesheet" />
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />

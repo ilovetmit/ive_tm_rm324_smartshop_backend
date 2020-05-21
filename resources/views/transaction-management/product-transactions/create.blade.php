@@ -10,9 +10,9 @@
             @csrf
             <!-- -----------------------transaction_id----------------------- -->
             <div class="form-group">
-                <label class="required" for="transaction_id">{{ trans('cruds.fields.transaction_id') }}</label>
+                <label class="" for="transaction_id">{{ trans('cruds.fields.transaction_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('transaction_id') ? 'is-invalid' : '' }}"
-                    name="transaction_id" id="transaction_id" required>
+                    name="transaction_id" id="transaction_id" >
                     <option value disabled {{ old('transaction_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($transactions as $key => $transaction)
@@ -29,9 +29,9 @@
             </div>
             <!-- -----------------------product_id----------------------- -->
             <div class="form-group">
-                <label class="required" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
+                <label class="" for="product_id">{{ trans('cruds.fields.product_id') }}</label>
                 <select class="form-control select2 {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
-                    name="product_id" id="product_id" required>
+                    name="product_id" id="product_id" >
                     <option value disabled {{ old('product_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
@@ -47,9 +47,9 @@
             </div>
             <!-- -----------------------quantity----------------------- -->
             <div class="form-group">
-                <label class="required" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
+                <label class="" for="quantity">{{ trans('cruds.fields.quantity') }}</label>
                 <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number"
-                    name="quantity" id="quantity" value="{{ old('quantity') }}" required>
+                    name="quantity" id="quantity" value="{{ old('quantity') }}" >
                 @if($errors->has('quantity'))
                 <span class="text-danger">{{ $errors->first('quantity') }}</span>
                 @endif

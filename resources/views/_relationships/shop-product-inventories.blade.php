@@ -1,4 +1,5 @@
 <div class="m-3">
+    {{--
     @can('shop_product_inventory_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -8,6 +9,7 @@
         </div>
     </div>
     @endcan
+    --}}
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.productManagement.shop_product_inventory.title') }} {{ trans('global.list') }}
@@ -45,20 +47,15 @@
                             </td>
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => 'info',
+                                'type' => config('constant.badge_type')['name'],
                                 'element' => $shopProductInventory->hasShopProduct->hasProduct->id . ". " .
                                 $shopProductInventory->hasShopProduct->hasProduct->name ?? '',
                                 ])
                             </td>
                             <td>
                                 @include('_module.datatable.badge_tag.tag',[
-                                'type' => $shopProductInventory->is_sold == 1 ?
-                                config('constant.shopProductInventories_isSold')['tag_type_1'] :
-                                ($shopProductInventory->is_sold == 2 ?
-                                config('constant.shopProductInventories_isSold')['tag_type_2'] :
-                                config('constant.shopProductInventories_isSold')['tag_type_3']),
-                                'element' =>
-                                config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
+                                'type' => config('constant.badge_type')[$shopProductInventory->is_sold],
+                                'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                                 ])
                             </td>
                             <td>
@@ -79,7 +76,7 @@
 @section('scripts')
 @parent
 @include('_module.datatable.massdestory',[
-'permission_massDestory' => 'shop_product_inventory_delete',
+'permission_massDestory' => '{{--shop_product_inventory_delete--}}',
 'route' => route('ProductManagement.ShopProductInventories.massDestroy'),
 'pageLength' => 25,
 'class' => 'datatable-ShopProductInventory'

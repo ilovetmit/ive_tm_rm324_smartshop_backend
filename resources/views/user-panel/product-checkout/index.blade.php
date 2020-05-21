@@ -6,24 +6,11 @@
     <link rel="shortcut icon" href="{{asset('images/S-Shop_logo.png')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <style>
-        @media (min-width: 1300px) {
-            .container {
-                max-width: 95%;
-            }
-        }
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/checkout.css')}}">
 
-        .modal-body > .text-center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .total {
-            font-weight: 900;
-        }
-    </style>
 </head>
 
 <body>
@@ -39,7 +26,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5">Product Checkout</h1>
+            <h1 class="mt-4 mb-4">Product Checkout</h1>
         </div>
     </div>
     <div class="row mt-3">
@@ -51,21 +38,21 @@
                 <div class="card-body text-center">
                     {{-- todo change to object detection path--}}
                     <img class="img-fluid" src="http://127.0.0.1:8080/video_feed">
-                    <p class="card-text" id="time"></p>
+                    <p class="card-text mt-3" id="time"></p>
                 </div>
             </div>
         </div>
         <div class="col-lg-12 col-xl-7">
-            <div class="table-responsive-xl">
-                <table class="table table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover table-fixed">
                     <thead>
                     <tr>
-                        <th class="align-middle">#</th>
-                        <th class="align-middle">Product Image</th>
-                        <th class="align-middle">Product Name</th>
-                        <th class="align-middle">Product Price</th>
-                        <th class="text-center">Qty.</th>
-                        <th class="text-center">Action</th>
+                        <th scope="col" class="col-1 align-middle text-center">#</th>
+                        <th scope="col" class="col-2 align-middle text-center">Product Image</th>
+                        <th scope="col" class="col-3 align-middle text-center">Product Name</th>
+                        <th scope="col" class="col-2 align-middle text-center">Product Price</th>
+                        <th scope="col" class="col-2 align-middle text-center">Check</th>
+                        <th scope="col" class="col-2 align-middle text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody id="product_data">
@@ -73,8 +60,9 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th colspan="5" class="text-right">Total Amount:</th>
-                        <th class="text-center" id="totalamount">HKD 0.00</th>
+                        <th scope="col" class="col-12 text-center">Total Amount<h3 id="totalamount"
+                                                                                   style="font-weight: 900">HKD
+                                0.00</h3></th>
                     </tr>
                     </tfoot>
                 </table>
@@ -82,7 +70,9 @@
         </div>
     </div>
     <div class="row">
-        <button id="confirm_button" type="button" class="btn btn-secondary text-light m-auto w-25" disabled>Confirm</button>
+        <button id="confirm_button" type="button" class="btn btn-secondary btn-lg text-light m-auto w-25" disabled>
+            Confirm
+        </button>
     </div>
 </div>
 
@@ -104,7 +94,7 @@
 
 
                 <span class="text-center mt-3">Please use your mobile phone to scan the QR code to pay.</span>
-                {{-- todo change to one_time_password--}}
+
                 {{-- todo app api--}}
                 <img width="400" height="400" class="text-center" id="qrcode_img"
                      src="">
@@ -141,8 +131,12 @@
 
 
 <script src="{{asset('js/app.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
 <script>
     var product_rfid_list = [];
     var product_list = [];
@@ -151,6 +145,10 @@
 
     var CCOUNT = 120;
     var t, count;
+
+    $(document).ready(function () {
+        ShowTime()
+    });
 
     $('#confirm_button').click(function () {
         if (product_rfid_list.length > 0) {
@@ -173,14 +171,14 @@
                     if (xhr.status === 200) {
                         cdreset();
                         countdown();
-                        $("#qrcode_img").attr("src", qrcode_img+data.data);
+                        $("#qrcode_img").attr("src", qrcode_img + data.data);
                         $('#confirm_modal').modal('show');
 
                         $('#confirm_button').prop('disabled', false);
                         $('#confirm_button').html('Confirm');
 
                     } else {
-                        console.log(xhr.status);
+                        // console.log(xhr.status);
                         $('#fail_modal').modal('show');
 
                         $('#confirm_button').prop('disabled', false);
@@ -188,7 +186,7 @@
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    console.log(textStatus);
+                    // console.log(textStatus);
                     $('#fail_modal').modal('show');
 
                     $('#confirm_button').prop('disabled', false);
@@ -224,6 +222,23 @@
         });
 
 
+    window.Echo.channel('smartshop_database_object')
+        .listen('ObjectDetection', (e) => {
+            // console.log(e.data);
+            var idList = Object.keys(e.data);
+            idList.forEach(function (elem, i) {
+                var data = e.data[elem];
+                if (isInteger(data['amount']) && data['amount'] > 0) {
+                    for (var i = 0; i < data['amount']; i++) {
+                        if (i < $('td[name="product_' + data['id'] + '"]').length) {
+                            $('td[name="product_' + data['id'] + '"]').eq(i)[0].innerHTML = '<i class="fas fa-check-circle text-success" style="font-size:30px"></i>'
+                        }
+                    }
+                }
+            })
+        });
+
+
     $(document).on('click', 'button[name="delete_button"]', function () {
         var row = $(this).data('row');
         $('#product_data tr').each(function (i, elem) {
@@ -252,17 +267,17 @@
 
     function append_product(no, product_data) {
         $('#product_data').append('<tr id="tr_' + no + '">\n' +
-            '        <th>' + no + '</th>\n' +
-            '        <th><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
-            '        <td>' + product_data.name + '</td>\n' +
-            '        <td>HKD ' + product_data.price.toFixed(2) + '</td>\n' +
-            '        <td class="align-middle text-center">1</td>\n' +
-            '        <td class="text-center"><button name="delete_button" onclick="" class="btn btn-danger text-light" data-row="' + no + '">Delete</button></td>\n' +
+            '        <th scope="row" class="col-1 align-middle text-center">' + no + '</th>\n' +
+            '        <td class="col-2 align-middle text-center"><img height="100" src="{{ asset('storage/products/image/') }}/' + product_data.image + '"></th>\n' +
+            '        <td class="col-3 align-middle text-center">' + product_data.name + '</td>\n' +
+            '        <td class="col-2 align-middle text-center">HKD ' + product_data.price.toFixed(2) + '</td>\n' +
+            '        <td class="col-2 align-middle text-center" name="product_' + product_data.id + '"><i class="fas fa-exclamation-circle text-warning" style="font-size:30px"></i></td>\n' +
+            '        <td class="col-2 align-middle text-center"><button name="delete_button" onclick="" class="btn btn-danger text-light" data-row="' + no + '">Delete</button></td>\n' +
             '    </tr>');
     }
 
     function cddisplay() {
-        document.getElementById('timespan').innerHTML = count+'s';
+        document.getElementById('timespan').innerHTML = count + 's';
     }
 
     function countdown() {
@@ -287,6 +302,15 @@
         cdpause();
         count = CCOUNT;
         cddisplay();
+    }
+
+    function ShowTime() {
+        document.getElementById('time').innerText = new Date();
+        setTimeout('ShowTime()', 1000);
+    }
+
+    function isInteger(obj) {
+        return obj % 1 === 0
     }
 
 </script>

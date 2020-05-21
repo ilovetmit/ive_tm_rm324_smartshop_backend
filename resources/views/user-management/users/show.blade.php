@@ -64,7 +64,7 @@
                             {{ trans('cruds.fields.gender') }}
                         </th>
                         <td>
-                            {{ config('constant.user_gender')[$user->gender] }}
+                            {{ config('constant.gender')[$user->gender] }}
                         </td>
                     </tr>
                     <!------------------------telephone------------------------>
@@ -92,8 +92,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => $user->status == 1 ? config('constant.user_status')['tag_type_1'] :
-                            config('constant.user_status')['tag_type_2'],
+                            'type' => config('constant.badge_type')[config('constant.user_status')[$user->status]],
                             'element' => config('constant.user_status')[$user->status] ?? '',
                             ])
                         </td>
@@ -115,7 +114,7 @@
                         <td>
                             @foreach($user->hasRole as $key => $roles)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')[$roles->name],
                             'element' => $roles->name ?? '',
                             ])
                             @endforeach
@@ -140,7 +139,7 @@
                         <td>
                             @foreach($user->hasInterest as $key => $interests)
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $interests->name ?? '',
                             ])
                             @endforeach
@@ -164,7 +163,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['account'],
                             'element' => '$ '. $user->hasBankAccount->current_account ?? '',
                             ])
                         </td>
@@ -176,7 +175,7 @@
                         </th>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['account'],
                             'element' => '$ '. $user->hasBankAccount->saving_account ?? '',
                             ])
                         </td>

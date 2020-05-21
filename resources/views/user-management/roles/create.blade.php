@@ -9,19 +9,19 @@
             @csrf
             <!-- --------------------------------------name-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="title">{{ trans('cruds.fields.name') }}</label>
+                <label class="" for="title">{{ trans('cruds.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title"
-                    id="title" value="{{ old('title', '') }}" required>
-                @if($errors->has('title'))
-                <span class="text-danger">{{ $errors->first('title') }}</span>
+                    id="title" value="{{ old('title', '') }}" >
+                @if($errors->has('name'))
+                <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
                 <span class="help-block"></span>
             </div>
             <!-- --------------------------------------description-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="description">{{ trans('cruds.fields.description') }}</label>
+                <label class="" for="description">{{ trans('cruds.fields.description') }}</label>
                 <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text"
-                    name="description" id="description" value="{{ old('description', '') }}" required>
+                    name="description" id="description" value="{{ old('description', '') }}" >
                 @if($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
                 @endif
@@ -29,7 +29,7 @@
             </div>
             <!-- --------------------------------------permission-------------------------------------- -->
             <div class="form-group">
-                <label class="required" for="permissions">{{ trans('cruds.fields.permission') }}</label>
+                <label class="" for="permissions">{{ trans('cruds.fields.permission') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all"
                         style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -37,7 +37,7 @@
                         style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
                 <select class="form-control select2 {{ $errors->has('permissions') ? 'is-invalid' : '' }}"
-                    name="permissions[]" id="permissions" multiple required>
+                    name="permissions[]" id="permissions" multiple >
                     @foreach($permissions as $id => $permissions)
                     <option value="{{ $id }}" {{ in_array($id, old('permissions', [])) ? 'selected' : '' }}>
                         {{ $permissions }}</option>

@@ -5,6 +5,6 @@
 
     <form id="logout-form" action="{{URL::action('Auth\SmartBankingLoginController@logout')}}" method="POST"
         style="display: none;">
-        {{ csrf_field() }}
+        @csrf
     </form>
 </div>

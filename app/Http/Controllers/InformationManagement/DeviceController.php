@@ -28,6 +28,11 @@ class DeviceController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id'       => 'required',
+            'token'         => 'nullable|unique:devices',
+            'is_active'     => 'required',
+        ]);
         $device = Device::create($request->all());
         // $device->permissions()->sync($request->input('permissions', []));
         return redirect()->route('InformationManagement.Devices.index'); 
@@ -48,6 +53,11 @@ class DeviceController extends Controller
 
     public function update(Request $request, Device $device)
     {
+        $request->validate([
+            'user_id'       => 'required',
+            'token'         => 'nullable|unique:devices,token' . ($device->id ? ",$device->id" : ''),
+            'is_active'     => 'required',
+        ]);
         $device->update($request->all());
         // $device->hasUser()->sync($request->input('hasUser', []));
         return redirect()->route('InformationManagement.Devices.index');

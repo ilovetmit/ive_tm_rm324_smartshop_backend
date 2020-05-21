@@ -26,6 +26,24 @@ class InsuranceController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'          => 'required|unique:insurances',
+            'image'         => 'required',
+            'price'         => 'required',
+            'description'   => 'nullable',
+        ]);
+        if (isset($request->image)) {
+            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('image')->store('public/insurances/image');
+                $data['image'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
         $insurance = Insurance::create($request->all());
         return redirect()->route('SmartBankManagement.Insurances.index');
     }
@@ -42,6 +60,23 @@ class InsuranceController extends Controller
     
     public function update(Request $request, Insurance $insurance)
     {
+        $request->validate([
+            'name'          => 'required|unique:insurances,name' . ($insurance->id ? ",$insurance->id" : ''),
+            'price'         => 'required',
+            'description'   => 'nullable',
+        ]);
+        if (isset($request->image)) {
+            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $isInFileType = in_array($extension, $photoTypes);
+
+            if ($isInFileType) {
+                $file = $request->file('image')->store('public/insurances/image');
+                $data['image'] = basename($file);
+            } else {
+                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+            }
+        }
         $insurance->update($request->all());
         return redirect()->route('SmartBankManagement.Insurances.index');
     }

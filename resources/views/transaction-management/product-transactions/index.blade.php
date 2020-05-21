@@ -34,6 +34,9 @@
                             {{ trans('cruds.fields.quantity') }}
                         </th>
                         <th>
+                            {{ trans('cruds.fields.shop_type') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -50,7 +53,7 @@
                         <td>
                             {{-- $productTransaction->transaction_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['header'],
                             'element' => $productTransaction->hasTransaction->id . ". " .
                             $productTransaction->hasTransaction->header . "." ?? '',
                             ])
@@ -58,13 +61,19 @@
                         <td>
                             {{-- $productTransaction->product_id ?? '' --}}
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => 'info',
+                            'type' => config('constant.badge_type')['name'],
                             'element' => $productTransaction->hasProduct->id . ". " .
                             $productTransaction->hasProduct->name ?? '',
                             ])
                         </td>
                         <td>
                             {{ $productTransaction->quantity ?? '' }}
+                        </td>
+                        <td>
+                            @include('_module.datatable.badge_tag.tag',[
+                            'type' => config('constant.badge_type')[config('constant.shop_type')[$productTransaction->shop_type]],
+                            'element' => config('constant.shop_type')[$productTransaction->shop_type],
+                            ])
                         </td>
                         <td>
                             @include('_module.datatable.action.index',[
