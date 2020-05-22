@@ -62,7 +62,7 @@ class LockerController extends ApiController
                 return parent::sendError('Item Data Error', 216);
             }
             if ($locker) {
-                // $user = User::find(Auth::guard('api')->user()->user_id);
+                // $user = User::find(Auth::guard('api')->user()->id);
                 $price = $locker->per_hour_price * $request->get('time');
                 if ($price != $price) {
                     return parent::sendError('price cal error', 216);
@@ -174,7 +174,7 @@ class LockerController extends ApiController
     // public function take(Request $request)
     // {
     //     try {
-    //         $user = User::find(Auth::guard('api')->user()->user_id);
+    //         $user = User::find(Auth::guard('api')->user()->id);
     //         $check = LockerTransaction::where('locker_id', $request->locker_id)
     //             ->where('user_id', Auth::guard('api')->user()->user_id)
     //             ->where('status', "1")

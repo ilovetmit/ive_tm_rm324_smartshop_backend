@@ -13,7 +13,7 @@ class InsuranceController extends ApiController
     public function getAllInsurance()
     {
         try {
-            $insurance = Insurance::all();
+            $insurance = Insurance::paginate(10);
             return parent::sendResponse('data', $insurance, 'All Insurance Data');
         } catch (\Exception $e) {
             return parent::sendError('all insurance.', 216);

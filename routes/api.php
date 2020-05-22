@@ -13,9 +13,6 @@
 
 Route::prefix('v1')->group(function () {
 
-    Route::post('vitcoin-mining', 'Api\v2\VitcoinController@mining');
-    Route::post('fake-complete', 'Api\v2\VitcoinController@complete');  // test api
-
     Route::prefix('auth')->group(function () {
         // Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
         Route::post('login', 'Api\v1\AuthController@login');
@@ -24,72 +21,76 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::group(['middleware' => 'auth:api',], function () {
+        Route::post('vitcoin-mining', 'Api\v1\VitcoinController@mining');
+        Route::post('fake-complete', 'Api\v1\VitcoinController@complete');  // test api
+        Route::post('test', 'Api\v1\VitcoinController@test');                // test api
+
         Route::post('logout', 'Api\v1\AuthController@logout');
+
+
+        Route::post('face', 'Api\v1\FaceController@face_scan');
+        Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
+        Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
+        Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
+
+        // Route::get('user', 'Api\v1\AuthController@user');
+
+        //Api Check Password (before purchase)
+        Route::post('check_password', 'Api\v1\AuthController@check_password');
+
+        //Api  Product
+        Route::get('products', 'Api\v1\Product\ProductController@products');
+        Route::get('products/{id}', 'Api\v1\Product\ProductController@product_detail');
+
+        //Api Product Transaction
+        Route::get('orders', 'Api\v1\Transaction\ProductTransactionController@getOrderHistory');
+        Route::post('orders', 'Api\v1\Transaction\ProductTransactionController@order_create');
+
+        //Api Bank
+        Route::get('bank', 'Api\v1\Information\BankAccountController@getBank');
+        //Api Bank(Transaction)
+        Route::get('transaction', 'Api\v1\Transaction\TransactionController@getTransaction');
+        //Api Bank(Stock)
+        Route::get('stock/all', 'Api\v1\SmartBank\StockController@getAllStock');
+        Route::get('stock/{id}', 'Api\v1\SmartBank\StockController@stock_detail');
+        //Api Bank(Insurance)
+        Route::get('insurance/all', 'Api\v1\SmartBank\InsuranceController@getAllInsurance');
+        Route::get('insurance/{id}', 'Api\v1\SmartBank\InsuranceController@insurance_detail');
+        //Api Bank(Transfer)
+        Route::post('transfer', 'Api\v1\Transaction\TransactionController@transfer');
+
+
+        // API Locker
+        Route::get('locker', 'Api\v1\Locker\LockerController@index');
+        Route::get('locker/free', 'Api\v1\Locker\LockerController@locker_free');
+        Route::get('locker/take_list', 'Api\v1\Locker\LockerController@take_list');
+        Route::get('locker/take/open/{id}', 'Api\v1\Locker\LockerController@take_open');
+        // Route::get('locker/open/{id}', 'Api\v1\Locker\LockerController@open');
+        Route::post('locker/order', 'Api\v1\Locker\LockerController@create_order');
+
+        //Api Vending Product
+        Route::get('vending', 'Api\v1\Product\VendingProductController@vending_list');
+        Route::get('vending/{id}', 'Api\v1\Product\VendingProductController@vending_detail');
+        Route::post('vending_buy', 'Api\v1\Product\VendingProductController@vending_buy');
+
+        // Api User  Profile
+        Route::get('profile', 'Api\v1\User\UserController@get_profile');
+        Route::post('profile', 'Api\v1\User\UserController@update_profile');
+        Route::post('update_avatar', 'Api\v1\User\UserController@update_avatar');
+        Route::post('update_password', 'Api\v1\User\UserController@update_password');
+
+        //Api User Address
+        Route::get('address', 'Api\v1\Information\AddressController@getAddress');
+        Route::post('address', 'Api\v1\Information\AddressController@updateAddress');
+
+        //Api User List
+        Route::get('user/list', 'Api\v1\User\UserController@user_list');
+        // });
+
+        //Api Auth
+        Route::post('login', 'Api\v1\AuthController@login');
+        Route::post('register', 'Api\v1\AuthController@register');
     });
-
-    Route::post('face', 'Api\v1\FaceController@face_scan');
-    Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
-    Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
-    Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
-
-    // Route::get('user', 'Api\v1\AuthController@user');
-
-    //Api Check Password (before purchase)
-    Route::post('check_password', 'Api\v1\AuthController@check_password');
-
-    //Api  Product
-    Route::get('products', 'Api\v1\Product\ProductController@products');
-    Route::get('products/{id}', 'Api\v1\Product\ProductController@product_detail');
-
-    //Api Product Transaction
-    Route::get('order', 'Api\v1\Transaction\ProductTransactionController@getOrderHistory');
-    Route::post('order', 'Api\v1\Transaction\ProductTransactionController@order_create');
-
-    //Api Bank
-    Route::get('bank', 'Api\v1\Information\BankAccountController@getBank');
-    //Api Bank(Transaction)
-    Route::get('transaction', 'Api\v1\Transaction\TransactionController@getTransaction');
-    //Api Bank(Stock)
-    Route::get('stock/all', 'Api\v1\SmartBank\StockController@getAllStock');
-    Route::get('stock/{id}', 'Api\v1\SmartBank\StockController@stock_detail');
-    //Api Bank(Insurance)
-    Route::get('insurance/all', 'Api\v1\SmartBank\InsuranceController@getAllInsurance');
-    Route::get('insurance/{id}', 'Api\v1\SmartBank\InsuranceController@insurance_detail');
-    //Api Bank(Transfer)
-    Route::post('transfer', 'Api\v1\Transaction\TransactionController@transfer');
-
-
-    // API Locker
-    Route::get('locker', 'Api\v1\Locker\LockerController@index');
-    Route::get('locker/free', 'Api\v1\Locker\LockerController@locker_free');
-    Route::get('locker/take_list', 'Api\v1\Locker\LockerController@take_list');
-    Route::get('locker/take/open/{id}', 'Api\v1\Locker\LockerController@take_open');
-    // Route::get('locker/open/{id}', 'Api\v1\Locker\LockerController@open');
-    Route::post('locker/order', 'Api\v1\Locker\LockerController@create_order');
-
-    //Api Vending Product
-    Route::get('vending', 'Api\v1\Product\VendingProductController@vending_list');
-    Route::get('vending/{id}', 'Api\v1\Product\VendingProductController@vending_detail');
-    Route::post('vending_buy', 'Api\v1\Product\VendingProductController@vending_buy');
-
-    // Api User  Profile
-    Route::get('index', 'Api\v1\User\UserController@get_profile');
-    Route::post('update_profile', 'Api\v1\User\UserController@update_profile');
-    Route::post('update_avatar', 'Api\v1\User\UserController@update_avatar');
-    Route::post('update_password', 'Api\v1\User\UserController@update_password');
-
-    //Api User Address
-    Route::get('address', 'Api\v1\Information\AddressController@getAddress');
-    Route::post('address', 'Api\v1\Information\AddressController@updateAddress');
-
-    //Api User List
-    Route::get('user/list', 'Api\v1\User\UserController@user_list');
-    // });
-
-    //Api Auth
-    Route::post('login', 'Api\v1\AuthController@login');
-    Route::post('register', 'Api\v1\AuthController@register');
-
 
 
     //Api Advertisment

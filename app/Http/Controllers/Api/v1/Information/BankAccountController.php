@@ -14,7 +14,7 @@ class BankAccountController extends ApiController
     {
         try {
             // $bank = BankAccount::where('user_id', Auth::guard('api')->user()->user_id)->first();
-            $bank = BankAccount::where('user_id', 1)->first();
+            $bank = BankAccount::where('user_id', 1)->first(); //todo recomment
             return parent::sendResponse('data', $bank, 'Bank Data');
         } catch (\Exception $e) {
             return parent::sendError('bank.', 216);

@@ -13,7 +13,7 @@ class StockController extends ApiController
     public function getAllStock()
     {
         try {
-            $stock = Stock::all();
+            $stock = Stock::paginate(10);
             return parent::sendResponse('data', $stock, 'All Stock Data');
         } catch (\Exception $e) {
             return parent::sendError('all stock.', 216);
