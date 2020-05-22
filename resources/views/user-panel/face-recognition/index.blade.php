@@ -46,7 +46,7 @@
             <div class="card-body align-middle" id="result">
 
 
-                <div class="row pt-2 bg-gradient-primary">
+                <div class="row pt-3">
                     <div class="col-md-4">
                         <canvas id="pieChart"
                                 style="min-height: 200px; height: 200px; max-height: 200px; max-width: 100%;"></canvas>
@@ -63,6 +63,7 @@
 
         <div class="card text-white bg-secondary ml-3 mr-auto" style="min-width: 20rem;min-height: 80vh;">
             <div class="card-body">
+                <h5 class="card-text text-center" id="time"></h5>
                 <canvas id="faceCanvas"></canvas>
             </div>
         </div>
@@ -87,8 +88,12 @@
     var line_male = {{ '['.implode(',',$result['age_male']).']' }};
     var line_female = {{ '['.implode(',',$result['age_female']).']' }};
 
+    $(document).ready(function () {
+        ShowTime()
+    });
+
     //-------------------------------------------
-    //- PIE CHART - Category Selling Status Chart
+    //- PIE CHART - Gender
     //-------------------------------------------
     Chart.defaults.global.defaultFontColor = 'white';
     var genderData = {
@@ -213,6 +218,12 @@
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    function ShowTime() {
+        var dt = new Date();
+        document.getElementById("time").innerText = dt.toLocaleString('en-GB');
+        setTimeout('ShowTime()', 1000);
     }
 </script>
 </body>

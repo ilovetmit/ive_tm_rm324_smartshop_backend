@@ -78,7 +78,9 @@ class FaceController extends Controller {
                 $age_female[$i] *= 100;
             }
         }
-        $gender /= count($datas);
+        if(count($datas)>0){
+            $gender /= count($datas);
+        }
 
         return $result = [
             'gender' => $gender,
