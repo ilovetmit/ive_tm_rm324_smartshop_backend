@@ -7,7 +7,7 @@ use App\Http\Resources\Advertisement\AdvertisementResource;
 use App\Models\AdvertisementManagement\Advertisement;
 use Illuminate\Http\Request;
 
-class Advertisementcontroller extends ApiController
+class AdvertisementController extends ApiController
 {
     // public function getAll()
     // {

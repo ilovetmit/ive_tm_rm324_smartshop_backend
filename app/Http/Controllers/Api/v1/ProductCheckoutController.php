@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Events\RFID;
-use App\Http\Controllers\Api\ApiController;
 use App\Models\ProductManagement\OnSell\ShopProductInventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
