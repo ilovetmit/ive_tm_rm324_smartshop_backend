@@ -34,4 +34,19 @@ class Address extends Model
     {
         return ucfirst($this->address1) . ', ' . ucfirst($this->address2) . ', ' . ucfirst(config('constant.address_district')[$this->district]);
     }
+
+    public function getAddressLine1()
+    {
+        return ucfirst($this->address1);
+    }
+
+    public function getAddressLine2()
+    {
+        return ucfirst($this->address2);
+    }
+
+    public function getDistrict()
+    {
+        return ucfirst(config('constant.address_district')[$this->district]);
+    }
 }
