@@ -25,6 +25,9 @@
                             {{ trans('cruds.fields.id') }}
                         </th>
                         <th>
+                            {{ trans('cruds.fields.qrcode') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.fields.product') }}
                         </th>
                         <th>
@@ -40,6 +43,10 @@
                         </td>
                         <td>
                             {{ $shopProduct->id ?? '' }}
+                        </td>
+                        <td>
+                            <img src="{{ 'https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L%7C0&chl=' . $shopProduct->qrcode }}"
+                                 width="100px">
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[

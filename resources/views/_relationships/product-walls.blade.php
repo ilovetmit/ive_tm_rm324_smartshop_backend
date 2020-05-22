@@ -49,7 +49,7 @@
                                 {{ $productWall->id ?? '' }}
                             </td>
                             <td>
-                                <img src="{{ asset('storage/productwalls/qrcode/'.$productWall->qrcode) }}"
+                                <img src="{{ 'https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L%7C0&chl='.$productWall->qrcode }}"
                                     width="150px">
                             </td>
                             <td>
