@@ -41,7 +41,7 @@ class VendingProductController extends ApiController
     public function vending_buy(Request $request)
     {
         try {
-            // $user = User::find(Auth::guard('api')->user()->user_id); todo Recomment Auth
+            // $user = User::find(Auth::guard('api')->user()->id); todo Recomment Auth
             $user = User::find(1);
             $bankAccount = $user->hasBankAccount;
             $vendingProduct = Product::where('id', $request->get('product_id'))->first();

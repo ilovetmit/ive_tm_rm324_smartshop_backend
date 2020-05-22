@@ -8,8 +8,10 @@ use App\Http\Resources\Transaction\ProductTransactionResource;
 use App\Models\TransactionManagement\ProductTransaction;
 use App\Models\ProductManagement\Product;
 use App\Models\TransactionManagement\Transaction;
+use App\Models\ProductManagement\Category;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductTransactionController extends ApiController
 {
@@ -17,8 +19,11 @@ class ProductTransactionController extends ApiController
     {
 
         try {
-            //$orders = ProductTransaction::where('user_id', Auth::guard('api')->user()->user_id)
-            $orders = Transaction::with("hasProduct_transaction", "hasProduct_transaction.hasProduct")->where('user_id', 1)->orderBy('created_at', 'desc')->get();
+            $orders = ProductTransaction::rightJoin('products', 'product_transactions.product_id', 'products.id')->rightJoin('transactions', 'product_transactions.transaction_id', 'transactions.id')->where('transactions.user_id', Auth::guard('api')->user()->id)->where('product_transactions.product_id', '<>', null)->orderBy('product_transactions.created_at', 'desc')->get();
+
+            $orders->load('hasProduct')->load('hasProduct.hasCategory');
+            // $remark = unserialize($orders->remark); todo Remark for delivery address
+            // $orders->load($remarks);
             return parent::sendResponse('data', $orders, 'Order Data');
         } catch (\Exception $e) {
             return parent::sendError($e->getMessage(), 216);
@@ -29,7 +34,7 @@ class ProductTransactionController extends ApiController
     public function order_create(Request $request)
     {
         try {
-            // $user = User::find(Auth::guard('api')->user()->user_id);
+            // $user = User::find(Auth::guard('api')->user()->id);
             $user = User::find(1);
             $bankAccount = $user->hasBankAccount;
             if (!$user) {

@@ -32,7 +32,7 @@ class TransactionController extends ApiController
                 return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
             }
 
-            // $user = User::find(Auth::guard('api')->user()->user_id); todo unComment Auth
+            // $user = User::find(Auth::guard('api')->user()->id); todo unComment Auth
             $user = User::find(1);
             $user_bankAccount = $user->hasBankAccount;
 

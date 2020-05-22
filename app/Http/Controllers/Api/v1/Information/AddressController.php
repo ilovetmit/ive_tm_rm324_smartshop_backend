@@ -20,8 +20,7 @@ class AddressController extends ApiController
     public function getAddress()
     {
         try {
-            // $address = Address::where('user_id', Auth::guard('api')->user()->user_id)->get();
-            $address = Address::where('user_id', 1)->get();
+            $address = Address::where('user_id', Auth::guard('api')->user()->id)->get();
             return parent::sendResponse('data', $address, 'Address Data');
         } catch (\Exception $e) {
             return parent::sendError('address list.', 216);
@@ -32,10 +31,9 @@ class AddressController extends ApiController
     {
         try {
             if ($request->type == "add") {
-                // $address = Address::where('user_id', Auth::guard('api')->user()->user_id)->get();
+                $address = Address::where('user_id', Auth::guard('api')->user()->id)->get();
                 $address = new Address;
-                // $address->user_id = Auth::guard('api')->user()->user_id;
-                $address->user_id = 1;
+                $address->user_id = Auth::guard('api')->user()->id;
                 $address->district = $request->district;
                 $address->address1 = $request->address1;
                 $address->address2 = $request->address2;
@@ -43,8 +41,7 @@ class AddressController extends ApiController
                 return parent::sendResponse('data', $address, 'Add Address');
             } elseif ($request->type == "update") {
                 $address = Address::find($request->address_id);
-                // if ($address->hasUser->id == Auth::guard('api')->user()->user_id) {
-                if ($address->hasUser->id == 1) { //todo recomment
+                if ($address->hasUser->id == Auth::guard('api')->user()->id) {
                     $address->district = $request->district;
                     $address->address1 = $request->address1;
                     $address->address2 = $request->address2;
@@ -55,10 +52,8 @@ class AddressController extends ApiController
                 }
             } elseif ($request->type == "default") {
                 $address = Address::find($request->address_id);
-                // if ($address->hasUser->id == Auth::guard('api')->user()->user_id) {
-                if ($address->hasUser->id == 1) { //todo recomment
-                    // $oldAddress = Address::where('user_id', Auth::guard('api')->user()->user_id)->where('default', 1)->first();
-                    $oldAddress = Address::where('user_id', 1)->where('default', 1)->first(); //todo recomment
+                if ($address->hasUser->id == Auth::guard('api')->user()->id) {
+                    $oldAddress = Address::where('user_id', Auth::guard('api')->user()->id)->where('default', 1)->first();
                     if ($oldAddress) {
                         $oldAddress->default = 0;
                         $oldAddress->save();

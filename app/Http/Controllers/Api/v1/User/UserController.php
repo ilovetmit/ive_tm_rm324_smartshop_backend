@@ -17,8 +17,8 @@ class UserController extends ApiController
     public function get_profile()
     {
         try {
-            // $user = User::find(Auth::guard('api')->user()->user_id); todo recomment
-            $user = User::find(1);
+            $user = User::find(Auth::guard('api')->user()->id);
+            // $user = User::find(1);
             return parent::sendResponse('data', $user, 'Profile Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
@@ -55,9 +55,9 @@ class UserController extends ApiController
     {
         try {
 
-            $user = User::find(Auth::guard('api')->user()->user_id);
+            $user = User::find(Auth::guard('api')->user()->id);
             if (!$user) {
-                return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+                return parent::sendError('User Not Found', 216);
             }
             if ($request->type == "name") {
                 $user->first_name = $request->first_name;
@@ -71,24 +71,25 @@ class UserController extends ApiController
             } elseif ($request->type == "gender") {
                 $user->gender = $request->gender;
             } else {
-                return parent::sendError('asdUnexpected error occurs, please contact admin and see what happen.', 216);
+                return parent::sendError('Non type.', 216);
             }
             $user->save();
             $query = [
-                'id' => $user->user_id,
-                'name' => $user->first_name + " " + $user->last_name,
+                'id' => $user->id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
                 'email' => $user->email,
                 'detail' => $user,
             ];
             return parent::sendResponse('data', $query, 'Update Profile Data successfully.');
         } catch (\Exception $e) {
-            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+            return parent::sendError($e->getMessage(), 216);
         }
     }
 
     public function update_avatar(Request $request)
     {
-        $user = User::find(Auth::guard('api')->user()->user_id);
+        $user = User::find(Auth::guard('api')->user()->id);
 
         if ($request->hasFile('avatar')) {
             $photoTypes = array('png', 'jpg', 'jpeg');
@@ -101,8 +102,10 @@ class UserController extends ApiController
                 $user->save();
                 $query = [
                     'id' => $user->user_id,
-                    'name' => $user->first_name + " " + $user->last_name,
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
                     'email' => $user->email,
+                    'avatar' => $user->avatar,
                     'detail' => $user,
                 ];
                 return parent::sendResponse('data', $query, 'Update successfully.');
@@ -117,7 +120,7 @@ class UserController extends ApiController
     public function update_password(Request $request)
     {
         try {
-            $user = User::find(Auth::guard('api')->user()->user_id);
+            $user = User::find(Auth::guard('api')->user()->id);
 
             if (!$user) {
                 return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
