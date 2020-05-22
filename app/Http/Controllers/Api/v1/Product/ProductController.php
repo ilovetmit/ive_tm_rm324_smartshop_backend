@@ -6,20 +6,21 @@ use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\ProductManagement\Product;
+use App\Models\ProductManagement\ProductWall;
 use Illuminate\Http\Request;
 
 class ProductController extends ApiController
 {
-    public function getAll()
-    {
-        $model = Product::all();
-        return ProductResource::collection($model);
-    }
+    // public function getAll()
+    // {
+    //     $model = Product::all();
+    //     return ProductResource::collection($model);
+    // }
 
-    public function product_list()
+    public function products()
     {
         try {
-            $product = Product::all();
+            $product = Product::paginate(10);
             return parent::sendResponse('data', $product, 'All Product Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
@@ -35,8 +36,8 @@ class ProductController extends ApiController
 
             $check_wall_qr = substr($id, 0, 4);
             if ($check_wall_qr == "wall") {
-                $qr_wall_id = QRWall::where('qrcode', $id)->first();
-                $id = $qr_wall_id->product_qrcode;
+                $qr_wall_id = ProductWall::where('qrcode', $id)->first();
+                $id = $qr_wall_id->product_id;
                 $headerTitle = $qr_wall_id->message;
             }
 

@@ -16,11 +16,11 @@ class CreateLockerTransactionsTable extends Migration
         Schema::create('locker_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id');
-            $table->foreign('transaction_id')               ->references('id')->on('transactions')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
             $table->unsignedBigInteger('locker_id');
-            $table->foreign('locker_id')                    ->references('id')->on('lockers')->onDelete('cascade');
+            $table->foreign('locker_id')->references('id')->on('lockers')->onDelete('cascade');
             $table->unsignedBigInteger('recipient_user_id');
-            $table->foreign('recipient_user_id')            ->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('recipient_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('item');
             $table->date('deadline')->nullable();
             $table->text('remark')->nullable();

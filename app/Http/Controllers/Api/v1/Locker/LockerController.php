@@ -30,10 +30,10 @@ class LockerController extends ApiController
     /**
      * @return \Illuminate\Http\Response
      */
-    public function locker_using()
+    public function locker_free()
     {
         try {
-            $lockers = Locker::where('is_active', '1')->where('is_using', '2')->first();
+            $lockers = Locker::where('is_active', '1')->where('is_using', '1')->first();
             return parent::sendResponse('data', $lockers, 'Locker Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
@@ -53,34 +53,42 @@ class LockerController extends ApiController
     public function create_order(Request $request)
     {
         try {
-            $locker = Locker::where('is_active', '1')->where('is_using', '1')->first();
+            $locker = Locker::where('id', $request->get('locker_id'))->first();
+            $locker_check = Locker::where('is_active', 1)->where('is_using', 1)->first();
+            if ($locker->id != $locker_check->id) {
+                return parent::sendError($locker_check->id, 216);
+            }
             if (is_null($request->item) || $request->item == "") {
                 return parent::sendError('Item Data Error', 216);
             }
             if ($locker) {
                 // $user = User::find(Auth::guard('api')->user()->user_id);
+                $price = $locker->per_hour_price * $request->get('time');
+                if ($price != $price) {
+                    return parent::sendError('price cal error', 216);
+                }
                 $user = User::find(1);
                 $user_account = $user->hasBankAccount;
                 $toUser = User::where('email', $request->get('to'))->first();
                 if ($toUser) {
                     if ($request->get('account') == 'VitCoin') {
-                        // if ($request->get('amount') > $user_account->ive_coin) {
+                        // if ($price > $user_account->ive_coin) {
                         //     return parent::sendError('You do not have enough VitCoin', 216);
                         // }
-                        // $userBalance = $user_account->ive_coin = $user_account->ive_coin - $request->get('amount');
+                        // $userBalance = $user_account->ive_coin = $user_account->ive_coin - $price;
                         // $user_account->save();
                     } elseif ($request->get('account') == 'Saving') {
-                        if ($request->get('amount') > $user_account->saving_account) {
+                        if ($price > $user_account->saving_account) {
                             return parent::sendError('You do not have enough money', 216);
                         }
-                        $userBalance = $user_account->saving_account = $user_account->saving_account - $request->get('amount');
+                        $userBalance = $user_account->saving_account = $user_account->saving_account - $price;
                         $user_account->save();
                     } elseif ($request->get('account') == 'Current') {
-                        if ($request->get('amount') > $user_account->current_account) {
+                        if ($price > $user_account->current_account) {
                             return parent::sendError('You do not have enough money', 216);
                         }
 
-                        $userBalance = $user_account->current_account = $user_account->current_account - $request->get('amount');
+                        $userBalance = $user_account->current_account = $user_account->current_account - $price;
                         $user_account->save();
                     } else {
                         return parent::sendError('Payment Error', 216);
@@ -93,21 +101,21 @@ class LockerController extends ApiController
                 $locker->save();
 
                 $transactions = new Transaction;
-                $transactions->user_id = $user->user_id;
+                $transactions->user_id = $user->id;
                 // $transactions->type = config('constants.TRANSACTIONS_TYPE.LOCKER');
                 $transactions->header = "Locker #" . $locker->locker_id . " to " . $request->to . " (" . $request->get('time') . " day)";
-                $transactions->amount = $request->get('amount');
-                $currency = array_flip(config("constants.transaction_currency"));
+                $transactions->amount = $price;
+                $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('account')];
                 $transactions->balance = $userBalance;
                 $transactions->save();
 
                 $lockerTransaction = new LockerTransaction;
-                $lockerTransaction->transactions_id = $transactions->id;
-                $lockerTransaction->locker_id = $locker->locker_id;
-                $lockerTransaction->recipient_user_id = $toUser->user_id;
+                $lockerTransaction->transaction_id = $transactions->id;
+                $lockerTransaction->locker_id = $locker->id;
+                $lockerTransaction->recipient_user_id = $toUser->id;
                 $lockerTransaction->item = $request->item;
-                $lockerTransaction->deadline = Carbon::now()->addDays($request->day)->toDate();
+                $lockerTransaction->deadline = Carbon::now()->addDays($request->get('time'))->toDate();
                 $lockerTransaction->remark = $request->remark;
                 $lockerTransaction->save();
 
@@ -116,7 +124,7 @@ class LockerController extends ApiController
                 return parent::sendError('There are currently no available lockers.', 216);
             }
         } catch (\Exception $e) {
-            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+            return parent::sendError($e->getMessage(), 216);
         }
     }
 
@@ -126,7 +134,7 @@ class LockerController extends ApiController
     public function take_list()
     {
         try {
-            $lockers = LockerTransaction::with('hasTransaction.hasUser')->where('deadline', '<>',  null)->where('recipient_user_id', 2)->get();
+            $lockers = LockerTransaction::with('hasTransaction.hasUser')->where('deadline', '<>',  null)->where('recipient_user_id', 1)->get();
             return parent::sendResponse('data', $lockers, 'Locker Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);

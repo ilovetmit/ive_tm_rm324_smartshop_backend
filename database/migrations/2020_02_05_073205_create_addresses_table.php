@@ -16,10 +16,11 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')              ->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('district');
             $table->text('address1');
-            $table->text('address2')                ->nullable();
+            $table->text('address2')->nullable();
+            $table->integer('default')->default('0');
             $table->timestamps();
             $table->softDeletes();
         });

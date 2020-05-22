@@ -16,9 +16,9 @@ class CreateProductTransactionsTable extends Migration
         Schema::create('product_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id');
-            $table->foreign('transaction_id')           ->references('id')->on('transactions')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')               ->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('quantity');
             $table->integer('shop_type');
             $table->text('remark')->nullable();

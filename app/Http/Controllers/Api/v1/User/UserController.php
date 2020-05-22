@@ -14,32 +14,25 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends ApiController
 {
-    public function get_pofile()
+    public function get_profile()
     {
         try {
-            $user = User::find(Auth::guard('api')->user()->user_id);
-            $query = [
-                'id' => $user->user_id,
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'email' => $user->email,
-                'detail' => $user,
-            ];
-            return parent::sendResponse('data', $query, 'Profile Data');
+            // $user = User::find(Auth::guard('api')->user()->user_id); todo recomment
+            $user = User::find(1);
+            return parent::sendResponse('data', $user, 'Profile Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
         }
     }
 
-    public function index()
+    public function user_list()
     {
-        $user = Auth::guard('api')->user()->id;
-        $model = User::all();
-        return UserResource::collection($model)->where('id', $user);
-
-        // $user['gender'] = config('constant.gender')[$user['gender']];
-        // $user['status'] = config('constant.user_status')[$user['status']];
-        // return UserResource::collection($user);
+        try {
+            $users = User::select('id', 'email')->orderBy('email')->get();
+            return parent::sendResponse('data', $users, 'User Data');
+        } catch (\Exception $e) {
+            return parent::sendError($e->getMessage(), 216);
+        }
     }
 
     public function create()
@@ -58,7 +51,7 @@ class UserController extends ApiController
         // 'status',
     }
 
-    public function update(Request $request)
+    public function update_profile(Request $request)
     {
         try {
 
