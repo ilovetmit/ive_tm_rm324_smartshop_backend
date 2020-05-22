@@ -121,6 +121,7 @@ Route::group(['prefix' => 'ProductCheckout', 'as' => 'ProductCheckout.', 'namesp
  ***********************************************/
 Route::group(['prefix' => 'face', 'as' => 'face.', 'namespace' => 'Face'], function () {
     Route::get('/', 'FaceController@index')->name('index');
+    Route::post('post', 'FaceController@post_data')->name('post');
 });
 
 /***********************************************
