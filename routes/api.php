@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,19 +11,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
-
 Route::prefix('v1')->group(function () {
 
-    Route::post('test', function () {
-        return "dllm";
-    });
+    Route::post('vitcoin-mining', 'Api\v2\VitcoinController@mining');
+    Route::post('fake-complete', 'Api\v2\VitcoinController@complete');  // test api
 
     Route::prefix('auth')->group(function () {
-        Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
+        // Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
         Route::post('login', 'Api\v1\AuthController@login');
         Route::post('register', 'Api\v1\AuthController@register');
-        Route::post('refresh', 'Api\v1\AuthController@refresh');
+        // Route::post('refresh', 'Api\v1\AuthController@refresh');
+    });
+
+    Route::group(['middleware' => 'auth:api',], function () {
         Route::post('logout', 'Api\v1\AuthController@logout');
     });
 
@@ -34,8 +31,6 @@ Route::prefix('v1')->group(function () {
     Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
     Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
     Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
-
-    // Route::group(['middleware' => 'auth:api',], function () {
 
     // Route::get('user', 'Api\v1\AuthController@user');
 

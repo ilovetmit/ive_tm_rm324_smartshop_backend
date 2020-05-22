@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Redis;
+use App\Events\MissionCompleted;
 
 class GenerateAuthorization
 {
@@ -23,8 +23,11 @@ class GenerateAuthorization
      * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(MissionCompleted $event)
     {
-        //
+        $lists = (Redis::exists($event->missionId)) ? unserialize(Redis::get($event->missionId)) : [];
+        $lists[] = $event->userId;
+
+        Redis::set($event->missionId, serialize($lists));
     }
 }
