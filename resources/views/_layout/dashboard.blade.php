@@ -1,10 +1,8 @@
 @extends('_layout.admin')
 @section('content')
 <div class="content">
-
     <div class="row">
         <div class="col-lg-12">
-
             <div class="card">
                 <div class="card-header">
                     Dashboard
@@ -15,459 +13,252 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">Product
-                        Checkout</a>
-                    <a class="btn btn-primary" href="{{route('face.index')}}" target="_blank">Face</a>
-                    <a class="btn btn-primary" target="_blank" href="{{ route('sbanking.login') }}">Smart Banking
-                        Login</a>
-                    <a class="btn btn-primary" target="_blank" href="{{route('sshop.advertisement')}}">S-Shop</a>
-                    <a class="btn btn-primary" target="_blank" href="{{route('smonitor.index')}}">S-Shop Monitor</a>
+                    <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">
+                        Product Checkout
+                    </a>
+                    <a class="btn btn-primary" href="{{route('face.index')}}" target="_blank">
+                        Face
+                    </a>
+                    <a class="btn btn-primary" target="_blank" href="{{ route('sbanking.login') }}">
+                        Smart Banking Login
+                    </a>
+                    <a class="btn btn-primary" target="_blank" href="{{route('sshop.advertisement')}}">
+                        S-Shop
+                    </a>
+                    <a class="btn btn-primary" target="_blank" href="{{route('smonitor.index')}}">
+                        S-Shop Monitor
+                    </a>
                 </div>
             </div>
-
         </div>
     </div>
-
+    <!-- ----------------------------------------------------------------------------------------------------- -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <!-- interactive chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Real-time visitors
-                        </h3>
-
-                        <div class="card-tools">
-                            Real time
-                            <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                                <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="interactive" style="height: 300px;"></div>
-                    </div>
-                    <!-- /.card-body-->
-                </div>
-                <!-- /.card -->
-
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
+            <!-- LEFT -->
             <div class="col-md-6">
-
-                <!-- Area chart -->
-                <div class="card card-primary card-outline">
+                <!-- Tag Analysis -->
+                <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Today's sales
-                        </h3>
-
+                        <h3 class="card-title">Tag Selling Status Chart</h3>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                    class="fas fa-times"></i>
-                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="area-chart" style="height: 338px;" class="full-width-chart"></div>
+                        <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
-                    <!-- /.card-body-->
                 </div>
-                <!-- /.card -->
-
-                <!-- Donut chart -->
-                <div class="card card-primary card-outline">
+                <!-- END Tag Analysis -->
+                <!-- Category Analysis -->
+                <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Product Types
-                        </h3>
-
+                        <h3 class="card-title">Category Selling Status Chart</h3>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                    class="fas fa-times"></i>
-                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="donut-chart" style="height: 300px;"></div>
+                        <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
-                    <!-- /.card-body-->
                 </div>
-                <!-- /.card -->
-
+                <!-- END Category Analysis -->
             </div>
-            <!-- /.col -->
-
+            <!-- END LEFT -->
+            <!-- RIGHT -->
             <div class="col-md-6">
-                <!-- Bar chart -->
-                <div class="card card-primary card-outline">
+                <!-- STACKED BAR CHART -->
+                <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Monthly sales
-                        </h3>
-
+                        <h3 class="card-title">Total profit Status Chart</h3>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="bar-chart" style="height: 300px;"></div>
+                        <div class="chart">
+                            <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
                     </div>
-                    <!-- /.card-body-->
                 </div>
-                <!-- /.card -->
-
-                <!-- Line chart -->
-                <div class="card card-primary card-outline">
+                <!-- END STACKED BAR CHART -->
+                <!-- Vending/Window Analysis -->
+                <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Customer satisfaction
-                        </h3>
-
+                        <h3 class="card-title">Vending/WindowShop Selling Status Chart</h3>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                    class="fas fa-times"></i>
-                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="line-chart" style="height: 300px;"></div>
+                        <div class="chart">
+                            <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
                     </div>
-                    <!-- /.card-body-->
                 </div>
-                <!-- /.card -->
-
+                <!-- END Vending/Window Analysis -->
 
             </div>
-            <!-- /.col -->
+            <!-- END RIGHT -->
         </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
-
+    </div>
+    
+    <!-- ----------------------------------------------------------------------------------------------------- -->
 </div>
 @endsection
 
 @section('scripts')
-<!-- FLOT CHARTS -->
-<script src="{{asset('js/flot/jquery.flot.js')}}"></script>
-<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="{{asset('js/flot-old/jquery.flot.resize.min.js')}}"></script>
-<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<script src="{{asset('js/flot-old/jquery.flot.pie.min.js')}}"></script>
-<!-- Page script -->
+<script src="{{asset('js/plugins/chart.js/Chart.min.js')}}"></script>
 <script>
-    //TODO hardcode data
+    $(function() {
+        /* ChartJS
+         * -------
+         * Here we will create a few charts using ChartJS
+         */
 
-        $(function () {
-            /*
-             * Flot Interactive Chart
-             * -----------------------
-             */
-            // We use an inline data source in the example, usually data would
-            // be fetched from a server
-            var data = [],
-                totalPoints = 100
-
-            function getRandomData() {
-
-                if (data.length > 0) {
-                    data = data.slice(1)
-                }
-
-                // Do a random walk
-                while (data.length < totalPoints) {
-
-                    var prev = data.length > 0 ? data[data.length - 1] : 50,
-                        y = prev + Math.random() * 10 - 5
-
-                    if (y < 0) {
-                        y = 0
-                    } else if (y > 100) {
-                        y = 100
-                    }
-
-                    data.push(y)
-                }
-
-                // Zip the generated y values with the x values
-                var res = []
-                for (var i = 0; i < data.length; ++i) {
-                    res.push([i, data[i]])
-                }
-
-                return res
-            }
-
-            var interactive_plot = $.plot('#interactive', [
-                    {
-                        data: getRandomData(),
-                    }
+        //----------------------------------------
+        //- DONUT CHART - Tag Selling Status Chart
+        //----------------------------------------
+        var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+        var array = {!!$tags_name!!};
+        var tagData = {
+            labels: {!!$tags_name!!},
+            datasets: [{
+                data: {{ $tagData }},
+                backgroundColor: [
+                    '#f56954', // 1
+                    '#00a65a', // 2
+                    '#f39c12', // 3
+                    '#00c0ef', // 4
+                    '#3c8dbc', // 5
+                    '#F2D325', // 6
+                    '#FF3333', // 7
+                    '#DE6C83', // 8
+                    '#2CF6B3', // 9
+                    '#CCA674', // 10
                 ],
-                {
-                    grid: {
-                        borderColor: '#f3f3f3',
-                        borderWidth: 1,
-                        tickColor: '#f3f3f3'
-                    },
-                    series: {
-                        color: '#3c8dbc',
-                        lines: {
-                            lineWidth: 2,
-                            show: true,
-                            fill: true,
-                        },
-                    },
-                    yaxis: {
-                        min: 0,
-                        max: 100,
-                        show: true
-                    },
-                    xaxis: {
-                        show: true
-                    }
-                }
-            )
-
-            var updateInterval = 500 //Fetch data ever x milliseconds
-            var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
-            function update() {
-
-                interactive_plot.setData([getRandomData()])
-
-                // Since the axes don't change, we don't need to call plot.setupGrid()
-                interactive_plot.draw()
-                if (realtime === 'on') {
-                    setTimeout(update, updateInterval)
-                }
-            }
-
-            //INITIALIZE REALTIME DATA FETCHING
-            if (realtime === 'on') {
-                update()
-            }
-            //REALTIME TOGGLE
-            $('#realtime .btn').click(function () {
-                if ($(this).data('toggle') === 'on') {
-                    realtime = 'on'
-                } else {
-                    realtime = 'off'
-                }
-                update()
-            })
-            /*
-             * END INTERACTIVE CHART
-             */
-
-
-            /*
-             * LINE CHART
-             * ----------
-             */
-            //LINE randomly generated data
-
-            var sin = [],
-                cos = []
-            for (var i = 0; i < 14; i += 0.5) {
-                sin.push([i, Math.sin(i)])
-                cos.push([i, Math.cos(i)])
-            }
-            var line_data1 = {
-                data: sin,
-                color: '#3c8dbc'
-            }
-            var line_data2 = {
-                data: cos,
-                color: '#00c0ef'
-            }
-            $.plot('#line-chart', [line_data1, line_data2], {
-                grid: {
-                    hoverable: true,
-                    borderColor: '#f3f3f3',
-                    borderWidth: 1,
-                    tickColor: '#f3f3f3'
-                },
-                series: {
-                    shadowSize: 0,
-                    lines: {
-                        show: true
-                    },
-                    points: {
-                        show: true
-                    }
-                },
-                lines: {
-                    fill: false,
-                    color: ['#3c8dbc', '#f56954']
-                },
-                yaxis: {
-                    show: true
-                },
-                xaxis: {
-                    show: true
-                }
-            })
-            //Initialize tooltip on hover
-            $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
-                position: 'absolute',
-                display: 'none',
-                opacity: 0.8
-            }).appendTo('body')
-            $('#line-chart').bind('plothover', function (event, pos, item) {
-
-                if (item) {
-                    var x = item.datapoint[0].toFixed(2),
-                        y = item.datapoint[1].toFixed(2)
-
-                    $('#line-chart-tooltip').html(item.series.label + ' of ' + x + ' = ' + y)
-                        .css({
-                            top: item.pageY + 5,
-                            left: item.pageX + 5
-                        })
-                        .fadeIn(200)
-                } else {
-                    $('#line-chart-tooltip').hide()
-                }
-
-            })
-            /* END LINE CHART */
-
-            /*
-             * FULL WIDTH STATIC AREA CHART
-             * -----------------
-             */
-            var areaData = [[2, 88.0], [3, 93.3], [4, 102.0], [5, 108.5], [6, 115.7], [7, 115.6],
-                [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.7], [14, 159.9],
-                [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]]
-            $.plot('#area-chart', [areaData], {
-                grid: {
-                    borderWidth: 0
-                },
-                series: {
-                    shadowSize: 0, // Drawing is faster without shadows
-                    color: '#00c0ef',
-                    lines: {
-                        fill: true //Converts the line chart to area chart
-                    },
-                },
-                yaxis: {
-                    show: false
-                },
-                xaxis: {
-                    show: false
-                }
-            })
-
-            /* END AREA CHART */
-
-            /*
-             * BAR CHART
-             * ---------
-             */
-
-            var bar_data = {
-                data: [[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],
-                bars: {show: true}
-            }
-            $.plot('#bar-chart', [bar_data], {
-                grid: {
-                    borderWidth: 1,
-                    borderColor: '#f3f3f3',
-                    tickColor: '#f3f3f3'
-                },
-                series: {
-                    bars: {
-                        show: true, barWidth: 0.5, align: 'center',
-                    },
-                },
-                colors: ['#3c8dbc'],
-                xaxis: {
-                    ticks: [[1, 'January'], [2, 'February'], [3, 'March'], [4, 'April'], [5, 'May'], [6, 'June']]
-                }
-            })
-            /* END BAR CHART */
-
-            /*
-             * DONUT CHART
-             * -----------
-             */
-
-            var donutData = [
-                {
-                    label: 'Technology',
-                    data: 30,
-                    color: '#3c8dbc'
-                },
-                {
-                    label: 'Homeware',
-                    data: 20,
-                    color: '#0073b7'
-                },
-                {
-                    label: 'Food',
-                    data: 50,
-                    color: '#00c0ef'
-                }
-            ]
-            $.plot('#donut-chart', donutData, {
-                series: {
-                    pie: {
-                        show: true,
-                        radius: 1,
-                        innerRadius: 0.5,
-                        label: {
-                            show: true,
-                            radius: 2 / 3,
-                            formatter: labelFormatter,
-                            threshold: 0.1
-                        }
-
-                    }
-                },
-                legend: {
-                    show: false
-                }
-            })
-            /*
-             * END DONUT CHART
-             */
-
+            }]
+        }
+        var donutOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+        }
+        var donutChart = new Chart(donutChartCanvas, {
+            type: 'doughnut',
+            data: tagData,
+            options: donutOptions
         })
 
-        /*
-         * Custom Label formatter
-         * ----------------------
-         */
-        function labelFormatter(label, series) {
-            return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
-                + label
-                + '<br>'
-                + Math.round(series.percent) + '%</div>'
+        //-------------------------------------------
+        //- PIE CHART - Category Selling Status Chart 
+        //-------------------------------------------
+        var array = {!!$categories_name!!};
+        var categoryData = {
+            labels: {!!$categories_name!!},
+            datasets: [{
+                data: {{ $categoryData }},
+                backgroundColor: [
+                    '#f56954', // 1
+                    '#00a65a', // 2
+                    '#f39c12', // 3
+                    '#00c0ef', // 4
+                    '#3c8dbc', // 5
+                    '#F2D325', // 6
+                    '#FF3333', // 7
+                    '#DE6C83', // 8
+                    '#2CF6B3', // 9
+                    '#CCA674', // 10
+                ],
+            }]
         }
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        var pieData = categoryData;
+        var pieOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+        }
+        var pieChart = new Chart(pieChartCanvas, {
+            type: 'pie',
+            data: pieData,
+            options: pieOptions
+        })
+
+        //-------------------------------------------------
+        //- STACKED BAR CHART - Total profit Status Chart
+        //-------------------------------------------------
+        var profitData = {
+            labels: ['JAN', 'FEB', 'MARch', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            datasets: [{
+                    label: 'Vending',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: false,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: {!!$VP_profit_data!!},
+                },
+                {
+                    label: 'WindowShop',
+                    backgroundColor: 'rgba(210, 214, 222, 1)',
+                    borderColor: 'rgba(210, 214, 222, 1)',
+                    pointRadius: false,
+                    pointColor: 'rgba(210, 214, 222, 1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data: {!!$WSP_profit_data!!},
+                },
+            ]
+        }
+        var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+        var stackedBarChartData = jQuery.extend(true, {}, profitData)
+        var stackedBarChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        }
+        var stackedBarChart = new Chart(stackedBarChartCanvas, {
+            type: 'bar',
+            data: stackedBarChartData,
+            options: stackedBarChartOptions
+        })
+
+        //-------------------------------------------------
+        //- BAR CHART - Vending/Window Selling Status Chart
+        //-------------------------------------------------
+        var barChartCanvas = $('#barChart').get(0).getContext('2d')
+        var barChartData = jQuery.extend(true, {}, profitData)
+        var temp0 = profitData.datasets[0]
+        var temp1 = profitData.datasets[1]
+        barChartData.datasets[0] = temp1
+        barChartData.datasets[1] = temp0
+        var barChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        }
+        var barChart = new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        })
+    })
 </script>
 @endsection
