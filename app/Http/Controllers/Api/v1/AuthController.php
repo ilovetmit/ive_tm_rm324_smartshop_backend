@@ -4,13 +4,9 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserManagement\User;
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -53,9 +49,13 @@ class AuthController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $input['status'] = 1;
+
+        $user = User::forceCreate($input);
+
         $success['token'] =  $user->createToken('SmartShop')->accessToken;
         $success['name'] =  $user->name;
+
         return response()->json(['data' => $success], $this->successStatus);
     }
 

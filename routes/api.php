@@ -13,9 +13,6 @@
 
 Route::prefix('v1')->group(function () {
 
-    Route::post('vitcoin-mining', 'Api\v2\VitcoinController@mining');
-    Route::post('fake-complete', 'Api\v2\VitcoinController@complete');  // test api
-
     Route::prefix('auth')->group(function () {
         // Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
         Route::post('login', 'Api\v1\AuthController@login');
@@ -24,6 +21,10 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::group(['middleware' => 'auth:api',], function () {
+        Route::post('vitcoin-mining', 'Api\v1\VitcoinController@mining');
+        Route::post('fake-complete', 'Api\v1\VitcoinController@complete');  // test api
+        Route::post('test', 'Api\v1\VitcoinController@test');                // test api
+
         Route::post('logout', 'Api\v1\AuthController@logout');
     });
 
