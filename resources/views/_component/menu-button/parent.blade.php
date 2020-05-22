@@ -1,14 +1,14 @@
 <?php
 $menu_open = null;
-$match = preg_match_all('/http(.*)" /im', $child, $array);
+$match = preg_match_all('/http(.*)"/i', $child, $matches);
 
-foreach ($array[0] as $key => $url) {
-    if(request()->url() === trim(str_replace('"','', $url))){
+foreach ($matches[0] as $key => $url) { // $matches[0] is an array store all of the matched data
+    $pure_url = trim(str_replace('"','', $url));
+    if(preg_match('/'. preg_quote($pure_url, '/') . '*/', request()->url())){
         $menu_open = 'menu-open';
         break;
     }
 }
-
 if(getType($permission_subjects) === 'string'){
     if(!isset($menu_name)){
         $name = Str::camel($permission_subjects);
@@ -25,6 +25,7 @@ if(getType($permission_subjects) === 'array'){
         $permission_subjects[$key] = $permission_subject . '_access';
     }
 }
+
 ?>
 
 @canany($permission_subjects)
