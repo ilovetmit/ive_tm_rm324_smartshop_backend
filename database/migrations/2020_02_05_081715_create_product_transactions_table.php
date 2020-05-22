@@ -21,6 +21,7 @@ class CreateProductTransactionsTable extends Migration
             $table->foreign('product_id')               ->references('id')->on('products')->onDelete('cascade');
             $table->integer('quantity');
             $table->integer('shop_type');
+            $table->text('remark')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
