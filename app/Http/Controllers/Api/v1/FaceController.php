@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-
-use App\Http\Controllers\Api\ApiController;
-use App\Http\Controllers\Controller;
-use App\Models\Led;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
+
 
 
 class FaceController extends ApiController
