@@ -36,8 +36,8 @@ class ProductTransaction extends Model
         return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
     }
 
-    public function unserialize_remark()
+    public function getRemarkAttribute($remark)
     {
-        return unserialize($this->remark);
+        return unserialize($remark);
     }
 }
