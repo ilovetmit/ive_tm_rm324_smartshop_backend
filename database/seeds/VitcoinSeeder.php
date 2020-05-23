@@ -82,23 +82,26 @@ class VitcoinSeeder extends Seeder
             ),
         );
 
-        $this->MultiChain = new MultiChain;
         $output = new Symfony\Component\Console\Output\ConsoleOutput();
-
-        if ($this->MultiChain->getinfo() != null) {
-            $Isimport = true;
-            $output->writeln("Connect Multichain Succeed. Importing addresses to blochchain...");
-        } else {
-            $Isimport = false;
-            $output->writeln("Connect Multichain Failed. Seeding without importing addresses");
-        }
-
-        foreach ($wallets as $wallet) {
-            Vitcoin::create($wallet);
-            if ($Isimport) {
-                $this->MultiChain->importaddress($wallet['address']);
-                $this->MultiChain->grant($wallet['address'], 'VitCoin.issue,receive,send');
+        try {
+            $this->MultiChain = new MultiChain;
+            if ($this->MultiChain->getinfo() != null) {
+                $Isimport = true;
+                $output->writeln("Connect Multichain Succeed. Importing addresses to blochchain...");
+            } else {
+                $Isimport = false;
+                $output->writeln("Connect Multichain Failed. Seeding without importing addresses");
             }
+
+            foreach ($wallets as $wallet) {
+                Vitcoin::create($wallet);
+                if ($Isimport) {
+                    $this->MultiChain->importaddress($wallet['address']);
+                    $this->MultiChain->grant($wallet['address'], 'VitCoin.issue,receive,send');
+                }
+            }
+        } catch (\Throwable $th) {
+            $output->writeln("Connect Multichain Failed. Seeding without importing addresses");
         }
     }
 }
