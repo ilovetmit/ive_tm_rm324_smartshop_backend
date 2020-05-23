@@ -29,23 +29,23 @@ class StockController extends Controller
         $request->validate([
             'code'          => 'required|unique:stocks',
             'name'          => 'required|unique:stocks',
-            'icon'          => 'required',
-            'data'          => 'required',
+            // 'icon'          => 'required',
+            // 'data'          => 'required',
             'description'   => 'nullable',
         ]);
         $data = $request->all();
-        if (isset($request->icon)) {
-            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
-            $extension = $request->file('icon')->getClientOriginalExtension();
-            $isInFileType = in_array($extension, $photoTypes);
+        // if (isset($request->icon)) {
+        //     $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
+        //     $extension = $request->file('icon')->getClientOriginalExtension();
+        //     $isInFileType = in_array($extension, $photoTypes);
 
-            if ($isInFileType) {
-                $file = $request->file('icon')->store('public/stocks/icon');
-                $data['icon'] = basename($file);
-            } else {
-                return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
-            }
-        }
+        //     if ($isInFileType) {
+        //         $file = $request->file('icon')->store('public/stocks/icon');
+        //         $data['icon'] = basename($file);
+        //     } else {
+        //         return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
+        //     }
+        // }
         $stock = Stock::create($data);
         return redirect()->route('SmartBankManagement.Stocks.index');
     }
@@ -65,7 +65,7 @@ class StockController extends Controller
         $request->validate([
             'code'          => 'required|unique:stocks,code' . ($stock->id ? ",$stock->id" : ''),
             'name'          => 'required|unique:stocks,name' . ($stock->id ? ",$stock->id" : ''),
-            'data'          => 'required',
+            // 'data'          => 'required',
             'description'   => 'nullable',
         ]);
         $data = $request->all();

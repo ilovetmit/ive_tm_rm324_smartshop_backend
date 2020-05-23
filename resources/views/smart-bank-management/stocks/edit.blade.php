@@ -20,6 +20,7 @@
                 <span class="help-block"></span>
             </div>
             <!-------------------------------------icon------------------------------------->
+            {{--
             <div class="form-group">
                 <label class="" for="icon">{{ trans('cruds.fields.icon') }}</label>
                 <div class="input-group">
@@ -30,6 +31,7 @@
                     </div>
                 </div>
             </div>
+            --}}
             <!---------------------------name--------------------------->
             <div class="form-group">
                 <label class="" for="name">{{ trans('cruds.fields.name') }}</label>
@@ -41,6 +43,7 @@
                 <span class="help-block"></span>
             </div>
             <!---------------------------data--------------------------->
+            {{--
             <div class="form-group">
                 <label class="" for="data">{{ trans('cruds.fields.data') }}</label>
                 <input class="form-control {{ $errors->has('data') ? 'is-invalid' : '' }}" type="text" name="data"
@@ -50,6 +53,7 @@
                 @endif
                 <span class="help-block"></span>
             </div>
+            --}}
             <!---------------------------description--------------------------->
             <div class="form-group">
                 <label class="" for="description">{{ trans('cruds.fields.description') }}</label>
