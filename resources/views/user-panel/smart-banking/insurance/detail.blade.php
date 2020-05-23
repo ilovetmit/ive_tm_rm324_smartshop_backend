@@ -47,7 +47,7 @@
                 <div class="card">
                     <div class="card-body text-center py-5">
                         <div class="card-category">Monthly</div>
-                        <div class="display-3 my-5 text-light">$ {{unserialize($insurance->price)['monthly']}}</div>
+                        <div class="display-3 my-5 text-light">$ {{$insurance->price['monthly']}}</div>
                         <p>With Admire Life 2, you can select from five premium payment terms according to your personal
                             financial needs. Premium amounts are guaranteed to be fixed throughout the premium payment
                             term, making it easy for you to budget.</p>
@@ -61,7 +61,7 @@
                 <div class="card">
                     <div class="card-body text-center py-5">
                         <div class="card-category">Quarterly</div>
-                        <div class="display-3 my-5 text-light">$ {{unserialize($insurance->price)['quarterly']}}</div>
+                        <div class="display-3 my-5 text-light">$ {{$insurance->price['quarterly']}}</div>
                         <p>Admire Life 2 provides lifetime insurance with stable returns. If the person protected under
                             the policy, passes away, we will pay the death benefit to the person whom you select in your
                             policy as beneficiary.</p>
@@ -75,7 +75,7 @@
                 <div class="card">
                     <div class="card-body text-center py-5">
                         <div class="card-category">Yearly</div>
-                        <div class="display-3 my-5 text-light">$ {{unserialize($insurance->price)['yearly']}}</div>
+                        <div class="display-3 my-5 text-light">$ {{$insurance->price['yearly']}}</div>
                         <p>Admire Life 2 is a participating insurance plan that provides you with both guaranteed cash
                             value and non-guaranteed dividends. The plan will provide guaranteed cash value, enabling
                             you to accumulate wealth for a prosperous future for yourself and your family.</p>

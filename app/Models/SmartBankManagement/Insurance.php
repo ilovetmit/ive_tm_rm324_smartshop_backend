@@ -24,16 +24,11 @@ class Insurance extends Model
         'description'
     ];
 
-    public function unserialize($value)
-    {
-        return unserialize($value);
-    }
-
     public function getPriceAttribute($value)
     {
         return unserialize($value);
     }
-
+    
     public function getImageAttribute($value)
     {
         return unserialize($value);
