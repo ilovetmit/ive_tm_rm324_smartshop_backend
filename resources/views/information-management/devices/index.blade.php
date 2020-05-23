@@ -53,7 +53,8 @@
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => config('constant.badge_type')[config('constant.device_isActive')[$device->is_active]],
+                            'type' =>
+                            config('constant.badge_type')[config('constant.device_isActive')[$device->is_active]],
                             'element' => config('constant.device_isActive')[$device->is_active] ?? '',
                             ])
                         </td>

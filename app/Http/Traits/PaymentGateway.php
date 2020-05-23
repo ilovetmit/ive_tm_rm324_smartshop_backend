@@ -24,7 +24,7 @@ class PaymentGateway
                 'header'    =>  $header,
                 'amount'    =>  $amount,
                 'balance'   =>  $balance,
-                'currency'  =>  $currency
+                'currency'  =>  $currency   // Not finish
             ]);
             return ['stateCode' => 0, 'transaction' => $transaction];
         } else {

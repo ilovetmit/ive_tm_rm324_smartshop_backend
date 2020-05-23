@@ -20,58 +20,58 @@ class DeviceController extends Controller
         return view('information-management.devices.index', compact('devices'));
     }
 
-    public function create()
-    {
-        $users = User::all();
-        return view('information-management.devices.create', compact('users'));
-    }
+    // public function create()
+    // {
+    //     $users = User::all();
+    //     return view('information-management.devices.create', compact('users'));
+    // }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'user_id'       => 'required',
-            'token'         => 'nullable|unique:devices',
-            'is_active'     => 'required',
-        ]);
-        $device = Device::create($request->all());
-        // $device->permissions()->sync($request->input('permissions', []));
-        return redirect()->route('InformationManagement.Devices.index'); 
-    }
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'user_id'       => 'required',
+    //         'token'         => 'nullable|unique:devices',
+    //         'is_active'     => 'required',
+    //     ]);
+    //     $device = Device::create($request->all());
+    //     // $device->permissions()->sync($request->input('permissions', []));
+    //     return redirect()->route('InformationManagement.Devices.index');
+    // }
 
-    public function show(Device $device)
-    {
-        $device->load('hasUser');
-        return view('information-management.devices.show', compact('device'));
-    }
+    // public function show(Device $device)
+    // {
+    //     $device->load('hasUser');
+    //     return view('information-management.devices.show', compact('device'));
+    // }
 
-    public function edit(Device $device)
-    {
-        $users = User::all();
-        // $device->load('hasUser');
-        return view('information-management.devices.edit', compact('device', 'users'));
-    }
+    // public function edit(Device $device)
+    // {
+    //     $users = User::all();
+    //     // $device->load('hasUser');
+    //     return view('information-management.devices.edit', compact('device', 'users'));
+    // }
 
-    public function update(Request $request, Device $device)
-    {
-        $request->validate([
-            'user_id'       => 'required',
-            'token'         => 'nullable|unique:devices,token' . ($device->id ? ",$device->id" : ''),
-            'is_active'     => 'required',
-        ]);
-        $device->update($request->all());
-        // $device->hasUser()->sync($request->input('hasUser', []));
-        return redirect()->route('InformationManagement.Devices.index');
-    }
+    // public function update(Request $request, Device $device)
+    // {
+    //     $request->validate([
+    //         'user_id'       => 'required',
+    //         'token'         => 'nullable|unique:devices,token' . ($device->id ? ",$device->id" : ''),
+    //         'is_active'     => 'required',
+    //     ]);
+    //     $device->update($request->all());
+    //     // $device->hasUser()->sync($request->input('hasUser', []));
+    //     return redirect()->route('InformationManagement.Devices.index');
+    // }
 
-    public function destroy(Device $device)
-    {
-        $device->delete();
-        return back();
-    }
-    
-    public function massDestroy(MassDestroyDeviceRequest $request)
-    {
-        Device::whereIn('id', request('ids'))->delete();
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
+    // public function destroy(Device $device)
+    // {
+    //     $device->delete();
+    //     return back();
+    // }
+
+    // public function massDestroy(MassDestroyDeviceRequest $request)
+    // {
+    //     Device::whereIn('id', request('ids'))->delete();
+    //     return response(null, Response::HTTP_NO_CONTENT);
+    // }
 }
