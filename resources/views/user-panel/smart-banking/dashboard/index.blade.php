@@ -22,10 +22,11 @@
                         <div class="title">
                             <div class="icon"><i class="icon-user-1"></i></div><strong>Saving A/C</strong>
                         </div>
-                        <div class="number dashtext-1">$ {{ $saving_account[0] }}</div>
+                        <div class="number dashtext-1">$ {{ $bank->saving_account }}</div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+                        <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
                     </div>
                 </div>
             </div>
@@ -35,10 +36,11 @@
                         <div class="title">
                             <div class="icon"><i class="icon-contract"></i></div><strong>Current A/C</strong>
                         </div>
-                        <div class="number dashtext-2">$ {{ $current_account[0] }} </div>
+                        <div class="number dashtext-2">$ {{ $bank->current_account}} </div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-2"></div>
+                        <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-2"></div>
                     </div>
                 </div>
             </div>
@@ -48,10 +50,11 @@
                         <div class="title">
                             <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>VitCoin</strong>
                         </div>
-                        <div class="number dashtext-3"> 0 </div>
+                        <div class="number dashtext-3"> {{$bank->vit_coin ?? 0}} </div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
+                        <div role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
+                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
                     </div>
                 </div>
             </div>
@@ -62,10 +65,11 @@
                             <div class="icon"><i class="icon-writing-whiteboard"></i></div><strong>Total
                                 Balance</strong>
                         </div>
-                        <div class="number dashtext-4">$ {{ $saving_account[0]+$current_account[0] }} </div>
+                        <div class="number dashtext-4">$ {{ $bank->saving_account + $bank->current_account }} </div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
+                        <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
                     </div>
                 </div>
             </div>
@@ -470,7 +474,8 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <img width="300" src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chld=L|0&chl=akshdkjajhdksahslkdhdlksdydiudysiusydaiosydaoiuysaoiydasoiusydsaoidyduisadasdasdaadsaadd1ad3sads4d6sadsad45dsadddsa/,sad/sadsad/.,sadd,.y">
+                    <img width="300"
+                        src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chld=L|0&chl=akshdkjajhdksahslkdhdlksdydiudysiusydaiosydaoiuysaoiydasoiusydsaoidyduisadasdasdaadsaadd1ad3sads4d6sadsad45dsadddsa/,sad/sadsad/.,sadd,.y">
                 </div>
             </div>
             <div class="modal-footer">

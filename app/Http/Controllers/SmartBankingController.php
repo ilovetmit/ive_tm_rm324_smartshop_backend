@@ -13,6 +13,7 @@ use App\Models\TransactionManagement\RemittanceTransaction;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Http\Traits\PaymentGateway\Vitcoin;
 
 class SmartBankingController extends Controller
 {
@@ -32,10 +33,9 @@ class SmartBankingController extends Controller
      */
     public function dashboard()
     {
-        $user_id = auth::id();
-        $saving_account = BankAccount::where('user_id', $user_id)->pluck('saving_account');
-        $current_account = BankAccount::where('user_id', $user_id)->pluck('current_account');
-        return view('user-panel.smart-banking.dashboard.index', compact('user_id','saving_account','current_account'));
+        $bank = Auth::user()->hasBankAccount;
+        $bank['vit_coin'] = Vitcoin::getBalance();
+        return view('user-panel.smart-banking.dashboard.index', compact('bank'));
     }
 
     /**

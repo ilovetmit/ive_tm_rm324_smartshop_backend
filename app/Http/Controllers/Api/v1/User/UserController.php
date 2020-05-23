@@ -18,7 +18,6 @@ class UserController extends ApiController
     {
         try {
             $user = User::find(Auth::guard('api')->user()->id);
-            // $user = User::find(1);
             return parent::sendResponse('data', $user, 'Profile Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
