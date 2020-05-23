@@ -21,7 +21,9 @@ class ProductTransaction extends Model
     protected $fillable = [
         'transaction_id',
         'product_id',
-        'quantity'
+        'quantity',
+        'shop_type',
+        'remark',
     ];
 
     public function hasProduct()
@@ -32,5 +34,10 @@ class ProductTransaction extends Model
     public function hasTransaction()
     {
         return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
+    }
+
+    public function unserialize_remark()
+    {
+        return unserialize($this->remark);
     }
 }
