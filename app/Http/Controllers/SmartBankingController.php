@@ -32,7 +32,10 @@ class SmartBankingController extends Controller
      */
     public function dashboard()
     {
-        return view('user-panel.smart-banking.dashboard.index');
+        $user_id = auth::id();
+        $saving_account = BankAccount::where('user_id', $user_id)->pluck('saving_account');
+        $current_account = BankAccount::where('user_id', $user_id)->pluck('current_account');
+        return view('user-panel.smart-banking.dashboard.index', compact('user_id','saving_account','current_account'));
     }
 
     /**
@@ -58,7 +61,7 @@ class SmartBankingController extends Controller
         if ($type === 'free') {
             $price = 0;
         } else {
-            $price = unserialize($insurance->price)[$type];
+            $price = ($insurance->price)[$type];
         }
 
         if ($user->hasBankAccount->saving_account < $price) {
@@ -71,7 +74,7 @@ class SmartBankingController extends Controller
 
         $transactions = new Transaction;
         $transactions->user_id = auth::id();
-        $transactions->header = "Insurance -" . $insurance->name . ' (' . $type . ')';
+        $transactions->header = "Insurance - " . $insurance->name . ' (' . $type . ')';
         $transactions->amount = $price;
         $transactions->balance = $user->hasBankAccount->saving_account;
         $transactions->currency = 1; // 1 = saving account -> config.constant.transaction_currency

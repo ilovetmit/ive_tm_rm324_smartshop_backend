@@ -56,7 +56,7 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input {{ $errors->has('avatar') ? 'is-invalid' : '' }}"
-                            id="avatar" name="avatar">
+                            id="avatar" name="avatar" value="{{ old('avatar', $user->avatar) }}">
                         <label class="custom-file-label" for="avatar">{{ old('avatar', $user->avatar) }}</label>
                     </div>
                 </div>

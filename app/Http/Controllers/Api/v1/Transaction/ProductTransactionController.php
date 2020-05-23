@@ -58,11 +58,11 @@ class ProductTransactionController extends ApiController
                 $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('payment')];
 
-                // $remark = [
-                //     "deliveryAddress" => $request->get('deliveryAddress'),
-                //     "deliveryDateTime" => $request->get('deliveryDateTime'),
-                //     "phoneNumber" => $request->get('phoneNumber')
-                // ];
+                $remark = [
+                    "deliveryAddress" => $request->get('deliveryAddress'),
+                    "deliveryDateTime" => $request->get('deliveryDateTime'),
+                    "phoneNumber" => $request->get('phoneNumber')
+                ];
 
 
 
@@ -99,7 +99,7 @@ class ProductTransactionController extends ApiController
                 $productTransaction->product_id = $request->get('product_id');
                 $productTransaction->quantity = $request->get('quantity');
                 $productTransaction->shop_type = 2;
-                // $productTransaction->remark = serialize($remark);
+                $productTransaction->remark = serialize($remark);
                 $productTransaction->save();
 
                 $product->quantity = $product->quantity  - $request->get('quantity');

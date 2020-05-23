@@ -27,24 +27,36 @@ class InsuranceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'          => 'required|unique:insurances',
-            'image'         => 'required',
-            'price'         => 'required',
-            'description'   => 'nullable',
+            'name'              => 'required|unique:insurances',
+            'image'             => 'required',
+            'priceMonthly'      => 'required|integer',
+            'priceQuarterly'    => 'required|integer',
+            'priceYearly'       => 'required|integer',
+            'description'       => 'nullable',
         ]);
+        $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
             if ($isInFileType) {
-                $file = $request->file('image')->store('public/insurances/image');
+                $file = $request->file('image')->store('public/in/');
                 $data['image'] = basename($file);
             } else {
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-        $insurance = Insurance::create($request->all());
+        $insurance = Insurance::create([
+            "name" => $data['name'],
+            "price" => serialize([
+                'monthly'   => $data['priceMonthly'],
+                'quarterly' => $data['priceQuarterly'],
+                'yearly'    => $data['priceYearly'],
+            ]),
+            "image" => serialize(array($data['image'])),
+            "description" => $data['description'],
+        ]);
         return redirect()->route('SmartBankManagement.Insurances.index');
     }
     
@@ -61,23 +73,36 @@ class InsuranceController extends Controller
     public function update(Request $request, Insurance $insurance)
     {
         $request->validate([
-            'name'          => 'required|unique:insurances,name' . ($insurance->id ? ",$insurance->id" : ''),
-            'price'         => 'required',
-            'description'   => 'nullable',
+            'name'              => 'required|unique:insurances,name' . ($insurance->id ? ",$insurance->id" : ''),
+            // 'image'             => 'required',
+            'priceMonthly'      => 'required|integer',
+            'priceQuarterly'    => 'required|integer',
+            'priceYearly'       => 'required|integer',
+            'description'       => 'nullable',
         ]);
+        $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
             if ($isInFileType) {
-                $file = $request->file('image')->store('public/insurances/image');
+                $file = $request->file('image')->store('public/in/');
                 $data['image'] = basename($file);
             } else {
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-        $insurance->update($request->all());
+        $insurance->update([
+            "name" => $data['name'],
+            "price" => serialize([
+                'monthly'   => $data['priceMonthly'],
+                'quarterly' => $data['priceQuarterly'],
+                'yearly'    => $data['priceYearly'],
+            ]),
+            "image" => serialize(array($data['image'])),
+            "description" => $data['description'],
+        ]);
         return redirect()->route('SmartBankManagement.Insurances.index');
     }
     

@@ -92,12 +92,12 @@ class UserController extends ApiController
         $user = User::find(Auth::guard('api')->user()->id);
 
         if ($request->hasFile('avatar')) {
-            $photoTypes = array('png', 'jpg', 'jpeg');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('avatar')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
             if ($isInFileType) {
-                $file = $request->file('avatar')->store('avatar');
+                $file = $request->file('avatar')->store('public/users/avatar');
                 $user->avatar = basename($file);
                 $user->save();
                 $query = [

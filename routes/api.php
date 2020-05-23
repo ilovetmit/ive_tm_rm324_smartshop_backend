@@ -99,6 +99,16 @@ Route::prefix('v1')->group(function () {
     Route::get('advertisement', 'Api\v1\Advertisement\AdvertisementController@advertisement');
 });
 
+// v2 link for IoT device read -> old code design
+Route::prefix('v2')->group(function () {
+    /**
+     * IoT API
+     */
+    Route::get('locker', 'Api\v2\IoTController@locker');
+    Route::get('vending', 'Api\v2\IoTController@vending');
+    Route::get('sensor', 'Api\v2\IoTController@sensor');
+    Route::get('price', 'Api\v2\IoTController@price');
+});
 
 // test getAllinformation
 // api/test/

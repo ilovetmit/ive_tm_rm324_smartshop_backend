@@ -34,10 +34,13 @@
                             {{ trans('cruds.fields.price') }}
                         </th>
                         <td>
-                            @include('_module.datatable.badge_tag.tag',[
+                            Monthly: HKD$ {{ $insurance->price['monthly'] }} <br />
+                            Quarterly: HKD$ {{ $insurance->price['quarterly'] }} <br />
+                            Yearly: HKD$ {{ $insurance->price['yearly'] }} <br />
+                            {{--@include('_module.datatable.badge_tag.tag',[
                             'type' => config('constant.badge_type')['price'],
                             'element' => '$ '. $insurance->price ?? '',
-                            ])
+                            ])--}}
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +48,7 @@
                             {{ trans('cruds.fields.image') }}
                         </th>
                         <td>
-                            <img src="{{ asset('storage/insurances/image/'.$insurance->image) }}" width="150px">
+                            <img src="{{ asset('storage/in/'.$insurance->image[0]) }}" width="300px">
                         </td>
                     </tr>
                     <tr>

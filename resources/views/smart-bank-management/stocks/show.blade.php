@@ -34,7 +34,7 @@
                             {{ trans('cruds.fields.icon') }}
                         </th>
                         <td>
-                            <img src="{{ asset('storage/stocks/icon/'.$stock->icon) }}" width="150px">
+                            <img src="{{ asset($stock->icon[0]) }}" width="150px">
                         </td>
                     </tr>
                     <tr>
@@ -50,7 +50,13 @@
                             {{ trans('cruds.fields.data') }}
                         </th>
                         <td>
-                            {{ $stock->data }}
+                            @foreach($stock->data as $key => $data)
+                                @include('_module.datatable.badge_tag.tag',[
+                                'type' => config('constant.badge_type')['price'],
+                                'element' => $stock->data[$key] ?? '',
+                                ])
+                            @endforeach
+                            {{-- $stock->data --}}
                         </td>
                     </tr>
                     <tr>
