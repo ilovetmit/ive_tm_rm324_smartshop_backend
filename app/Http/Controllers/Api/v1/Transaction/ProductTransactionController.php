@@ -20,7 +20,7 @@ class ProductTransactionController extends ApiController
 
         try {
             // $orders = ProductTransaction::rightJoin('products', 'product_transactions.product_id', 'products.id')->rightJoin('transactions', 'product_transactions.transaction_id', 'transactions.id')->where('transactions.user_id', Auth::guard('api')->user()->id)->where('product_transactions.product_id', '<>', null)->orderBy('product_transactions.created_at', 'desc')->get();
-            $transactions = Transaction::where('user_id', Auth::guard('api')->user()->id)->with('hasProduct_transaction')->with('hasProduct_transaction.hasProduct')->get();
+            $transactions = Transaction::where('user_id', Auth::guard('api')->user()->id)->with('hasProduct_transaction')->with('hasProduct_transaction.hasProduct')->orderBy('created_at', 'desc')->get();
             $array = [];
             foreach ($transactions as $key => $transaction) {
                 if (count($transaction->hasProduct_transaction) > 0) {
@@ -53,16 +53,16 @@ class ProductTransactionController extends ApiController
                 // check balance
                 $transactions = new Transaction;
                 $transactions->header = "S-SHOP@TMIT S-Shop spending ($product->name)";
-                $transactions->user_id = Auth::guard('api')->user()->user_id;
+                $transactions->user_id = $user->id;
                 $transactions->amount = $price;
                 $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('payment')];
 
-                $remark = [
-                    "deliveryAddress" => $request->get('deliveryAddress'),
-                    "deliveryDateTime" => $request->get('deliveryDateTime'),
-                    "phoneNumber" => $request->get('phoneNumber')
-                ];
+                // $remark = [
+                //     "deliveryAddress" => $request->get('deliveryAddress'),
+                //     "deliveryDateTime" => $request->get('deliveryDateTime'),
+                //     "phoneNumber" => $request->get('phoneNumber')
+                // ];
 
 
 
@@ -99,7 +99,7 @@ class ProductTransactionController extends ApiController
                 $productTransaction->product_id = $request->get('product_id');
                 $productTransaction->quantity = $request->get('quantity');
                 $productTransaction->shop_type = 2;
-                $productTransaction->remark = serialize($remark);
+                // $productTransaction->remark = serialize($remark);
                 $productTransaction->save();
 
                 $product->quantity = $product->quantity  - $request->get('quantity');

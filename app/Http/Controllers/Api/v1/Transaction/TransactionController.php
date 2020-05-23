@@ -9,14 +9,14 @@ use App\Models\TransactionManagement\RemittanceTransaction;
 use App\Models\TransactionManagement\Transaction;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends ApiController
 {
     public function getTransaction()
     {
         try {
-            // $bank = BankAccount::where('user_id', Auth::guard('api')->user()->user_id)->first();
-            $transaction = Transaction::where('user_id', 1)->get();
+            $transaction = Transaction::where('user_id', Auth::guard('api')->user()->id)->orderBy('created_at', 'desc')->get();
             return parent::sendResponse('data', $transaction, 'Transaction Data');
         } catch (\Exception $e) {
             return parent::sendError('Transaction.', 216);
@@ -32,8 +32,7 @@ class TransactionController extends ApiController
                 return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
             }
 
-            // $user = User::find(Auth::guard('api')->user()->id); todo unComment Auth
-            $user = User::find(1);
+            $user = User::find(Auth::guard('api')->user()->id);
             $user_bankAccount = $user->hasBankAccount;
 
             if ($request->get('amount') < 0) {
