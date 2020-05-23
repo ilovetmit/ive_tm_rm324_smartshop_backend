@@ -11,13 +11,14 @@ use App\Models\UserManagement\User;
 use App\Models\TransactionManagement\Transaction;
 use App\Models\TransactionManagement\ProductTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VendingProductController extends ApiController
 {
     public function vending_list()
     {
         try {
-            $vending = VendingProduct::paginate(10);
+            $vending = VendingProduct::with('hasProduct')->with('hasProduct.hasCategory')->paginate(10);
             return parent::sendResponse('data', $vending, 'All Vending Product Data');
         } catch (\Exception $e) {
             return parent::sendError($e->getMessage(), 216);
@@ -27,7 +28,7 @@ class VendingProductController extends ApiController
     public function vending_detail($id)
     {
         try {
-            $product = Product::where('id', $id)->get();
+            $product = Product::where('id', $id)->with('hasCategory')->get();
             if ($product) {
                 return parent::sendResponse('data', $product, 'Vending Product Data');
             } else {
@@ -41,16 +42,14 @@ class VendingProductController extends ApiController
     public function vending_buy(Request $request)
     {
         try {
-            // $user = User::find(Auth::guard('api')->user()->id); todo Recomment Auth
-            $user = User::find(1);
+            $user = User::find(Auth::guard('api')->user()->id);
             $bankAccount = $user->hasBankAccount;
             $vendingProduct = Product::where('id', $request->get('product_id'))->first();
             if ($vendingProduct->quantity >= 1) {
 
                 $transactions = new Transaction;
                 $transactions->header = "S-SHOP@TMIT S-Vending spending ($vendingProduct->name)";
-                // $transactions->user_id = Auth::guard('api')->user()->user_id; todo Recomment Auth
-                $transactions->user_id = 1;
+                $transactions->user_id = Auth::guard('api')->user()->id;
                 $transactions->amount = $vendingProduct->price;
                 $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('payment')];
