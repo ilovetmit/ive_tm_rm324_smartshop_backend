@@ -43,6 +43,7 @@ class ProductController extends ApiController
 
             $product = Product::find($id);
             $product->header = $headerTitle;
+            $product->load("hasCategory");
             if ($product) {
                 return parent::sendResponse('data', $product, 'Product Data');
             } else {

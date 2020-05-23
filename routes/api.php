@@ -50,10 +50,10 @@ Route::prefix('v1')->group(function () {
         //Api Bank(Transaction)
         Route::get('transaction', 'Api\v1\Transaction\TransactionController@getTransaction');
         //Api Bank(Stock)
-        Route::get('stock/all', 'Api\v1\SmartBank\StockController@getAllStock');
+        Route::get('stock', 'Api\v1\SmartBank\StockController@getAllStock');
         Route::get('stock/{id}', 'Api\v1\SmartBank\StockController@stock_detail');
         //Api Bank(Insurance)
-        Route::get('insurance/all', 'Api\v1\SmartBank\InsuranceController@getAllInsurance');
+        Route::get('insurance', 'Api\v1\SmartBank\InsuranceController@getAllInsurance');
         Route::get('insurance/{id}', 'Api\v1\SmartBank\InsuranceController@insurance_detail');
         //Api Bank(Transfer)
         Route::post('transfer', 'Api\v1\Transaction\TransactionController@transfer');
