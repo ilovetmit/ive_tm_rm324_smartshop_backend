@@ -93,6 +93,7 @@ class LockerController extends ApiController
                 }
 
                 $locker->is_using = "2";
+                $locker->status = 1;
                 $locker->save();
 
                 $transactions = new Transaction;
@@ -148,6 +149,7 @@ class LockerController extends ApiController
             if ($lockerTransaction->deadline != null) {
                 if ($locker->is_using == 2) {
                     $locker->is_using = 1;
+                    $locker->status = 1;
                     $lockerTransaction->deadline = null;
                     $lockerTransaction->save();
                     $locker->save();
