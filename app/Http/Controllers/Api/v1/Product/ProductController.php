@@ -20,7 +20,7 @@ class ProductController extends ApiController
     public function products()
     {
         try {
-            $product = Product::paginate(10);
+            $product = Product::with('hasCategory')->paginate(10);
             return parent::sendResponse('data', $product, 'All Product Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);

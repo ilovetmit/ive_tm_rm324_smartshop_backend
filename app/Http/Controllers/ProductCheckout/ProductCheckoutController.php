@@ -20,7 +20,7 @@ class ProductCheckoutController extends Controller
         $product_list = json_decode($request->product_list);
         Cache::tags('checkout')->put($token, $product_list, 130); //more 10s
         $response = [
-            'data' => $token,
+            'data' => "CHECK-" . $token,
             'message' => 'Cache Put',
         ];
         return response()->json($response, 200);

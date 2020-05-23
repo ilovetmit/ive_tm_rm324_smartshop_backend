@@ -144,4 +144,22 @@ class UserController extends ApiController
     {
         // can not delete
     }
+
+    public function check_password(Request $request)
+    {
+        try {
+            $user = User::find(Auth::guard('api')->user()->id);
+            if (empty($user)) {
+                // user not found
+                return parent::sendError('You input wrong email, please try again.', 215);
+            } else if (!\Hash::check($request->password, $user->password)) {
+                // password error
+                return parent::sendError('You input wrong passoword, please try again.', 215);
+            } else {
+                return parent::sendResponse('State', 'Purchase Success', 'Purchase Success');
+            }
+        } catch (\Exception $e) {
+            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+        }
+    }
 }

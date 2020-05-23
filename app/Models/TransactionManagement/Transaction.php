@@ -38,7 +38,7 @@ class Transaction extends Model
 
     public function hasProduct_transaction()
     {
-        return $this->hasOne(ProductTransaction::class);
+        return $this->hasMany(ProductTransaction::class);
     }
 
     public function hasRemittance_transaction()

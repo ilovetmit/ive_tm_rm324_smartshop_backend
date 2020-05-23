@@ -19,12 +19,18 @@ class ProductTransactionController extends ApiController
     {
 
         try {
-            $orders = ProductTransaction::rightJoin('products', 'product_transactions.product_id', 'products.id')->rightJoin('transactions', 'product_transactions.transaction_id', 'transactions.id')->where('transactions.user_id', Auth::guard('api')->user()->id)->where('product_transactions.product_id', '<>', null)->orderBy('product_transactions.created_at', 'desc')->get();
-
-            $orders->load('hasProduct')->load('hasProduct.hasCategory');
+            // $orders = ProductTransaction::rightJoin('products', 'product_transactions.product_id', 'products.id')->rightJoin('transactions', 'product_transactions.transaction_id', 'transactions.id')->where('transactions.user_id', Auth::guard('api')->user()->id)->where('product_transactions.product_id', '<>', null)->orderBy('product_transactions.created_at', 'desc')->get();
+            $transactions = Transaction::where('user_id', Auth::guard('api')->user()->id)->with('hasProduct_transaction')->with('hasProduct_transaction.hasProduct')->get();
+            $array = [];
+            foreach ($transactions as $key => $transaction) {
+                if (count($transaction->hasProduct_transaction) > 0) {
+                    $array[] = $transaction;
+                }
+            }
+            // $orders->load('hasProduct')->load('hasProduct.hasCategory');
             // $remark = unserialize($orders->remark); todo Remark for delivery address
             // $orders->load($remarks);
-            return parent::sendResponse('data', $orders, 'Order Data');
+            return parent::sendResponse('data', $array, 'Order Data');
         } catch (\Exception $e) {
             return parent::sendError($e->getMessage(), 216);
         }
@@ -34,8 +40,7 @@ class ProductTransactionController extends ApiController
     public function order_create(Request $request)
     {
         try {
-            // $user = User::find(Auth::guard('api')->user()->id);
-            $user = User::find(1);
+            $user = User::find(Auth::guard('api')->user()->id);
             $bankAccount = $user->hasBankAccount;
             if (!$user) {
                 return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
@@ -48,8 +53,7 @@ class ProductTransactionController extends ApiController
                 // check balance
                 $transactions = new Transaction;
                 $transactions->header = "S-SHOP@TMIT S-Shop spending ($product->name)";
-                // $transactions->user_id = Auth::guard('api')->user()->user_id;
-                $transactions->user_id = 1;
+                $transactions->user_id = Auth::guard('api')->user()->user_id;
                 $transactions->amount = $price;
                 $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('payment')];

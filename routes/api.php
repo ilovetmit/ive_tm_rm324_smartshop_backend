@@ -32,11 +32,10 @@ Route::prefix('v1')->group(function () {
         Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
         Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
         Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
-
+        Route::post('checkout_transaction', 'Api\v1\ProductCheckoutController@checkout_transaction');
         // Route::get('user', 'Api\v1\AuthController@user');
 
-        //Api Check Password (before purchase)
-        Route::post('check_password', 'Api\v1\AuthController@check_password');
+
 
         //Api  Product
         Route::get('products', 'Api\v1\Product\ProductController@products');
@@ -90,6 +89,8 @@ Route::prefix('v1')->group(function () {
         //Api Auth
         Route::post('login', 'Api\v1\AuthController@login');
         Route::post('register', 'Api\v1\AuthController@register');
+        //Api Check Password (before purchase)
+        Route::post('check_password', 'Api\v1\User\UserController@check_password');
     });
 
 
