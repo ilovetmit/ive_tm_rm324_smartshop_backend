@@ -70,7 +70,7 @@ class DashboardController extends Controller
             }
             $date_START = '2020' . $d . '01';
             $date_END = '2020' . $d . '31';
-            $vending = ProductTransaction::with('hasTransaction')->where('shop_type', 1)->whereDate('created_at', '<=', $date_END)->whereDate('created_at', '>=', $date_START)->get()->pluck('transaction_id');
+            $vending = ProductTransaction::where('shop_type', 1)->whereBetween('created_at', [$date_START, $date_END])->pluck('transaction_id');
             $vending_profit = 0;
             if ($vending->count() > 0) {
                 foreach ($vending as $tid) {
@@ -91,7 +91,7 @@ class DashboardController extends Controller
             }
             $date_START = '2020' . $d . '01';
             $date_END = '2020' . $d . '31';
-            $windowshop = ProductTransaction::with('hasTransaction')->where('shop_type', 2)->whereDate('created_at', '<=', $date_END)->whereDate('created_at', '>=', $date_START)->get()->pluck('transaction_id');
+            $windowshop = ProductTransaction::where('shop_type', 2)->whereBetween('created_at', [$date_START, $date_END])->pluck('transaction_id');
             $windowshop_profit = 0;
             if ($windowshop->count() > 0) {
                 foreach ($windowshop as $tid) {

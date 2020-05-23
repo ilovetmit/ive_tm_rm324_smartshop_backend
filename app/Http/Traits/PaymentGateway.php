@@ -4,8 +4,7 @@ namespace App\Http\Traits;
 
 use App\Models\TransactionManagement\Transaction;
 use Illuminate\Support\Facades\Auth;
-use App\Models\InformationManagement\BankAccount;
-use Eskie\Multichain\Facades\MultiChain;
+use App\Http\Traits\MultiChain;
 
 class PaymentType extends Enum
 {
@@ -15,7 +14,7 @@ class PaymentType extends Enum
 }
 
 // Semi-Finish, roughly oo design
-class PaymentGatewayTrait
+class PaymentGateway
 {
     public static function createTransaction(Payment $type, float $amount, string $header)
     {
@@ -38,18 +37,24 @@ abstract class Payment
 {
     public abstract function isSufficientBalance(float $amount);
     public abstract function expense(float $amount);
+    public abstract function getBalance();
 }
 
 class CurrentAccountPayment extends Payment
 {
     public function isSufficientBalance(float $amount)
     {
-        return Auth::guard('api')->user()->hasBankAccount->current_account >= $amount;
+        return $this->getBalance() >= $amount;
     }
 
     public function expense(float $amount)
     {
-        return tap(Auth::guard('api')->user()->hasBankAccount)->decrement('current_account', $amount)->current_account;;
+        return tap(Auth::guard('api')->user()->hasBankAccount)->decrement('current_account', $amount)->current_account;
+    }
+
+    public function getBalance()
+    {
+        return Auth::guard('api')->user()->hasBankAccount->current_account;
     }
 }
 
@@ -57,12 +62,17 @@ class SavingAccountPayment extends Payment
 {
     public function isSufficientBalance(float $amount)
     {
-        return Auth::guard('api')->user()->hasBankAccount->saving_account >= $amount;
+        return $this->getBalance() >= $amount;
     }
 
     public function expense(float $amount)
     {
         return tap(Auth::guard('api')->user()->hasBankAccount)->decrement('saving_account', $amount)->saving_account;
+    }
+
+    public function getBalance()
+    {
+        return Auth::guard('api')->user()->hasBankAccount->saving_account;
     }
 }
 
@@ -70,17 +80,20 @@ class VitcoinPayment extends Payment
 {
     public function isSufficientBalance(float $amount)
     {
-        $address = Auth::guard('api')->user()->hasVitcoin->address;
-
-        $balanceLists = MultiChain::getAddressBalances($address);
-
-        $balance = $balanceLists[array_search('VitCoin', array_column($balanceLists, 'name'))]['qty'];
-
-        return $balance >= $amount;
+        return $this->getBalance() >= $amount;
     }
 
     public function expense(float $amount)
     {
         //
+    }
+
+    public function getBalance()
+    {
+        $address = Auth::guard('api')->user()->hasVitcoin->address;
+
+        $balanceLists = (new MultiChain)->getAddressBalances($address);
+
+        return $balanceLists[array_search('VitCoin', array_column($balanceLists, 'name'))]['qty'];
     }
 }

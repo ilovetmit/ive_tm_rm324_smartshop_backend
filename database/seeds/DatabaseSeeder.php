@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         // Model::unguard();
         $this->call([
             UserTableSeeder::class,
@@ -40,7 +41,7 @@ class DatabaseSeeder extends Seeder
             ProductTagTableSeeder::class,
             AdvertisementTableSeeder::class,
             AdvertisementTagTableSeeder::class,
-            
+
             LockerTableSeeder::class,
 
             TransactionTableSeeder::class,
@@ -50,6 +51,7 @@ class DatabaseSeeder extends Seeder
 
             InsuranceTableSeeder::class,
             StockTableSeeder::class,
+            VitcoinSeeder::class,
         ]);
         // Model::reguard();
     }

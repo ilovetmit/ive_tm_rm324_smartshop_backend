@@ -7,16 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Events\MissionCompleted;
 use Illuminate\Support\Facades\Auth;
-use Eskie\Multichain\Facades\MultiChain;
+use App\Http\Traits\MultiChain;
 
 class VitcoinController extends Controller
 {
     //TODO send signature, remove complete() function, transfer function, modularize
     public function mining(Request $request)
     {
+        $result = ['isApprove' => false, 'signature' => null];
 
-        $isApprove = false;
-        $signature = null;
         if (Redis::exists($request->mission)) {
             $lists = unserialize(Redis::get($request->mission));
 
@@ -24,11 +23,15 @@ class VitcoinController extends Controller
                 if ($value === Auth::id()) {
                     $successSigned = openssl_sign(json_encode([
                         'coins'     =>  50,                      // should not be fixed
-                        // 'address'   => Auth::guard('api')->user()->hasVitcoin->address
+                        'address'   => Auth::guard('api')->user()->hasVitcoin->address
                     ]), $signature, file_get_contents(storage_path('vitcoin-private.pem')));
 
                     if ($successSigned) {
-                        $isApprove = true;
+                        $result['isApprove'] = true;
+                        $result['signature'] = bin2hex($signature);
+                        $result['coins'] = 50;                  // should not be fixed
+                        $result['wallet'] = $this->wallet();
+
                         unset($lists[$key]);
                         Redis::set($request->mission, serialize($lists));
                         break;
@@ -37,10 +40,7 @@ class VitcoinController extends Controller
             }
         }
 
-        return [
-            'isApprove' => $isApprove,
-            'signature' => bin2hex($signature)
-        ];
+        return $result;
     }
 
     // Test api
@@ -49,18 +49,17 @@ class VitcoinController extends Controller
         event(new MissionCompleted('M-324-15', Auth::id()));
     }
 
-    // Test API
-    public function test()
+    public function wallet()
     {
-        $successSigned = openssl_sign(json_encode([
-            'coins'     =>  50,                      // should not be fixed
-            // 'address'   => Auth::guard('api')->user()->hasVitcoin->address
-        ]), $signature, file_get_contents(storage_path('vitcoin-private.pem')));
+        return Auth::guard('api')->user()->hasVitcoin;
+    }
 
-        if ($successSigned) {
-            return $signature;
-        } else {
-            return 'asdas';
-        }
+    public function createkeypairs()
+    {
+        $Multichain = new MultiChain;
+        $keypairs = $Multichain->createkeypairs()[0];
+        $Multichain->importaddress($keypairs['address']);
+        $Multichain->grant($keypairs['address'], 'VitCoin.issue,receive,send');
+        return $keypairs;
     }
 }

@@ -21,9 +21,10 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::group(['middleware' => 'auth:api',], function () {
+        Route::get('wallet', 'Api\v1\VitcoinController@wallet');
+        Route::get('createkeypairs', 'Api\v1\VitcoinController@createkeypairs');
         Route::post('vitcoin-mining', 'Api\v1\VitcoinController@mining');
-        Route::post('fake-complete', 'Api\v1\VitcoinController@complete');  // test api
-        Route::post('test', 'Api\v1\VitcoinController@test');                // test api
+        Route::post('fake-complete', 'Api\v1\VitcoinController@complete');   // test api
 
         Route::post('logout', 'Api\v1\AuthController@logout');
 
