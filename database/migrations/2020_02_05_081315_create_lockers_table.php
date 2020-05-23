@@ -19,6 +19,7 @@ class CreateLockersTable extends Migration
             $table->double('per_hour_price');
             $table->integer('is_active');
             $table->integer('is_using');
+            $table->integer('status')->default('0');
             $table->timestamps();
             $table->softDeletes();
         });

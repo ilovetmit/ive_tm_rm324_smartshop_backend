@@ -18,6 +18,7 @@ class CreateVendingProductsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')              ->references('id')->on('products')->onDelete('cascade');
             $table->integer('channel');
+            $table->integer('status')->default('0');
             $table->timestamps();
             $table->softDeletes();
         });
