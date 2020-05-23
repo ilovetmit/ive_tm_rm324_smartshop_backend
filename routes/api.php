@@ -48,6 +48,7 @@ Route::prefix('v1')->group(function () {
 
         //Api Bank
         Route::get('bank', 'Api\v1\Information\BankAccountController@getBank');
+        Route::post('banking_login', 'Api\v1\Information\BankAccountController@banking_login');
         //Api Bank(Transaction)
         Route::get('transaction', 'Api\v1\Transaction\TransactionController@getTransaction');
         //Api Bank(Stock)
