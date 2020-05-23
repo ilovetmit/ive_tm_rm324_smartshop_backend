@@ -25,7 +25,7 @@ class AuthController extends Controller
             $success['token'] =  $user->createToken('SmartShop')->accessToken;
             return response()->json(['data' => $success], $this->successStatus);
         } else {
-            return response()->json(['data' => 'Unauthorised'], 401);
+            return response()->json(['data' => 'Unauthorised'], 216);
         }
     }
 

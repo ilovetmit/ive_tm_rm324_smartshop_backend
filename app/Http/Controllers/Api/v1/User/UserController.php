@@ -122,20 +122,22 @@ class UserController extends ApiController
             $user = User::find(Auth::guard('api')->user()->id);
 
             if (!$user) {
-                return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+                return parent::sendError('No Current User', 216);
             }
 
             if (!Hash::check($request->password_current, $user->password)) {
                 return parent::sendError('The current password is incorrect. Please check and re-enter.', 217);
             }
+            if (Hash::check($request->password, $user->password)) {
+                return parent::sendError('The password does not change. Please check and re-enter.', 217);
+            }
 
             $user->password = $request->password;
-            $user->api_token = Str::random(64);
             $user->save();
 
             return parent::sendResponse('status', "success", 'OK');
         } catch (\Exception $e) {
-            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+            return parent::sendError($e->getMessage(), 216);
         }
     }
 

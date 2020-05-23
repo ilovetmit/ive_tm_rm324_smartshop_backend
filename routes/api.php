@@ -81,7 +81,9 @@ Route::prefix('v1')->group(function () {
 
         //Api User Address
         Route::get('address', 'Api\v1\Information\AddressController@getAddress');
+        Route::get('address_list', 'Api\v1\Information\AddressController@getAddressList');
         Route::post('address', 'Api\v1\Information\AddressController@updateAddress');
+        Route::delete('address/{id}', 'Api\v1\Information\AddressController@deleteAddress');
 
         //Api User List
         Route::get('user/list', 'Api\v1\User\UserController@user_list');
