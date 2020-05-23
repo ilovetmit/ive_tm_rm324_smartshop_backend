@@ -62,21 +62,16 @@ class LockerController extends ApiController
                 return parent::sendError('Item Data Error', 216);
             }
             if ($locker) {
-                // $user = User::find(Auth::guard('api')->user()->id);
+                $user = User::find(Auth::guard('api')->user()->id);
                 $price = $locker->per_hour_price * $request->get('time');
                 if ($price != $price) {
                     return parent::sendError('price cal error', 216);
                 }
-                $user = User::find(1);
                 $user_account = $user->hasBankAccount;
                 $toUser = User::where('email', $request->get('to'))->first();
                 if ($toUser) {
-                    if ($request->get('account') == 'VitCoin') {
-                        // if ($price > $user_account->ive_coin) {
-                        //     return parent::sendError('You do not have enough VitCoin', 216);
-                        // }
-                        // $userBalance = $user_account->ive_coin = $user_account->ive_coin - $price;
-                        // $user_account->save();
+                    if ($request->get('account') == 'VitCoin') { //todo VitCoin Locker Payment
+
                     } elseif ($request->get('account') == 'Saving') {
                         if ($price > $user_account->saving_account) {
                             return parent::sendError('You do not have enough money', 216);
@@ -103,7 +98,7 @@ class LockerController extends ApiController
                 $transactions = new Transaction;
                 $transactions->user_id = $user->id;
                 // $transactions->type = config('constants.TRANSACTIONS_TYPE.LOCKER');
-                $transactions->header = "Locker #" . $locker->locker_id . " to " . $request->to . " (" . $request->get('time') . " day)";
+                $transactions->header = "Locker #" . $locker->id . " to " . $request->to . " (" . $request->get('time') . " day)";
                 $transactions->amount = $price;
                 $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('account')];
@@ -119,7 +114,7 @@ class LockerController extends ApiController
                 $lockerTransaction->remark = $request->remark;
                 $lockerTransaction->save();
 
-                return parent::sendResponse('locker', $lockerTransaction, '#' . $locker->locker_id . ' Locker open');
+                return parent::sendResponse('locker', $lockerTransaction, '#' . $locker->id . ' Locker open');
             } else {
                 return parent::sendError('There are currently no available lockers.', 216);
             }
@@ -134,7 +129,7 @@ class LockerController extends ApiController
     public function take_list()
     {
         try {
-            $lockers = LockerTransaction::with('hasTransaction.hasUser')->where('deadline', '<>',  null)->where('recipient_user_id', 1)->get();
+            $lockers = LockerTransaction::with('hasTransaction.hasUser')->where('deadline', '<>',  null)->where('recipient_user_id', Auth::guard('api')->user()->id)->get();
             return parent::sendResponse('data', $lockers, 'Locker Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
@@ -176,7 +171,7 @@ class LockerController extends ApiController
     //     try {
     //         $user = User::find(Auth::guard('api')->user()->id);
     //         $check = LockerTransaction::where('locker_id', $request->locker_id)
-    //             ->where('user_id', Auth::guard('api')->user()->user_id)
+    //             ->where('user_id', Auth::guard('api')->user()->id)
     //             ->where('status', "1")
     //             ->first();
 
@@ -185,7 +180,7 @@ class LockerController extends ApiController
     //         }
 
     //         $locker = new LockerTransaction;
-    //         $locker->user_id = Auth::guard('api')->user()->user_id;
+    //         $locker->user_id = Auth::guard('api')->user()->id;
     //         $locker->locker_id = $request->locker_id;
     //         $locker->status = "1";
     //         $locker->save();
@@ -205,7 +200,7 @@ class LockerController extends ApiController
     //     try {
 
     //         $transactions = new Transaction;
-    //         $transactions->user_id = Auth::guard('api')->user()->user_id;
+    //         $transactions->user_id = Auth::guard('api')->user()->id;
     //         $transactions->type = config('constants.TRANSACTIONS_TYPE.LOCKER');
     //         $transactions->title = "Locker #" . $id . " Test";
     //         $transactions->amount = 0;
@@ -215,8 +210,8 @@ class LockerController extends ApiController
     //         $transactions->save();
 
     //         $locker = new LockerTransaction;
-    //         $locker->user_id = Auth::guard('api')->user()->user_id;
-    //         $locker->to_user_id = Auth::guard('api')->user()->user_id;
+    //         $locker->user_id = Auth::guard('api')->user()->id;
+    //         $locker->to_user_id = Auth::guard('api')->user()->id;
     //         $locker->item = "Test Locker";
     //         $locker->locker_id = $id;
     //         $locker->transactions_id = $transactions->id;
