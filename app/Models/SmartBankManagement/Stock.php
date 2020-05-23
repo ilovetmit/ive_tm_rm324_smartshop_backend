@@ -25,7 +25,12 @@ class Stock extends Model
         'description'
     ];
 
-    public function unserialize($value)
+    public function getIconAttribute($value)
+    {
+        return unserialize($value);
+    }
+    
+    public function getDataAttribute($value)
     {
         return unserialize($value);
     }

@@ -97,7 +97,7 @@
                         @foreach($rows as $row)
                         <a href="javascript:setData('{{$row->code}}')" class="message d-flex align-items-center"
                             onclick="setData('{{$row->code}}')">
-                            <div class="profile"><img src="{{unserialize($row->icon)[0]}}" alt="{{$row->name}}" class="logo-photo">
+                            <div class="profile"><img src="{{$row->icon[0]}}" alt="{{$row->name}}" class="logo-photo">
                             </div>
                             <div class="content"><strong class="d-block">{{$row->name}}</strong><span
                                     class="d-block">{{$row->code}}.HK</span></div>
@@ -219,7 +219,7 @@
                 case "{{$row->code}}":
                     name = "{{$row->name}}";
                     data = [
-                        @foreach(unserialize($row->data) as $data)
+                        @foreach($row->data as $data)
                         {{$data}},
                         @endforeach
                     ];
