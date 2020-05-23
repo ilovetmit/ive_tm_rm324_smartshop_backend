@@ -77,6 +77,7 @@ class VendingProductController extends ApiController
                 $productTransaction->save();
 
                 $vendingProduct->quantity = $vendingProduct->quantity - 1;
+                $vendingProduct->status = 1;
                 $vendingProduct->save();
             } else {
                 return parent::sendError('No quantity left', 216);
