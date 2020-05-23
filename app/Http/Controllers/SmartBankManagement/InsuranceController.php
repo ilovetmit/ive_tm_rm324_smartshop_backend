@@ -41,7 +41,7 @@ class InsuranceController extends Controller
             $isInFileType = in_array($extension, $photoTypes);
 
             if ($isInFileType) {
-                $file = $request->file('image')->store('images/in/');
+                $file = $request->file('image')->store('public/in/');
                 $data['image'] = basename($file);
             } else {
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
@@ -54,7 +54,7 @@ class InsuranceController extends Controller
                 'quarterly' => $data['priceQuarterly'],
                 'yearly'    => $data['priceYearly'],
             ]),
-            "image" => serialize(array('images/in/'.$data['image'])),
+            "image" => serialize(array($data['image'])),
             "description" => $data['description'],
         ]);
         return redirect()->route('SmartBankManagement.Insurances.index');
@@ -87,7 +87,7 @@ class InsuranceController extends Controller
             $isInFileType = in_array($extension, $photoTypes);
 
             if ($isInFileType) {
-                $file = $request->file('image')->store('public/images/in/');
+                $file = $request->file('image')->store('public/in/');
                 $data['image'] = basename($file);
             } else {
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
@@ -100,7 +100,7 @@ class InsuranceController extends Controller
                 'quarterly' => $data['priceQuarterly'],
                 'yearly'    => $data['priceYearly'],
             ]),
-            "image" => serialize(array('images/in/'.$data['image'])),
+            "image" => serialize(array($data['image'])),
             "description" => $data['description'],
         ]);
         return redirect()->route('SmartBankManagement.Insurances.index');

@@ -48,7 +48,7 @@
                             {{ trans('cruds.fields.image') }}
                         </th>
                         <td>
-                            <img src="{{ asset($insurance->image[0]) }}" width="300px">
+                            <img src="{{ asset('storage/in/'.$insurance->image[0]) }}" width="300px">
                         </td>
                     </tr>
                     <tr>

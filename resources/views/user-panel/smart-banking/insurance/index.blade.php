@@ -30,7 +30,7 @@
                         @foreach ($rows as $row)
                         <div class="card">
 
-                            <img src="{{ asset($row->image[0]) }}" alt="{{$row->name}}" class="card-img-top img-fluid">
+                            <img src="{{ asset('storage/in/'.$row->image[0]) }}" alt="{{$row->name}}" class="card-img-top img-fluid">
 
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase">{{$row->name}}</h5>
