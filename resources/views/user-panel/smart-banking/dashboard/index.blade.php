@@ -22,11 +22,10 @@
                         <div class="title">
                             <div class="icon"><i class="icon-user-1"></i></div><strong>Saving A/C</strong>
                         </div>
-                        <div class="number dashtext-1">$ {{ auth()->user()->saving_account }}</div>
+                        <div class="number dashtext-1">$ {{ $saving_account[0] }}</div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0"
-                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+                        <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
                     </div>
                 </div>
             </div>
@@ -36,11 +35,10 @@
                         <div class="title">
                             <div class="icon"><i class="icon-contract"></i></div><strong>Current A/C</strong>
                         </div>
-                        <div class="number dashtext-2">$ {{ auth()->user()->current_account }}</div>
+                        <div class="number dashtext-2">$ {{ $current_account[0] }} </div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-2"></div>
+                        <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-2"></div>
                     </div>
                 </div>
             </div>
@@ -50,11 +48,10 @@
                         <div class="title">
                             <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>VitCoin</strong>
                         </div>
-                        <div class="number dashtext-3">{{ auth()->user()->ive_coin }}</div>
+                        <div class="number dashtext-3"> 0 </div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
+                        <div role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
                     </div>
                 </div>
             </div>
@@ -63,13 +60,12 @@
                     <div class="progress-details d-flex align-items-end justify-content-between">
                         <div class="title">
                             <div class="icon"><i class="icon-writing-whiteboard"></i></div><strong>Total
-                                Relationship</strong>
+                                Balance</strong>
                         </div>
-                        <div class="number dashtext-4">$3500</div>
+                        <div class="number dashtext-4">$ {{ $saving_account[0]+$current_account[0] }} </div>
                     </div>
                     <div class="progress progress-template">
-                        <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                            aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
+                        <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
                     </div>
                 </div>
             </div>
@@ -77,7 +73,7 @@
     </div>
 </section>
 <!-- TODO: the following part was copied from the dark admin tempalte directly, fixe the JS/CSS thing so that it can display normally, do not chagne any layout, i will review the necessary change after file path corrected and make the UI correctly display -->
-<section class="no-padding-bottom">
+<!-- <section class="no-padding-bottom">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4">
@@ -95,54 +91,69 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <section class="no-padding-bottom">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
                 <div class="stats-2-block block d-flex">
                     <div class="stats-2 d-flex">
-                        <div class="stats-2-arrow low"><i class="fa fa-caret-down"></i></div>
-                        <div class="stats-2-content"><strong class="d-block">5.657</strong><span
-                                class="d-block">Standard Scans</span>
-                            <div class="progress progress-template progress-small">
-                                <div role="progressbar" style="width: 60%;" aria-valuenow="30" aria-valuemin="0"
-                                    aria-valuemax="100"
-                                    class="progress-bar progress-bar-template progress-bar-small dashbg-2"></div>
-                            </div>
+                        <div class="stats-2-arrow low">
+                        </div>
+                        <div class="stats-2-content">
+                            <strong class="d-block">Saving A/C</strong>
+                            <span class="d-block">latest transaction</span>
                         </div>
                     </div>
                     <div class="stats-2 d-flex">
-                        <div class="stats-2-arrow height"><i class="fa fa-caret-up"></i></div>
-                        <div class="stats-2-content"><strong class="d-block">3.1459</strong><span class="d-block">Team
-                                Scans</span>
-                            <div class="progress progress-template progress-small">
-                                <div role="progressbar" style="width: 35%;" aria-valuenow="30" aria-valuemin="0"
-                                    aria-valuemax="100"
-                                    class="progress-bar progress-bar-template progress-bar-small dashbg-3"></div>
-                            </div>
+                        <div class="stats-2-arrow height">
+                        </div>
+                        <div class="stats-2-content">
+                            <span class="d-block">&nbsp;</span>
+                            <strong class="d-block">+ HKD$ 30</strong>
                         </div>
                     </div>
                 </div>
-                <div class="stats-3-block block d-flex">
-                    <div class="stats-3"><strong class="d-block">745</strong><span class="d-block">Total requests</span>
-                        <div class="progress progress-template progress-small">
-                            <div role="progressbar" style="width: 35%;" aria-valuenow="30" aria-valuemin="0"
-                                aria-valuemax="100"
-                                class="progress-bar progress-bar-template progress-bar-small dashbg-1"></div>
+
+                <div class="stats-2-block block d-flex">
+                    <div class="stats-2 d-flex">
+                        <div class="stats-2-arrow low">
+                        </div>
+                        <div class="stats-2-content">
+                            <strong class="d-block">Current A/C</strong>
+                            <span class="d-block">latest transaction</span>
                         </div>
                     </div>
-                    <div class="stats-3 d-flex justify-content-between text-center">
-                        <div class="item"><strong class="d-block strong-sm">4.124</strong><span
-                                class="d-block span-sm">Threats</span>
-                            <div class="line"></div><small>+246</small>
+                    <div class="stats-2 d-flex">
+                        <div class="stats-2-arrow height">
                         </div>
-                        <div class="item"><strong class="d-block strong-sm">2.147</strong><span
-                                class="d-block span-sm">Neutral</span>
-                            <div class="line"></div><small>+416</small>
+                        <div class="stats-2-content">
+                            <span class="d-block">&nbsp;</span>
+                            <strong class="d-block">- HKD$ 130</strong>
                         </div>
                     </div>
                 </div>
+
+                <div class="stats-2-block block d-flex">
+                    <div class="stats-2 d-flex">
+                        <div class="stats-2-arrow low">
+                        </div>
+                        <div class="stats-2-content">
+                            <strong class="d-block">VITCOIN</strong>
+                            <span class="d-block">latest transaction</span>
+                        </div>
+                    </div>
+                    <div class="stats-2 d-flex">
+                        <div class="stats-2-arrow height">
+                        </div>
+                        <div class="stats-2-content">
+                            <span class="d-block">&nbsp;</span>
+                            <strong class="d-block">HKD$ 0</strong>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <div class="col-lg-6">
                 <div class="drills-chart block">
@@ -152,7 +163,7 @@
         </div>
     </div>
 </section>
-<section class="no-padding-bottom">
+<!-- <section class="no-padding-bottom">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4">
@@ -265,7 +276,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <section class="margin-bottom-sm">
     <div class="container-fluid">
         <div class="row d-flex align-items-stretch">
@@ -323,7 +334,7 @@
         </div>
     </div>
 </section>
-<section class="no-padding-bottom">
+<!-- <section class="no-padding-bottom">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
@@ -403,7 +414,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <section>
     <div class="container-fluid">
         <div class="row">
@@ -459,8 +470,7 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <img width="300"
-                        src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chld=L|0&chl=akshdkjajhdksahslkdhdlksdydiudysiusydaiosydaoiuysaoiydasoiusydsaoidyduisadasdasdaadsaadd1ad3sads4d6sadsad45dsadddsa/,sad/sadsad/.,sadd,.y">
+                    <img width="300" src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chld=L|0&chl=akshdkjajhdksahslkdhdlksdydiudysiusydaiosydaoiuysaoiydasoiusydsaoidyduisadasdasdaadsaadd1ad3sads4d6sadsad45dsadddsa/,sad/sadsad/.,sadd,.y">
                 </div>
             </div>
             <div class="modal-footer">

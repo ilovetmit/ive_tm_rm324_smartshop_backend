@@ -32,8 +32,9 @@ class InsuranceController extends Controller
             'price'         => 'required',
             'description'   => 'nullable',
         ]);
+        $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -44,7 +45,7 @@ class InsuranceController extends Controller
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-        $insurance = Insurance::create($request->all());
+        $insurance = Insurance::create($data);
         return redirect()->route('SmartBankManagement.Insurances.index');
     }
     
@@ -62,11 +63,13 @@ class InsuranceController extends Controller
     {
         $request->validate([
             'name'          => 'required|unique:insurances,name' . ($insurance->id ? ",$insurance->id" : ''),
+            'image'         => 'required',
             'price'         => 'required',
             'description'   => 'nullable',
         ]);
+        $data = $request->all();
         if (isset($request->image)) {
-            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('image')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -77,7 +80,7 @@ class InsuranceController extends Controller
                 return back()->withErrors('Create Fail, Image type error, only png, jpg, jpeg');
             }
         }
-        $insurance->update($request->all());
+        $insurance->update($data);
         return redirect()->route('SmartBankManagement.Insurances.index');
     }
     

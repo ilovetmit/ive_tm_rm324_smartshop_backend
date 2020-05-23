@@ -35,7 +35,7 @@ class StockController extends Controller
         ]);
         $data = $request->all();
         if (isset($request->icon)) {
-            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('icon')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
@@ -70,7 +70,7 @@ class StockController extends Controller
         ]);
         $data = $request->all();
         if (isset($request->icon)) {
-            $photoTypes = array('png', 'jpg', 'jpeg','PNG', 'JPG', 'JPEG');
+            $photoTypes = array('png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG');
             $extension = $request->file('icon')->getClientOriginalExtension();
             $isInFileType = in_array($extension, $photoTypes);
 
