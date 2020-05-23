@@ -108,14 +108,14 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.6.1/dist/echo.common.min.js"></script>
-<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+<script src="//{{ Request::getHost() }}:6002/socket.io/socket.io.js"></script>
 <script>
     window.Echo = new Echo({
         broadcaster: 'socket.io',
-        host: window.location.hostname + ':6001'
+        host: window.location.hostname + ':6002'
     });
     window.Echo.channel('qrcodeLogin')
-        .listen('.{{$token}}', (e) => { 
+        .listen('.{{$token}}', (e) => {
             if(e.data === 'REFRESH'){
                 Swal.fire({
                 type: 'error',
@@ -128,9 +128,9 @@
             }else{
                 window.location.href = "{{URL::action('SShopController@login_qr_approve')}}?one_time_password=" + e.data;
             }
-            
+
         });
-        
+
 </script>
 
 </html>
