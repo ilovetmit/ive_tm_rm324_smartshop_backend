@@ -46,7 +46,7 @@ class ProductTableSeeder extends Seeder
             'Chair',
             'Spoon',
             'Sport Shoes',
-            'Hand Nag',
+            'Hand Bag',
             'Sun-Glass',
             'Trendy Fashion'
         ];
