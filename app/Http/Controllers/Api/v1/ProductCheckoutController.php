@@ -70,6 +70,11 @@ class ProductCheckoutController extends ApiController
             foreach ($productList as $product_data) {
                 $product_id = $product_data['has_shop_product']['id'];
                 $product = Product::find($product_id);
+                $rfid_id = $product_data['id'];
+
+                $rfid = ShopProductInventory::find($rfid_id);
+                $rfid->is_sold = 2;
+                $rfid->save();
 
                 $productTransaction = new ProductTransaction;
                 $productTransaction->transaction_id = $transactions->id;

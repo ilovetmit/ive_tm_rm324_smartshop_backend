@@ -31,7 +31,12 @@ class AddressController extends ApiController
     {
         try {
             $addressList = Address::select('id', 'address1', 'address2', 'district')->where('user_id',  Auth::guard('api')->user()->id)->orderBy('default', 'desc')->orderBy('id')->get();
-            return parent::sendResponse('data', $addressList, 'Address List');
+            $data = [];
+            foreach ($addressList as $address) {
+                $text = $address->address1 . ', ' . $address->address2 . ', ' . config('constant.address_district.' . $address->district);
+                array_push($data, $text);
+            }
+            return parent::sendResponse('data', $data, 'Address List');
         } catch (\Exception $e) {
             return parent::sendError($e->getMessage(), 216);
         }
