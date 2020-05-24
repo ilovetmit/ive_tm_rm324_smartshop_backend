@@ -53,7 +53,7 @@
                         </td>
                         <td>
                             @include('_module.datatable.badge_tag.tag',[
-                            'type' => config('constant.badge_type')[config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold]]),
+                            'type' => config('constant.badge_type')[config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold]],
                             'element' => config('constant.shopProductInventories_isSold')[$shopProductInventory->is_sold] ?? '',
                             ])
                         </td>
