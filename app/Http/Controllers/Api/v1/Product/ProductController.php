@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Product;
 use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductResource;
+use App\Models\ProductManagement\OnSell\ShopProduct;
 use App\Models\ProductManagement\Product;
 use App\Models\ProductManagement\ProductWall;
 use Illuminate\Http\Request;
@@ -39,6 +40,11 @@ class ProductController extends ApiController
                 $qr_wall_id = ProductWall::where('qrcode', $id)->first();
                 $id = $qr_wall_id->product_id;
                 $headerTitle = $qr_wall_id->message;
+            }
+            $check_product_qr = substr($id, 0, 8);
+            if ($check_product_qr == "PRODUCT") {
+                $qr_product = ShopProduct::where('qrcode', $id)->first();
+                $id = $qr_product->product_id;
             }
 
             $product = Product::find($id);

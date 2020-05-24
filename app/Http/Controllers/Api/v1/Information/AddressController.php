@@ -46,18 +46,26 @@ class AddressController extends ApiController
     {
         try {
             if ($request->type == "add") {
-                $address = Address::where('user_id', Auth::guard('api')->user()->id)->get();
-                $address = new Address;
-                $address->user_id = Auth::guard('api')->user()->id;
-                $address->district = $request->district;
-                $address->address1 = $request->address1;
-                $address->address2 = $request->address2;
-                $address->default = 1;
-                $oldAddress = Address::where('user_id', Auth::guard('api')->user()->id)->where('default', 1)->first();
-                $oldAddress->default = 0;
-                $oldAddress->save();
-                $address->save();
-                return parent::sendResponse('data', $address, 'Success, You can change default Address by Long Press');
+                $address = Address::where('user_id', Auth::guard('api')->user()->id)->first();
+                if ($address) {
+                    $address = new Address;
+                    $address->user_id = Auth::guard('api')->user()->id;
+                    $address->district = $request->district;
+                    $address->address1 = $request->address1;
+                    $address->address2 = $request->address2;
+                    $address->default = 0;
+                    $address->save();
+                    return parent::sendResponse('data', $address, 'Success, You can change default Address by Long Press');
+                } else {
+                    $address = new Address;
+                    $address->user_id = Auth::guard('api')->user()->id;
+                    $address->district = $request->district;
+                    $address->address1 = $request->address1;
+                    $address->address2 = $request->address2;
+                    $address->default = 1;
+                    $address->save();
+                    return parent::sendResponse('data', $address, 'Success, It is a default address!');
+                }
             } elseif ($request->type == "update") {
                 $address = Address::find($request->address_id);
                 if ($address->hasUser->id == Auth::guard('api')->user()->id) {

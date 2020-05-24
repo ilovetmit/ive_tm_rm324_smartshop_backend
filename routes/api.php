@@ -92,7 +92,7 @@ Route::prefix('v1')->group(function () {
 
         //Api Auth
         Route::post('login', 'Api\v1\AuthController@login');
-        Route::post('register', 'Api\v1\AuthController@register');
+        // Route::post('register', 'Api\v1\AuthController@register');
         //Api Check Password (before purchase)
         Route::post('check_password', 'Api\v1\User\UserController@check_password');
     });
