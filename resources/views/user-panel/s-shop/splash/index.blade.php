@@ -97,6 +97,7 @@
 	}
     </script>
 </body>
+<script src="{{asset('js/app.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
 </script>
@@ -107,24 +108,12 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.6.1/dist/echo.common.min.js"></script>
-<script src="//{{ Request::getHost() }}:6002/socket.io/socket.io.js"></script>
 <script>
-    window.Echo = new Echo({
-        broadcaster: 'socket.io',
-        host: window.location.hostname + ':6002'
-    });
+
     window.Echo.channel('qrcodeLogin')
         .listen('.{{$token}}', (e) => {
             if(e.data === 'REFRESH'){
-                Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                text: 'You need to refresh the broswer',
-                preConfirm: () => {
-                    window.location.reload();
-                }
-                })
+                window.location.reload();
             }else{
                 window.location.href = "{{URL::action('SShopController@login_qr_approve')}}?one_time_password=" + e.data;
             }

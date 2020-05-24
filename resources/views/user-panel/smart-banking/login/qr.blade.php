@@ -56,29 +56,14 @@
 @stop
 
 @section('body_end_scripts')
-<script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.6.1/dist/echo.common.min.js"></script>
-<script src="//{{ Request::getHost() }}:6002/socket.io/socket.io.js"></script>
 <script>
-    window.Echo = new Echo({
-        broadcaster: 'socket.io',
-        host: window.location.hostname + ':6002'
-    });
     window.Echo.channel('qrcodeLogin')
         .listen('.{{$token}}', (e) => {
             if(e.data === 'REFRESH'){
-                Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                text: 'You need to refresh the broswer',
-                preConfirm: () => {
-                    window.location.reload();
-                }
-                })
+                window.location.reload();
             }else{
                 window.location.href = "{{URL::action('SmartBankingController@login_qr_approve')}}?one_time_password=" + e.data;
             }
-
         });
-
 </script>
 @stop
