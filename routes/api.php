@@ -48,6 +48,7 @@ Route::prefix('v1')->group(function () {
 
         //Api Bank
         Route::get('bank', 'Api\v1\Information\BankAccountController@getBank');
+        Route::post('banking_login', 'Api\v1\Information\BankAccountController@banking_login');
         //Api Bank(Transaction)
         Route::get('transaction', 'Api\v1\Transaction\TransactionController@getTransaction');
         //Api Bank(Stock)
@@ -81,7 +82,9 @@ Route::prefix('v1')->group(function () {
 
         //Api User Address
         Route::get('address', 'Api\v1\Information\AddressController@getAddress');
+        Route::get('address_list', 'Api\v1\Information\AddressController@getAddressList');
         Route::post('address', 'Api\v1\Information\AddressController@updateAddress');
+        Route::delete('address/{id}', 'Api\v1\Information\AddressController@deleteAddress');
 
         //Api User List
         Route::get('user/list', 'Api\v1\User\UserController@user_list');
@@ -89,7 +92,7 @@ Route::prefix('v1')->group(function () {
 
         //Api Auth
         Route::post('login', 'Api\v1\AuthController@login');
-        Route::post('register', 'Api\v1\AuthController@register');
+        // Route::post('register', 'Api\v1\AuthController@register');
         //Api Check Password (before purchase)
         Route::post('check_password', 'Api\v1\User\UserController@check_password');
     });

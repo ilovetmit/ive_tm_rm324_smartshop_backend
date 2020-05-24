@@ -1,4 +1,5 @@
 <!-- JavaScript files-->
+<script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset("vendor/smart_shop_user/vendor/jquery/jquery.min.js")}}"></script>
 <script src="{{asset("vendor/smart_shop_user/vendor/popper.js/umd/popper.min.js")}}"> </script>
 <script src="{{asset("vendor/smart_shop_user/vendor/bootstrap/js/bootstrap.min.js")}}"></script>

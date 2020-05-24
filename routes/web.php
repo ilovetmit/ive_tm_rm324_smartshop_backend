@@ -178,3 +178,12 @@ Route::group(['prefix' => 'smart-banking', 'as' => 'sbanking.'], function () {
 Route::group(['prefix' => 's-shop-monitor', 'as' => 'smonitor.'], function () {
     Route::get('/', 'SShopMonitorController@index')->name('index');
 });
+
+
+/***********************************************
+ * Static Documents
+ ***********************************************/
+Route::group(['prefix' => 'documents'], function () {
+    Route::get('privacy-policy', 'DocumentsController@privacy_policy'); //fixed
+    Route::get('terms-and-conditions', 'DocumentsController@terms_and_conditions'); //fixed
+});

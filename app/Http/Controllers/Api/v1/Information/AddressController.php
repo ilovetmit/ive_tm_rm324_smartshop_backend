@@ -27,18 +27,45 @@ class AddressController extends ApiController
         }
     }
 
+    public function getAddressList()
+    {
+        try {
+            $addressList = Address::select('id', 'address1', 'address2', 'district')->where('user_id',  Auth::guard('api')->user()->id)->orderBy('default', 'desc')->orderBy('id')->get();
+            $data = [];
+            foreach ($addressList as $address) {
+                $text = $address->address1 . ', ' . $address->address2 . ', ' . config('constant.address_district.' . $address->district);
+                array_push($data, $text);
+            }
+            return parent::sendResponse('data', $data, 'Address List');
+        } catch (\Exception $e) {
+            return parent::sendError($e->getMessage(), 216);
+        }
+    }
+
     public function updateAddress(Request $request)
     {
         try {
             if ($request->type == "add") {
-                $address = Address::where('user_id', Auth::guard('api')->user()->id)->get();
-                $address = new Address;
-                $address->user_id = Auth::guard('api')->user()->id;
-                $address->district = $request->district;
-                $address->address1 = $request->address1;
-                $address->address2 = $request->address2;
-                $address->save();
-                return parent::sendResponse('data', $address, 'Add Address');
+                $address = Address::where('user_id', Auth::guard('api')->user()->id)->first();
+                if ($address) {
+                    $address = new Address;
+                    $address->user_id = Auth::guard('api')->user()->id;
+                    $address->district = $request->district;
+                    $address->address1 = $request->address1;
+                    $address->address2 = $request->address2;
+                    $address->default = 0;
+                    $address->save();
+                    return parent::sendResponse('data', $address, 'Success, You can change default Address by Long Press');
+                } else {
+                    $address = new Address;
+                    $address->user_id = Auth::guard('api')->user()->id;
+                    $address->district = $request->district;
+                    $address->address1 = $request->address1;
+                    $address->address2 = $request->address2;
+                    $address->default = 1;
+                    $address->save();
+                    return parent::sendResponse('data', $address, 'Success, It is a default address!');
+                }
             } elseif ($request->type == "update") {
                 $address = Address::find($request->address_id);
                 if ($address->hasUser->id == Auth::guard('api')->user()->id) {
@@ -66,6 +93,30 @@ class AddressController extends ApiController
                 }
             }
             return parent::sendError("error-type", 216);
+        } catch (\Exception $e) {
+            return parent::sendError($e->getMessage(), 216);
+        }
+    }
+
+    public function deleteAddress($id)
+    {
+        try {
+
+            $address = Address::find($id);
+            if ($address->hasUser->id == Auth::guard('api')->user()->id) {
+                if ($address->default == 1) {
+                    $address->delete();
+                    $newDefaultAddress = Address::where('user_id', Auth::guard('api')->user()->id)->where('default', 0)->first();
+                    $newDefaultAddress->default = 1;
+                    $newDefaultAddress->save();
+                    return parent::sendResponse('data', true, 'Delete Address with Change Default');
+                } else {
+                    $address->delete();
+                    return parent::sendResponse('data', true, 'Delete Address');
+                }
+            } else {
+                return parent::sendError("This is not your address", 216);
+            }
         } catch (\Exception $e) {
             return parent::sendError($e->getMessage(), 216);
         }

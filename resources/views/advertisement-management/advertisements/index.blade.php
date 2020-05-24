@@ -25,6 +25,9 @@
                             {{ trans('cruds.fields.id') }}
                         </th>
                         <th>
+                            {{ trans('cruds.fields.image') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.fields.header') }}
                         </th>
                         <th>
@@ -46,6 +49,9 @@
                         </td>
                         <td>
                             {{ $advertisement->id ?? '' }}
+                        </td>
+                        <td>
+                            <img src="{{ asset('storage/ad/ad/'.$advertisement->image) }}" width="150px">
                         </td>
                         <td>
                             {{ $advertisement->header ?? '' }}
