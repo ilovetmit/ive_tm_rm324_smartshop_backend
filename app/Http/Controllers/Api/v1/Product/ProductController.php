@@ -41,7 +41,7 @@ class ProductController extends ApiController
                 $id = $qr_wall_id->product_id;
                 $headerTitle = $qr_wall_id->message;
             }
-            $check_product_qr = substr($id, 0, 8);
+            $check_product_qr = substr($id, 0, 7);
             if ($check_product_qr == "PRODUCT") {
                 $qr_product = ShopProduct::where('qrcode', $id)->first();
                 $id = $qr_product->product_id;
