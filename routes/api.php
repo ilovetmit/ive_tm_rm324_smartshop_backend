@@ -28,10 +28,6 @@ Route::prefix('v1')->group(function () {
 
         Route::post('logout', 'Api\v1\AuthController@logout');
 
-
-        Route::post('face', 'Api\v1\FaceController@face_scan');
-        Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
-        Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
         Route::post('checkout', 'Api\v1\ProductCheckoutController@checkout');
         Route::post('checkout_transaction', 'Api\v1\ProductCheckoutController@checkout_transaction');
         // Route::get('user', 'Api\v1\AuthController@user');
@@ -96,10 +92,15 @@ Route::prefix('v1')->group(function () {
         //Api Check Password (before purchase)
         Route::post('check_password', 'Api\v1\User\UserController@check_password');
     });
-
+    
+    //    Route::post('face', 'Api\v1\FaceController@face_scan');
+    Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
+    Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
 
     //Api Advertisment
     Route::get('advertisement', 'Api\v1\Advertisement\AdvertisementController@advertisement');
+
+    Route::get('test', 'Api\v1\TestController@test');
 });
 
 // v2 link for IoT device read -> old code design
@@ -137,4 +138,5 @@ Route::prefix('test')->group(function () {
     //     Route::get('remittancetransaction',     'Api\v1\Transaction\RemittanceTransactionController@getAll');
     //     Route::get('transaction',               'Api\v1\Transaction\TransactionController@getAll');
     //     Route::get('user',                      'Api\v1\User\UserController@getAll');
+
 });

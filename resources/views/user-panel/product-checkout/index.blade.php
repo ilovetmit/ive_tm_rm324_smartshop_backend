@@ -197,6 +197,14 @@
         }
     });
 
+    window.Echo.channel('smartshop_database_checkout')
+        .listen('Checkout', (e) => {
+            console.log(e);
+            if (e.data == 'REFRESH') {
+                window.location.reload();
+            }
+        });
+
 
     window.Echo.channel('smartshop_database_rfid_scan')
         .listen('RFID', (e) => {

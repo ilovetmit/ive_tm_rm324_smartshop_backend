@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Events\Checkout;
 use App\Events\RFID;
 use App\Models\ProductManagement\OnSell\ShopProductInventory;
 use App\Models\UserManagement\User;
@@ -89,7 +90,7 @@ class ProductCheckoutController extends ApiController
 
 
             $data = $transactions->load("hasProduct_transaction", "hasProduct_transaction.hasProduct");
-
+            event(new Checkout("REFRESH"));
 
             return parent::sendResponse('data', $data, 'Buy Order Success');
         } catch (\Exception $e) {
