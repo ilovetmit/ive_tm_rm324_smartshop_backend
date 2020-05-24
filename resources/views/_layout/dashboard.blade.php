@@ -195,7 +195,7 @@
         //- STACKED BAR CHART - Total profit Status Chart
         //-------------------------------------------------
         var profitData = {
-            labels: ['JAN', 'FEB', 'MARch', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
             datasets: [{
                     label: 'Vending',
                     backgroundColor: 'rgba(60,141,188,0.9)',
