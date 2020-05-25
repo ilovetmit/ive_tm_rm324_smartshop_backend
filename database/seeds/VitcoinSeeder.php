@@ -95,10 +95,10 @@ class VitcoinSeeder extends Seeder
 
             foreach ($wallets as $wallet) {
                 Vitcoin::create($wallet);
-                if ($Isimport) {
-                    $this->MultiChain->importaddress($wallet['address']);
-                    $this->MultiChain->grant($wallet['address'], 'VitCoin.issue,receive,send');
-                }
+                // if ($Isimport) {
+                //     $this->MultiChain->importaddress($wallet['address']);
+                //     $this->MultiChain->grant($wallet['address'], 'VitCoin.issue,receive,send');
+                // }
             }
         } catch (\Throwable $th) {
             $output->writeln("Connect Multichain Failed. Seeding without importing addresses");

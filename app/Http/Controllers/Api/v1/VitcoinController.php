@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Events\MissionCompleted;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Traits\MultiChain;
 
 class VitcoinController extends Controller
 {
@@ -52,14 +51,5 @@ class VitcoinController extends Controller
     public function wallet()
     {
         return Auth::guard('api')->user()->hasVitcoin;
-    }
-
-    public function createkeypairs()
-    {
-        $Multichain = new MultiChain;
-        $keypairs = $Multichain->createkeypairs()[0];
-        $Multichain->importaddress($keypairs['address']);
-        $Multichain->grant($keypairs['address'], 'VitCoin.issue,receive,send');
-        return $keypairs;
     }
 }

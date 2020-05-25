@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1\User;
 
+use App\Events\MissionCompleted;
 use App\Http\Controllers\Api\v1\ApiController;
 use Illuminate\Http\Request;
 use App\Models\UserManagement\User;
@@ -53,8 +54,12 @@ class UserController extends ApiController
     public function update_profile(Request $request)
     {
         try {
-
+            $completed = false;
             $user = User::find(Auth::guard('api')->user()->id);
+
+            if ($user->birthday != null && $user->bio != null && $user->telephone != null && $user->gender != null)
+                $completed = true;
+
             if (!$user) {
                 return parent::sendError('User Not Found', 216);
             }
@@ -80,6 +85,11 @@ class UserController extends ApiController
                 'email' => $user->email,
                 'detail' => $user,
             ];
+
+            if (!$completed)
+                if ($user->birthday != null && $user->bio != null && $user->telephone != null && $user->gender != null)
+                    event(new MissionCompleted('M-324-15', Auth::id()));
+
             return parent::sendResponse('data', $query, 'Update Profile Data successfully.');
         } catch (\Exception $e) {
             return parent::sendError($e->getMessage(), 216);
