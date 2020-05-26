@@ -7,6 +7,8 @@ use App\Models\UserManagement\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Traits\PaymentGateway\Vitcoin;
+use App\Models\InformationManagement\Vitcoin as VitcoinModel;
 
 class AuthController extends Controller
 {
@@ -55,6 +57,10 @@ class AuthController extends Controller
 
         $success['token'] =  $user->createToken('SmartShop')->accessToken;
         $success['name'] =  $user->name;
+
+        VitcoinModel::create(array_merge(Vitcoin::createkeypairs(), [
+            'user_id' => $user->id
+        ]));
 
         return response()->json(['data' => $success], $this->successStatus);
     }
