@@ -20,7 +20,7 @@
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($shopProducts as $key => $shopProduct)
                     <option value="{{ $shopProduct->id }}"
-                        {{ old('shop_product_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ $shopProduct->id == $shopProductInventory->shop_product_id ? 'selected' : '' }}>
                         {{ $shopProduct->hasProduct->name }}
                     </option>
                     @endforeach
