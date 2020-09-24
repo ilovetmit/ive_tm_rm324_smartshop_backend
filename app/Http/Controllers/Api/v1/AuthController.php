@@ -18,7 +18,7 @@ class AuthController extends Controller
     /**
      * login api
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function login()
     {
@@ -34,7 +34,7 @@ class AuthController extends Controller
     /**
      * Register api
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request)
     {
