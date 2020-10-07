@@ -17,7 +17,7 @@
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($shopProducts as $key => $shopProduct)
                     <option value="{{ $shopProduct->id }}"
-                        {{ old('shop_product_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ old('shop_product_id') === $key ? 'selected' : '' }}>
                         {{ $shopProduct->hasProduct->name }}
                     </option>
                     @endforeach
@@ -45,7 +45,7 @@
                     <option value disabled {{ old('is_sold', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.shopProductInventories_isSold') as $key => $label)
-                    <option value="{{ $key }}" {{ old('is_sold', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('is_sold', '') === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

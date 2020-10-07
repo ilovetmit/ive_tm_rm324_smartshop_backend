@@ -38,7 +38,7 @@
                     <option value disabled {{ old('product_id', $productWall->product_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
-                    <option value="{{ $product->id }}" {{ old('product_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $product->id }}" {{ old('product_id', $productWall->product_id) === $key ? 'selected' : '' }}>
                         {{ $product->name }}
                     </option>
                     @endforeach

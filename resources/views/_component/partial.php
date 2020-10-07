@@ -44,7 +44,7 @@
     <select class="form-control select {{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender" id="gender" required>
         <option value disabled {{ old('gender', $user->gender) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
         @foreach(config('constant.gender') as $key => $label)
-        <option value="{{ $key }}" {{ old('gender', '') === (string) $key ? 'selected' : '' }}>
+        <option value="{{ $key }}" {{ old('gender') === $key ? 'selected' : '' }}>
             {{ $label }}
         </option>
         @endforeach
@@ -72,7 +72,7 @@
     <select class="form-control select {{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender" id="gender" required>
         <option value disabled {{ old('gender', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
         @foreach(config('constant.gender') as $key => $label)
-        <option value="{{ $key }}" {{ old('gender', '') === (string) $key ? 'selected' : '' }}>
+        <option value="{{ $key }}" {{ old('gender') === $key ? 'selected' : '' }}>
             {{ $label }}
         </option>
         @endforeach

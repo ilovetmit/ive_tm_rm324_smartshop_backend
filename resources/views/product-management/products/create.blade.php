@@ -65,7 +65,7 @@
                     <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.product_status') as $key => $label)
-                    <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('status') === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

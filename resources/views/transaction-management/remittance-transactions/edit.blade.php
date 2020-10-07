@@ -20,7 +20,7 @@
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($transactions as $key => $transaction)
                     <option value="{{ $transaction->id }}"
-                        {{ old('transaction_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ old('transaction_id',$remittanceTransaction->transaction_id) === $key ? 'selected' : '' }}>
                         {{ $transaction->id . $transaction->header }}
                     </option>
                     @endforeach
@@ -39,7 +39,7 @@
                         {{ old('payee_id', $remittanceTransaction->payee_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
-                    <option value="{{ $user->id }}" {{ old('payee_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}" {{ old('payee_id',$remittanceTransaction->payee_id) === $key ? 'selected' : '' }}>
                         {{ $user->id . $user->getFullNameAttribute() }}
                     </option>
                     @endforeach

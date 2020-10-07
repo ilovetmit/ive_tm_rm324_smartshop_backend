@@ -15,7 +15,7 @@
                     <option value disabled {{ old('user_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
-                    <option value="{{ $user->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}" {{ old('user_id') === $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
                     </option>
                     @endforeach
@@ -53,7 +53,7 @@
                     <option value disabled {{ old('district', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.address_district') as $key => $label)
-                    <option value="{{ $key }}" {{ old('district', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('district') === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

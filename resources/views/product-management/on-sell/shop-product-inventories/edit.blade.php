@@ -50,7 +50,7 @@
                         {{ old('is_sold', $shopProductInventory->is_sold) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.shopProductInventories_isSold') as $key => $label)
-                    <option value="{{ $key }}" {{ old('is_sold', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('is_sold', $shopProductInventory->is_sold) === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

@@ -17,7 +17,7 @@
                     <option value disabled {{ old('user_id', $device->user_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
-                    <option value="{{ $user->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}" {{ old('user_id',$device->user_id) === $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
                     </option>
                     @endforeach
@@ -45,7 +45,7 @@
                     <option value disabled {{ old('is_active', $device->is_active) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.device_isActive') as $key => $label)
-                    <option value="{{ $user->id }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}" {{ old('is_active',$device->is_active) === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

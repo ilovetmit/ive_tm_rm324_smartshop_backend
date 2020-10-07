@@ -17,7 +17,7 @@
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($transactions as $key => $transaction)
                     <option value="{{ $transaction->id }}"
-                        {{ old('transaction_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ old('transaction_id') === $key ? 'selected' : '' }}>
                         {{ $transaction->id . $transaction->header }}
                     </option>
                     @endforeach
@@ -35,7 +35,7 @@
                     <option value disabled {{ old('locker_id', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($lockers as $key => $locker)
-                    <option value="{{ $locker->id }}" {{ old('locker_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $locker->id }}" {{ old('locker_id') === $key ? 'selected' : '' }}>
                         Locker {{ $locker->id }}
                     </option>
                     @endforeach
@@ -54,7 +54,7 @@
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
                     <option value="{{ $user->id }}"
-                        {{ old('recipient_user_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ old('recipient_user_id') === $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
                     </option>
                     @endforeach

@@ -35,7 +35,7 @@
                     <option value disabled {{ old('is_active', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.locker_isActive') as $key => $label)
-                    <option value="{{ $key }}" {{ old('is_active', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('is_active', '') === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach
@@ -53,7 +53,7 @@
                     <option value disabled {{ old('is_using', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.locker_isUsing') as $key => $label)
-                    <option value="{{ $key }}" {{ old('is_using', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('is_using', '') === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

@@ -20,7 +20,7 @@
                         {{ old('product_id', $vendingProduct->product_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
-                    <option value="{{ $product->id }}" {{ old('product_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $product->id }}" {{ old('product_id',$vendingProduct->product_id) === $key ? 'selected' : '' }}>
                         {{ $product->name }}
                     </option>
                     @endforeach
@@ -38,7 +38,7 @@
                     <option value disabled {{ old('channel', $product->channel) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.vending_channel') as $key => $label)
-                    <option value="{{ $key }}" {{ old('channel', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('channel',$product->channel) === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

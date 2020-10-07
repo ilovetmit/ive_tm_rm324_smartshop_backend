@@ -27,7 +27,7 @@
                     <option value disabled {{ old('user_id', $transaction->user_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
-                    <option value="{{ $user->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}" {{ old('user_id',$transaction->user_id) === $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
                     </option>
                     @endforeach
@@ -65,7 +65,7 @@
                     <option value disabled {{ old('currency', $transaction->currency) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.transaction_currency') as $key => $label)
-                    <option value="{{ $key }}" {{ old('currency', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('currency',$transaction->currency) === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

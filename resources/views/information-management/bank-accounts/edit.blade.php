@@ -17,7 +17,7 @@
                     <option value disabled {{ old('user_id', $bankAccount->user_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($users as $key => $user)
-                    <option value="{{ $bankAccount->id }}" {{ old('user_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $bankAccount->id }}" {{ old('user_id',$bankAccount->user_id) === $key ? 'selected' : '' }}>
                         {{ $user->getFullNameAttribute() }}
                     </option>
                     @endforeach

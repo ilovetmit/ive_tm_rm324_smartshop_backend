@@ -56,7 +56,7 @@
                     <option value disabled {{ old('gender', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.gender') as $key => $label)
-                    <option value="{{ $key }}" {{ old('gender', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('gender') === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach
@@ -94,7 +94,7 @@
                     <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach(config('constant.user_status') as $key => $label)
-                    <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $key }}" {{ old('status') === $key ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                     @endforeach

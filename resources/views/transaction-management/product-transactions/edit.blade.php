@@ -20,7 +20,7 @@
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($transactions as $key => $transaction)
                     <option value="{{ $transaction->id }}"
-                        {{ old('transaction_id', '') === (string) $key ? 'selected' : '' }}>
+                        {{ old('transaction_id',$productTransaction->transaction_id) === $key ? 'selected' : '' }}>
                         {{ $transaction->id . $transaction->header }}
                     </option>
                     @endforeach
@@ -39,7 +39,7 @@
                         {{ old('product_id', $productTransaction->product_id) === null ? 'selected' : '' }}>
                         {{ trans('global.pleaseSelect') }}</option>
                     @foreach($products as $key => $product)
-                    <option value="{{ $product->id }}" {{ old('product_id', '') === (string) $key ? 'selected' : '' }}>
+                    <option value="{{ $product->id }}" {{ old('product_id',$productTransaction->product_id) === $key ? 'selected' : '' }}>
                         {{ $product->id . $product->name }}
                     </option>
                     @endforeach
