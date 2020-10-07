@@ -31,7 +31,7 @@
                             {{ trans('cruds.fields.email') }}
                         </th>
                         <th>
-                            {{ trans('cruds.fields.email_verified_at') }}
+                            {{ trans('cruds.fields.status') }}
                         </th>
                         <th>
                             {{ trans('cruds.fields.role') }}
@@ -57,7 +57,9 @@
                             {{ $user->email ?? '' }}
                         </td>
                         <td>
-                            {{ $user->email_verified_at ?? '' }}
+                            @foreach(config('constant.user_status') as $key => $label)
+                                {{ $user->status === $key ? $label : '' }}
+                            @endforeach
                         </td>
                         <td>
                             @foreach($user->hasRole as $key => $item)
