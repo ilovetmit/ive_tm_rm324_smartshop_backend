@@ -12,6 +12,7 @@ use App\Models\TransactionManagement\Transaction;
 use App\Models\TransactionManagement\ProductTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class VendingProductController extends ApiController
 {
@@ -77,13 +78,25 @@ class VendingProductController extends ApiController
                 $productTransaction->save();
 
                 $vendingProduct->quantity = $vendingProduct->quantity - 1;
-                $vendingProduct->status = 1;
                 $vendingProduct->save();
+
+                $vendingProduct = VendingProduct::where('product_id',$request->get('product_id'))->first();
+//                $vendingProduct->status = 1;
+//                $vendingProduct->save();
+
+                $channel = [$vendingProduct->channel];
+                if (Cache::has('vending_queue')) {
+                    $channel = Cache::get('vending_queue');
+                    array_push($channel,$vendingProduct->channel);
+                }
+                Cache::put('vending_queue',$channel);
+
+
             } else {
                 return parent::sendError('No quantity left', 216);
             }
 
-            return parent::sendResponse('status', true, 'Vending Buying');
+            return parent::sendResponse('status', $channel, 'Vending Buying');
         } catch (\Exception $e) {
             //      return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
             return parent::sendError($e->getMessage(), 216);

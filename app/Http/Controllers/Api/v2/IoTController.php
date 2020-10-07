@@ -8,6 +8,7 @@ use App\Models\ProductManagement\OnSell\LED;
 use App\Models\ProductManagement\VendingMachine\VendingProduct;
 use App\Models\Vending;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 
 class IoTController extends Controller {
@@ -79,15 +80,17 @@ class IoTController extends Controller {
         $response = [
             'current' => -1,
         ];
-        $check = VendingProduct::where('status', 1)->orderBy('updated_at')->first();
-        if($check) {
-            $check->status = 0;
-            $check->save();
-            $response = [
-                'current' => $check->channel,
-            ];
-            return response()->json($response, 200);
+        $channel = Cache::get('vending_queue');
+        if(is_array($channel)){
+            if(sizeof($channel)>0) {
+                $response = [
+                    'current' => (int)array_shift($channel),
+                ];
+                Cache::put('vending_queue',$channel);
+                return response()->json($response, 200);
+            }
         }
+
         return response()->json($response, 200);
     }
 }
