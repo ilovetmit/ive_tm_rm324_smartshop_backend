@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Events\QRCodeLogin;
 use App\Models\InformationManagement\BankAccount;
 use App\Models\TransactionManagement\RemittanceTransaction;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -118,7 +119,7 @@ class SmartBankingController extends Controller
         if ($token = Redis::get($request->one_time_password)) {
             Redis::del($request->one_time_password);
 
-            $id = User::where('api_token', $token)->first()->user_id;
+            $id = DB::table('oauth_access_tokens')->where('id', $token)->orderBy('created_at','desc')->first()->user_id;
             Auth::loginUsingId($id);
             return redirect()->route('sbanking.dash');
         } else {

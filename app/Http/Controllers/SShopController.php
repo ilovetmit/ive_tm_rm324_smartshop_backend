@@ -98,7 +98,7 @@ class SShopController extends Controller
 
         if ($token = Redis::get($request->one_time_password)) {
             Redis::del($request->one_time_password);
-            $id = DB::table('oauth_access_tokens')->where('id', $token)->first()->user_id;
+            $id = DB::table('oauth_access_tokens')->where('id', $token)->orderBy('created_at','desc')->first()->user_id;
             Auth::loginUsingId($id);
 
             // $user = User::find($id)->get();
