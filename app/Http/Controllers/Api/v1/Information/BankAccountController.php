@@ -37,7 +37,7 @@ class BankAccountController extends ApiController
                 event(new QRCodeLogin($token, $one_time_password));   // boardcast to the channel
 
                 // store api_token to the Redis for authorization
-                $access_token = DB::table('oauth_access_tokens')->where('user_id',Auth::guard('api')->user()->id)->orderBy('created_at','desc')->first();
+                $access_token = DB::table('oauth_access_tokens')->where('user_id',Auth::guard('api')->user()->id)->orderBy('created_at','desc')->first()->id;
                 Redis::set($one_time_password, $access_token , 'EX', 30);
                 Redis::del($token);
                 return parent::sendResponse('token', $token, 'Login successfully');

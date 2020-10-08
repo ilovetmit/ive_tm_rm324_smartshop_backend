@@ -20,7 +20,8 @@ class QRCodeLogin implements ShouldBroadcast
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param $event_name
+     * @param $one_time_password
      */
     public function __construct($event_name, $one_time_password)
     {
