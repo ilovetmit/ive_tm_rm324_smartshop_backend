@@ -110,7 +110,7 @@
 
 <script>
 
-    window.Echo.channel('qrcodeLogin')
+    window.Echo.channel('smartshop_database_qrcodeLogin')
         .listen('.{{$token}}', (e) => {
             if(e.data === 'REFRESH'){
                 window.location.reload();
