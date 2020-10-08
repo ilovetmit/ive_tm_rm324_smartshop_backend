@@ -30,7 +30,7 @@ class LockerTableSeeder extends Seeder
                 'qrcode'            =>  'LOCKER-' . Str::random(12),
                 'per_hour_price'    =>  $faker->numberBetween($min = 1, $max = 10),
                 'is_active'         =>  $pattern,
-                'is_using'          =>  $pattern,
+                'is_using'          =>  1,
             ]);
         }
     }

@@ -27,7 +27,7 @@
             face analysis
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
 
             <h3>Locker Status</h3>
             <div class="checklist-block mb-3">
