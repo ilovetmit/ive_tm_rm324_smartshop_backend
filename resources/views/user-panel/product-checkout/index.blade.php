@@ -37,7 +37,7 @@
                 </div>
                 <div class="card-body text-center">
                     {{-- todo change to object detection path--}}
-                    <img class="img-fluid" src="http://127.0.0.1:8080/video_feed">
+                    <img class="img-fluid" src="http://192.168.15.85:8080/video_feed">
                     <p class="card-text mt-3" id="time"></p>
                 </div>
             </div>
