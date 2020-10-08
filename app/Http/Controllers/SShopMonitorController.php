@@ -51,7 +51,11 @@ class SShopMonitorController extends Controller
             array_push($lockersRecords, $data);
         }
 
-        $vending_queue = Cache::get('vending_queue');
+        if (Cache::has('vending_queue')) {
+            $vending_queue = Cache::get('vending_queue');
+        }else{
+            $vending_queue = [];
+        }
 
         $ledSensor = null;
 
