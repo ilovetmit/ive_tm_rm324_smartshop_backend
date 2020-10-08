@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\ApiController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Traits\PaymentGateway\Vitcoin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
 
@@ -36,7 +37,8 @@ class BankAccountController extends ApiController
                 event(new QRCodeLogin($token, $one_time_password));   // boardcast to the channel
 
                 // store api_token to the Redis for authorization
-                Redis::set($one_time_password, Auth::guard('api')->user()->api_token, 'EX', 30);
+                $access_token = DB::table('oauth_access_tokens')->where('user_id',Auth::guard('api')->user()->id)->orderBy('created_at','desc')->first();
+                Redis::set($one_time_password, $access_token , 'EX', 30);
                 Redis::del($token);
                 return parent::sendResponse('token', $token, 'Login successfully');
             } else {
