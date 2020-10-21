@@ -1,5 +1,5 @@
 const video = document.getElementById('video')
-const faceCanvas = document.getElementById("faceCanvas");
+// const faceCanvas = document.getElementById("faceCanvas");
 // let labeledFaceDescriptors;
 
 const average = list => list.reduce((prev, curr) => prev + curr);
@@ -85,7 +85,7 @@ video.addEventListener('play', () => {
         ctx.width = 540;
         ctx.drawImage(video, 0, 0, 720, 540)
 
-        showFace(video, detections)
+        // showFace(video, detections)
         faceapi.draw.drawDetections(canvas, resizedDetections)
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
@@ -112,16 +112,16 @@ video.addEventListener('play', () => {
 
             // console.log(resultsToDisplay);
 
-            faceCtx = faceCanvas.getContext('2d');
-            faceCtx.font = "14pt Arial";
-            faceCtx.fillStyle = "#ddefff";
-            faceCtx.fillText(faceapi.utils.round(age, 0) + " years", 210, i * 220 + 40);
-            faceCtx.fillText(gender + " (" + faceapi.utils.round(result.genderProbability) + ")", 210, i * 220 + 60);
+            // faceCtx = faceCanvas.getContext('2d');
+            // faceCtx.font = "14pt Arial";
+            // faceCtx.fillStyle = "#ddefff";
+            // faceCtx.fillText(faceapi.utils.round(age, 0) + " years", 210, i * 220 + 40);
+            // faceCtx.fillText(gender + " (" + faceapi.utils.round(result.genderProbability) + ")", 210, i * 220 + 60);
 
-            resultsToDisplay.forEach((e, n) => {
-                face_expression[e.expression].push(gender === 'male' ? 1 : 0);
-                faceCtx.fillText(e.expression + " (" + faceapi.utils.round(e.probability) + ")", 210, i * 220 + 100 + n * 20);
-            });
+            // resultsToDisplay.forEach((e, n) => {
+            //     face_expression[e.expression].push(gender === 'male' ? 1 : 0);
+            //     faceCtx.fillText(e.expression + " (" + faceapi.utils.round(e.probability) + ")", 210, i * 220 + 100 + n * 20);
+            // });
 
             face_gender.push(gender === 'male' ? 1 : 0);
             face_group = age_group(age, gender === 'male' ? 1 : 0, face_group)
@@ -184,7 +184,7 @@ video.addEventListener('play', () => {
             }
         }
 
-    }, 150)
+    }, 100)
 })
 
 
