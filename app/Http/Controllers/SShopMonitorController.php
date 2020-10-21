@@ -29,6 +29,9 @@ class SShopMonitorController extends Controller
 
     public function index()
     {
+        /**
+         * Locker Information
+         */
         $lockers = Locker::where('is_active', 1)->get();
         $lockerTransactions = LockerTransaction::whereDate('created_at', Carbon::today())->orderBy('created_at','desc')->get();
         $lockersRecords = array();
@@ -52,17 +55,41 @@ class SShopMonitorController extends Controller
             array_push($lockersRecords, $data);
         }
 
+        /**
+         * Vending Information
+         */
         if (Cache::has('vending_queue')) {
-            $vending_queue = Cache::get('vending_queue');
+            $vendingQueue = Cache::get('vending_queue');
         }else{
-            $vending_queue = [];
+            $vendingQueue = [];
         }
 
+        /**
+         * LED Data
+         */
         $ledSensor = null;
 
+        /**
+         * Face Data
+         */
         $faceResult = $this->get_face_data();
 
-        return view('user-panel.s-shop-monitor.index', compact('faceResult','lockersRecords','lockerStatusCount', 'vending_queue'));
+        /**
+         * Product Order Data
+         */
+        $totalOrderCount = 0;
+        $todayOrderCount = 0;
+
+
+        $result = [
+            'faceResult' => $faceResult,
+            'lockersRecords' => $lockersRecords,
+            'lockerStatusCount' => $lockerStatusCount,
+            'vendingQueue' => $vendingQueue,
+            'totalOrderCount' => $totalOrderCount,
+            'todayOrderCount' => $todayOrderCount,
+        ];
+        return view('user-panel.s-shop-monitor.index', compact('result'));
     }
 
     private function get_face_data() {

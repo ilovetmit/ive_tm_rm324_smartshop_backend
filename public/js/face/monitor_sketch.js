@@ -70,7 +70,7 @@ video.addEventListener('play', () => {
         frame++;
 
         const detections = await faceapi.detectAllFaces(
-            video, new faceapi.TinyFaceDetectorOptions())
+            video, new faceapi.TinyFaceDetectorOptions({ inputSize: 320,scoreThreshold: 0.6 }))
             .withFaceLandmarks()
             .withFaceExpressions()
             .withAgeAndGender()

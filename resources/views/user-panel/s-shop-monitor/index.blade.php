@@ -57,20 +57,20 @@
 
             <h3>Locker Status</h3>
             <div class="checklist-block mb-3">
-                @foreach ($lockersRecords as $locker)
+                @foreach ($result['lockersRecords'] as $locker)
                     <div class="item d-flex align-items-center pt-3 pb-3">
                         Locker #{{$locker['locker']->id}} | Status: <strong class="ml-2">@if($locker['locker']->is_using==1)
                                 <i class="fa fa-check text-success mr-2"></i>Free @else <i
                                     class="fa fa-times text-danger mr-2"></i>Occupy @endif</strong>
                         @if(!is_null($locker['status']) && $locker['order']>0) &nbsp|&nbsp <strong>
-                            @if($locker['order']==$lockerStatusCount)
+                            @if($locker['order']==$result['lockerStatusCount'])
                                 <div class="row">
                                     <div class="col">
                                         <span class="text-success">Opening</span>
                                         <div class="spinner-border spinner-border-sm text-success"> </div>
                                     </div>
                                 </div>
-                            @else <span class="text-warning">Queue {{abs($locker['order']-$lockerStatusCount)+1}}</span>
+                            @else <span class="text-warning">Queue {{abs($locker['order']-$result['lockerStatusCount'])+1}}</span>
                             @endif </strong>
                         @endif
                     </div>
@@ -79,14 +79,14 @@
 
             <h3>Vending Machine Status</h3>
             <div class="checklist-block mb-3">
-                @for($i = 1;$i<=9;$i++) <div class="item d-flex align-items-center pt-3 pb-3">
+                @for($i = 1;$i<=6;$i++) <div class="item d-flex align-items-center pt-3 pb-3">
                     Channel #{{$i}} &nbsp|
-                    @if(!is_null($vending_queue)) <i class="fa fa-check text-success mr-2 ml-2"></i><strong>Normal</strong>
+                    @if(!is_null($result['vendingQueue'])) <i class="fa fa-check text-success mr-2 ml-2"></i><strong>Normal</strong>
                     @else <i class="fa fa-times text-danger mr-2 ml-2"></i><span class="text-danger"> &nbspVacant</span>
                     @endif
 
-                    @if(in_array($i,$vending_queue)) &nbsp&nbsp|&nbsp<strong>
-                        @if($vending_queue[0]==$i)
+                    @if(in_array($i,$result['vendingQueue'])) &nbsp&nbsp|&nbsp<strong>
+                        @if($result['vending_queue'][0]==$i)
                             <div class="row">
                                 <div class="col">
                                     <span class="text-success">Opening</span>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                         @else
-                            <span class="text-warning">Queue {{array_keys($vending_queue,$i)[0]+1}}</span>
+                            <span class="text-warning">Queue {{array_keys($result['vendingQueue'],$i)[0]+1}}</span>
                         @endif </strong>
                     @endif
                 </div>
@@ -103,7 +103,7 @@
         </div>
 
         <div class="col-3">
-            <h3>Data Time</h3>
+            <h3>Last Updated</h3>
             <div class="text-right align-middle mb-3 row">
                 <div class="col">
                     <span class="align-middle pt-2 h5 text-warning" id="datetime"></span>
@@ -116,6 +116,51 @@
             temperature IOT arduino post data to server
             transaction analysis
             chart
+
+            <div class="statistic-block block pt-1 pb-3 mb-3">
+                <div class="progress-details d-flex align-items-md-center justify-content-between">
+                    <div class="title">
+                        <strong style="font-size: medium"><i class="icon-contract"></i> Total Order</strong>
+                    </div>
+                    <div class="number dashtext-2">{{$result['totalOrderCount']}}</div>
+                </div>
+                <div class="progress progress-template">
+                    <div role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                         class="progress-bar progress-bar-template dashbg-2"></div>
+                </div>
+            </div>
+
+            <div class="statistic-block block pt-1 pb-3 mb-3">
+                <div class="progress-details d-flex align-items-md-center justify-content-between">
+                    <div class="title">
+                        <strong style="font-size: medium"><i class="icon-presentation"></i> Today Order</strong>
+                    </div>
+                    <div class="number dashtext-3">{{$result['todayOrderCount']}}</div>
+                </div>
+                <div class="progress progress-template">
+                    <div role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                         class="progress-bar progress-bar-template dashbg-3"></div>
+                </div>
+            </div>
+
+{{--            @if(sizeof($newOrder)>0)--}}
+{{--                <h3>Recently Sold</h3>--}}
+{{--                <div class="card bg-dark text-white mb-3">--}}
+{{--                    <img src="{{asset($newOrder[0]->product->url)}}" class="card-img" alt="{{$newOrder[0]->product->name}}"--}}
+{{--                         style="object-fit: cover;display: inline-block;max-height: 300px;height: auto;">--}}
+{{--                </div>--}}
+{{--            @endif--}}
+
+
+{{--            @if($transactionTypeCount[0]+$transactionTypeCount[1]+$transactionTypeCount[2]+$transactionTypeCount[3]+$transactionTypeCount[4]!=0)--}}
+{{--                <h3>Transaction Type</h3>--}}
+{{--                <div class="doughnut-chart chart block mb-2">--}}
+{{--                    <div class="doughnut-chart chart">--}}
+{{--                        <canvas id="doughnutChartCustom1"></canvas>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+
         </div>
     </div>
 </div>
@@ -129,14 +174,10 @@
 
 <script src="{{asset('js/plugins/chart.js/Chart.min.js')}}"></script>
 <script>
-    var male = {{ $faceResult['gender']}};
-    var female = {{ ( 1 - $faceResult['gender'] ) }};
-    var line_male = {{ '['.implode(',',$faceResult['age_male']).']' }};
-    var line_female = {{ '['.implode(',',$faceResult['age_female']).']' }};
-
-    $(document).ready(function () {
-        ShowTime()
-    });
+    var male = {{ $result['faceResult']['gender']}};
+    var female = {{ ( 1 - $result['faceResult']['gender'] ) }};
+    var line_male = {{ '['.implode(',',$result['faceResult']['age_male']).']' }};
+    var line_female = {{ '['.implode(',',$result['faceResult']['age_female']).']' }};
 
     //-------------------------------------------
     //- PIE CHART - Gender
@@ -248,7 +289,7 @@
             }
         })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 male = response.data.gender * 100;
                 female = (1 - response.data.gender) * 100;
 

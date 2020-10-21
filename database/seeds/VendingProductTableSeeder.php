@@ -16,9 +16,9 @@ class VendingProductTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
-        static $product_id = 24;  
+        static $product_id = 24;
 
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
             VendingProduct::create([
                 'product_id'    => $product_id++,
                 'channel'       => $i,

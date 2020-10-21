@@ -44,10 +44,10 @@ class DatabaseSeeder extends Seeder
 
             LockerTableSeeder::class,
 
-            TransactionTableSeeder::class,
-            LockerTransactionTableSeeder::class,
-            ProductTransactionTableSeeder::class,
-            RemittanceTransactionTableSeeder::class,
+//            TransactionTableSeeder::class,
+//            LockerTransactionTableSeeder::class,
+//            ProductTransactionTableSeeder::class,
+//            RemittanceTransactionTableSeeder::class,
 
             InsuranceTableSeeder::class,
             StockTableSeeder::class,

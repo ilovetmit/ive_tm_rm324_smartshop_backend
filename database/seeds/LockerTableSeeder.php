@@ -25,11 +25,11 @@ class LockerTableSeeder extends Seeder
 
 
         for ($i = 1; $i <= 8; $i++) {
-            $pattern = $faker->randomElement(['1', '2']);
+//            $pattern = $faker->randomElement(['1', '2']);
             Locker::create([
                 'qrcode'            =>  'LOCKER-' . Str::random(12),
                 'per_hour_price'    =>  $faker->numberBetween($min = 1, $max = 10),
-                'is_active'         =>  $pattern,
+                'is_active'         =>  $i==4?2:1,
                 'is_using'          =>  1,
             ]);
         }
