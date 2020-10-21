@@ -18,11 +18,18 @@ class VendingProductTableSeeder extends Seeder
 
         static $product_id = 24;
 
-        for ($i = 1; $i <= 6; $i++) {
+        VendingProduct::create([
+            'product_id'    => 15,
+            'channel'       => 1,
+        ]);
+
+        for ($i = 2; $i <= 6; $i++) {
             VendingProduct::create([
                 'product_id'    => $product_id++,
                 'channel'       => $i,
             ]);
         }
+
+
     }
 }

@@ -61,14 +61,15 @@ class IoTController extends Controller {
         $response = [
             'current' => -1,
         ];
-        $check = Locker::where('status', 1)->orderBy('updated_at')->first();
-        if($check) {
-            $check->status = 0;
-            $check->save();
-            $response = [
-                'current' => $check->id,
-            ];
-            return response()->json($response, 200);
+        $channel = Cache::get('locker_queue');
+        if(is_array($channel)){
+            if(sizeof($channel)>0) {
+                $response = [
+                    'current' => (int)array_shift($channel),
+                ];
+                Cache::put('locker_queue',$channel);
+                return response()->json($response, 200);
+            }
         }
         return response()->json($response, 200);
     }

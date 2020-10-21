@@ -10,6 +10,8 @@ use App\Models\ProductManagement\Product;
 use App\Models\ProductManagement\VendingMachine\VendingProduct;
 use App\Models\TransactionManagement\LockerTransaction;
 use App\Models\TransactionManagement\ProductTransaction;
+use App\Models\TransactionManagement\RemittanceTransaction;
+use App\Models\TransactionManagement\Transaction;
 use App\Models\UserManagement\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -29,30 +31,37 @@ class SShopMonitorController extends Controller
 
     public function index()
     {
+        $result = $this->get_monitor_data();
+        return view('user-panel.s-shop-monitor.index', compact('result'));
+    }
+
+    public function get_monitor_json(){
+        $data = $this->get_monitor_data();
+        $response = [
+            'data' => $data,
+            'message' => 'monitor_data',
+        ];
+        return response()->json($response, 200);
+    }
+
+    private function get_monitor_data(){
         /**
          * Locker Information
          */
         $lockers = Locker::where('is_active', 1)->get();
-        $lockerTransactions = LockerTransaction::whereDate('created_at', Carbon::today())->orderBy('created_at','desc')->get();
         $lockersRecords = array();
-        $lockerStatusCount = Locker::where('status',1)->count();
+        $lockerStatusCount = Locker::where('status', 1)->count();
         foreach ($lockers as $locker) {
-            $lockerOrder = 0;
-            if($locker->status == 1){
-                foreach ($lockerTransactions as $lockerTransaction) {
-                    $lockerOrder++;
-                    if ($locker->id == $lockerTransaction->locker_id) {
-                        break;
-                    }
-                }
-            }
-
             $data = [
                 "locker" => $locker,
                 "status" => LockerTransaction::where('locker_id', $locker->id)->orderBy('created_at')->first(),
-                "order" => $lockerOrder,
             ];
             array_push($lockersRecords, $data);
+        }
+        if (Cache::has('locker_queue')) {
+            $lockerQueue = Cache::get('locker_queue');
+        } else {
+            $lockerQueue = [];
         }
 
         /**
@@ -60,7 +69,7 @@ class SShopMonitorController extends Controller
          */
         if (Cache::has('vending_queue')) {
             $vendingQueue = Cache::get('vending_queue');
-        }else{
+        } else {
             $vendingQueue = [];
         }
 
@@ -77,22 +86,42 @@ class SShopMonitorController extends Controller
         /**
          * Product Order Data
          */
-        $totalOrderCount = 0;
-        $todayOrderCount = 0;
+        $totalOrderCount = ProductTransaction::all()->count();
+        $todayOrderCount = ProductTransaction::whereDate('created_at', Carbon::today())->count();
+        $newProduct = ProductTransaction::orderBy("created_at", "desc")->take(1)->get();
+        $newProduct->load('hasProduct');
 
+        /**
+         * Transaction analysis
+         */
+        $transactionsSpendingCount = ProductTransaction::where("shop_type", '2')->count();
+        $transactionsInsuranceCount = Transaction::where("header", 'like', 'Insurance - %')->count();
+        $transactionsVendingSpendingCount = ProductTransaction::where("shop_type", '1')->count();
+        $transactionsTransferCount = RemittanceTransaction::count();
+        $transactionsLockerCount = LockerTransaction::count();
+        $transactionTypeCount = [
+            $transactionsSpendingCount,
+            $transactionsInsuranceCount,
+            $transactionsVendingSpendingCount,
+            $transactionsTransferCount,
+            $transactionsLockerCount
+        ];
 
-        $result = [
+        return $result = [
             'faceResult' => $faceResult,
             'lockersRecords' => $lockersRecords,
             'lockerStatusCount' => $lockerStatusCount,
+            'lockerQueue' => $lockerQueue,
             'vendingQueue' => $vendingQueue,
             'totalOrderCount' => $totalOrderCount,
             'todayOrderCount' => $todayOrderCount,
+            'newProduct' => $newProduct,
+            'transactionTypeCount' => $transactionTypeCount
         ];
-        return view('user-panel.s-shop-monitor.index', compact('result'));
     }
 
-    private function get_face_data() {
+    private function get_face_data()
+    {
         $datas = FaceData::whereDate('created_at', Carbon::today())->get();
 
         $gender = 0;
@@ -103,7 +132,7 @@ class SShopMonitorController extends Controller
             // ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-89', '>=90']
             for ($i = 0; $i <= 9; $i++) {
                 foreach ($data->age[$i] as $age) {
-                    if($age == 1) {
+                    if ($age == 1) {
                         $age_male[$i]++;
                     } else {
                         $age_female[$i]++;
@@ -111,10 +140,10 @@ class SShopMonitorController extends Controller
                 }
             }
             for ($i = 0; $i <= 9; $i++) {
-                if($age_male[$i] != 0) {
+                if ($age_male[$i] != 0) {
                     $age_male[$i] += $data->people / $age_male[$i];
                 }
-                if($age_female[$i] != 0) {
+                if ($age_female[$i] != 0) {
                     $age_female[$i] += $data->people / $age_female[$i];
                 }
             }
@@ -130,16 +159,16 @@ class SShopMonitorController extends Controller
             $temp_female += $female;
         }
         for ($i = 0; $i <= 9; $i++) {
-            if($age_male[$i] != 0) {
+            if ($age_male[$i] != 0) {
                 $age_male[$i] /= $temp_male;
                 $age_male[$i] *= 100;
             }
-            if($age_female[$i] != 0) {
+            if ($age_female[$i] != 0) {
                 $age_female[$i] /= $temp_female;
                 $age_female[$i] *= 100;
             }
         }
-        if(count($datas)>0){
+        if (count($datas) > 0) {
             $gender /= count($datas);
         }
 

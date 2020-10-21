@@ -177,6 +177,7 @@ Route::group(['prefix' => 'smart-banking', 'as' => 'sbanking.'], function () {
  ***********************************************/
 Route::group(['prefix' => 's-shop-monitor', 'as' => 'smonitor.'], function () {
     Route::get('/', 'SShopMonitorController@index')->name('index');
+    Route::get('/json', 'SShopMonitorController@get_monitor_json')->name('json');
 });
 
 

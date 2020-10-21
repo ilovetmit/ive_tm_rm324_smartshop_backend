@@ -11,6 +11,7 @@ use App\Models\TransactionManagement\LockerTransaction;
 use App\Models\UserManagement\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class LockerController extends ApiController
 {
@@ -115,6 +116,14 @@ class LockerController extends ApiController
                 $lockerTransaction->remark = $request->remark;
                 $lockerTransaction->save();
 
+
+                $channel = [$locker->id];
+                if (Cache::has('locker_queue')) {
+                    $channel = Cache::get('locker_queue');
+                    array_push($channel,$locker->id);
+                }
+                Cache::put('locker_queue',$channel);
+
                 return parent::sendResponse('locker', $lockerTransaction, '#' . $locker->id . ' Locker open');
             } else {
                 return parent::sendError('There are currently no available lockers.', 216);
@@ -153,6 +162,14 @@ class LockerController extends ApiController
                     $lockerTransaction->deadline = null;
                     $lockerTransaction->save();
                     $locker->save();
+
+                    $channel = [$locker->id];
+                    if (Cache::has('locker_queue')) {
+                        $channel = Cache::get('locker_queue');
+                        array_push($channel,$locker->id);
+                    }
+                    Cache::put('locker_queue',$channel);
+
                     return parent::sendResponse('data', $lockerTransaction, 'Locker Data');
                 }
                 return parent::sendError('is_using != 2', 216);

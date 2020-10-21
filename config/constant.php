@@ -13,7 +13,7 @@ return [
     'badge_type' => [
         'User'          => 'info',
         'Admin'         => 'danger',
-        
+
         'Available'     => 'success',
         'Unavailable'   => 'danger',
 
@@ -25,7 +25,7 @@ return [
 
         'Active'        => 'success',
         'Inactive'      => 'secondary',
-        
+
         'Free'          => 'success',
         'Using'         => 'danger',
         // field name
@@ -44,7 +44,7 @@ return [
         'rt'            => 'info',               // remittance transaction
         'lt'            => 'secondary',          // locker transaction
         'Vending'       => 'dark',
-        'WindowShop'    => 'dark',             
+        'WindowShop'    => 'dark',
     ],
 
     'advertisement_status' => [
@@ -87,7 +87,7 @@ return [
         '3' => '3',
         '4' => '4',
         '5' => '5',
-        // '6' => '6',
+        '6' => '6',
     ],
     'address_district' => [
         // ref: https://www.rvd.gov.hk/doc/tc/hkpr13/06.pdf
