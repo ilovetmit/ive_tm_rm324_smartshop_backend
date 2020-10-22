@@ -29,7 +29,7 @@
         <div class="col">
             <h3>Face recognition analysis <span id="loading"> - Initializing...</span></h3>
             <div class="card text-white p-3 ml-auto" style="min-width: 400px;min-height: 80vh;">
-                <div class="card-body align-middle" id="result">
+                <div class="card-body align-middle text-center" id="result">
 
                     <div class="row pt-3">
                         <div class="col-md-4">
