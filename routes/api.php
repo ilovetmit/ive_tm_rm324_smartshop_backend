@@ -92,7 +92,7 @@ Route::prefix('v1')->group(function () {
         //Api Check Password (before purchase)
         Route::post('check_password', 'Api\v1\User\UserController@check_password');
     });
-    
+
     //    Route::post('face', 'Api\v1\FaceController@face_scan');
     Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
     Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');
@@ -101,6 +101,9 @@ Route::prefix('v1')->group(function () {
     Route::get('advertisement', 'Api\v1\Advertisement\AdvertisementController@advertisement');
 
     Route::get('test', 'Api\v1\TestController@test');
+
+    // Demo User Login
+    Route::get('user/list', 'Api\v1\User\UserController@user_list');
 });
 
 // v2 link for IoT device read -> old code design
