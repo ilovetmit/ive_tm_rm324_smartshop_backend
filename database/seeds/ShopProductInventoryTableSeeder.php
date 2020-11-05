@@ -17,14 +17,17 @@ class ShopProductInventoryTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
-        for ($i = 1; $i <= 35; $i++) {
-            for ($ix = 1; $ix <= 5; $ix++) {
+        $products = \App\Models\ProductManagement\Product::all();
+
+        foreach ($products as $product){
+            for ($i = 1; $i <= $product->quantity; $i++) {
                 ShopProductInventory::create([
-                    'shop_product_id'   => $i,
+                    'shop_product_id'   => $product->id,
                     'rfid_code'         => Str::random(16),
                     'is_sold'           => 1,
                 ]);
             }
         }
+
     }
 }

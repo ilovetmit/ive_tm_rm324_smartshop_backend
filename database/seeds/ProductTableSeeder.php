@@ -14,6 +14,13 @@ class ProductTableSeeder extends Seeder
     {
         // factory(Product::class,1)->create();
         $name = [
+            'VTC SSHOP USB cable',
+            'VTC SSHOP brown box',
+            'VTC SSHOP white box',
+            'VTC SSHOP green bottle',
+            'VTC SSHOP brown bottle',
+            'VTC SSHOP green square bottle',
+
             '7 Up - Bottle 550mL',
             'Coca Cola Coke - Bottle 500mL',
             'Hi-C Soya Milk - Melon Flavoured 250mL',
@@ -28,7 +35,6 @@ class ProductTableSeeder extends Seeder
             'Vitasoy Soya Bean Milk 250mL',
             'Camera',
             'Earphone',
-            'E-Connect',
             'I-Stationery',
             'I-Watch',
             'Tablet',
@@ -37,11 +43,6 @@ class ProductTableSeeder extends Seeder
             'Skin Care Package 1',
             'Skin Care Package 2',
             'Toothbrush',
-            'VTC Daily Necessities 1',
-            'VTC Daily Necessities 2',
-            'VTC Daily Necessities 3',
-            'VTC Daily Necessities 4',
-            'VTC Daily Necessities 5',
             'Bike',
             'Chair',
             'Spoon',
@@ -52,6 +53,13 @@ class ProductTableSeeder extends Seeder
         ];
 
         $image = [
+            'E_e-connect.jpg',
+            'N_VTC_daily_necessities_1.jpg',
+            'N_VTC_daily_necessities_2.jpg',
+            'N_VTC_daily_necessities_3.jpg',
+            'N_VTC_daily_necessities_4.jpg',
+            'N_VTC_daily_necessities_5.jpg',
+
             'D_7_Up_-_Bottle_550mL.jpg',
             'D_Coca_Cola_Coke_-_Bottle_500mL.jpg',
             'D_Hi-C_Soya_Milk_-_Melon_Flavoured_250mL.jpg',
@@ -66,7 +74,6 @@ class ProductTableSeeder extends Seeder
             'D_Vitasoy_Soya_Bean_Milk_250mL.jpg',
             'E_camera.jpg',
             'E_earphone.jpg',
-            'E_e-connect.jpg',
             'E_i-stationery.jpg',
             'E_i-watch.jpg',
             'E_tablet.jpg',
@@ -75,11 +82,6 @@ class ProductTableSeeder extends Seeder
             'N_skin_care_package_1.jpg',
             'N_skin_care_package_2.jpg',
             'N_toothbrush.jpg',
-            'N_VTC_daily_necessities_1.jpg',
-            'N_VTC_daily_necessities_2.jpg',
-            'N_VTC_daily_necessities_3.jpg',
-            'N_VTC_daily_necessities_4.jpg',
-            'N_VTC_daily_necessities_5.jpg',
             'O_bike.jpg',
             'O_chair.jpg',
             'O_spoon.jpg',
@@ -94,11 +96,11 @@ class ProductTableSeeder extends Seeder
         for ($i = 0; $i < 35; $i++) {
             Product::create([
                 'name'          => $name[$i],
-                'price'         => $faker->numberBetween($min = 0, $max = 200),
-                'quantity'      => $faker->numberBetween($min = 10, $max = 15),
+                'price'         => $faker->numberBetween($min = 10, $max = 200),
+                'quantity'      => $faker->numberBetween($min = 5, $max = 15),
                 'image'         => $image[$i],
                 'description'   => $faker->realText($maxNbChars = 60, $indexSize = 2),
-                'status'        => $faker->randomElement(['1', '2']),
+                'status'        => 1,
             ]);
         }
     }

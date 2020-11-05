@@ -22,7 +22,7 @@ class ObjectDetectionController extends ApiController
                         $product_list[$data]['amount'] += 1;
                     } else {
                         $product_list[$data] = [
-                            'id' => $data,
+                            'id' => config('product_object.'.$data),
                             'amount' => 1,
                             'product_detail' => Product::find($data),
                         ];
