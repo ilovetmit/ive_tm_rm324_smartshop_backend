@@ -94,14 +94,33 @@ class ProductTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         for ($i = 0; $i < 35; $i++) {
-            Product::create([
-                'name'          => $name[$i],
-                'price'         => $faker->numberBetween($min = 10, $max = 200),
-                'quantity'      => $faker->numberBetween($min = 5, $max = 15),
-                'image'         => $image[$i],
-                'description'   => $faker->realText($maxNbChars = 60, $indexSize = 2),
-                'status'        => 1,
-            ]);
+            switch ($i) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    Product::create([
+                        'name' => $name[$i],
+                        'price' => $faker->numberBetween($min = 10, $max = 200),
+                        'quantity' => 20, // rfid code quantity
+                        'image' => $image[$i],
+                        'description' => $faker->realText($maxNbChars = 60, $indexSize = 2),
+                        'status' => 1,
+                    ]);
+                    break;
+                default:
+                    Product::create([
+                        'name' => $name[$i],
+                        'price' => $faker->numberBetween($min = 10, $max = 200),
+                        'quantity' => $faker->numberBetween($min = 5, $max = 15),
+                        'image' => $image[$i],
+                        'description' => $faker->realText($maxNbChars = 60, $indexSize = 2),
+                        'status' => 1,
+                    ]);
+                    break;
+            }
         }
     }
 }
