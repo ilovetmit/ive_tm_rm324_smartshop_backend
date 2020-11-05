@@ -32,6 +32,7 @@ class ProductController extends ApiController
     {
         try {
             $product = Product::all();
+            $product->load('hasCategory');
             return parent::sendResponse('data', $product, 'All Product Data');
         } catch (\Exception $e) {
             return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
