@@ -60,9 +60,8 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th scope="col" class="col-12 text-center">Total Amount<h3 id="totalamount"
-                                                                                   style="font-weight: 900">HKD
-                                0.00</h3></th>
+                        <th scope="col" class="col-12 text-center">Total Amount<h3 id="totalamount" style="font-weight: 900">HKD 0.00</h3>
+                            <button class="btn btn-warning" name="clear_button">Clear</button></th>
                     </tr>
                     </tfoot>
                 </table>
@@ -246,6 +245,18 @@
             })
         });
 
+    $(document).on('click', 'button[name="clear_button"]', function () {
+        $('#product_data').html('');
+        totalamount = 0;
+        product_rfid_list = [];
+        product_list = [];
+        $('#totalamount').text('HKD ' + totalamount.toFixed(2));
+        if (product_list.length === 0) {
+            $('#confirm_button').prop('disabled', true);
+            $("#confirm_button").addClass("btn-secondary");
+            $("#confirm_button").removeClass("btn-success");
+        }
+    });
 
     $(document).on('click', 'button[name="delete_button"]', function () {
         var row = $(this).data('row');
