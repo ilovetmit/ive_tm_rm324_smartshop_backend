@@ -20,12 +20,12 @@ class DatabaseSeeder extends Seeder
             RoleUserTableSeeder::class,
             PermissionRoleTableSeeder::class,
 
-            AddressTableSeeder::class,
+//            AddressTableSeeder::class,
             DeviceTableSeeder::class,
             InterestTableSeeder::class,
             InterestUserTableSeeder::class,
             // VitcoinTableSeeder::class,
-            BankAccountTableSeeder::class,
+//            BankAccountTableSeeder::class,
 
             CategoryTableSeeder::class,
             ProductTableSeeder::class,

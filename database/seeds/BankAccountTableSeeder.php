@@ -28,18 +28,18 @@ class BankAccountTableSeeder extends Seeder
         // ];
         // BankAccount::insert($bankAccount);
 
-        $faker = Faker\Factory::create();
-        BankAccount::create([
-            'user_id'           => 1,
-            'current_account'   => 99999,
-            'saving_account'    => 99999
-        ]);
-        for ($i = 2; $i <= 11; $i++) {
-            BankAccount::create([
-                'user_id'           => $i,
-                'current_account'   => 5000,
-                'saving_account'    => 3000,
-            ]);
-        }
+//        $faker = Faker\Factory::create();
+//        BankAccount::create([
+//            'user_id'           => 1,
+//            'current_account'   => 99999,
+//            'saving_account'    => 99999
+//        ]);
+//        for ($i = 2; $i <= 11; $i++) {
+//            BankAccount::create([
+//                'user_id'           => $i,
+//                'current_account'   => 5000,
+//                'saving_account'    => 3000,
+//            ]);
+//        }
     }
 }
