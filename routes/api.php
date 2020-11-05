@@ -36,6 +36,7 @@ Route::prefix('v1')->group(function () {
 
         //Api  Product
         Route::get('products', 'Api\v1\Product\ProductController@products');
+        Route::get('product/all', 'Api\v1\Product\ProductController@product_all');
         Route::get('products/{id}', 'Api\v1\Product\ProductController@product_detail');
 
         //Api Product Transaction
