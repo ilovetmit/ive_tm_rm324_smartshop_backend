@@ -13,6 +13,7 @@ use App\Models\TransactionManagement\ProductTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Traits\PaymentGateway\Vitcoin;
 
 class VendingProductController extends ApiController
 {
@@ -55,8 +56,17 @@ class VendingProductController extends ApiController
                 $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('payment')];
 
-                if ($request->get('payment') == 'VitCoin') {  //todo VitCoin Vending
-
+                if ($request->get('payment') == 'VitCoin') {
+                    $transactions->amount = $vendingProduct->price * config("constant.vitcoin_multiplier");
+                    if (!Vitcoin::isSufficientBalance($transactions->amount)) {
+                        return parent::sendError('You do not have enough VitCoin', 233);
+                    }
+                    if (Vitcoin::expense($transactions->amount)) {
+                        $transactions->balance = Vitcoin::getBalance();
+                        $transactions->save();
+                    } else {
+                        return parent::sendError('Unexpected error occurs, please contact admin and see what happen', 227);
+                    }
                 } elseif ($request->get('payment') == 'Saving') {
                     if ($vendingProduct->price > $bankAccount->saving_account) {
                         return parent::sendError('You do not have enough coin (Saving A/C)', 233);
@@ -80,18 +90,16 @@ class VendingProductController extends ApiController
                 $vendingProduct->quantity = $vendingProduct->quantity - 1;
                 $vendingProduct->save();
 
-                $vendingProduct = VendingProduct::where('product_id',$request->get('product_id'))->first();
-//                $vendingProduct->status = 1;
-//                $vendingProduct->save();
+                $vendingProduct = VendingProduct::where('product_id', $request->get('product_id'))->first();
+                //                $vendingProduct->status = 1;
+                //                $vendingProduct->save();
 
                 $channel = [$vendingProduct->channel];
                 if (Cache::has('vending_queue')) {
                     $channel = Cache::get('vending_queue');
-                    array_push($channel,$vendingProduct->channel);
+                    array_push($channel, $vendingProduct->channel);
                 }
-                Cache::put('vending_queue',$channel);
-
-
+                Cache::put('vending_queue', $channel);
             } else {
                 return parent::sendError('No quantity left', 216);
             }

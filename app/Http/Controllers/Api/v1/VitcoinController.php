@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Events\MissionCompleted;
+use App\Http\Traits\PaymentGateway\Payment;
+use App\Http\Traits\PaymentGateway\PaymentType;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Traits\PaymentGateway\Vitcoin;
+use App\Http\Traits\MultiChain;
+use App\Models\UserManagement\User;
 
-class VitcoinController extends Controller
+class VitcoinController extends ApiController
 {
     //TODO send signature, remove complete() function, transfer function, modularize
     public function mining(Request $request)

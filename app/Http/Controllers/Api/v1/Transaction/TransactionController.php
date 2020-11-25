@@ -10,6 +10,7 @@ use App\Models\TransactionManagement\Transaction;
 use App\Models\UserManagement\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Traits\PaymentGateway\Vitcoin;
 
 class TransactionController extends ApiController
 {
@@ -32,12 +33,6 @@ class TransactionController extends ApiController
                 return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
             }
 
-
-            // TODO: VitCoin transfer not completed.
-            if ($request->get('to_account') == "VitCoin"){
-                return parent::sendError('You don\'t have enough VitCoin', 216);
-            }
-
             $user = User::find(Auth::guard('api')->user()->id);
             $user_bankAccount = $user->hasBankAccount;
 
@@ -52,14 +47,16 @@ class TransactionController extends ApiController
 
             if ($toUser) {
                 $toUser_bankAccount = $toUser->hasBankAccount;
-                if ($request->get('from') == 'VitCoin') { //todo Vitcoin Transfer
-                    // if ($request->get('amount') > $user->ive_coin) {
-                    //     return parent::sendError('You do not have enough Vit Coin', 216);
-                    // }
-                    // $userBalance = $user->ive_coin = $user->ive_coin - $request->get('amount');
-                    // $toUserBalance = $toUser->ive_coin = $toUser->ive_coin + $request->get('amount');
-                    // $user->save();
-                    // $toUser->save();
+                if ($request->get('from') == 'VitCoin') {
+                    if (!Vitcoin::isSufficientBalance($request->get('amount'))) {
+                        return parent::sendError('You do not have enough VitCoin', 233);
+                    }
+
+                    if (!Vitcoin::transfer($request->get('amount'), $toUser)) {
+                        return parent::sendError('Unexpected error occurs, please contact admin and see what happen', 227);
+                    }
+                    $userBalance = Vitcoin::getBalance();
+                    $toUserBalance = Vitcoin::getBalance($toUser);
                 } elseif ($request->get('from') == 'Saving') {
                     if ($request->get('amount') > $user_bankAccount->saving_account) {
                         return parent::sendError('You do not have enough Saving', 216);

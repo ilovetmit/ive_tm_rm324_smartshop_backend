@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Transaction;
 use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Transaction\ProductTransactionResource;
+use App\Http\Traits\PaymentGateway\Vitcoin;
 use App\Models\TransactionManagement\ProductTransaction;
 use App\Models\ProductManagement\Product;
 use App\Models\TransactionManagement\Transaction;
@@ -57,30 +58,23 @@ class ProductTransactionController extends ApiController
                 $transactions->amount = $price;
                 $currency = array_flip(config("constant.transaction_currency"));
                 $transactions->currency = $currency[$request->get('payment')];
-
                 $remark = [
                     "deliveryAddress" => $request->get('deliveryAddress'),
                     "deliveryDateTime" => $request->get('deliveryDateTime'),
                     "phoneNumber" => $request->get('phoneNumber')
                 ];
 
-
-
-
-
-
-                if ($request->get('payment') == 'VitCoin') { //todo Vitcoin payment
-                    // if ($request->get('price') > $bankAccount->ive_coin) {
-                    //     return parent::sendError('You do not have enough VitCoin', 233);
-                    // }
-
-                    // $productTransaction->save();
-                    // $productTransaction->with('hasProduct');
-
-                    // $user->ive_coin = $user->ive_coin - $request->get('price');
-                    // $transactions->balance = $user->ive_coin;
-                    // $user->save();
-                    // $transactions->save();
+                if ($request->get('payment') == 'VitCoin') {
+                    $transactions->amount = $price * config("constant.vitcoin_multiplier");
+                    if (!Vitcoin::isSufficientBalance($transactions->amount)) {
+                        return parent::sendError('You do not have enough VitCoin', 233);
+                    }
+                    if (Vitcoin::expense($transactions->amount)) {
+                        $transactions->balance = Vitcoin::getBalance();
+                        $transactions->save();
+                    } else {
+                        return parent::sendError('Unexpected error occurs, please contact admin and see what happen', 227);
+                    }
                 } elseif ($request->get('payment') == 'Saving') {
                     if ($price > $bankAccount->saving_account) {
                         return parent::sendError('Your saving account does not have enough money', 233);
@@ -112,7 +106,7 @@ class ProductTransactionController extends ApiController
 
             return parent::sendResponse('data', $data, 'Buy Order Success');
         } catch (\Exception $e) {
-            return parent::sendError($e->getMessage(), 216);
+            return parent::sendError($e->getMessage(), 233);
         }
     }
 }

@@ -11,6 +11,7 @@ use App\Models\TransactionManagement\LockerTransaction;
 use App\Models\UserManagement\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Http\Traits\PaymentGateway\Vitcoin;
 use Illuminate\Support\Facades\Cache;
 
 class LockerController extends ApiController
@@ -72,7 +73,15 @@ class LockerController extends ApiController
                 $toUser = User::where('email', $request->get('to'))->first();
                 if ($toUser) {
                     if ($request->get('account') == 'VitCoin') { //todo VitCoin Locker Payment
-
+                        $price = $price * config("constant.vitcoin_multiplier");
+                        if (!Vitcoin::isSufficientBalance($price)) {
+                            return parent::sendError('You do not have enough VitCoin', 233);
+                        }
+                        if (Vitcoin::expense($price)) {
+                            $userBalance = Vitcoin::getBalance();
+                        } else {
+                            return parent::sendError('Unexpected error occurs, please contact admin and see what happen', 227);
+                        }
                     } elseif ($request->get('account') == 'Saving') {
                         if ($price > $user_account->saving_account) {
                             return parent::sendError('You do not have enough money', 216);
@@ -120,9 +129,9 @@ class LockerController extends ApiController
                 $channel = [$locker->id];
                 if (Cache::has('locker_queue')) {
                     $channel = Cache::get('locker_queue');
-                    array_push($channel,$locker->id);
+                    array_push($channel, $locker->id);
                 }
-                Cache::put('locker_queue',$channel);
+                Cache::put('locker_queue', $channel);
 
                 return parent::sendResponse('locker', $lockerTransaction, '#' . $locker->id . ' Locker open');
             } else {
@@ -166,9 +175,9 @@ class LockerController extends ApiController
                     $channel = [$locker->id];
                     if (Cache::has('locker_queue')) {
                         $channel = Cache::get('locker_queue');
-                        array_push($channel,$locker->id);
+                        array_push($channel, $locker->id);
                     }
-                    Cache::put('locker_queue',$channel);
+                    Cache::put('locker_queue', $channel);
 
                     return parent::sendResponse('data', $lockerTransaction, 'Locker Data');
                 }

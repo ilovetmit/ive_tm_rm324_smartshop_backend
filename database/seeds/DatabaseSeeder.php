@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
             DeviceTableSeeder::class,
             InterestTableSeeder::class,
             InterestUserTableSeeder::class,
-            // VitcoinTableSeeder::class,
             BankAccountTableSeeder::class,
 
             CategoryTableSeeder::class,
@@ -45,9 +44,9 @@ class DatabaseSeeder extends Seeder
             LockerTableSeeder::class,
 
             TransactionTableSeeder::class,
-//            LockerTransactionTableSeeder::class,
+            //            LockerTransactionTableSeeder::class,
             ProductTransactionTableSeeder::class,
-//            RemittanceTransactionTableSeeder::class,
+            //            RemittanceTransactionTableSeeder::class,
 
             InsuranceTableSeeder::class,
             StockTableSeeder::class,

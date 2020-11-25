@@ -92,7 +92,7 @@ Route::prefix('v1')->group(function () {
         //Api Check Password (before purchase)
         Route::post('check_password', 'Api\v1\User\UserController@check_password');
     });
-    
+
     //    Route::post('face', 'Api\v1\FaceController@face_scan');
     Route::post('rfid_scan', 'Api\v1\RFIDController@rfid_scan');
     Route::post('object_detection', 'Api\v1\ObjectDetectionController@object_list');

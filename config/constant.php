@@ -113,7 +113,7 @@ return [
     'transaction_currency' => [
         '0' => 'Current',
         '1' => 'Saving',
-        '2' => 'Vitcoin',
+        '2' => 'VitCoin',
     ],
     '_transaction_currency' => [
         'Current' => '0',
@@ -123,5 +123,6 @@ return [
     'shop_type' => [
         '1' => 'Vending',
         '2' => 'WindowShop'
-    ]
+    ],
+    'vitcoin_multiplier'=>0.5
 ];
