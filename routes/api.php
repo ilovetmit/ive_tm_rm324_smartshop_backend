@@ -36,6 +36,7 @@ Route::prefix('v1')->group(function () {
 
         //Api  Product
         Route::get('products', 'Api\v1\Product\ProductController@products');
+        Route::get('product/all', 'Api\v1\Product\ProductController@product_all');
         Route::get('products/{id}', 'Api\v1\Product\ProductController@product_detail');
 
         //Api Product Transaction
@@ -101,6 +102,9 @@ Route::prefix('v1')->group(function () {
     Route::get('advertisement', 'Api\v1\Advertisement\AdvertisementController@advertisement');
 
     Route::get('test', 'Api\v1\TestController@test');
+
+    // Demo User Login
+    Route::get('user/list', 'Api\v1\User\UserController@user_list');
 });
 
 // v2 link for IoT device read -> old code design

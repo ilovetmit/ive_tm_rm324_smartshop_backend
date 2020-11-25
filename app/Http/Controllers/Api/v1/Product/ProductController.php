@@ -28,6 +28,17 @@ class ProductController extends ApiController
         }
     }
 
+    public function product_all()
+    {
+        try {
+            $product = Product::all();
+            $product->load('hasCategory');
+            return parent::sendResponse('data', $product, 'All Product Data');
+        } catch (\Exception $e) {
+            return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
+        }
+    }
+
 
     public function product_detail($id)
     {
