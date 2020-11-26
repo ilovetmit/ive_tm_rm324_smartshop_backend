@@ -132,7 +132,7 @@ class DashboardController extends Controller
 
         $output = $process->getOutput();
 
-        session()->flash('success', $output);
+        session()->flash('message', $output);
         return redirect()->back();
     }
 
@@ -161,7 +161,7 @@ class DashboardController extends Controller
 
         $output = $process->getOutput();
 
-        session()->flash('success', $output);
+        session()->flash('message', $output);
         return redirect()->back();
     }
 }
