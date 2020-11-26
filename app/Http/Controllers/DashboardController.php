@@ -10,6 +10,8 @@ use App\Models\TagManagement\Tag;
 use App\Models\TransactionManagement\ProductTransaction;
 use App\Models\TransactionManagement\Transaction;
 use Carbon\Carbon;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class DashboardController extends Controller
 {
@@ -103,5 +105,63 @@ class DashboardController extends Controller
         $WSP_profit_data = json_encode($WSP_profit);
 
         return view('_layout.dashboard', compact('tags_name', 'tagData', 'categories_name', 'categoryData', 'VP_profit_data', 'WSP_profit_data'));
+    }
+
+
+    public function git_pull()
+    {
+        $path_project = '/home/one92/project_pool/ive_tm_fyp_smart_shop';
+        $path_script = '/resources/scripts/deploy.sh';
+
+        if(!is_dir($path_project)) {
+            session()->flash('fail', 'Error: Not found the directory location of the server.');
+            return redirect()->back();
+        }elseif (!file_exists($path_project.$path_script)){
+            session()->flash('fail', 'Error: Not found the Shell file location of the server.');
+            return redirect()->back();
+        }
+
+        $process = new Process("(cd $path_project; sh $path_project"."$path_script) ");
+        $process->setWorkingDirectory('/home/one92/project_pool/ive_tm_fyp_smart_shop');
+        $process->run();
+
+        //executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $output = $process->getOutput();
+
+        session()->flash('message', $output);
+        return redirect()->back();
+    }
+
+
+    public function migrate()
+    {
+        $path_project = '/home/one92/project_pool/ive_tm_fyp_smart_shop';
+        $path_script = '/resources/scripts/migrate.sh';
+
+        if(!is_dir($path_project)) {
+            session()->flash('fail', 'Error: Not found the directory location of the server.');
+            return redirect()->back();
+        }elseif (!file_exists($path_project.$path_script)){
+            session()->flash('fail', 'Error: Not found the Shell file location of the server.');
+            return redirect()->back();
+        }
+
+        $process = new Process("(cd $path_project; sh $path_project"."$path_script) ");
+        $process->setWorkingDirectory('/home/one92/project_pool/ive_tm_fyp_smart_shop');
+        $process->run();
+
+        //executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $output = $process->getOutput();
+
+        session()->flash('message', $output);
+        return redirect()->back();
     }
 }

@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        User::create([
+        $admin = User::create([
             'email'                 => 's-shop-tmit@vtc.edu.hk',
             'first_name'            => 'Smart Shop TMIT',
             'last_name'             => 'VTC',
@@ -31,6 +31,8 @@ class UserTableSeeder extends Seeder
             'status'                => 1,
             'email_verified_at'     => now(),
         ]);
+
+        $admin->hasRole()->sync(1);
 
         Address::create([
             'user_id'           => 1,
@@ -67,6 +69,8 @@ class UserTableSeeder extends Seeder
                 'status'                => 1,
                 'email_verified_at'     => now(),
             ]);
+
+            $u->hasRole()->sync(2);
 
             BankAccount::create([
                 'user_id'           => $u->id,
