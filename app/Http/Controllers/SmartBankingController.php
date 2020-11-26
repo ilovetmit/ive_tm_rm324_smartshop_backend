@@ -35,7 +35,7 @@ class SmartBankingController extends Controller
     public function dashboard()
     {
         $bank = Auth::user()->hasBankAccount;
-        $bank['vit_coin'] = Vitcoin::getBalance();
+        $bank['vit_coin'] = Vitcoin::getBalance(Auth::user());
         return view('user-panel.smart-banking.dashboard.index', compact('bank'));
     }
 
