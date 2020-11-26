@@ -8,6 +8,11 @@
                         Dashboard
                     </div>
                     <div class="card-body">
+
+                        <div class="overlay-wrapper d-none loading">
+                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
+                        </div>
+
                         @if(session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -29,10 +34,10 @@
                             S-Shop Monitor
                         </a>
 
-                        <a href="{{route('migrate')}}" class="btn btn-danger">
+                        <a href="{{route('migrate')}}" onclick="loading()" class="btn btn-danger">
                             Database: Migrations (reset database)
                         </a>
-                        <a href="{{route('git_pull')}}" class="btn btn-danger">
+                        <a href="{{route('git_pull')}}" onclick="loading()" class="btn btn-danger">
                             Version: Git Pull (update system version)
                         </a>
 
@@ -138,6 +143,12 @@
 @section('scripts')
     <script src="{{asset('js/plugins/chart.js/Chart.min.js')}}"></script>
     <script>
+
+
+        function loading(){
+            $('.loading').removeClass('d-none');
+        }
+
         $(function () {
             /* ChartJS
              * -------
