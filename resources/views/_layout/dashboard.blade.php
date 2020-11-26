@@ -1,151 +1,155 @@
 @extends('_layout.admin')
 @section('content')
-    <div class="content">
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    Dashboard
+                </div>
+                <div class="card-body">
+
+                    <div class="overlay-wrapper d-none loading">
+                        <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                            <div class="text-bold pt-2">Loading...</div>
+                        </div>
+                    </div>
+
+                    @if(session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+                    <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">
+                        Product Checkout
+                    </a>
+                    <a class="btn btn-primary" href="{{route('face.index')}}" target="_blank">
+                        Face
+                    </a>
+                    <a class="btn btn-primary" target="_blank" href="{{ route('sbanking.login') }}">
+                        Smart Banking Login
+                    </a>
+                    <a class="btn btn-primary" target="_blank" href="{{route('sshop.advertisement')}}">
+                        S-Shop
+                    </a>
+                    <a class="btn btn-primary" target="_blank" href="{{route('smonitor.index')}}">
+                        S-Shop Monitor
+                    </a>
+
+                    <a href="{{route('migrate')}}" onclick="loading()" class="btn btn-danger">
+                        Database: Migrations (reset database)
+                    </a>
+                    <a href="{{route('git_pull')}}" onclick="loading()" class="btn btn-danger">
+                        Version: Git Pull (update system version)
+                    </a>
+
+                    <a href="{{route('reset_multichain')}}" onclick="loading()" class="btn btn-danger">
+                        Reset Multichain (Timeout is Normal)
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
+            <!-- LEFT -->
+            <div class="col-md-6">
+                <!-- Tag Analysis -->
+                <div class="card card-danger">
                     <div class="card-header">
-                        Dashboard
+                        <h3 class="card-title">Tag Selling Status Chart</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                    class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                    class="fas fa-times"></i></button>
+                        </div>
                     </div>
                     <div class="card-body">
-
-                        <div class="overlay-wrapper d-none loading">
-                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
-                        </div>
-
-                        @if(session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <a class="btn btn-primary" href="{{route('ProductCheckout.index')}}" target="_blank">
-                            Product Checkout
-                        </a>
-                        <a class="btn btn-primary" href="{{route('face.index')}}" target="_blank">
-                            Face
-                        </a>
-                        <a class="btn btn-primary" target="_blank" href="{{ route('sbanking.login') }}">
-                            Smart Banking Login
-                        </a>
-                        <a class="btn btn-primary" target="_blank" href="{{route('sshop.advertisement')}}">
-                            S-Shop
-                        </a>
-                        <a class="btn btn-primary" target="_blank" href="{{route('smonitor.index')}}">
-                            S-Shop Monitor
-                        </a>
-
-                        <a href="{{route('migrate')}}" onclick="loading()" class="btn btn-danger">
-                            Database: Migrations (reset database)
-                        </a>
-                        <a href="{{route('git_pull')}}" onclick="loading()" class="btn btn-danger">
-                            Version: Git Pull (update system version)
-                        </a>
-
+                        <canvas id="donutChart"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
                 </div>
+                <!-- END Tag Analysis -->
+                <!-- Category Analysis -->
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">Category Selling Status Chart</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                    class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                    class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pieChart"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+                <!-- END Category Analysis -->
             </div>
-        </div>
-        <!-- ----------------------------------------------------------------------------------------------------- -->
-        <div class="container-fluid">
-            <div class="row">
-                <!-- LEFT -->
-                <div class="col-md-6">
-                    <!-- Tag Analysis -->
-                    <div class="card card-danger">
-                        <div class="card-header">
-                            <h3 class="card-title">Tag Selling Status Chart</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                        class="fas fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="donutChart"
-                                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            <!-- END LEFT -->
+            <!-- RIGHT -->
+            <div class="col-md-6">
+                <!-- STACKED BAR CHART -->
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Total profit Status Chart</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                    class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                    class="fas fa-times"></i></button>
                         </div>
                     </div>
-                    <!-- END Tag Analysis -->
-                    <!-- Category Analysis -->
-                    <div class="card card-danger">
-                        <div class="card-header">
-                            <h3 class="card-title">Category Selling Status Chart</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                        class="fas fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="pieChart"
-                                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="stackedBarChart"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
-                    <!-- END Category Analysis -->
                 </div>
-                <!-- END LEFT -->
-                <!-- RIGHT -->
-                <div class="col-md-6">
-                    <!-- STACKED BAR CHART -->
-                    <div class="card card-success">
-                        <div class="card-header">
-                            <h3 class="card-title">Total profit Status Chart</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                        class="fas fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart">
-                                <canvas id="stackedBarChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                            </div>
+                <!-- END STACKED BAR CHART -->
+                <!-- Vending/Window Analysis -->
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Vending/WindowShop Selling Status Chart</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                    class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                    class="fas fa-times"></i></button>
                         </div>
                     </div>
-                    <!-- END STACKED BAR CHART -->
-                    <!-- Vending/Window Analysis -->
-                    <div class="card card-success">
-                        <div class="card-header">
-                            <h3 class="card-title">Vending/WindowShop Selling Status Chart</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                        class="fas fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart">
-                                <canvas id="barChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                            </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="barChart"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
-                    <!-- END Vending/Window Analysis -->
+                </div>
+                <!-- END Vending/Window Analysis -->
 
-                </div>
-                <!-- END RIGHT -->
             </div>
+            <!-- END RIGHT -->
         </div>
-
-        <!-- ----------------------------------------------------------------------------------------------------- -->
     </div>
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+</div>
 @endsection
 
 @section('scripts')
-    <script src="{{asset('js/plugins/chart.js/Chart.min.js')}}"></script>
-    <script>
-
-
-        function loading(){
+<script src="{{asset('js/plugins/chart.js/Chart.min.js')}}"></script>
+<script>
+    function loading(){
             $('.loading').removeClass('d-none');
         }
 
@@ -291,5 +295,5 @@
                 options: barChartOptions
             })
         })
-    </script>
+</script>
 @endsection

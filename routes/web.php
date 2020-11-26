@@ -12,6 +12,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'SmartShop'], function () {
     Route::get('Dashboard', 'DashboardController@index')->name('Dashboard');
     Route::get('settings/git-pull', 'DashboardController@git_pull')->name('git_pull');
     Route::get('settings/migrate', 'DashboardController@migrate')->name('migrate');
+    Route::get('settings/reset_multichain', 'DashboardController@reset_multichain')->name('reset_multichain');
 
     Route::group(['prefix' => 'UserManagement', 'as' => 'UserManagement.', 'namespace' => 'UserManagement'], function () {
         // http://127.0.0.1:8000/SmartShop/UserManagement/Permissions
