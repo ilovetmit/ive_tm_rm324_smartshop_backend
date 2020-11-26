@@ -18,17 +18,18 @@ class CreateUsersTable extends Migration
             // $table->engine = 'MyISAM';                           -> (unknow)
 
             $table->bigIncrements('id');
-            $table->string('email')                 ->unique();
+            $table->string('email')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('password');
             $table->string('avatar')->default('person.png');
-            $table->date('birthday')                ->nullable();
-            $table->integer('gender')               ->nullable();
-            $table->integer('telephone')            ->nullable();
-            $table->text('bio')                     ->nullable();
+            $table->date('birthday')->nullable();
+            $table->integer('gender')->nullable();
+            $table->integer('telephone')->nullable();
+            $table->text('bio')->nullable();
             $table->integer('status');
-            $table->timestamp('email_verified_at')  ->nullable();
+            $table->boolean('kiosk_logined')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

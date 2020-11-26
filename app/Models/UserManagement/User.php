@@ -51,6 +51,7 @@ class User extends Authenticatable
         'telephone',
         'bio',
         'status',
+        'kiosk_logined',
         'remember_token',
         'email_verified_at',
     ];

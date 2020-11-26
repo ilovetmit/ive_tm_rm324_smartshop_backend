@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\v1\Information;
 
 use App\Events\QRCodeLogin;
+use App\Events\MissionCompleted;
+use App\Models\UserManagement\User;
 use App\Http\Controllers\Api\v1\ApiController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Traits\PaymentGateway\Vitcoin;
@@ -34,11 +36,18 @@ class BankAccountController extends ApiController
             $token = $request->token;
             if (Redis::get($request->token)) {      // check is it expired
                 $one_time_password = Str::random(128);
-                event(new QRCodeLogin($token, $one_time_password));   // boardcast to the channel
+                event(new QRCodeLogin($token, $one_time_password));
+
+                if (Auth::guard('api')->user()->kiosk_logined === null) {
+                    event(new MissionCompleted('M-324-17', Auth::id()));
+                    User::find(Auth::guard('api')->user()->id)->update([
+                        'kiosk_logined' => true
+                    ]);
+                }
 
                 // store api_token to the Redis for authorization
-                $access_token = DB::table('oauth_access_tokens')->where('user_id',Auth::guard('api')->user()->id)->orderBy('created_at','desc')->first()->id;
-                Redis::set($one_time_password, $access_token , 'EX', 30);
+                $access_token = DB::table('oauth_access_tokens')->where('user_id', Auth::guard('api')->user()->id)->orderBy('created_at', 'desc')->first()->id;
+                Redis::set($one_time_password, $access_token, 'EX', 30);
                 Redis::del($token);
                 return parent::sendResponse('token', $token, 'Login successfully');
             } else {

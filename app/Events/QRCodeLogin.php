@@ -29,8 +29,6 @@ class QRCodeLogin implements ShouldBroadcast
         $this->data = ($one_time_password != 'REFRESH') ? $one_time_password : 'REFRESH';
     }
 
-
-
     /**
      * Get the channels the event should broadcast on.
      *
