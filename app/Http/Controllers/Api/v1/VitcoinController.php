@@ -5,16 +5,11 @@ namespace App\Http\Controllers\Api\v1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Events\MissionCompleted;
-use App\Http\Traits\PaymentGateway\Payment;
-use App\Http\Traits\PaymentGateway\PaymentType;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Traits\PaymentGateway\Vitcoin;
-use App\Http\Traits\MultiChain;
-use App\Models\UserManagement\User;
+use App\Models\Mission;
 
 class VitcoinController extends ApiController
 {
-    //TODO send signature, remove complete() function, transfer function, modularize
     public function mining(Request $request)
     {
         $result = ['isApprove' => false, 'signature' => null];
@@ -24,15 +19,16 @@ class VitcoinController extends ApiController
 
             foreach ($lists as $key => $value) {
                 if ($value === Auth::id()) {
+                    $coins = Mission::where('name', $request->mission)->first()->coins;
                     $successSigned = openssl_sign(json_encode([
-                        'coins'     =>  50,                      // should not be fixed
+                        'coins'     => $coins,
                         'address'   => Auth::guard('api')->user()->hasVitcoin->address
                     ]), $signature, file_get_contents(storage_path('vitcoin-private.pem')));
 
                     if ($successSigned) {
                         $result['isApprove'] = true;
                         $result['signature'] = bin2hex($signature);
-                        $result['coins'] = 50;                  // should not be fixed
+                        $result['coins'] = $coins;
                         $result['wallet'] = $this->wallet();
 
                         unset($lists[$key]);
