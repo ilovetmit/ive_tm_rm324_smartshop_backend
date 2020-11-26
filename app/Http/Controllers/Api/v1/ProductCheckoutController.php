@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
-
+use App\Http\Traits\PaymentGateway\Vitcoin;
 
 class ProductCheckoutController extends ApiController
 {
@@ -51,8 +51,17 @@ class ProductCheckoutController extends ApiController
             $currency = array_flip(config("constant.transaction_currency"));
             $transactions->currency = $currency[$request->get('payment')];
 
-            if ($request->get('payment') == 'VitCoin') { //todo Vitcoin payment
-
+            if ($request->get('payment') == 'VitCoin') {
+                $transactions->amount = $amount * config("constant.vitcoin_multiplier");
+                if (!Vitcoin::isSufficientBalance($transactions->amount)) {
+                    return parent::sendError('You do not have enough VitCoin', 233);
+                }
+                if (Vitcoin::expense($transactions->amount)) {
+                    $transactions->balance = Vitcoin::getBalance();
+                    $transactions->save();
+                } else {
+                    return parent::sendError('Unexpected error occurs, please contact admin and see what happen', 227);
+                }
             } elseif ($request->get('payment') == 'Saving') {
                 if ($amount > $bankAccount->saving_account) {
                     return parent::sendError('Your saving account does not have enough money', 233);

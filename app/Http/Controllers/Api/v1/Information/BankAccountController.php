@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1\Information;
 
 use App\Events\QRCodeLogin;
 use App\Events\MissionCompleted;
-use App\Models\UserManagement\User;
+use App\Models\Us
 use App\Http\Controllers\Api\v1\ApiController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Traits\PaymentGateway\Vitcoin;

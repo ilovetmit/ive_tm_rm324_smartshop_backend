@@ -45,6 +45,7 @@ class VitcoinController extends ApiController
     // Test api
     public function complete()
     {
+        return 11 * 0.5;
         event(new MissionCompleted('M-324-15', Auth::id()));
     }
 
