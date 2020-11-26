@@ -62,10 +62,6 @@ class UserTableSeeder extends Seeder
                 'last_name'             => $i,
                 'password'              => Hash::make('ilovetmit'),
                 'avatar'                => 'person.png',
-                'birthday'              => $birthday,
-                'telephone'             => $phoneNumber,
-                'bio'                   => 'I LOVE VTC.',
-                'gender'                => $gender,
                 'status'                => 1,
                 'email_verified_at'     => now(),
             ]);
