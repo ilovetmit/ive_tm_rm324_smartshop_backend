@@ -6,22 +6,22 @@ use Illuminate\Database\Seeder;
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
 
-class MissionSeederTableSeeder extends Seeder
+class MissionTableSeeder extends Seeder
 {
     public function run()
     {
         Mission::create([
-            "name" => "",
+            "name" => "M-324-15",
             "coins" => 50,
         ]);
 
         Mission::create([
-            "name" => "",
+            "name" => "M-324-16",
             "coins" => 50
         ]);
 
         Mission::create([
-            "name" => "",
+            "name" => "M-324-17",
             "coins" => 50
         ]);
     }

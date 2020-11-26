@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
 
             InsuranceTableSeeder::class,
             StockTableSeeder::class,
-            MissionSeeder::class,
+            MissionTableSeeder::class,
             VitcoinSeeder::class,
         ]);
         // Model::reguard();

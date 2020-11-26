@@ -109,7 +109,6 @@
 </script>
 
 <script>
-
     window.Echo.channel('smartshop_database_qrcodeLogin')
         .listen('.{{$token}}', (e) => {
             if(e.data === 'REFRESH'){
