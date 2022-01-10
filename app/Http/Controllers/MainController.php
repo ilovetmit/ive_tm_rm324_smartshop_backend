@@ -13,4 +13,9 @@ class MainController extends Controller
 
         return '1234';
     }
+
+    public function loginDevice(){
+
+        return '1234';
+    }
 }
