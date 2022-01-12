@@ -18,7 +18,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('/user/login', 'MainController@loginUser');
-/*
+$router->get('/user/login', 'MainController@loginUser');
 $router->post('/user/login/device', 'MainController@loginDevice');
 $router->post('/user/logout', 'MainController@logoutUser');
 $router->post('/user', 'MainController@createUser');
@@ -35,4 +35,3 @@ $router->get('/user/{userid}/buylist/{buylistId}', 'MainController@getBuylist');
 $router->post('/user/{userid}/buylist/{buylistId}', 'MainController@addBuylist');
 $router->put('/user/{userid}/buylist/{buylistId}', 'MainController@updateBuylist');
 $router->delete('/user/{userid}/buylist/{buylistId}', 'MainController@removeBuylist');
-*/
