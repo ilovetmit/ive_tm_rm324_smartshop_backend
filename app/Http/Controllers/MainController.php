@@ -132,6 +132,21 @@ class MainController extends Controller
         }
         return response()->json(['id' => $buylistId, 'item' => $items]);
     }
+    public function addBuylist(Request $request, $userid){
+
+    }
+    public function updateBuylist(Request $request,$userid,$buyid){
+        
+    }
+    public function removeBuylist(Request $request, $userid, $buyid){
+        $affected_item = DB::table('buylistdetails')->where('buyid','=',$buyid)->delete();
+        $affected = DB::table('buylist')->where('buyid','=',$buyid);
+        if ($affected > 0) {
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+        } else {
+            return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
+        } 
+    }
     public function testdb(Request $request)
     {
         $result = DB::select("SELECT * FROM user;");
