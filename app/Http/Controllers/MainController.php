@@ -109,6 +109,29 @@ class MainController extends Controller
             return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
         }
     }
+    public function removeUser(Request $request){
+        $userid = $request->userid;
+        $affected = DB::table('user')
+            ->where('userid','=',$userid)
+            ->delete();
+            if ($affected > 0) {
+                return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+            } else {
+                return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
+            }
+    }
+    public function getBuylists(Request $request,$userid){
+        $result = DB::table('buylist')->where('userid','=',$userid)->get();
+        return response()->json(['result' => $result]);
+    }
+    public function getBuylist(Request $request, $userid,$buylistId){
+        $result = DB::table('buylistdetails')->where('buyid','=',$buylistId)->get();
+        $items = [];
+        foreach($result as $row){
+            $items.array_push([$result->productid,$result->qty]);
+        }
+        return response()->json(['id' => $buylistId, 'item' => $items]);
+    }
     public function testdb(Request $request)
     {
         $result = DB::select("SELECT * FROM user;");
