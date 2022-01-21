@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 
+use function PHPUnit\Framework\isNull;
+
 class MainController extends Controller
 {
     public function __construct()
@@ -64,6 +66,24 @@ class MainController extends Controller
             ->where('token','=',$token)
             ->delete();
         return response()->json(['code'=>true,'type'=>"result",'message'=>"Success"],200);
+    }
+    public function createUser(Request $request){
+        $email = $request->email;
+        $password = $request->password;
+        $name = $request->name;
+        $tel = $request->tel;
+
+        $id = DB::table('user')->insertGetId([
+            'email' => $email,
+            'password' => $password,
+            'name' => $name,
+            'tel' => $tel
+        ]);
+        if(!isNull($id)){
+            return response()->json(['code'=>200,'type'=>"result",'message'=>"Success"]);
+        }else{
+            return response()->json(['code'=>400,'type'=>"",'message'=>""]);
+        }
     }
     public function testdb(Request $request){
         $result = DB::select("SELECT * FROM user;");
