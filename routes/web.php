@@ -36,4 +36,4 @@ $router->get('/user/{userid}/buylist/{buylistId}', 'MainController@getBuylist');
 $router->post('/user/{userid}/buylist/{buylistId}', 'MainController@addBuylist');
 $router->put('/user/{userid}/buylist/{buylistId}', 'MainController@updateBuylist');
 $router->delete('/user/{userid}/buylist/{buylistId}', 'MainController@removeBuylist');
-$router->get('/testdb','MainController@testdb');
+$router->get('/testdb', 'MainController@testdb');
