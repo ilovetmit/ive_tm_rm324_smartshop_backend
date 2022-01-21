@@ -85,6 +85,27 @@ class MainController extends Controller
             return response()->json(['code'=>400,'type'=>"",'message'=>""]);
         }
     }
+    public function updateUser(Request $request){
+        $userid = $request->userid;
+        $email = $request->email;
+        $password = $request->password;
+        $name = $request->name;
+        $tel = $request->tel;
+        $affected = DB::table('user')
+            ->where('userid','=',$userid)
+            ->update([
+                'email' => $email,
+                'password' => $password,
+                'name' => $name,
+                'tel' => $tel
+            ]);
+        if($affected>0){
+            return response()->json(['code'=>200,'type'=>"result",'message'=>"Success"]);
+        }else{
+            return response()->json(['code'=>400,'type'=>"",'message'=>""]);
+        }
+        
+    }
     public function testdb(Request $request){
         $result = DB::select("SELECT * FROM user;");
         return response($result,200);
