@@ -49,9 +49,9 @@ class MainController extends Controller
                 'token'=>$token,
                 'expired'=>Carbon::now()->addDay(7)->timestamp
             ]);
-            return response()->json(['result'=>true, 'token'=>$token]);
+            return response()->json(['result'=>true, 'token'=>$token],200);
         }else{
-            return response()->json(['result'=>false, 'token'=>'']);
+            return response()->json(['result'=>false, 'token'=>''],400);
         }
         
         //return response() -> json(['result' => true, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
@@ -63,7 +63,7 @@ class MainController extends Controller
             ->where('userid','=',$userid)
             ->where('token','=',$token)
             ->delete();
-        return response()->json(['code'=>true,'type'=>"result",'message'=>"Success"]);
+        return response()->json(['code'=>true,'type'=>"result",'message'=>"Success"],200);
     }
     public function testdb(Request $request){
         $result = DB::select("SELECT * FROM user;");
