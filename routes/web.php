@@ -17,6 +17,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+//$router->get('/testdb', 'MainController@testdb');
+
 $router->post('/user/login', 'MainController@loginUser');
 $router->get('/user/login', 'MainController@loginUser');
 $router->post('/user/login/device', 'MainController@loginDevice');
@@ -36,4 +38,8 @@ $router->get('/user/{userid}/buylist/{buylistId}', 'MainController@getBuylist');
 $router->post('/user/{userid}/buylist', 'MainController@addBuylist');
 $router->put('/user/{userid}/buylist/{buylistId}', 'MainController@updateBuylist');
 $router->delete('/user/{userid}/buylist/{buylistId}', 'MainController@removeBuylist');
-$router->get('/testdb', 'MainController@testdb');
+
+$router->get('/product', 'MainController@getProduct');
+$router->post('/product', 'MainController@addProduct');
+$router->put('/product', 'MainController@updateProduct');
+$router->delete('/product', 'MainController@removeProduct');

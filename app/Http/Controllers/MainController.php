@@ -134,6 +134,7 @@ class MainController extends Controller
     }
     public function addBuylist(Request $request, $userid){
 
+
     }
     public function updateBuylist(Request $request,$userid,$buyid){
         
@@ -147,6 +148,19 @@ class MainController extends Controller
             return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
         } 
     }
+    public function getProduct(Request $request){
+        $productid = $request->productid;
+    }
+    public function addProduct(Request $request){
+
+    }
+    public function updateProduct(Request $request){
+
+    }
+    public function removeProduct(Request $request){
+
+    }
+
     public function testdb(Request $request)
     {
         $result = DB::select("SELECT * FROM user;");
