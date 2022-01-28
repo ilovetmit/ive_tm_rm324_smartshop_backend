@@ -137,7 +137,7 @@ class MainController extends Controller
 
     }
     public function updateBuylist(Request $request,$userid,$buyid){
-        
+
     }
     public function removeBuylist(Request $request, $userid, $buyid){
         $affected_item = DB::table('buylistdetails')->where('buyid','=',$buyid)->delete();
@@ -146,19 +146,53 @@ class MainController extends Controller
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
         } else {
             return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
-        } 
+        }
     }
     public function getProduct(Request $request){
         $productid = $request->productid;
+        $result = DB::table('product')->where('productid','=',$productid)->first();
+        if ($result){
+            return response()->json(["id" => $result->productid, "name" => $result->name, "description"=>$result->description, "price"=>$result->price, "Location"=>$result->Location],200);
+        }else{
+            return response()->json(["id" => "", "name" => "", "description"=>"", "price"=>"", "Location"=>""],400);
+        }
     }
     public function addProduct(Request $request){
+        $result = DB::table('product')->insertGetId([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'price'=>$request->price,
+            'Location'=>$request->Location
+        ]);
+        if($result){
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+        }
 
     }
     public function updateProduct(Request $request){
-
+        $productid = $request->productid;
+        $affected = DB::table('product')
+            ->where('productid','=',$productid)
+            ->update([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'price'=>$request->price,
+            'Location'=>$request->Location
+        ]);
+        if ($affected){
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
+        }else{
+            return response()->json(['code' => 400, 'type' => "result", 'message' => ""],400);
+        }
     }
     public function removeProduct(Request $request){
-
+        $productid = $request->productid;
+        $affected = DB::table('product')->where('productid','=',$productid)->delete();
+        if ($affected){
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
+        }else{
+            return response()->json(['code' => 400, 'type' => "result", 'message' => ""],400);
+        }
     }
 
     public function testdb(Request $request)
