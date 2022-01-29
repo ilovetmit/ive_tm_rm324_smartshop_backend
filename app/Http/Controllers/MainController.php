@@ -87,7 +87,7 @@ class MainController extends Controller
         if ($id>0) {
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         } else {
-            return response()->json(['code' => 400, 'type' => "", 'message' => ""],400);
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
         }
     }
     public function updateUser(Request $request)
@@ -108,7 +108,7 @@ class MainController extends Controller
         if ($affected > 0) {
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         } else {
-            return response()->json(['code' => 400, 'type' => "", 'message' => ""],400);
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
         }
     }
     public function removeUser(Request $request){
@@ -119,7 +119,7 @@ class MainController extends Controller
             if ($affected > 0) {
                 return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
             } else {
-                return response()->json(['code' => 400, 'type' => "", 'message' => ""],400);
+                return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
             }
     }
     public function getBuylists(Request $request,$userid){
@@ -145,9 +145,9 @@ class MainController extends Controller
         $affected_item = DB::table('buylistdetails')->where('buyid','=',$buyid)->delete();
         $affected = DB::table('buylist')->where('buyid','=',$buyid);
         if ($affected > 0) {
-            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         } else {
-            return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
         }
     }
     public function getProduct(Request $request){
@@ -167,7 +167,9 @@ class MainController extends Controller
             'Location'=>$request->Location
         ]);
         if($result){
-            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
+        }else{
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
         }
 
     }
@@ -184,7 +186,7 @@ class MainController extends Controller
         if ($affected){
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         }else{
-            return response()->json(['code' => 400, 'type' => "result", 'message' => ""],400);
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
         }
     }
     public function removeProduct(Request $request){
@@ -193,7 +195,7 @@ class MainController extends Controller
         if ($affected){
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         }else{
-            return response()->json(['code' => 400, 'type' => "result", 'message' => ""],400);
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
         }
     }
 
