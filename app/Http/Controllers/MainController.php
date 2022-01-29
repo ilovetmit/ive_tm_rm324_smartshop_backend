@@ -85,9 +85,9 @@ class MainController extends Controller
             'tel' => $tel
         ]);
         if ($id>0) {
-            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         } else {
-            return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
+            return response()->json(['code' => 400, 'type' => "", 'message' => ""],400);
         }
     }
     public function updateUser(Request $request)
@@ -106,9 +106,9 @@ class MainController extends Controller
                 'tel' => $tel
             ]);
         if ($affected > 0) {
-            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         } else {
-            return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
+            return response()->json(['code' => 400, 'type' => "", 'message' => ""],400);
         }
     }
     public function removeUser(Request $request){
@@ -117,9 +117,9 @@ class MainController extends Controller
             ->where('userid','=',$userid)
             ->delete();
             if ($affected > 0) {
-                return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
+                return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
             } else {
-                return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
+                return response()->json(['code' => 400, 'type' => "", 'message' => ""],400);
             }
     }
     public function getBuylists(Request $request,$userid){
@@ -132,7 +132,7 @@ class MainController extends Controller
         foreach($result as $row){
             $items.array_push([$result->productid,$result->qty]);
         }
-        return response()->json(['id' => $buylistId, 'item' => $items]);
+        return response()->json(['id' => $buylistId, 'item' => $items],200);
     }
     public function addBuylist(Request $request, $userid){
 
