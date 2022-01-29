@@ -25,8 +25,8 @@ $router->post('/user/login/device', 'MainController@loginDevice');
 $router->post('/user/logout', 'MainController@logoutUser');
 $router->get('/user/logout', 'MainController@logoutUser');
 $router->post('/user', 'MainController@createUser');
-$router->put('/user}', 'MainController@updateUser');
-$router->delete('/user}', 'MainController@removeUser');
+$router->put('/user', 'MainController@updateUser');
+$router->delete('/user', 'MainController@removeUser');
 
 //$router->get('/user/{userid}/creditcard', 'MainController@getCreditCard');
 //$router->post('/user/{userid}/creditcard', 'MainController@addCreditCard');

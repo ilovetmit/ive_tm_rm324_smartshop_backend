@@ -93,6 +93,7 @@ class MainController extends Controller
     public function updateUser(Request $request)
     {
         $userid = $request->userid;
+        $username = $request->username;
         $email = $request->email;
         $password = $request->password;
         $name = $request->name;
