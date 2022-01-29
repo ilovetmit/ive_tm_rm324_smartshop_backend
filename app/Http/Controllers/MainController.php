@@ -16,10 +16,10 @@ class MainController extends Controller
     }
     public function loginUser(Request $request)
     {
-        $email = $request->input('email');
+        $username = $request->input('username');
         $password = $request->input('password');
         $result = DB::table('user')
-            ->where('email', '=', $email)
+            ->where('username', '=', $username)
             ->where('password', '=', $password)
             ->get();
 
@@ -71,12 +71,14 @@ class MainController extends Controller
     }
     public function createUser(Request $request)
     {
+        $username = $request->username;
         $email = $request->email;
         $password = $request->password;
         $name = $request->name;
         $tel = $request->tel;
 
         $id = DB::table('user')->insertGetId([
+            'username' => $username,
             'email' => $email,
             'password' => $password,
             'name' => $name,
