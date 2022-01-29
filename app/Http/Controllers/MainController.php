@@ -31,9 +31,9 @@ class MainController extends Controller
                 'token' => $token,
                 'expired' => Carbon::now()->addDay(7)->timestamp
             ]);
-            return response()->json(['result' => true, 'id' => $result[0]->userid, 'token' => $token], 200);
+            return response()->json(['result' => true, 'id' => $result[0]->userid, 'username' => $result[0]->username, 'name' => $result[0]->name, 'tel' => $result[0]->tel, 'email' => $result[0]->email, 'token' => $token], 200);
         } else {
-            return response()->json(['result' => false, 'id' => '', 'token' => ''], 401);
+            return response()->json(['result' => false, 'id' => '', 'username' => '', 'name' => '', 'tel' => '', 'email' => '', 'token' => ''], 401);
         }
 
         //return response()->json(['result' => true,'id' => 64, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
