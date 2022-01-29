@@ -84,7 +84,7 @@ class MainController extends Controller
             'name' => $name,
             'tel' => $tel
         ]);
-        if (!isNull($id)) {
+        if ($id>0) {
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"]);
         } else {
             return response()->json(['code' => 400, 'type' => "", 'message' => ""]);
