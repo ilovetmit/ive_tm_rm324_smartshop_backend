@@ -98,7 +98,7 @@ class MainController extends Controller
         $password = $request->password;
         $name = $request->name;
         $tel = $request->tel;
-        $updatePassword = $request->input('updatePassword');
+        $updatePassword = $request->route()->parameter('updatePassword');
         if ($updatePassword){
             $affected = DB::table('user')
             ->where('userid', '=', $userid)
