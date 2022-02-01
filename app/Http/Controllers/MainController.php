@@ -148,16 +148,81 @@ class MainController extends Controller
         return response()->json(['id' => $buylistId, 'item' => $items],200);
     }
     public function addBuylist(Request $request, $userid){
+        $name = $request->name;
+        $items = json_decode($request->items);
+        if (count($items) > 0){
+            $buylistId = DB::table('buylist')->insertGetId([
+                'name' => $name,
+                'userid' => $userid
+            ]);
+            if($buylistId>0){
+                foreach($items as $item){
+                    $product = DB::table('product')->where('name','=', $name)->first();
+                    if (count($product)>0){
+                        $result = DB::table('buylistdetails')->insert([
+                            'buyid' => $buylistId,
+                            'productid' => $item->productid,
+                            'qty' => $item->quantity
+                        ]);
+                        if($result){
+                            continue;
+                        }else{
+                            return response()->json(['code' => 400, 'type' => "error", 'message' => "Product Lookup Error"],400);
+                            break;
+                        }
+                    }else{
+                        return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert item error"],400);
+                        break;
+                    }
+                }
+            }else{
+                return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert buylist error"],400);
+            }
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
+        }
+    }
+    public function updateBuylist(Request $request,$userid){
+        $buylistId = $request->id;
+        $name = $request->name;
+        $items = json_decode($request->items);
 
+        if (count($items) > 0){
+            $results = DB::table('buylist')->where('buyid','=',$buylistId)->update([
+                'name' => $name
+            ]);
+            if($results){
+                $affected_item = DB::table('buylistdetails')->where('buyid','=',$buylistId)->delete();
+                foreach($items as $item){
+                    $product = DB::table('product')->where('name','=', $request->name)->first();
+                    if (count($product)>0){
+                        $result = DB::table('buylistdetails')->insert([
+                            'buyid' => $buylistId,
+                            'productid' => $item->productid,
+                            'qty' => $item->quantity
+                        ]);
+                        if($result){
+                            continue;
+                        }else{
+                            return response()->json(['code' => 400, 'type' => "error", 'message' => "Product Lookup Error"],400);
+                            break;
+                        }
+                    }else{
+                        return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert item error"],400);
+                        break;
+                    }
+                }
+            }else{
+                return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert buylist error"],400);
+            }
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
+        }
 
     }
-    public function updateBuylist(Request $request,$userid,$buyid){
-
-    }
-    public function removeBuylist(Request $request, $userid, $buyid){
+    public function removeBuylist(Request $request, $userid){
+        $buyid = $request->buylistId;
         $affected_item = DB::table('buylistdetails')->where('buyid','=',$buyid)->delete();
-        $affected = DB::table('buylist')->where('buyid','=',$buyid);
-        if ($affected > 0) {
+        $affected = DB::table('buylist')->where('buyid','=',$buyid)->delete();
+        if ($affected > 0 && $affected_item > 0) {
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         } else {
             return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);

@@ -34,10 +34,10 @@ $router->delete('/user', 'MainController@removeUser');
 //$router->delete('/user/{userid}/creditcard', 'MainController@removeCreditCard');
 
 $router->get('/user/{userid}/buylists', 'MainController@getBuylists');
-$router->get('/user/{userid}/buylist/{buylistId}', 'MainController@getBuylist');
+$router->get('/user/{userid}/buylist', 'MainController@getBuylist');
 $router->post('/user/{userid}/buylist', 'MainController@addBuylist');
-$router->put('/user/{userid}/buylist/{buylistId}', 'MainController@updateBuylist');
-$router->delete('/user/{userid}/buylist/{buylistId}', 'MainController@removeBuylist');
+$router->put('/user/{userid}/buylist', 'MainController@updateBuylist');
+$router->delete('/user/{userid}/buylist', 'MainController@removeBuylist');
 
 $router->get('/product', 'MainController@getProduct');
 $router->post('/product', 'MainController@addProduct');
