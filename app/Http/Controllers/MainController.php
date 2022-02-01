@@ -98,7 +98,9 @@ class MainController extends Controller
         $password = $request->password;
         $name = $request->name;
         $tel = $request->tel;
-        $affected = DB::table('user')
+        $updatePassword = $request->input('updatePassword');
+        if ($updatePassword){
+            $affected = DB::table('user')
             ->where('userid', '=', $userid)
             ->update([
                 'email' => $email,
@@ -106,6 +108,16 @@ class MainController extends Controller
                 'name' => $name,
                 'tel' => $tel
             ]);
+        }else{
+            $affected = DB::table('user')
+            ->where('userid', '=', $userid)
+            ->update([
+                'email' => $email,
+                'name' => $name,
+                'tel' => $tel
+            ]);
+        }
+        
         if ($affected > 0) {
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"],200);
         } else {
