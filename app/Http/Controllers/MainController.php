@@ -229,12 +229,31 @@ class MainController extends Controller
         }
     }
     public function getProduct(Request $request){
-        $productid = $request->productid;
-        $result = DB::table('product')->where('productid','=',$productid)->first();
-        if ($result){
-            return response()->json(["id" => $result->productid, "name" => $result->name, "description"=>$result->description, "price"=>$result->price, "Location"=>$result->Location],200);
-        }else{
-            return response()->json(["id" => "", "name" => "", "description"=>"", "price"=>"", "Location"=>""],400);
+        $method = $request->route()->parameter('method');
+        if(!$method){
+            $method = 1;
+        }
+        switch($method){
+            case(1): //GetProductByid
+                $productid = $request->productid;
+                $result = DB::table('product')->where('productid','=',$productid)->first();
+                if ($result){
+                    return response()->json(["id" => $result->productid, "name" => $result->name, "description"=>$result->description, "price"=>$result->price, "Location"=>$result->Location],200);
+                }else{
+                    return response()->json(["id" => "", "name" => "", "description"=>"", "price"=>"", "Location"=>""],400);
+                }
+                break;
+            case(2)://GetProductByName
+                $name = $request->name;
+                $result = DB::table('product')->where('name','=',$name)->first();
+                if ($result){
+                    return response()->json(["id" => $result->productid, "name" => $result->name, "description"=>$result->description, "price"=>$result->price, "Location"=>$result->Location],200);
+                }else{
+                    return response()->json(["id" => "", "name" => "", "description"=>"", "price"=>"", "Location"=>""],400);
+                }
+                break;
+            case(3):
+                break;
         }
     }
     public function addProduct(Request $request){
@@ -249,7 +268,6 @@ class MainController extends Controller
         }else{
             return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"],400);
         }
-
     }
     public function updateProduct(Request $request){
         $productid = $request->productid;
