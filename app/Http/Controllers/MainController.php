@@ -149,7 +149,7 @@ class MainController extends Controller
     }
     public function addBuylist(Request $request, $userid){
         $name = $request->name;
-        $items = json_decode($request->items);
+        $items = json_decode($request->items,true);
         if (count($items) > 0){
             $buylistId = DB::table('buylist')->insertGetId([
                 'name' => $name,
@@ -184,7 +184,7 @@ class MainController extends Controller
     public function updateBuylist(Request $request,$userid){
         $buylistId = $request->id;
         $name = $request->name;
-        $items = json_decode($request->items);
+        $items = json_decode($request->items,true);
 
         if (count($items) > 0){
             $results = DB::table('buylist')->where('buyid','=',$buylistId)->update([
