@@ -98,7 +98,7 @@ class MainController extends Controller
         $password = $request->password;
         $name = $request->name;
         $tel = $request->tel;
-        $updatePassword = $request->route()->parameter('updatePassword');
+        $updatePassword = $request->input('updatePassword');
         if ($updatePassword){
             $affected = DB::table('user')
             ->where('userid', '=', $userid)
@@ -229,7 +229,7 @@ class MainController extends Controller
         }
     }
     public function getProduct(Request $request){
-        $method = $request->route()->parameter('method');
+        $method = $request->input('method');
         if(!$method){
             $method = 1;
         }
