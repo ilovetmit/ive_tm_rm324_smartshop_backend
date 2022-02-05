@@ -150,7 +150,7 @@ class MainController extends Controller
         $buylistId = $request->input('buylistId');
         $items = DB::table('buylistdetails')->join('product', 'buylistdetails.productid', '=', 'product.productid')->where('buyid', '=', $buylistId)->get();
         $buylist = DB::table('buylist')->where('buyid', '=', $buylistId)->first();
-        return response()->json(['id' => $buylistId, 'name' => $buylist->name, 'createdate' => $buylist->createdate, 'item' => $items], 200);
+        return response()->json(['id' => $buylistId, 'name' => $buylist->name, 'createdate' => $buylist->createdate, 'items' => $items], 200);
     }
     public function addBuylist(Request $request, $userid)
     {
