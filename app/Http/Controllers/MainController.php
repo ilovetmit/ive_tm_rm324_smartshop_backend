@@ -271,7 +271,7 @@ class MainController extends Controller
                 $name = $request->input('name');
                 $result = DB::table('product')->where('name', 'LIKE', '%' . $name . '%')->get();
                 if ($result->count() > 0) {
-                    return response()->json($result, 200);
+                    return response()->json(["result" => $result], 200);
                 } else {
                     return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
                 }
@@ -323,12 +323,12 @@ class MainController extends Controller
     public function getProductDiscount(Request $request, $productid)
     {
         $discountid = $request->discountid;
-        if (isEmptyOrNullString($request->discountid)) {
+        if (!$discountid>0) {
             $result = DB::table('productdiscount')->where('productid', '=', $productid)->get();
-            return response()->json($result, 200);
+            return response()->json(["result" => $result], 200);
         } else {
             $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('discountid', '=', $discountid)->first();
-            return response()->json($result, 200);
+            return response()->json(["result" => $result], 200);
         }
     }
     public function addProductDiscount(Request $request, $productid)
