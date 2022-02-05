@@ -149,7 +149,9 @@ class MainController extends Controller
     }
     public function addBuylist(Request $request, $userid){
         $name = $request->name;
-        $items = json_decode($request->items,true);
+        //return print_r($request->items);
+        $items = $request->items;
+        //return count($items);
         if (count($items) > 0){
             $buylistId = DB::table('buylist')->insertGetId([
                 'name' => $name,
@@ -157,8 +159,9 @@ class MainController extends Controller
             ]);
             if($buylistId>0){
                 foreach($items as $item){
-                    $product = DB::table('product')->where('name','=', $name)->first();
-                    if (count($product)>0){
+                    //$product = DB::table('product')->where('name','=', $name)->get();
+                    $product = $item->id;
+                    if ($product->count() > 0){
                         $result = DB::table('buylistdetails')->insert([
                             'buyid' => $buylistId,
                             'productid' => $item->productid,
@@ -184,7 +187,7 @@ class MainController extends Controller
     public function updateBuylist(Request $request,$userid){
         $buylistId = $request->id;
         $name = $request->name;
-        $items = json_decode($request->items,true);
+        $items = $request->items;
 
         if (count($items) > 0){
             $results = DB::table('buylist')->where('buyid','=',$buylistId)->update([
@@ -229,13 +232,13 @@ class MainController extends Controller
         }
     }
     public function getProduct(Request $request){
-        $method = $request->input('method');
+        $method = intval($request->input('method'));
         if(!$method){
             $method = 1;
         }
         switch($method){
             case(1): //GetProductByid
-                $productid = $request->productid;
+                $productid = $request->input('id');
                 $result = DB::table('product')->where('productid','=',$productid)->first();
                 if ($result){
                     return response()->json(["id" => $result->productid, "name" => $result->name, "description"=>$result->description, "price"=>$result->price, "Location"=>$result->Location],200);
@@ -244,7 +247,7 @@ class MainController extends Controller
                 }
                 break;
             case(2)://GetProductByName
-                $name = $request->name;
+                $name = $request->input('name');
                 $result = DB::table('product')->where('name','=',$name)->first();
                 if ($result){
                     return response()->json(["id" => $result->productid, "name" => $result->name, "description"=>$result->description, "price"=>$result->price, "Location"=>$result->Location],200);
@@ -252,7 +255,14 @@ class MainController extends Controller
                     return response()->json(["id" => "", "name" => "", "description"=>"", "price"=>"", "Location"=>""],400);
                 }
                 break;
-            case(3):
+            case(3)://GetProductByKeywords
+                $name = $request->input('name');
+                $result = DB::table('product')->where('name','LIKE','%'.$name.'%')->get();
+                if ($result->count()>0){
+                    return response()->json($result,200);
+                }else{
+                    return response()->json(["id" => "", "name" => "", "description"=>"", "price"=>"", "Location"=>""],400);
+                }
                 break;
         }
     }
