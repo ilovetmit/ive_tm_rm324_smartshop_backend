@@ -194,13 +194,13 @@ class MainController extends Controller
             ]);
             if ($results) {
                 $affected_item = DB::table('buylistdetails')->where('buyid', '=', $buylistId)->delete();
-                foreach ($items as $item) {
-                    $product = DB::table('product')->where('name', '=', $request->name)->first();
-                    if (count($product) > 0) {
+                if ($affected_item > 0) {
+                    foreach ($items as $item) {
+                        //$product = DB::table('product')->where('name', '=', $request->name)->first();
                         $result = DB::table('buylistdetails')->insert([
                             'buyid' => $buylistId,
-                            'productid' => $item->productid,
-                            'qty' => $item->quantity
+                            'productid' => $item['productid'],
+                            'qty' => $item['quantity']
                         ]);
                         if ($result) {
                             continue;
@@ -208,10 +208,9 @@ class MainController extends Controller
                             return response()->json(['code' => 400, 'type' => "error", 'message' => "Product Lookup Error"], 400);
                             break;
                         }
-                    } else {
-                        return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert item error"], 400);
-                        break;
                     }
+                } else {
+                    return response()->json(['code' => 400, 'type' => "error", 'message' => "Delete old buylist items error"], 400);
                 }
             } else {
                 return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert buylist error"], 400);
@@ -221,7 +220,7 @@ class MainController extends Controller
     }
     public function removeBuylist(Request $request, $userid)
     {
-        $buyid = $request->buylistId;
+        $buyid = $request->input('buylistId');
         $affected_item = DB::table('buylistdetails')->where('buyid', '=', $buyid)->delete();
         $affected = DB::table('buylist')->where('buyid', '=', $buyid)->delete();
         if ($affected > 0 && $affected_item > 0) {
