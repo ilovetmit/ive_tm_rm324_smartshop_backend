@@ -189,34 +189,45 @@ class MainController extends Controller
         $buylistId = $request->id;
         $name = $request->name;
         $items = $request->items;
-
-        if (count($items) > 0) {
+        $updateBuyList  = $request->input('updateBuyList');
+        $updateBuyItems = $request->input('updateBuyItems');
+        $resultbl = false;
+        $resultbi = false;
+        if ($updateBuyList){
             $results = DB::table('buylist')->where('buyid', '=', $buylistId)->update([
                 'name' => $name
             ]);
-            if ($results) {
-                $affected_item = DB::table('buylistdetails')->where('buyid', '=', $buylistId)->delete();
-                if ($affected_item > 0) {
-                    foreach ($items as $item) {
-                        //$product = DB::table('product')->where('name', '=', $request->name)->first();
-                        $result = DB::table('buylistdetails')->insert([
-                            'buyid' => $buylistId,
-                            'productid' => $item['productid'],
-                            'qty' => $item['quantity']
-                        ]);
-                        if ($result) {
-                            continue;
-                        } else {
-                            return response()->json(['code' => 400, 'type' => "error", 'message' => "Product Lookup Error"], 400);
-                            break;
-                        }
-                    }
-                } else {
-                    return response()->json(['code' => 400, 'type' => "error", 'message' => "Delete old buylist items error"], 400);
-                }
-            } else {
-                return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert buylist error"], 400);
+            if($results){
+                $resultbl = true;
             }
+        }else{
+            $resultbl = true;
+        }
+        if($updateBuyItems){
+            $affected_item = DB::table('buylistdetails')->where('buyid', '=', $buylistId)->delete();
+            if ($affected_item > 0) {
+                foreach ($items as $item) {
+                    //$product = DB::table('product')->where('name', '=', $request->name)->first();
+                    $result = DB::table('buylistdetails')->insert([
+                        'buyid' => $buylistId,
+                        'productid' => $item['productid'],
+                        'qty' => $item['qty']
+                    ]);
+                    if ($result) {
+                        continue;
+                    } else {
+                        return response()->json(['code' => 400, 'type' => "error", 'message' => "Product insert Error"], 400);
+                        break;
+                    }
+                }
+                $resultbi = true;
+            } else {
+                return response()->json(['code' => 400, 'type' => "error", 'message' => "Delete old buylist items error"], 400);
+            }
+        }else{
+            $resultbi = true;
+        }
+        if($resultbl&&$resultbi){
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
         }
     }
