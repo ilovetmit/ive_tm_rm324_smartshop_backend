@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use chillerlan\QRCode\QRCode;
-use chillerlan\QRCode\QROptions;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -392,15 +391,13 @@ class MainController extends Controller
                 "id"=>$result->productid,
                 "name"=>"Apple"
             ];
-            $options = new QROptions([
-                'version'    => 5,
-                'outputType' => QRCode::OUTPUT_IMAGE_PNG,
-                'eccLevel'   => QRCode::ECC_H,
-                'scale'      => 20
-            ]);
-            $qrcode = new QRCode($options);
+            $qrcode = QRCode::format('png')
+                ->size(300)
+                ->encoding('UTF-8')
+                ->errorCorrection('H')
+                ->generate(json_encode($data));
             
-            return response($qrcode->render(json_encode($data)))->header();
+            return response($qrcode);
         } else {
             return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
         }
@@ -408,13 +405,7 @@ class MainController extends Controller
 
     public function GenerateQRCode($data)
     {
-        $options = new QROptions([
-            'version'    => 5,
-            'outputType' => QRCode::OUTPUT_IMAGE_PNG,
-            'eccLevel'   => QRCode::ECC_H,
-        ]);
-        $qrcode = new QRCode();
-        return $qrcode->render($data);
+
     }
     public function testdb(Request $request)
     {
