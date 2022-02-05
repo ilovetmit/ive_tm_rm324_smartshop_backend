@@ -8,7 +8,8 @@
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "chillerlan/php-qrcode": "^4.3",
-        "laravel/lumen-framework": "^8.3.1"
+        "laravel/lumen-framework": "^8.3.1",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
