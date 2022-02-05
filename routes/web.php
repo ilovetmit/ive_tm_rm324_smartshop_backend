@@ -43,6 +43,7 @@ $router->get('/product', 'MainController@getProduct');
 $router->post('/product', 'MainController@addProduct');
 $router->put('/product', 'MainController@updateProduct');
 $router->delete('/product', 'MainController@removeProduct');
+$router->get('/product/qrcode', 'MainController@getProductQRCode');
 
 $router->get('/product/{productid}/discount', 'MainController@getProductDiscount');
 $router->post('/product/{productid}/discount', 'MainController@addProductDiscount');

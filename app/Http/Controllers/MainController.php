@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
-
-use function PHPUnit\Framework\isEmpty;
-use function PHPUnit\Framework\isNull;
 
 class MainController extends Controller
 {
@@ -193,17 +192,17 @@ class MainController extends Controller
         $updateBuyItems = $request->input('updateBuyItems');
         $resultbl = false;
         $resultbi = false;
-        if ($updateBuyList){
+        if ($updateBuyList) {
             $results = DB::table('buylist')->where('buyid', '=', $buylistId)->update([
                 'name' => $name
             ]);
-            if($results){
+            if ($results) {
                 $resultbl = true;
             }
-        }else{
+        } else {
             $resultbl = true;
         }
-        if($updateBuyItems){
+        if ($updateBuyItems) {
             $affected_item = DB::table('buylistdetails')->where('buyid', '=', $buylistId)->delete();
             if ($affected_item > 0) {
                 foreach ($items as $item) {
@@ -224,10 +223,10 @@ class MainController extends Controller
             } else {
                 return response()->json(['code' => 400, 'type' => "error", 'message' => "Delete old buylist items error"], 400);
             }
-        }else{
+        } else {
             $resultbi = true;
         }
-        if($resultbl&&$resultbi){
+        if ($resultbl && $resultbi) {
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
         }
     }
@@ -253,18 +252,18 @@ class MainController extends Controller
                 $productid = $request->input('productid');
                 $result = DB::table('product')->where('productid', '=', $productid)->first();
                 if ($result) {
-                    return response()->json(["id" => $result->productid, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
+                    return response()->json(["productid" => $result->productid, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
                 } else {
-                    return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
+                    return response()->json(["productid" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
                 }
                 break;
             case (2): //GetProductByName
                 $name = $request->input('name');
                 $result = DB::table('product')->where('name', '=', $name)->first();
                 if ($result) {
-                    return response()->json(["id" => $result->productid, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
+                    return response()->json(["productid" => $result->productid, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
                 } else {
-                    return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
+                    return response()->json(["productid" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
                 }
                 break;
             case (3): //GetProductByKeywords
@@ -273,7 +272,7 @@ class MainController extends Controller
                 if ($result->count() > 0) {
                     return response()->json(["result" => $result], 200);
                 } else {
-                    return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
+                    return response()->json(["productid" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
                 }
                 break;
         }
@@ -323,7 +322,7 @@ class MainController extends Controller
     public function getProductDiscount(Request $request, $productid)
     {
         $discountid = $request->discountid;
-        if (!$discountid>0) {
+        if (!$discountid > 0) {
             $result = DB::table('productdiscount')->where('productid', '=', $productid)->get();
             return response()->json(["result" => $result], 200);
         } else {
@@ -382,6 +381,40 @@ class MainController extends Controller
         } else {
             return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
         }
+    }
+    public function getProductQRCode(Request $request)
+    {
+        
+        $productid = $request->input('productid');
+        $result = DB::table('product')->where('productid', '=', $productid)->first();
+        if ($result) {
+            $data = [
+                "id"=>$result->productid,
+                "name"=>"Apple"
+            ];
+            ob_start();
+            $options = new QROptions([
+                'version'    => 5,
+                'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+                'eccLevel'   => QRCode::ECC_H,
+                'scale'      => 20
+            ]);
+            $qrcode = new QRCode($options);
+            return view('view','<img src="'.$qrcode->render(json_encode($data)).'" alt="QR Code" />');
+        } else {
+            return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
+        }
+    }
+
+    public function GenerateQRCode($data)
+    {
+        $options = new QROptions([
+            'version'    => 5,
+            'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+            'eccLevel'   => QRCode::ECC_H,
+        ]);
+        $qrcode = new QRCode();
+        return $qrcode->render($data);
     }
     public function testdb(Request $request)
     {
