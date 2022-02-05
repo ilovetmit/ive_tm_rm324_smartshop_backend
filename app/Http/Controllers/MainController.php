@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 
+use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
 
 class MainController extends Controller
@@ -307,6 +308,69 @@ class MainController extends Controller
         }
     }
 
+    public function getProductDiscount(Request $request, $productid)
+    {
+        $discountid = $request->discountid;
+        if (isEmptyOrNullString($request->discountid)) {
+            $result = DB::table('productdiscount')->where('productid', '=', $productid)->get();
+            return response()->json($result, 200);
+        } else {
+            $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('discountid', '=', $discountid)->first();
+            return response()->json($result, 200);
+        }
+    }
+    public function addProductDiscount(Request $request, $productid)
+    {
+        $name = $request->name;
+        $starttime = $request->starttime;
+        $endtime = $request->endtime;
+        $rate = $request->rate;
+
+        $result = DB::table('productdiscount')->insertGetId([
+            'productid' => $productid,
+            'name' => $name,
+            'starttime' => $starttime,
+            'endtime' => $endtime,
+            'rate' => $rate
+        ]);
+
+        if ($result > 0) {
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+        } else {
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+        }
+    }
+    public function updateProductDiscount(Request $request, $productid)
+    {
+        $discountid = $request->discountid;
+        $name = $request->name;
+        $starttime = $request->starttime;
+        $endtime = $request->endtime;
+        $rate = $request->rate;
+
+        $affected = DB::table('productdiscount')->where('discountid', '=', $discountid)->update([
+            'productid' => $productid,
+            'name' => $name,
+            'starttime' => $starttime,
+            'endtime' => $endtime,
+            'rate' => $rate
+        ]);
+        if ($affected > 0) {
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+        } else {
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+        }
+    }
+    public function removeProductDiscount(Request $request, $productid)
+    {
+        $discountid = $request->discountid;
+        $affected = DB::table('productdiscount')->where('discountid', '=', $discountid)->delete();
+        if ($affected > 0) {
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+        } else {
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+        }
+    }
     public function testdb(Request $request)
     {
         $result = DB::select("SELECT * FROM user;");
