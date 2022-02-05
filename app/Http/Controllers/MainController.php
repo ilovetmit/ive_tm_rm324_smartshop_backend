@@ -140,18 +140,17 @@ class MainController extends Controller
     public function getBuylists(Request $request, $userid)
     {
         $result = DB::table('buylist')->where('userid', '=', $userid)->get();
-        if ($result->count()){
+        if ($result->count()) {
             return response()->json(['result' => $result]);
-        }else{
-
+        } else {
         }
-        
     }
     public function getBuylist(Request $request, $userid)
     {
         $buylistId = $request->input('buylistId');
-        $items = DB::table('buylistdetails')->where('buyid', '=', $buylistId)->get();
-        return response()->json(['id' => $buylistId, 'item' => $items], 200);
+        $items = DB::table('buylistdetails')->join('product', 'buylistdetails.productid', '=', 'product.productid')->where('buyid', '=', $buylistId)->get();
+        $buylist = DB::table('buylist')->where('buyid', '=', $buylistId)->first();
+        return response()->json(['id' => $buylistId, 'name' => $buylist->name, 'createdate' => $buylist->createdate, 'item' => $items], 200);
     }
     public function addBuylist(Request $request, $userid)
     {
