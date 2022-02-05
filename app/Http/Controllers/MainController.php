@@ -160,12 +160,10 @@ class MainController extends Controller
             if($buylistId>0){
                 foreach($items as $item){
                     //$product = DB::table('product')->where('name','=', $name)->get();
-                    $product = $item->id;
-                    if ($product->count() > 0){
                         $result = DB::table('buylistdetails')->insert([
                             'buyid' => $buylistId,
-                            'productid' => $item->productid,
-                            'qty' => $item->quantity
+                            'productid' => $item['productid'],
+                            'qty' => $item['quantity']
                         ]);
                         if($result){
                             continue;
@@ -173,10 +171,6 @@ class MainController extends Controller
                             return response()->json(['code' => 400, 'type' => "error", 'message' => "Product Lookup Error"],400);
                             break;
                         }
-                    }else{
-                        return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert item error"],400);
-                        break;
-                    }
                 }
             }else{
                 return response()->json(['code' => 400, 'type' => "error", 'message' => "Insert buylist error"],400);
