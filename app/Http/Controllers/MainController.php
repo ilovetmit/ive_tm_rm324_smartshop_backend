@@ -238,7 +238,7 @@ class MainController extends Controller
         }
         switch($method){
             case(1): //GetProductByid
-                $productid = $request->input('id');
+                $productid = $request->input('productid');
                 $result = DB::table('product')->where('productid','=',$productid)->first();
                 if ($result){
                     return response()->json(["id" => $result->productid, "name" => $result->name, "description"=>$result->description, "price"=>$result->price, "Location"=>$result->Location],200);
