@@ -392,7 +392,6 @@ class MainController extends Controller
                 "id"=>$result->productid,
                 "name"=>"Apple"
             ];
-            ob_start();
             $options = new QROptions([
                 'version'    => 5,
                 'outputType' => QRCode::OUTPUT_IMAGE_PNG,
@@ -400,7 +399,8 @@ class MainController extends Controller
                 'scale'      => 20
             ]);
             $qrcode = new QRCode($options);
-            return view('view','<img src="'.$qrcode->render(json_encode($data)).'" alt="QR Code" />');
+            
+            return response($qrcode->render(json_encode($data)))->header();
         } else {
             return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
         }
