@@ -219,7 +219,7 @@ class MainController extends Controller
                     $result = DB::table('buylistdetails')->insert([
                         'buyid' => $buylistId,
                         'productid' => $item['productid'],
-                        'qty' => $item['qty']
+                        'qty' => $item['quantity']
                     ]);
                     if ($result) {
                         continue;
