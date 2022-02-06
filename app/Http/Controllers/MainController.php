@@ -79,6 +79,20 @@ class MainController extends Controller
             ->delete();
         return response()->json(['code' => true, 'type' => "result", 'message' => "Success"], 200);
     }
+    public function getUser(Request $request)
+    {
+        $userid = $request->input('userId');
+        $result = DB::table('user')->where('userid', '=', $userid)->first();
+        $data = [
+            "userid" => $result->userid,
+            'username' => $result->username,
+            'email' => $result->email,
+            'password' => $result->password,
+            'name' => $result->name,
+            'tel' => $result->tel
+        ];
+        return response()->json($data);
+    }
     public function createUser(Request $request)
     {
         $username = $request->username;

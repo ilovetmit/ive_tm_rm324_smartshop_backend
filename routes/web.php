@@ -24,6 +24,7 @@ $router->get('/user/login', 'MainController@loginUser');
 $router->post('/user/login/device', 'MainController@loginDevice');
 $router->post('/user/logout', 'MainController@logoutUser');
 $router->get('/user/logout', 'MainController@logoutUser');
+$router->get('/user', 'MainController@getUser');
 $router->post('/user', 'MainController@createUser');
 $router->put('/user', 'MainController@updateUser');
 $router->delete('/user', 'MainController@removeUser');
