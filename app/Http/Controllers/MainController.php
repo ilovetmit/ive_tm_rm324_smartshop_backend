@@ -42,18 +42,28 @@ class MainController extends Controller
         $utoken = $request->token;
         $result = DB::table('token')
             ->where('token', '=', $utoken)
-            ->get();
-        if (count($result) > 0) {
+            ->first();
+        if ($result) {
             $token = Str::random(32);
             DB::table('token')->insert([
                 'type' => '2',
-                'userid' => $result[0]->userid,
+                'userid' => $result->userid,
                 'token' => $token,
                 'expired' => Carbon::now()->addDay(7)->timestamp
             ]);
-            return response()->json(['result' => true, 'token' => $token], 200);
+            $data = ['result' => true, 'userid' => $result[0]->userid, 'token' => $token];
+            if($request->input('outputqr')){
+                $qrcode = QRCode::format('png')
+                    ->size(300)
+                    ->encoding('UTF-8')
+                    ->errorCorrection('H')
+                    ->generate(json_encode($data));
+                return response($qrcode)->header('Content-Type', 'image/png');
+            }else{
+                return response()->json($data, 200);
+            }
         } else {
-            return response()->json(['result' => false, 'token' => ''], 400);
+            return response()->json(['result' => false, 'userid' => 0, 'token' => ''], 400);
         }
 
         //return response() -> json(['result' => true, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
