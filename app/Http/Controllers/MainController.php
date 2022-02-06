@@ -166,6 +166,7 @@ class MainController extends Controller
         if ($result->count()) {
             return response()->json(['result' => $result]);
         } else {
+            return response()->json(['result' => []]);
         }
     }
     public function getBuylist(Request $request, $userid)
