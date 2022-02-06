@@ -383,21 +383,25 @@ class MainController extends Controller
     }
     public function getProductQRCode(Request $request)
     {
-        
+
         $productid = $request->input('productid');
         $result = DB::table('product')->where('productid', '=', $productid)->first();
         if ($result) {
             $data = [
-                "id"=>$result->productid,
-                "name"=>"Apple"
+                "productid" => $result->productid,
+                "name" => $result->name,
+                "description" => $result->description,
+                "price" => $result->price,
+                "Location" => $result->Location
+
             ];
             $qrcode = QRCode::format('png')
                 ->size(300)
                 ->encoding('UTF-8')
                 ->errorCorrection('H')
                 ->generate(json_encode($data));
-            
-            return response($qrcode);
+
+            return response($qrcode)->header('Content-Type', 'image/png');
         } else {
             return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
         }
@@ -405,7 +409,10 @@ class MainController extends Controller
 
     public function GenerateQRCode($data)
     {
-
+    }
+    public function phpinfo()
+    {
+        return phpinfo();
     }
     public function testdb(Request $request)
     {

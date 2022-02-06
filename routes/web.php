@@ -49,3 +49,5 @@ $router->get('/product/{productid}/discount', 'MainController@getProductDiscount
 $router->post('/product/{productid}/discount', 'MainController@addProductDiscount');
 $router->put('/product/{productid}/discount', 'MainController@updateProductDiscount');
 $router->delete('/product/{productid}/discount', 'MainController@removeProductDiscount');
+
+$router->get('/phpinfo', 'MainController@phpinfo');
