@@ -400,10 +400,9 @@ class MainController extends Controller
                 ->encoding('UTF-8')
                 ->errorCorrection('H')
                 ->generate(json_encode($data));
-
             return response($qrcode)->header('Content-Type', 'image/png');
         } else {
-            return response()->json(["id" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
+            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
         }
     }
 
