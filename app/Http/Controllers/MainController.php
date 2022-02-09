@@ -413,6 +413,7 @@ class MainController extends Controller
 
         $productid = $request->input('productid');
         $result = DB::table('product')->where('productid', '=', $productid)->first();
+        $outputqr = $request->input('outputqr');
         if ($result) {
             $data = [
                 "productid" => $result->productid,
@@ -422,13 +423,18 @@ class MainController extends Controller
                 "Location" => $result->Location
 
             ];
-            $qrcode = QRCode::format('png')
-                ->size(300)
-                ->margin(5)
-                ->encoding('UTF-8')
-                ->errorCorrection('H')
-                ->generate(json_encode($data));
-            return response($qrcode)->header('Content-Type', 'image/png');
+            if($outputqr){
+                $qrcode = QRCode::format('png')
+                    ->size(300)
+                    ->margin(5)
+                    ->encoding('UTF-8')
+                    ->errorCorrection('H')
+                    ->generate(json_encode($data));
+                return response($qrcode)->header('Content-Type', 'image/png');
+            }else{
+                return response($data);
+            }
+            
         } else {
             return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
         }
