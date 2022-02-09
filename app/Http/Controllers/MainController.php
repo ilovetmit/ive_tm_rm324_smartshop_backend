@@ -46,6 +46,11 @@ class MainController extends Controller
         if ($result) {
             $token = Str::random(32);
             $outputqr = $request->input('outputqr');
+            if($request->input('ecc') == ""){
+                $ecc = "L";
+            }else{
+                $ecc = $request->input('ecc');
+            }
             DB::table('token')->insert([
                 'type' => '2',
                 'userid' => $result->userid,
@@ -58,7 +63,7 @@ class MainController extends Controller
                     ->size(300)
                     ->margin(5)
                     ->encoding('UTF-8')
-                    ->errorCorrection('H')
+                    ->errorCorrection($ecc)
                     ->generate(json_encode($data));
                 return response($qrcode)->header('Content-Type', 'image/png');
             } else {
