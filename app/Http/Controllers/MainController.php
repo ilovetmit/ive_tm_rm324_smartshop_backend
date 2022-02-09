@@ -414,6 +414,12 @@ class MainController extends Controller
         $productid = $request->input('productid');
         $result = DB::table('product')->where('productid', '=', $productid)->first();
         $outputqr = $request->input('outputqr');
+        if($request->input('ecc') == ""){
+            $ecc = "L";
+        }else{
+            $ecc = $request->input('ecc');
+        }
+        
         if ($result) {
             $data = [
                 "productid" => $result->productid,
@@ -425,10 +431,10 @@ class MainController extends Controller
             ];
             if($outputqr){
                 $qrcode = QRCode::format('png')
-                    ->size(300)
+                    ->size(1000)
                     ->margin(5)
                     ->encoding('UTF-8')
-                    ->errorCorrection('H')
+                    ->errorCorrection($ecc)
                     ->generate(json_encode($data));
                 return response($qrcode)->header('Content-Type', 'image/png');
             }else{
