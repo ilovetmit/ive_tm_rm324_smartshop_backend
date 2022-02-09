@@ -424,6 +424,7 @@ class MainController extends Controller
             ];
             $qrcode = QRCode::format('png')
                 ->size(300)
+                ->margin(5)
                 ->encoding('UTF-8')
                 ->errorCorrection('H')
                 ->generate(json_encode($data));
