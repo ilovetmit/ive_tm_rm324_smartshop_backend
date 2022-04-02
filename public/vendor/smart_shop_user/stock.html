@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dark Bootstrap Admin by Bootstrapious.com</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <!-- Custom Font Icons CSS-->
+  <link rel="stylesheet" href="css/font.css">
+  <!-- Google fonts - Muli-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="css/style.default.premium.css" id="theme-stylesheet">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  <style>
+    .logo-photo {
+      object-fit: cover;
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      border-radius: 100%;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <nav class="navbar navbar-expand-lg">
+    <div class="search-panel">
+      <div class="search-inner d-flex align-items-center justify-content-center">
+        <div class="close-btn">Close <i class="fa fa-close"></i></div>
+        <form id="searchForm" action="#">
+          <div class="form-group">
+            <input type="search" name="search" placeholder="What are you searching for...">
+            <button type="submit" class="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <div class="navbar-header">
+        <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+        <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Dark</strong><strong>Admin</strong></div>
+        <div class="brand-text brand-sm"><strong class="text-primary">D</strong><strong>A</strong></div></a>
+        <!-- Sidebar Toggle Btn-->
+        <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
+      </div>
+      <div class="right-menu list-inline no-margin-bottom">
+        <div class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></div>
+        <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="icon-email"></i><span class="badge dashbg-1">5</span></a>
+          <div aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages"><a href="#" class="dropdown-item message d-flex align-items-center">
+            <div class="profile"><img src="img/avatar-3.jpg" alt="..." class="img-fluid">
+              <div class="status online"></div>
+            </div>
+            <div class="content">   <strong class="d-block">Nadia Halsey</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">9:30am</small></div></a><a href="#" class="dropdown-item message d-flex align-items-center">
+            <div class="profile"><img src="img/avatar-2.jpg" alt="..." class="img-fluid">
+              <div class="status away"></div>
+            </div>
+            <div class="content">   <strong class="d-block">Peter Ramsy</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">7:40am</small></div></a><a href="#" class="dropdown-item message d-flex align-items-center">
+            <div class="profile"><img src="img/avatar-1.jpg" alt="..." class="img-fluid">
+              <div class="status online"></div>
+            </div>
+            <div class="content">   <strong class="d-block">Sam Kaheil</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">6:55am</small></div></a><a href="#" class="dropdown-item message d-flex align-items-center">
+            <div class="profile"><img src="img/avatar-5.jpg" alt="..." class="img-fluid">
+              <div class="status offline"></div>
+            </div>
+            <div class="content">   <strong class="d-block">Sara Wood</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">10:30pm</small></div></a><a href="#" class="dropdown-item text-center message"> <strong>See All Messages <i class="fa fa-angle-right"></i></strong></a></div>
+        </div>
+        <!-- Tasks-->
+        <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link tasks-toggle"><i class="icon-new-file"></i><span class="badge dashbg-3">9</span></a>
+          <div aria-labelledby="navbarDropdownMenuLink2" class="dropdown-menu tasks-list"><a href="#" class="dropdown-item">
+            <div class="text d-flex justify-content-between"><strong>Task 1</strong><span>40% complete</span></div>
+            <div class="progress">
+              <div role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar dashbg-1"></div>
+            </div></a><a href="#" class="dropdown-item">
+            <div class="text d-flex justify-content-between"><strong>Task 2</strong><span>20% complete</span></div>
+            <div class="progress">
+              <div role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" class="progress-bar dashbg-3"></div>
+            </div></a><a href="#" class="dropdown-item">
+            <div class="text d-flex justify-content-between"><strong>Task 3</strong><span>70% complete</span></div>
+            <div class="progress">
+              <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar dashbg-2"></div>
+            </div></a><a href="#" class="dropdown-item">
+            <div class="text d-flex justify-content-between"><strong>Task 4</strong><span>30% complete</span></div>
+            <div class="progress">
+              <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar dashbg-4"></div>
+            </div></a><a href="#" class="dropdown-item">
+            <div class="text d-flex justify-content-between"><strong>Task 5</strong><span>65% complete</span></div>
+            <div class="progress">
+              <div role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" class="progress-bar dashbg-1"></div>
+            </div></a><a href="#" class="dropdown-item text-center"> <strong>See All Tasks <i class="fa fa-angle-right"></i></strong></a>
+          </div>
+        </div>
+        <!-- Tasks end-->
+        <!-- Megamenu-->
+        <div class="list-inline-item dropdown menu-large"><a href="#" data-toggle="dropdown" class="nav-link">Mega <i class="fa fa-ellipsis-v"></i></a>
+          <div class="dropdown-menu megamenu">
+            <div class="row">
+              <div class="col-lg-3 col-md-6"><strong class="text-uppercase">Elements Heading</strong>
+                <ul class="list-unstyled mb-3">
+                  <li><a href="#">Lorem ipsum dolor</a></li>
+                  <li><a href="#">Sed ut perspiciatis</a></li>
+                  <li><a href="#">Voluptatum deleniti</a></li>
+                  <li><a href="#">At vero eos</a></li>
+                  <li><a href="#">Consectetur adipiscing</a></li>
+                  <li><a href="#">Duis aute irure</a></li>
+                  <li><a href="#">Necessitatibus saepe</a></li>
+                  <li><a href="#">Maiores alias</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6"><strong class="text-uppercase">Elements Heading</strong>
+                <ul class="list-unstyled mb-3">
+                  <li><a href="#">Lorem ipsum dolor</a></li>
+                  <li><a href="#">Sed ut perspiciatis</a></li>
+                  <li><a href="#">Voluptatum deleniti</a></li>
+                  <li><a href="#">At vero eos</a></li>
+                  <li><a href="#">Consectetur adipiscing</a></li>
+                  <li><a href="#">Duis aute irure</a></li>
+                  <li><a href="#">Necessitatibus saepe</a></li>
+                  <li><a href="#">Maiores alias</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6"><strong class="text-uppercase">Elements Heading</strong>
+                <ul class="list-unstyled mb-3">
+                  <li><a href="#">Lorem ipsum dolor</a></li>
+                  <li><a href="#">Sed ut perspiciatis</a></li>
+                  <li><a href="#">Voluptatum deleniti</a></li>
+                  <li><a href="#">At vero eos</a></li>
+                  <li><a href="#">Consectetur adipiscing</a></li>
+                  <li><a href="#">Duis aute irure</a></li>
+                  <li><a href="#">Necessitatibus saepe</a></li>
+                  <li><a href="#">Maiores alias</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6"><strong class="text-uppercase">Elements Heading</strong>
+                <ul class="list-unstyled mb-3">
+                  <li><a href="#">Lorem ipsum dolor</a></li>
+                  <li><a href="#">Sed ut perspiciatis</a></li>
+                  <li><a href="#">Voluptatum deleniti</a></li>
+                  <li><a href="#">At vero eos</a></li>
+                  <li><a href="#">Consectetur adipiscing</a></li>
+                  <li><a href="#">Duis aute irure</a></li>
+                  <li><a href="#">Necessitatibus saepe</a></li>
+                  <li><a href="#">Maiores alias</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row megamenu-buttons text-center">
+              <div class="col-lg-2 col-md-4"><a href="#" class="d-block megamenu-button-link dashbg-1"><i class="fa fa-clock-o"></i><strong>Demo 1</strong></a></div>
+              <div class="col-lg-2 col-md-4"><a href="#" class="d-block megamenu-button-link dashbg-2"><i class="fa fa-clock-o"></i><strong>Demo 2</strong></a></div>
+              <div class="col-lg-2 col-md-4"><a href="#" class="d-block megamenu-button-link dashbg-3"><i class="fa fa-clock-o"></i><strong>Demo 3</strong></a></div>
+              <div class="col-lg-2 col-md-4"><a href="#" class="d-block megamenu-button-link dashbg-4"><i class="fa fa-clock-o"></i><strong>Demo 4</strong></a></div>
+              <div class="col-lg-2 col-md-4"><a href="#" class="d-block megamenu-button-link bg-danger"><i class="fa fa-clock-o"></i><strong>Demo 5</strong></a></div>
+              <div class="col-lg-2 col-md-4"><a href="#" class="d-block megamenu-button-link bg-info"><i class="fa fa-clock-o"></i><strong>Demo 6</strong></a></div>
+            </div>
+          </div>
+        </div>
+        <!-- Megamenu end     -->
+        <!-- Languages dropdown    -->
+        <div class="list-inline-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
+          <div aria-labelledby="languages" class="dropdown-menu"><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2"><span>French  </span></a></div>
+        </div>
+        <!-- Log out               -->
+        <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="d-flex align-items-stretch">
+  <!-- Sidebar Navigation-->
+  <nav id="sidebar">
+    <!-- Sidebar Header-->
+    <div class="sidebar-header d-flex align-items-center"><a href="pages-profile.html">
+      <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div></a>
+      <div class="title">
+        <h1 class="h5">Mark Stephen</h1>
+        <p>Web Designer</p>
+      </div>
+    </div>
+    <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+    <ul class="list-unstyled">
+      <li><a href="index.html"> <i class="icon-home"></i>Shopping </a></li>
+      <li><a href="profile.html"> <i class="icon-home"></i>Profile </a></li>
+      <li><a href="transaction.html"> <i class="icon-home"></i>Transaction </a></li>
+      <li class="active"><a href="stock.html"> <i class="icon-home"></i>Stock Market </a></li>
+      <li><a href="insurance.html"> <i class="icon-home"></i>Insurance </a></li>
+      <li><a href="map.html"> <i class="icon-home"></i>Maps </a></li>
+      <li><a href="advertisement.html"> <i class="icon-home"></i>Advertisement </a></li>
+    </ul>
+  </nav>
+  <!-- Sidebar Navigation end-->
+  <div class="page-content">
+    <div class="page-header">
+      <div class="container-fluid">
+        <h2 class="h5 no-margin-bottom">Dashboard</h2>
+      </div>
+    </div>
+    <section class="no-padding-bottom">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="row">
+              <div class="col-6">
+                <div class="stats-2-block block d-flex pb-5">
+                  <div class="stats-2 d-flex">
+                    <div class="stats-2-arrow low"><i class="fa fa-caret-down"></i></div>
+                    <div class="stats-2-content"><strong class="d-block" id="yesterdayNum">5.657</strong><span class="d-block">Yesterday </span>
+                      <div class="progress progress-template progress-small">
+                        <div role="progressbar" style="width: 60%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template progress-bar-small dashbg-2"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="stats-2 d-flex">
+                    <div class="stats-2-arrow height"><i class="fa fa-caret-up"></i></div>
+                    <div class="stats-2-content"><strong class="d-block" id="todayNum">3.1459</strong><span class="d-block">Today</span>
+                      <div class="progress progress-template progress-small">
+                        <div role="progressbar" style="width: 35%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template progress-bar-small dashbg-3"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="stats-3-block block d-flex pb-4">
+                  <div class="stats-3"><strong class="d-block">745</strong><span class="d-block">Total Volume</span>
+                    <div class="progress progress-template progress-small">
+                      <div role="progressbar" style="width: 35%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template progress-bar-small dashbg-1"></div>
+                    </div>
+                  </div>
+                  <div class="stats-3 d-flex justify-content-between text-center">
+                    <div class="item"><strong class="d-block strong-sm">4.124</strong><span class="d-block span-sm">Hits</span>
+                      <div class="line"></div><small>+246</small>
+                    </div>
+                    <div class="item"><strong class="d-block strong-sm">2.147</strong><span class="d-block span-sm">Social</span>
+                      <div class="line"></div><small>+416</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="line-cahrt block" id="bankcharts">
+              <canvas id="bankchart"></canvas>
+            </div>
+          </div>
+          <div class="col">
+            <div class="messages-block block">
+              <div class="title"><strong>Stock List</strong></div>
+              <div class="messages">
+                <a href="javascript:setData('0002')" class="message d-flex align-items-center" onclick="setData('0002')">
+                  <div class="profile"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/CLP_logo.svg/440px-CLP_logo.svg.png" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">CLP HOLDINGS</strong><span class="d-block">0002.HK</span></div>
+                </a>
+                <a href="javascript:setData('0003')" class="message d-flex align-items-center" onclick="setData('0003')">
+                  <div class="profile"><img src="https://apptechprojectstorage.s3-ap-southeast-1.amazonaws.com/jobber_uat/129-1533537364.png" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">HK & CHINA GAS</strong><span class="d-block">0003.HK</span></div>
+                </a>
+                <a href="javascript:setData('0006')" class="message d-flex align-items-center" onclick="setData('0006')">
+                  <div class="profile"><img src="https://2.bp.blogspot.com/-wZcQ0LIrvXw/WwD4oZJEmfI/AAAAAAAAq64/6hDacs44eQkfox3ah4EmSW0Wjp89yGH-gCPcBGAYYCw/s1600/6.jpg" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">POWER ASSETS</strong><span class="d-block">0006.HK</span></div>
+                </a>
+                <a href="javascript:setData('0011')" class="message d-flex align-items-center" onclick="setData('0011')">
+                  <div class="profile"><img src="https://yt3.ggpht.com/a/AGF-l7_9no5zk-mhoeLxqcB6F_5FuwgRqgjen77mFw=s900-c-k-c0xffffffff-no-rj-mo" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">HANG SENG BANK</strong><span class="d-block">0011.HK</span></div>
+                </a>
+                <a href="javascript:setData('0012')" class="message d-flex align-items-center" onclick="setData('0012')">
+                  <div class="profile"><img src="data:image/png;base64,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" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">HENDERSON LAND</strong><span class="d-block">0012.HK</span></div>
+                </a>
+                <a href="javascript:setData('0016')" class="message d-flex align-items-center" onclick="setData('0016')">
+                  <div class="profile"><img src="https://upload.wikimedia.org/wikipedia/zh-yue/thumb/1/11/SHKP.svg/1024px-SHKP.svg.png" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">SHK PPT</strong><span class="d-block">0016.HK</span></div>
+                </a>
+                <a href="javascript:setData('0017')" class="message d-flex align-items-center" onclick="setData('0017')">
+                  <div class="profile"><img src="https://fs.mingpao.com/fin/20170921/s00010/5acc10c8a8a1fbcdb14d930167a34282.jpg" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">NEW WORLD DEV</strong><span class="d-block">0017.HK</span></div>
+                </a>
+                <a href="javascript:setData('0083')" class="message d-flex align-items-center" onclick="setData('0083')">
+                  <div class="profile"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/SinoGroup_logo.svg/1200px-SinoGroup_logo.svg.png" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">SINO LAND</strong><span class="d-block">0083.HK</span></div>
+                </a>
+                <a href="javascript:setData('0101')" class="message d-flex align-items-center" onclick="setData('0101')">
+                  <div class="profile"><img src="http://hanglung.com/CMSPages/GetAzureFile.aspx?path=~\hanglungcorporatesite\media\hanglung_media\logo_pressrelease_large_1.jpg&hash=b4fa63b9ab169b5672b0933362391552d0e09f2cc5e4b5acd1a982c3fc7cf79c&ext=.jpg" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">HANG LUNG PPT</strong><span class="d-block">0101.HK</span></div>
+                </a>
+                <a href="javascript:setData('0267')" class="message d-flex align-items-center" onclick="setData('0267')">
+                  <div class="profile"><img src="https://upload.wikimedia.org/wikipedia/zh/thumb/f/fc/CITIC_Pacific_logo.svg/200px-CITIC_Pacific_logo.svg.png" alt="..." class="logo-photo">
+                  </div>
+                  <div class="content">   <strong class="d-block">CITIC</strong><span class="d-block">0267.HK</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__block block no-margin-bottom">
+        <div class="container-fluid text-center">
+          <p class="no-margin-bottom">2019 &copy; Your company. </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<!-- JavaScript files-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper.js/umd/popper.min.js"> </script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="js/charts-home.js"></script>
+<!-- Notifications-->
+<script src="vendor/messenger-hubspot/build/js/messenger.min.js">   </script>
+<script src="vendor/messenger-hubspot/build/js/messenger-theme-flat.js">       </script>
+<script src="js/home-premium.js"> </script>
+<script src="js/front.js"></script>
+
+<script>
+
+
+    // ------------------------------------------------------- //
+    // Line Chart
+    // ------------------------------------------------------ //
+    var data = [];
+    var label = [];
+    var name = "";
+
+    var legendState = true;
+    if ($(window).outerWidth() < 576) {
+        legendState = false;
+    }
+    setData("0002");
+
+    for (i = 1; i<=50;i++){
+        label.push(i.toString());
+    }
+
+    var LINECHART = $('#bankchart');
+    var myLineChart = new Chart(LINECHART, {
+        type: 'line',
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        max: Math.max(...data)+1.0,
+                        min: Math.min(...data)-1.0
+                    },
+                    display: true,
+                    gridLines: {
+                        display: false
+                    }
+                }]
+            },
+            legend: {
+                display: legendState
+            }
+        },
+        data: {
+            labels: label,
+            datasets: [
+                // {
+                //     label: "HSI",
+                //     fill: true,
+                //     lineTension: 0.2,
+                //     backgroundColor: "transparent",
+                //     borderColor: '#864DD9',
+                //     pointBorderColor: '#864DD9',
+                //     pointHoverBackgroundColor: '#864DD9',
+                //     borderCapStyle: 'butt',
+                //     borderDash: [],
+                //     borderDashOffset: 0.0,
+                //     borderJoinStyle: 'miter',
+                //     borderWidth: 2,
+                //     pointBackgroundColor: "#fff",
+                //     pointBorderWidth: 5,
+                //     pointHoverRadius: 5,
+                //     pointHoverBorderColor: "#fff",
+                //     pointHoverBorderWidth: 2,
+                //     pointRadius: 1,
+                //     pointHitRadius: 0,
+                //     data: data,
+                //     spanGaps: false
+                // },
+                {
+                    label: name,
+                    fill: true,
+                    lineTension: 0.2,
+                    backgroundColor: "transparent",
+                    borderColor: "#EF8C99",
+                    pointBorderColor: '#EF8C99',
+                    pointHoverBackgroundColor: "#EF8C99",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 2,
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 5,
+                    pointHoverRadius: 5,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: data,
+                    spanGaps: false
+                }
+            ]
+        }
+    });
+
+    function setData(type) {
+        switch (type) {
+            case "0002":
+                name = "CLP HOLDINGS";
+                data = [
+                    87.050,
+                    87.050,
+                    87.400,
+                    88.900,
+                    88.350,
+                    88.750,
+                    88.500,
+                    88.650,
+                    88.700,
+                    88.950,
+                    90.600,
+                    88.900,
+                    89.450,
+                    87.850,
+                    86.250,
+                    86.000,
+                    86.300,
+                    88.050,
+                    87.800,
+                    88.700,
+                    87.950,
+                    87.700,
+                    87.350,
+                    87.650,
+                    88.100,
+                    89.550,
+                    89.150,
+                    88.300,
+                    88.500,
+                    88.800,
+                    89.700,
+                    89.100,
+                    88.950,
+                    88.500,
+                    87.250,
+                    87.250,
+                    88.900,
+                    88.850,
+                    89.900,
+                    90.450,
+                    90.650,
+                    91.000,
+                    90.950,
+                    91.550,
+                    91.300,
+                    90.800,
+                    90.550,
+                    90.200,
+                    90.900,
+                    91.350,
+                ];
+                break;
+            case "0003":
+                name = "HK & CHINA GAS";
+                data = [
+                    13.618,
+                    13.691,
+                    13.727,
+                    13.964,
+                    13.800,
+                    13.891,
+                    13.891,
+                    13.909,
+                    14.073,
+                    14.000,
+                    14.273,
+                    14.327,
+                    14.455,
+                    14.182,
+                    14.346,
+                    14.473,
+                    14.546,
+                    14.473,
+                    14.509,
+                    14.491,
+                    14.436,
+                    14.436,
+                    14.436,
+                    14.509,
+                    14.600,
+                    14.691,
+                    14.600,
+                    14.564,
+                    14.582,
+                    14.600,
+                    14.691,
+                    14.746,
+                    14.709,
+                    14.727,
+                    14.782,
+                    14.709,
+                    14.800,
+                    14.891,
+                    14.945,
+                    15.127,
+                    15.073,
+                    15.145,
+                    15.109,
+                    15.236,
+                    15.200,
+                    15.182,
+                    15.182,
+                    15.255,
+                    15.273,
+                    15.382,
+                ];
+                break;
+            case "0006":
+                name = "POWER ASSETS";
+                data = [
+                    52.65,
+                    53.00,
+                    53.05,
+                    53.70,
+                    53.55,
+                    53.80,
+                    53.50,
+                    53.20,
+                    53.65,
+                    53.60,
+                    54.40,
+                    53.90,
+                    54.55,
+                    53.45,
+                    53.00,
+                    52.90,
+                    52.70,
+                    52.55,
+                    52.70,
+                    53.20,
+                    53.05,
+                    52.95,
+                    53.95,
+                    54.20,
+                    54.30,
+                    54.90,
+                    54.45,
+                    54.35,
+                    54.35,
+                    54.25,
+                    54.85,
+                    54.55,
+                    54.20,
+                    54.50,
+                    53.50,
+                    53.75,
+                    54.85,
+                    54.85,
+                    55.00,
+                    55.55,
+                    54.40,
+                    54.65,
+                    54.10,
+                    54.25,
+                    54.45,
+                    54.10,
+                    54.30,
+                    54.25,
+                    53.80,
+                ];
+                break;
+            case "0011":
+                name = "HANG SENG BANK";
+                data = [
+                    178.40,
+                    179.50,
+                    178.60,
+                    179.10,
+                    180.80,
+                    179.50,
+                    176.20,
+                    177.20,
+                    177.80,
+                    177.60,
+                    180.50,
+                    180.00,
+                    181.80,
+                    180.10,
+                    180.60,
+                    183.80,
+                    187.20,
+                    183.20,
+                    180.10,
+                    181.00,
+                    177.00,
+                    176.30,
+                    177.30,
+                    179.40,
+                    178.20,
+                    177.80,
+                    177.00,
+                    176.00,
+                    174.20,
+                    174.80,
+                    174.60,
+                    174.10,
+                    174.30,
+                    175.80,
+                    173.00,
+                    168.10,
+                    167.80,
+                    168.70,
+                    170.60,
+                    174.60,
+                    173.60,
+                    175.00,
+                    172.70,
+                    175.00,
+                    175.50,
+                    175.10,
+                    174.30,
+                    174.80,
+                    176.60,
+                    177.00,
+                ];
+                break;
+            case "0012":
+                name = "HENDERSON LAND";
+                data = [
+                    33.909,
+                    33.818,
+                    34.227,
+                    34.864,
+                    34.818,
+                    35.364,
+                    34.773,
+                    34.909,
+                    35.091,
+                    34.864,
+                    35.864,
+                    35.409,
+                    35.727,
+                    36.455,
+                    36.545,
+                    37.091,
+                    36.909,
+                    36.364,
+                    36.182,
+                    36.227,
+                    35.636,
+                    35.364,
+                    36.045,
+                    36.409,
+                    36.227,
+                    36.091,
+                    36.318,
+                    36.545,
+                    35.727,
+                    35.591,
+                    35.818,
+                    35.273,
+                    35.045,
+                    35.455,
+                    34.773,
+                    35.182,
+                    36.955,
+                    37.455,
+                    37.818,
+                    38.182,
+                    38.227,
+                    38.545,
+                    38.545,
+                    39.091,
+                    39.182,
+                    38.773,
+                    39.227,
+                    39.455,
+                    38.864,
+                    39.136,
+                ];
+                break;
+            case "0016":
+                name = "SHK PPT";
+                data = [
+                    101.80,
+                    102.90,
+                    102.70,
+                    105.30,
+                    106.60,
+                    110.10,
+                    108.00,
+                    109.30,
+                    109.30,
+                    108.80,
+                    111.80,
+                    111.70,
+                    112.20,
+                    113.30,
+                    111.50,
+                    114.20,
+                    113.60,
+                    113.00,
+                    112.20,
+                    113.20,
+                    111.20,
+                    110.20,
+                    112.20,
+                    115.00,
+                    113.50,
+                    113.90,
+                    113.20,
+                    114.90,
+                    114.20,
+                    113.10,
+                    113.40,
+                    111.80,
+                    110.20,
+                    111.60,
+                    108.80,
+                    112.00,
+                    117.40,
+                    118.20,
+                    119.50,
+                    120.00,
+                    120.80,
+                    122.00,
+                    120.60,
+                    123.70,
+                    123.50,
+                    121.50,
+                    124.00,
+                    124.20,
+                    123.70,
+                    125.20,
+                ];
+                break;
+            case "0017":
+                name = "NEW WORLD DEV";
+                data = [
+                    10.22,
+                    10.26,
+                    10.30,
+                    10.54,
+                    10.60,
+                    10.76,
+                    10.62,
+                    10.64,
+                    10.32,
+                    10.26,
+                    10.64,
+                    10.56,
+                    10.60,
+                    10.74,
+                    10.52,
+                    10.78,
+                    10.84,
+                    10.68,
+                    10.60,
+                    10.70,
+                    10.44,
+                    10.46,
+                    10.66,
+                    10.88,
+                    10.76,
+                    10.82,
+                    10.82,
+                    10.90,
+                    10.66,
+                    10.52,
+                    10.66,
+                    10.48,
+                    10.34,
+                    10.36,
+                    10.14,
+                    10.18,
+                    10.68,
+                    10.84,
+                    11.18,
+                    11.24,
+                    11.26,
+                    11.38,
+                    11.30,
+                    11.50,
+                    11.62,
+                    11.38,
+                    11.70,
+                    11.62,
+                    11.60,
+                    11.70,
+                ];
+                break;
+            case "0083":
+                name = "SINO LAND";
+                data = [
+                    12.60,
+                    12.62,
+                    12.64,
+                    12.82,
+                    12.76,
+                    13.00,
+                    12.68,
+                    12.88,
+                    12.84,
+                    12.78,
+                    13.20,
+                    13.14,
+                    13.40,
+                    13.50,
+                    13.46,
+                    13.92,
+                    13.76,
+                    13.90,
+                    13.68,
+                    13.72,
+                    13.58,
+                    13.40,
+                    13.82,
+                    14.08,
+                    13.78,
+                    14.00,
+                    13.74,
+                    13.96,
+                    13.84,
+                    13.48,
+                    13.64,
+                    13.34,
+                    13.28,
+                    13.42,
+                    13.16,
+                    13.74,
+                    14.28,
+                    14.32,
+                    14.38,
+                    14.74,
+                    14.60,
+                    14.52,
+                    14.24,
+                    14.46,
+                    14.40,
+                    13.98,
+                    14.22,
+                    14.10,
+                    14.10,
+                    14.14,
+                ];
+                break;
+            case "0101":
+                name = "HANG LUNG PPT";
+                data = [
+                    14.84,
+                    14.86,
+                    14.84,
+                    15.22,
+                    15.10,
+                    15.64,
+                    15.42,
+                    15.48,
+                    15.42,
+                    15.22,
+                    15.26,
+                    15.26,
+                    15.42,
+                    15.58,
+                    15.84,
+                    16.08,
+                    15.84,
+                    15.58,
+                    15.30,
+                    15.70,
+                    15.16,
+                    15.14,
+                    15.40,
+                    15.76,
+                    15.90,
+                    15.64,
+                    15.50,
+                    15.66,
+                    15.26,
+                    14.98,
+                    15.14,
+                    14.80,
+                    15.10,
+                    14.92,
+                    14.58,
+                    14.54,
+                    15.08,
+                    15.34,
+                    15.40,
+                    15.56,
+                    15.56,
+                    15.68,
+                    15.44,
+                    15.62,
+                    15.74,
+                    15.48,
+                    15.82,
+                    15.94,
+                    15.92,
+                    16.04,
+                ];
+                break;
+            case "0267":
+                name = "CITIC";
+                data = [
+                    12.10,
+                    12.14,
+                    12.26,
+                    12.38,
+                    12.44,
+                    12.48,
+                    12.32,
+                    12.38,
+                    12.36,
+                    12.38,
+                    12.60,
+                    12.50,
+                    12.66,
+                    12.54,
+                    12.56,
+                    12.96,
+                    12.90,
+                    12.70,
+                    12.58,
+                    12.92,
+                    12.60,
+                    12.46,
+                    12.86,
+                    13.08,
+                    12.94,
+                    13.02,
+                    12.68,
+                    12.60,
+                    12.36,
+                    12.30,
+                    12.18,
+                    12.12,
+                    12.12,
+                    12.28,
+                    11.84,
+                    12.14,
+                    12.36,
+                    12.32,
+                    12.28,
+                    12.48,
+                    12.50,
+                    12.40,
+                    12.18,
+                    12.28,
+                    12.20,
+                    11.80,
+                    11.88,
+                    11.92,
+                    11.84,
+                    11.82,
+];
+                break;
+
+        }
+        $('#yesterdayNum').text(data[1]);
+        $('#todayNum').text(data[0]);
+        $('#bankchart').remove(); // this is my <canvas> element
+        $('#bankcharts').append('<canvas id="bankchart"><canvas>');
+        LINECHART = $('#bankchart');
+        myLineChart = new Chart(LINECHART, {
+            type: 'line',
+            options: {
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            max: Math.max(...data)+1.0,
+                            min: Math.min(...data)-1.0
+                        },
+                        display: true,
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                },
+                legend: {
+                    display: legendState
+                }
+            },
+            data: {
+                labels: label,
+                datasets: [
+                    // {
+                    //     label: "HSI",
+                    //     fill: true,
+                    //     lineTension: 0.2,
+                    //     backgroundColor: "transparent",
+                    //     borderColor: '#864DD9',
+                    //     pointBorderColor: '#864DD9',
+                    //     pointHoverBackgroundColor: '#864DD9',
+                    //     borderCapStyle: 'butt',
+                    //     borderDash: [],
+                    //     borderDashOffset: 0.0,
+                    //     borderJoinStyle: 'miter',
+                    //     borderWidth: 2,
+                    //     pointBackgroundColor: "#fff",
+                    //     pointBorderWidth: 5,
+                    //     pointHoverRadius: 5,
+                    //     pointHoverBorderColor: "#fff",
+                    //     pointHoverBorderWidth: 2,
+                    //     pointRadius: 1,
+                    //     pointHitRadius: 0,
+                    //     data: data,
+                    //     spanGaps: false
+                    // },
+                    {
+                        label: name,
+                        fill: true,
+                        lineTension: 0.2,
+                        backgroundColor: "transparent",
+                        borderColor: "#EF8C99",
+                        pointBorderColor: '#EF8C99',
+                        pointHoverBackgroundColor: "#EF8C99",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        borderWidth: 2,
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 5,
+                        pointHoverRadius: 5,
+                        pointHoverBorderColor: "#fff",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: data,
+                        spanGaps: false
+                    }
+                ]
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

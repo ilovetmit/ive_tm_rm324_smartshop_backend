@@ -1,0 +1,38 @@
+@extends('_layout.admin')
+@section('content')
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.create') }} {{ trans('cruds.productManagement.led.title') }}
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ route("ProductManagement.LEDs.store") }}" enctype="multipart/form-data">
+            @csrf
+            <!-- --------------------------------------shop_product_id-------------------------------------- -->
+            <div class="form-group">
+                <label class="" for="shop_product_id">{{ trans('cruds.fields.shop_product_id') }}</label>
+                <select class="form-control select2 {{ $errors->has('shop_product_id') ? 'is-invalid' : '' }}"
+                    name="shop_product_id" id="shop_product_id" >
+                    <option value disabled {{ old('shop_product_id', null) === null ? 'selected' : '' }}>
+                        {{ trans('global.pleaseSelect') }}</option>
+                    @foreach($shopProducts as $key => $shopProduct)
+                    <option value="{{ $shopProduct->id }}"
+                        {{ old('shop_product_id') === $key ? 'selected' : '' }}>
+                        {{ $shopProduct->hasProduct->name }}
+                    </option>
+                    @endforeach
+                </select>
+                @if($errors->has('shop_product_id'))
+                <span class="text-danger">{{ $errors->first('shop_product_id') }}</span>
+                @endif
+                <span class="help-block"></span>
+            </div>
+            <!------------------------------------------------------>
+            <div class="form-group">
+                <button class="btn btn-danger" type="submit">
+                    {{ trans('global.save') }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection

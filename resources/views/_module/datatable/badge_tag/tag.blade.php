@@ -1,0 +1,1 @@
+<span class="badge badge-{{$type}}">{{ $element }}</span>
