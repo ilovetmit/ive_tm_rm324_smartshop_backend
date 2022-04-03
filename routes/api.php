@@ -118,16 +118,60 @@ Route::prefix('v2')->group(function () {
     Route::get('price', 'Api\v2\IoTController@price');
 });
 
+// v2 link for ARShop
+Route::prefix('v2')->group(function () {
+    /**
+     * ARShop API
+     */
+    Route::post('/user/login', 'ARShopController@loginUser');
+    Route::get('/user/login', 'ARShopController@loginUser');
+    Route::post('/user/login/device', 'ARShopController@loginDevice');
+    Route::post('/user/logout', 'ARShopController@logoutUser');
+    Route::get('/user/logout', 'ARShopController@logoutUser');
+    Route::get('/user', 'ARShopController@getUser');
+    Route::post('/user', 'ARShopController@createUser');
+    Route::put('/user', 'ARShopController@updateUser');
+    Route::delete('/user', 'ARShopController@removeUser');
+
+    Route::get('/user/{userid}/buylists', 'ARShopController@getBuylists');
+    Route::get('/user/{userid}/buylist', 'ARShopController@getBuylist');
+    Route::post('/user/{userid}/buylist', 'ARShopController@addBuylist');
+    Route::put('/user/{userid}/buylist', 'ARShopController@updateBuylist');
+    Route::delete('/user/{userid}/buylist', 'ARShopController@removeBuylist');
+
+    Route::get('/product', 'ARShopController@getProduct');
+    Route::post('/product', 'ARShopController@addProduct');
+    Route::put('/product', 'ARShopController@updateProduct');
+    Route::delete('/product', 'ARShopController@removeProduct');
+    Route::get('/product/qrcode', 'ARShopController@getProductQRCode');
+
+    Route::get('/product/{productid}/discount', 'ARShopController@getProductDiscount');
+    Route::post('/product/{productid}/discount', 'ARShopController@addProductDiscount');
+    Route::put('/product/{productid}/discount', 'ARShopController@updateProductDiscount');
+    Route::delete('/product/{productid}/discount', 'ARShopController@removeProductDiscount');
+
+    Route::get('/coupon', 'ARShopController@getCoupon');
+    Route::post('/coupon', 'ARShopController@addCoupon');
+    Route::put('/coupon', 'ARShopController@updateCoupon');
+    Route::delete('/coupon', 'ARShopController@removeCoupon');
+
+    Route::get('/user/{userid}/coupon', 'ARShopController@getUserCoupon');
+    Route::post('/user/{userid}/coupon', 'ARShopController@addUserCoupon');
+    Route::put('/user/{userid}/coupon', 'ARShopController@updateUserCoupon');
+    Route::delete('/user/{userid}/coupon', 'ARShopController@removeUserCoupon');
+
+    Route::get('/phpinfo', 'ARShopController@phpinfo');
+});
 // test getAllinformation
 // api/test/
 Route::prefix('test')->group(function () {
-    Route::get('advertisement',             'Api\v1\Advertisement\AdvertisementController@getAll');
+    Route::get('advertisement', 'Api\v1\Advertisement\AdvertisementController@getAll');
     Route::get('address', 'Api\v1\Information\AddressController@getAll');
-    Route::get('bankaccount',               'Api\v1\Information\BankAccountController@getAll');
-    Route::get('device',                    'Api\v1\Information\DeviceController@getAll');
-    Route::get('interest',                  'Api\v1\Information\InterestController@getAll');
-    Route::get('vitcoin',                   'Api\v1\Information\VitcoinController@getAll');
-    Route::get('locker',                    'Api\v1\Locker\LockerController@getAll');
+    Route::get('bankaccount', 'Api\v1\Information\BankAccountController@getAll');
+    Route::get('device', 'Api\v1\Information\DeviceController@getAll');
+    Route::get('interest', 'Api\v1\Information\InterestController@getAll');
+    Route::get('vitcoin', 'Api\v1\Information\VitcoinController@getAll');
+    Route::get('locker', 'Api\v1\Locker\LockerController@getAll');
     Route::get('category',                  'Api\v1\Product\CategoryController@getAll');
     Route::get('led',                       'Api\v1\Product\LEDController@getAll');
     Route::get('product',                   'Api\v1\Product\ProductController@getAll');
