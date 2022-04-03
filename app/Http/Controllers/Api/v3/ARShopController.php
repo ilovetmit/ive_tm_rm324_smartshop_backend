@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers\Api\v3;
 
+use App\Events\Checkout;
 use App\Http\Controllers\Controller;
+use App\Models\ProductManagement\OnSell\ShopProductInventory;
+use App\Models\ProductManagement\Product;
+use App\Models\TransactionManagement\ProductTransaction;
+use App\Models\TransactionManagement\Transaction;
+use App\Models\UserManagement\User;
+use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,166 +22,215 @@ class ARShopController extends Controller
     {
     }
 
+    /**
+     * Get the bearer token from the request headers.
+     *
+     * @return string|null
+     */
+    public function bearerToken()
+    {
+        $header = $this->header('Authorization', '');
+        if (Str::startsWith($header, 'Bearer ')) {
+            return Str::substr($header, 7);
+        }
+    }
+    /**
     public function loginUser(Request $request)
     {
-        $username = $request->input('username');
-        $password = $request->input('password');
-        $result = DB::table('user')
-            ->where('username', '=', $username)
-            ->where('password', '=', $password)
-            ->get();
+    $username = $request->input('username');
+    $password = $request->input('password');
+    $result = DB::table('user')
+    ->where('username', '=', $username)
+    ->where('password', '=', $password)
+    ->get();
 
-        if (count($result) > 0) {
-            $token = Str::random(32);
-            DB::table('token')->insert([
-                'type' => '1',
-                'userid' => $result[0]->userid,
-                'token' => $token,
-                'expired' => Carbon::now()->addDay(7)->timestamp
-            ]);
-            return response()->json(['result' => true, 'id' => $result[0]->userid, 'username' => $result[0]->username, 'name' => $result[0]->name, 'tel' => $result[0]->tel, 'email' => $result[0]->email, 'token' => $token], 200);
-        } else {
-            return response()->json(['result' => false, 'id' => '', 'username' => '', 'name' => '', 'tel' => '', 'email' => '', 'token' => ''], 401);
-        }
-
-        //return response()->json(['result' => true,'id' => 64, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
+    if (count($result) > 0) {
+    $token = Str::random(32);
+    DB::table('token')->insert([
+    'type' => '1',
+    'userid' => $result[0]->userid,
+    'token' => $token,
+    'expired' => Carbon::now()->addDay(7)->timestamp
+    ]);
+    return response()->json(['result' => true, 'id' => $result[0]->userid, 'username' => $result[0]->username, 'name' => $result[0]->name, 'tel' => $result[0]->tel, 'email' => $result[0]->email, 'token' => $token], 200);
+    } else {
+    return response()->json(['result' => false, 'id' => '', 'username' => '', 'name' => '', 'tel' => '', 'email' => '', 'token' => ''], 401);
     }
 
+    //return response()->json(['result' => true,'id' => 64, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
+    }
+     **/
+    /**
     public function loginDevice(Request $request)
     {
-        $utoken = $request->token;
-        $result = DB::table('token')
-            ->where('token', '=', $utoken)
-            ->first();
-        if ($result) {
-            $token = Str::random(32);
-            $outputqr = $request->input('outputqr');
-            if ($request->input('ecc') == "") {
-                $ecc = "L";
-            } else {
-                $ecc = $request->input('ecc');
-            }
-            DB::table('token')->insert([
-                'type' => '2',
-                'userid' => $result->userid,
-                'token' => $token,
-                'expired' => Carbon::now()->addDay(7)->timestamp
-            ]);
-            $data = ['result' => true, 'userid' => $result->userid, 'token' => $token];
-            if ($outputqr) {
-                $qrcode = QRCode::format('png')
-                    ->size(300)
-                    ->margin(5)
-                    ->encoding('UTF-8')
-                    ->errorCorrection($ecc)
-                    ->generate(json_encode($data));
-                return response($qrcode)->header('Content-Type', 'image/png');
-            } else {
-                return response()->json($data, 200);
-            }
+    $utoken = $request->token;
+    $result = DB::table('token')
+    ->where('token', '=', $utoken)
+    ->first();
+    if ($result) {
+    $token = Str::random(32);
+    $outputqr = $request->input('outputqr');
+    if ($request->input('ecc') == "") {
+    $ecc = "L";
+    } else {
+    $ecc = $request->input('ecc');
+    }
+    DB::table('token')->insert([
+    'type' => '2',
+    'userid' => $result->userid,
+    'token' => $token,
+    'expired' => Carbon::now()->addDay(7)->timestamp
+    ]);
+    $data = ['result' => true, 'userid' => $result->userid, 'token' => $token];
+    if ($outputqr) {
+    $qrcode = QRCode::format('png')
+    ->size(300)
+    ->margin(5)
+    ->encoding('UTF-8')
+    ->errorCorrection($ecc)
+    ->generate(json_encode($data));
+    return response($qrcode)->header('Content-Type', 'image/png');
+    } else {
+    return response()->json($data, 200);
+    }
+    } else {
+    return response()->json(['result' => false, 'userid' => 0, 'token' => ''], 400);
+    }
+
+    //return response() -> json(['result' => true, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
+    }
+     * */
+    public function loginDevice(Request $request)
+    {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $token = $request->bearerToken();
+        $outputqr = $request->input('outputqr');
+        if ($request->input('ecc') == "") {
+            $ecc = "L";
         } else {
-            return response()->json(['result' => false, 'userid' => 0, 'token' => ''], 400);
+            $ecc = $request->input('ecc');
+        }
+        $data = ['result' => true, 'userid' => $user->id, 'token' => $token];
+        if ($outputqr) {
+            $qrcode = QRCode::format('png')
+                ->size(300)
+                ->margin(5)
+                ->encoding('UTF-8')
+                ->errorCorrection($ecc)
+                ->generate(json_encode($data));
+            return response($qrcode)->header('Content-Type', 'image/png');
+        } else {
+            return response()->json($data, 200);
         }
 
         //return response() -> json(['result' => true, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
     }
 
-    public function logoutUser(Request $request)
-    {
-        $userid = $request->id;
-        $token = $request->token;
-        DB::table('token')
-            ->where('userid', '=', $userid)
-            ->where('token', '=', $token)
-            ->delete();
-        return response()->json(['code' => true, 'type' => "result", 'message' => "Success"], 200);
-    }
-
+    /**
+     * public function logoutUser(Request $request)
+     * {
+     * $userid = $request->id;
+     * $token = $request->token;
+     * DB::table('token')
+     * ->where('userid', '=', $userid)
+     * ->where('token', '=', $token)
+     * ->delete();
+     * return response()->json(['code' => true, 'type' => "result", 'message' => "Success"], 200);
+     * }
+     **/
     public function getUser(Request $request)
     {
-        $userid = $request->input('userId');
-        $result = DB::table('user')->where('userid', '=', $userid)->first();
-        $data = [
-            "userid" => $result->userid,
-            'username' => $result->username,
-            'email' => $result->email,
-            'password' => $result->password,
-            'name' => $result->name,
-            'tel' => $result->tel
-        ];
-        return response()->json($data);
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
+        return response()->json($user);
     }
 
-    public function createUser(Request $request)
-    {
-        $username = $request->username;
-        $email = $request->email;
-        $password = $request->password;
-        $name = $request->name;
-        $tel = $request->tel;
-
-        $id = DB::table('user')->insertGetId([
-            'username' => $username,
-            'email' => $email,
-            'password' => $password,
-            'name' => $name,
-            'tel' => $tel
-        ]);
-        if ($id > 0) {
-            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
-        } else {
-            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
-        }
-    }
-
-    public function updateUser(Request $request)
-    {
-        $userid = $request->userid;
-        $username = $request->username;
-        $email = $request->email;
-        $password = $request->password;
-        $name = $request->name;
-        $tel = $request->tel;
-        $updatePassword = $request->input('updatePassword');
-        if ($updatePassword) {
-            $affected = DB::table('user')
-                ->where('userid', '=', $userid)
-                ->update([
-                    'email' => $email,
-                    'password' => $password,
-                    'name' => $name,
-                    'tel' => $tel
-                ]);
-        } else {
-            $affected = DB::table('user')
-                ->where('userid', '=', $userid)
-                ->update([
-                    'email' => $email,
-                    'name' => $name,
-                    'tel' => $tel
-                ]);
-        }
-
-        if ($affected > 0) {
-            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
-        } else {
-            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
-        }
-    }
-
-    public function removeUser(Request $request)
-    {
-        $userid = $request->userid;
-        $affected = DB::table('user')
-            ->where('userid', '=', $userid)
-            ->delete();
-        if ($affected > 0) {
-            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
-        } else {
-            return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
-        }
-    }
-
+    /**
+     * public function getUser(Request $request)
+     * {
+     * $userid = $request->input('userId');
+     * $result = DB::table('user')->where('userid', '=', $userid)->first();
+     * $data = [
+     * "userid" => $result->userid,
+     * 'username' => $result->username,
+     * 'email' => $result->email,
+     * 'password' => $result->password,
+     * 'name' => $result->name,
+     * 'tel' => $result->tel
+     * ];
+     * return response()->json($data);
+     * }
+     *
+* public function createUser(Request $request)
+     * {
+     * $username = $request->username;
+     * $email = $request->email;
+     * $password = $request->password;
+     * $name = $request->name;
+     * $tel = $request->tel;
+     *
+* $id = DB::table('user')->insertGetId([
+     * 'username' => $username,
+     * 'email' => $email,
+     * 'password' => $password,
+     * 'name' => $name,
+     * 'tel' => $tel
+     * ]);
+     * if ($id > 0) {
+     * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+     * } else {
+     * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+     * }
+     * }
+     *
+* public function updateUser(Request $request)
+     * {
+     * $userid = $request->userid;
+     * $username = $request->username;
+     * $email = $request->email;
+     * $password = $request->password;
+     * $name = $request->name;
+     * $tel = $request->tel;
+     * $updatePassword = $request->input('updatePassword');
+     * if ($updatePassword) {
+     * $affected = DB::table('user')
+     * ->where('userid', '=', $userid)
+     * ->update([
+     * 'email' => $email,
+     * 'password' => $password,
+     * 'name' => $name,
+     * 'tel' => $tel
+     * ]);
+     * } else {
+     * $affected = DB::table('user')
+     * ->where('userid', '=', $userid)
+     * ->update([
+     * 'email' => $email,
+     * 'name' => $name,
+     * 'tel' => $tel
+     * ]);
+     * }
+     *
+* if ($affected > 0) {
+     * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+     * } else {
+     * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+     * }
+     * }
+     *
+     * public function removeUser(Request $request)
+     * {
+     * $userid = $request->userid;
+     * $affected = DB::table('user')
+     * ->where('userid', '=', $userid)
+     * ->delete();
+     * if ($affected > 0) {
+     * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+     * } else {
+     * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+     * }
+     * }
+**/
     public function getBuylists(Request $request, $userid)
     {
         $result = DB::table('buylist')->where('userid', '=', $userid)->get();
@@ -598,6 +654,74 @@ class ARShopController extends Controller
             return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
         } else {
             return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+        }
+    }
+
+    public function checkout_transaction(Request $request)
+    {
+        try {
+            $user = User::find(Auth::guard('api')->user()->id);
+            $bankAccount = $user->hasBankAccount;
+            if (!$user) {
+                //return parent::sendError('You are Hacking.', 216);
+                return response()->json(['code' => 216, 'type' => "error", 'message' => "You are Hacking"], 400);
+            }
+            $amount = $request->get('amount');
+
+            $transactions = new Transaction;
+            $transactions->header = "S-SHOP@TMIT QR Checkout spending";
+            $transactions->user_id = $user->id;
+            $transactions->amount = $amount;
+            $currency = array_flip(config("constant.transaction_currency"));
+            $transactions->currency = $currency[$request->get('payment')];
+
+            if ($request->get('payment') == 'VitCoin') { //todo Vitcoin payment
+
+            } elseif ($request->get('payment') == 'Saving') {
+                if ($amount > $bankAccount->saving_account) {
+                    //return parent::sendError('Your saving account does not have enough money', 233);
+                    return response()->json(['code' => 233, 'type' => "error", 'message' => "Your saving account does not have enough money"], 400);
+                }
+
+                $bankAccount->saving_account = $bankAccount->saving_account - $amount;
+                $transactions->balance = $bankAccount->saving_account;
+                $bankAccount->save();
+                $transactions->save();
+            } else {
+                //return parent::sendError('Non pay type', 216);
+                return response()->json(['code' => 216, 'type' => "error", 'message' => "Non pay type"], 400);
+            }
+            $productList = $request->get('productList');
+
+
+            foreach ($productList as $product_data) {
+                $product_id = $product_data['has_shop_product']['id'];
+                $product = Product::find($product_id);
+                //$rfid_id = $product_data['id'];
+
+                //$rfid = ShopProductInventory::find($rfid_id);
+                //$rfid->is_sold = 2;
+                //$rfid->save();
+
+                $productTransaction = new ProductTransaction;
+                $productTransaction->transaction_id = $transactions->id;
+                $productTransaction->product_id = $product->id;
+                $productTransaction->quantity = 1;
+                $productTransaction->shop_type = 3;
+                $productTransaction->save();
+
+                $product->quantity = $product->quantity - 1;
+                $product->save();
+            }
+
+
+            //$data = $transactions->load("hasProduct_transaction", "hasProduct_transaction.hasProduct");
+            event(new Checkout("REFRESH"));
+            return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+            //return parent::sendResponse('data', $data, 'Buy Order Success');
+        } catch (\Exception $e) {
+            return response()->json(['code' => 216, 'type' => "error", 'message' => $e->getMessage()], 400);
+            //return parent::sendError($e->getMessage(), 216);
         }
     }
 }

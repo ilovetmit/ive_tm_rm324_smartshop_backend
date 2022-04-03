@@ -123,46 +123,48 @@ Route::prefix('v3')->group(function () {
     /**
      * ARShop API
      */
-    Route::post('/user/login', 'Api\v3\ARShopController@loginUser');
-    Route::get('/user/login', 'Api\v3\ARShopController@loginUser');
-    Route::post('/user/login/device', 'Api\v3\ARShopController@loginDevice');
-    Route::post('/user/logout', 'Api\v3\ARShopController@logoutUser');
-    Route::get('/user/logout', 'Api\v3\ARShopController@logoutUser');
-    Route::get('/user', 'Api\v3\ARShopController@getUser');
-    Route::post('/user', 'Api\v3\ARShopController@createUser');
-    Route::put('/user', 'Api\v3\ARShopController@updateUser');
-    Route::delete('/user', 'Api\v3\ARShopController@removeUser');
+    Route::group(['middleware' => 'auth:api',], function () {
+        //Route::post('/user/login', 'Api\v3\ARShopController@loginUser');
+        //Route::get('/user/login', 'Api\v3\ARShopController@loginUser');
+        Route::post('/user/login/device', 'Api\v3\ARShopController@loginDevice');
+        //Route::post('/user/logout', 'Api\v3\ARShopController@logoutUser');
+        //Route::get('/user/logout', 'Api\v3\ARShopController@logoutUser');
+        Route::get('/user', 'Api\v3\ARShopController@getUser');
+        Route::post('/user', 'Api\v3\ARShopController@createUser');
+        Route::put('/user', 'Api\v3\ARShopController@updateUser');
+        Route::delete('/user', 'Api\v3\ARShopController@removeUser');
 
-    Route::get('/user/{userid}/buylists', 'Api\v3\ARShopController@getBuylists');
-    Route::get('/user/{userid}/buylist', 'Api\v3\ARShopController@getBuylist');
-    Route::post('/user/{userid}/buylist', 'Api\v3\ARShopController@addBuylist');
-    Route::put('/user/{userid}/buylist', 'Api\v3\ARShopController@updateBuylist');
-    Route::delete('/user/{userid}/buylist', 'Api\v3\ARShopController@removeBuylist');
+        Route::get('/user/{userid}/buylists', 'Api\v3\ARShopController@getBuylists');
+        Route::get('/user/{userid}/buylist', 'Api\v3\ARShopController@getBuylist');
+        Route::post('/user/{userid}/buylist', 'Api\v3\ARShopController@addBuylist');
+        Route::put('/user/{userid}/buylist', 'Api\v3\ARShopController@updateBuylist');
+        Route::delete('/user/{userid}/buylist', 'Api\v3\ARShopController@removeBuylist');
 
-    Route::get('/product', 'Api\v3\ARShopController@getProduct');
-    Route::post('/product', 'Api\v3\ARShopController@addProduct');
-    Route::put('/product', 'Api\v3\ARShopController@updateProduct');
-    Route::delete('/product', 'Api\v3\ARShopController@removeProduct');
-    Route::get('/product/qrcode', 'Api\v3\ARShopController@getProductQRCode');
+        Route::get('/product', 'Api\v3\ARShopController@getProduct');
+        Route::post('/product', 'Api\v3\ARShopController@addProduct');
+        Route::put('/product', 'Api\v3\ARShopController@updateProduct');
+        Route::delete('/product', 'Api\v3\ARShopController@removeProduct');
+        Route::get('/product/qrcode', 'Api\v3\ARShopController@getProductQRCode');
 
-    Route::get('/product/{productid}/discount', 'Api\v3\ARShopController@getProductDiscount');
-    Route::post('/product/{productid}/discount', 'Api\v3\ARShopController@addProductDiscount');
-    Route::put('/product/{productid}/discount', 'Api\v3\ARShopController@updateProductDiscount');
-    Route::delete('/product/{productid}/discount', 'Api\v3\ARShopController@removeProductDiscount');
+        Route::get('/product/{productid}/discount', 'Api\v3\ARShopController@getProductDiscount');
+        Route::post('/product/{productid}/discount', 'Api\v3\ARShopController@addProductDiscount');
+        Route::put('/product/{productid}/discount', 'Api\v3\ARShopController@updateProductDiscount');
+        Route::delete('/product/{productid}/discount', 'Api\v3\ARShopController@removeProductDiscount');
 
-    Route::get('/coupon', 'Api\v3\ARShopController@getCoupon');
-    Route::post('/coupon', 'Api\v3\ARShopController@addCoupon');
-    Route::put('/coupon', 'Api\v3\ARShopController@updateCoupon');
-    Route::delete('/coupon', 'Api\v3\ARShopController@removeCoupon');
+        Route::get('/coupon', 'Api\v3\ARShopController@getCoupon');
+        Route::post('/coupon', 'Api\v3\ARShopController@addCoupon');
+        Route::put('/coupon', 'Api\v3\ARShopController@updateCoupon');
+        Route::delete('/coupon', 'Api\v3\ARShopController@removeCoupon');
 
-    Route::get('/user/{userid}/coupon', 'Api\v3\ARShopController@getUserCoupon');
-    Route::post('/user/{userid}/coupon', 'Api\v3\ARShopController@addUserCoupon');
-    Route::put('/user/{userid}/coupon', 'Api\v3\ARShopController@updateUserCoupon');
-    Route::delete('/user/{userid}/coupon', 'Api\v3\ARShopController@removeUserCoupon');
+        Route::get('/user/{userid}/coupon', 'Api\v3\ARShopController@getUserCoupon');
+        Route::post('/user/{userid}/coupon', 'Api\v3\ARShopController@addUserCoupon');
+        Route::put('/user/{userid}/coupon', 'Api\v3\ARShopController@updateUserCoupon');
+        Route::delete('/user/{userid}/coupon', 'Api\v3\ARShopController@removeUserCoupon');
 
-    Route::post('checkout_transaction', 'Api\v3\ARShopController@checkout_transaction');
+        Route::post('checkout_transaction', 'Api\v3\ARShopController@checkout_transaction');
 
-    Route::get('/phpinfo', 'Api\v3\ARShopController@phpinfo');
+        Route::get('/phpinfo', 'Api\v3\ARShopController@phpinfo');
+    });
 });
 // test getAllinformation
 // api/test/
