@@ -163,7 +163,9 @@ Route::prefix('v3')->group(function () {
 
         Route::post('checkout_transaction', 'Api\v3\ARShopController@checkout_transaction');
 
-        Route::get('/phpinfo', 'Api\v3\ARShopController@phpinfo');
+        Route::get('/phpinfo', function () {
+            phpinfo();
+        })->name('phpinfo');
     });
 });
 // test getAllinformation
