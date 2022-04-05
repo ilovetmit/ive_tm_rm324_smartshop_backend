@@ -134,11 +134,11 @@ Route::prefix('v3')->group(function () {
         Route::put('/user', 'Api\v3\ARShopController@updateUser');
         Route::delete('/user', 'Api\v3\ARShopController@removeUser');
 
-        Route::get('/user/{userid}/buylists', 'Api\v3\ARShopController@getBuylists');
-        Route::get('/user/{userid}/buylist', 'Api\v3\ARShopController@getBuylist');
-        Route::post('/user/{userid}/buylist', 'Api\v3\ARShopController@addBuylist');
-        Route::put('/user/{userid}/buylist', 'Api\v3\ARShopController@updateBuylist');
-        Route::delete('/user/{userid}/buylist', 'Api\v3\ARShopController@removeBuylist');
+        Route::get('/user/buylists', 'Api\v3\ARShopController@getBuylists');
+        Route::get('/user/buylist', 'Api\v3\ARShopController@getBuylist');
+        Route::post('/user/buylist', 'Api\v3\ARShopController@addBuylist');
+        Route::put('/user/buylist', 'Api\v3\ARShopController@updateBuylist');
+        Route::delete('/user/buylist', 'Api\v3\ARShopController@removeBuylist');
 
         Route::get('/product', 'Api\v3\ARShopController@getProduct');
         Route::post('/product', 'Api\v3\ARShopController@addProduct');
@@ -156,10 +156,10 @@ Route::prefix('v3')->group(function () {
         Route::put('/coupon', 'Api\v3\ARShopController@updateCoupon');
         Route::delete('/coupon', 'Api\v3\ARShopController@removeCoupon');
 
-        Route::get('/user/{userid}/coupon', 'Api\v3\ARShopController@getUserCoupon');
-        Route::post('/user/{userid}/coupon', 'Api\v3\ARShopController@addUserCoupon');
-        Route::put('/user/{userid}/coupon', 'Api\v3\ARShopController@updateUserCoupon');
-        Route::delete('/user/{userid}/coupon', 'Api\v3\ARShopController@removeUserCoupon');
+        Route::get('/user/coupon', 'Api\v3\ARShopController@getUserCoupon');
+        Route::post('/user/coupon', 'Api\v3\ARShopController@addUserCoupon');
+        Route::put('/user/coupon', 'Api\v3\ARShopController@updateUserCoupon');
+        Route::delete('/user/coupon', 'Api\v3\ARShopController@removeUserCoupon');
 
         Route::post('checkout_transaction', 'Api\v3\ARShopController@checkout_transaction');
 

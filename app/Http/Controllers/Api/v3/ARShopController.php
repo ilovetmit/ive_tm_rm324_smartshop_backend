@@ -231,8 +231,10 @@ class ARShopController extends Controller
      * }
      * }
 **/
-    public function getBuylists(Request $request, $userid)
+    public function getBuylists(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $result = DB::table('buylist')->where('userid', '=', $userid)->get();
         if ($result->count()) {
             return response()->json(['result' => $result]);
@@ -241,16 +243,20 @@ class ARShopController extends Controller
         }
     }
 
-    public function getBuylist(Request $request, $userid)
+    public function getBuylist(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $buylistId = $request->input('buylistId');
         $items = DB::table('buylistdetails')->join('product', 'buylistdetails.productid', '=', 'product.productid')->where('buyid', '=', $buylistId)->get();
         $buylist = DB::table('buylist')->where('buyid', '=', $buylistId)->first();
         return response()->json(['id' => $buylistId, 'name' => $buylist->name, 'createdate' => $buylist->createdate, 'items' => $items], 200);
     }
 
-    public function addBuylist(Request $request, $userid)
+    public function addBuylist(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $name = $request->name;
         //return print_r($request->items);
         $items = $request->items;
@@ -282,8 +288,10 @@ class ARShopController extends Controller
         }
     }
 
-    public function updateBuylist(Request $request, $userid)
+    public function updateBuylist(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $buylistId = $request->id;
         $name = $request->name;
         $items = $request->items;
@@ -330,8 +338,10 @@ class ARShopController extends Controller
         }
     }
 
-    public function removeBuylist(Request $request, $userid)
+    public function removeBuylist(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $buyid = $request->input('buylistId');
         $affected_item = DB::table('buylistdetails')->where('buyid', '=', $buyid)->delete();
         $affected = DB::table('buylist')->where('buyid', '=', $buyid)->delete();
@@ -599,8 +609,10 @@ class ARShopController extends Controller
         }
     }
 
-    public function getUserCoupon(Request $request, $userid)
+    public function getUserCoupon(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $result = DB::table('usercoupon')->where('userid', '=', $userid)->get();
         if ($result->count() > 0) {
             return response()->json(["result" => $result], 200);
@@ -611,8 +623,10 @@ class ARShopController extends Controller
 
     }
 
-    public function addUserCoupon(Request $request, $userid)
+    public function addUserCoupon(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $couponid = $request->couponid;
         $used = $request->used;
         $expiredate = $request->expiredate;
@@ -629,8 +643,10 @@ class ARShopController extends Controller
         }
     }
 
-    public function updateUserCoupon(Request $request, $userid)
+    public function updateUserCoupon(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $couponid = $request->couponid;
         $used = $request->used;
         $expiredate = $request->expiredate;
@@ -646,8 +662,10 @@ class ARShopController extends Controller
         }
     }
 
-    public function removeUserCoupon(Request $request, $userid)
+    public function removeUserCoupon(Request $request)
     {
+        $user = User::find(Auth::guard('api')->user()->id);
+        $userid = $user->id;
         $couponid = $request->couponid;
         $affected = DB::table('usercoupon')->where('userid', '=', $userid)->where('couponid', '=', $couponid)->delete();
         if ($affected > 0) {
