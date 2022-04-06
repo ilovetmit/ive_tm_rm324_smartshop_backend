@@ -126,7 +126,7 @@ Route::prefix('v3')->group(function () {
     Route::group(['middleware' => 'auth:api',], function () {
         //Route::post('/user/login', 'Api\v3\ARShopController@loginUser');
         //Route::get('/user/login', 'Api\v3\ARShopController@loginUser');
-        Route::post('/user/login/device', 'Api\v3\ARShopController@loginDevice');
+        Route::get('/user/login/device', 'Api\v3\ARShopController@loginDevice');
         //Route::post('/user/logout', 'Api\v3\ARShopController@logoutUser');
         //Route::get('/user/logout', 'Api\v3\ARShopController@logoutUser');
         Route::get('/user', 'Api\v3\ARShopController@getUser');
