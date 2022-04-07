@@ -363,7 +363,7 @@ class ARShopController extends Controller
             case (1): //GetProductByid
                 $productid = $request->input('productid');
                 //$result = DB::table('products')->where('id', '=', $productid)->first();
-                $result = Product::where('products')->where('id', '=', $productid)->firstOr(function () {
+                $result = Product::where('id', '=', $productid)->firstOr(function () {
                     return response()->json(["data" => "[]"], 200);
                 });
                 //return response()->json(["productid" => $result->id, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
@@ -372,7 +372,7 @@ class ARShopController extends Controller
             case (2): //GetProductByName
                 $name = $request->input('name');
                 //$result = DB::table('products')->where('name', '=', $name)->first();
-                $result = Product::where('products')->where('name', '=', $name)->firstOr(function () {
+                $result = Product::where('name', '=', $name)->firstOr(function () {
                     return response()->json(["data" => "[]"], 200);
                 });
                 return response()->json(["data" => $result], 200);
@@ -380,7 +380,7 @@ class ARShopController extends Controller
             case (3): //GetProductByKeywords
                 $name = $request->input('name');
                 //$result = DB::table('products')->where('name', 'LIKE', '%' . $name . '%')->get();
-                $result = Product::where('products')->where('name', 'LIKE', '%' . $name . '%')->firstOr(function () {
+                $result = Product::where('name', 'LIKE', '%' . $name . '%')->firstOr(function () {
                     return response()->json(["data" => "[]"], 200);
                 });
                 return response()->json(["data" => $result], 200);
