@@ -9,6 +9,7 @@ use App\Models\ProductManagement\Product;
 use App\Models\TransactionManagement\ProductTransaction;
 use App\Models\TransactionManagement\Transaction;
 use App\Models\UserManagement\User;
+use http\Env\Response;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
@@ -361,32 +362,31 @@ class ARShopController extends Controller
         switch ($method) {
             case (1): //GetProductByid
                 $productid = $request->input('productid');
-                $result = DB::table('products')->where('id', '=', $productid)->first();
-                if ($result) {
-                    return response()->json(["productid" => $result->id, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
-                } else {
-                    return response()->json(["productid" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
-                }
+                //$result = DB::table('products')->where('id', '=', $productid)->first();
+                $result = Product::where('products')->where('id', '=', $productid)->firstOr(function () {
+                    return response()->json(["data" => "[]"], 200);
+                });
+                //return response()->json(["productid" => $result->id, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
+                return response()->json(["data" => $result], 200);
                 break;
             case (2): //GetProductByName
                 $name = $request->input('name');
-                $result = DB::table('products')->where('name', '=', $name)->first();
-                if ($result) {
-                    return response()->json(["productid" => $result->id, "name" => $result->name, "description" => $result->description, "price" => $result->price, "Location" => $result->Location], 200);
-                } else {
-                    return response()->json(["productid" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
-                }
+                //$result = DB::table('products')->where('name', '=', $name)->first();
+                $result = Product::where('products')->where('name', '=', $name)->firstOr(function () {
+                    return response()->json(["data" => "[]"], 200);
+                });
+                return response()->json(["data" => $result], 200);
                 break;
             case (3): //GetProductByKeywords
                 $name = $request->input('name');
-                $result = DB::table('products')->where('name', 'LIKE', '%' . $name . '%')->get();
-                if ($result->count() > 0) {
-                    return response()->json(["result" => $result], 200);
-                } else {
-                    return response()->json(["productid" => "", "name" => "", "description" => "", "price" => "", "Location" => ""], 400);
-                }
+                //$result = DB::table('products')->where('name', 'LIKE', '%' . $name . '%')->get();
+                $result = Product::where('products')->where('name', 'LIKE', '%' . $name . '%')->firstOr(function () {
+                    return response()->json(["data" => "[]"], 200);
+                });
+                return response()->json(["data" => $result], 200);
                 break;
         }
+        return response()->json(["data" => "[]"], 400);
     }
 
     /**
