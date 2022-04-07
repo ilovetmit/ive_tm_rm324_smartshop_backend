@@ -437,10 +437,9 @@ class ARShopController extends Controller
 **/
     public function getProductDiscount(Request $request, $productid)
     {
-        $discountid = $request->discountid;
         $currenttime = Carbon::now()->timestamp;
 
-        if (!$discountid > 0 && !$productid > 0) {
+        if (!$productid > 0) {
             $result = DB::table('productdiscount')->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->get();
             return response()->json(["result" => $result], 200);
         } else{
