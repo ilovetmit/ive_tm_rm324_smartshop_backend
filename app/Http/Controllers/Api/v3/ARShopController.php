@@ -518,11 +518,10 @@ class ARShopController extends Controller
 
         if ($result) {
             $data = [
-                "productid" => $result->productid,
+                "productid" => $result->id,
                 "name" => $result->name,
                 "description" => $result->description,
-                "price" => $result->price,
-                "Location" => $result->Location
+                "price" => $result->price
 
             ];
             if ($outputqr) {
