@@ -435,8 +435,9 @@ class ARShopController extends Controller
         * }
     * }
 **/
-    public function getProductDiscount(Request $request, $productid)
+    public function getProductDiscount(Request $request)
     {
+        $productid = $request->productid;
         $currenttime = Carbon::now()->timestamp;
 
         if (!$productid > 0) {
@@ -448,8 +449,9 @@ class ARShopController extends Controller
         }
     }
 
-    public function addProductDiscount(Request $request, $productid)
+    public function addProductDiscount(Request $request)
     {
+        $productid = $request->productid;
         $name = $request->name;
         $starttime = $request->starttime;
         $endtime = $request->endtime;
@@ -470,8 +472,9 @@ class ARShopController extends Controller
         }
     }
 
-    public function updateProductDiscount(Request $request, $productid)
+    public function updateProductDiscount(Request $request)
     {
+        $productid = $request->productid;
         $discountid = $request->discountid;
         $name = $request->name;
         $starttime = $request->starttime;
@@ -492,7 +495,7 @@ class ARShopController extends Controller
         }
     }
 
-    public function removeProductDiscount(Request $request, $productid)
+    public function removeProductDiscount(Request $request)
     {
         $discountid = $request->discountid;
         $affected = DB::table('productdiscount')->where('discountid', '=', $discountid)->delete();

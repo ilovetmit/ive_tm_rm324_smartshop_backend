@@ -146,10 +146,10 @@ Route::prefix('v3')->group(function () {
         Route::delete('/product', 'Api\v3\ARShopController@removeProduct');
         Route::get('/product/qrcode', 'Api\v3\ARShopController@getProductQRCode');
 
-        Route::get('/product/{productid}/discount', 'Api\v3\ARShopController@getProductDiscount');
-        Route::post('/product/{productid}/discount', 'Api\v3\ARShopController@addProductDiscount');
-        Route::put('/product/{productid}/discount', 'Api\v3\ARShopController@updateProductDiscount');
-        Route::delete('/product/{productid}/discount', 'Api\v3\ARShopController@removeProductDiscount');
+        Route::get('/discount', 'Api\v3\ARShopController@getProductDiscount');
+        Route::post('/discount', 'Api\v3\ARShopController@addProductDiscount');
+        Route::put('/discount', 'Api\v3\ARShopController@updateProductDiscount');
+        Route::delete('/discount', 'Api\v3\ARShopController@removeProductDiscount');
 
         Route::get('/coupon', 'Api\v3\ARShopController@getCoupon');
         Route::post('/coupon', 'Api\v3\ARShopController@addCoupon');
