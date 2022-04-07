@@ -443,8 +443,8 @@ class ARShopController extends Controller
         if (!$discountid > 0 && !$productid > 0) {
             $result = DB::table('productdiscount')->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->get();
             return response()->json(["result" => $result], 200);
-        } else {
-            $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('discountid', '=', $discountid)->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->first();
+        } else{
+            $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->first();
             return response()->json(["result" => $result], 200);
         }
     }
