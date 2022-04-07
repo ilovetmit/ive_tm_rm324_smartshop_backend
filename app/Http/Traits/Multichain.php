@@ -139,10 +139,11 @@ class MultiChain
         if (!empty($curl_error)) {
             $this->error = $curl_error;
         }
-
-        if ($this->response['error']) {
-            // If MultiChaind returned an error, put that in $this->error
-            $this->error = $this->response['error']['message'];
+        if (isset($this->response['error'])) {
+            if ($this->response['error']) {
+                // If MultiChaind returned an error, put that in $this->error
+                $this->error = $this->response['error']['message'];
+            }
         } elseif ($this->status != 200) {
             // If MultiChaind didn't return a nice error message, we need to make our own
             switch ($this->status) {
@@ -158,7 +159,7 @@ class MultiChain
                 case 404:
                     $this->error = 'HTTP_NOT_FOUND';
                     break;
-                    // extended error codes corresponding to multichain/src/rpc/rpcprotocol.h
+                // extended error codes corresponding to multichain/src/rpc/rpcprotocol.h
                 case 500:
                     $this->error = 'HTTP_INTERNAL_SERVER_ERROR';
                     break;
@@ -167,7 +168,6 @@ class MultiChain
                     break;
             }
         }
-
         if ($this->error) {
             return false;
         }

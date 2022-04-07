@@ -118,16 +118,66 @@ Route::prefix('v2')->group(function () {
     Route::get('price', 'Api\v2\IoTController@price');
 });
 
+// v3 link for ARShop
+Route::prefix('v3')->group(function () {
+    /**
+     * ARShop API
+     */
+    Route::group(['middleware' => 'auth:api',], function () {
+        //Route::post('/user/login', 'Api\v3\ARShopController@loginUser');
+        //Route::get('/user/login', 'Api\v3\ARShopController@loginUser');
+        Route::get('/user/login/device', 'Api\v3\ARShopController@loginDevice');
+        //Route::post('/user/logout', 'Api\v3\ARShopController@logoutUser');
+        //Route::get('/user/logout', 'Api\v3\ARShopController@logoutUser');
+        Route::get('/user', 'Api\v3\ARShopController@getUser');
+        Route::post('/user', 'Api\v3\ARShopController@createUser');
+        Route::put('/user', 'Api\v3\ARShopController@updateUser');
+        Route::delete('/user', 'Api\v3\ARShopController@removeUser');
+
+        Route::get('/user/buylists', 'Api\v3\ARShopController@getBuylists');
+        Route::get('/user/buylist', 'Api\v3\ARShopController@getBuylist');
+        Route::post('/user/buylist', 'Api\v3\ARShopController@addBuylist');
+        Route::put('/user/buylist', 'Api\v3\ARShopController@updateBuylist');
+        Route::delete('/user/buylist', 'Api\v3\ARShopController@removeBuylist');
+
+        Route::get('/product', 'Api\v3\ARShopController@getProduct');
+        Route::post('/product', 'Api\v3\ARShopController@addProduct');
+        Route::put('/product', 'Api\v3\ARShopController@updateProduct');
+        Route::delete('/product', 'Api\v3\ARShopController@removeProduct');
+        Route::get('/product/qrcode', 'Api\v3\ARShopController@getProductQRCode');
+
+        Route::get('/product/{productid}/discount', 'Api\v3\ARShopController@getProductDiscount');
+        Route::post('/product/{productid}/discount', 'Api\v3\ARShopController@addProductDiscount');
+        Route::put('/product/{productid}/discount', 'Api\v3\ARShopController@updateProductDiscount');
+        Route::delete('/product/{productid}/discount', 'Api\v3\ARShopController@removeProductDiscount');
+
+        Route::get('/coupon', 'Api\v3\ARShopController@getCoupon');
+        Route::post('/coupon', 'Api\v3\ARShopController@addCoupon');
+        Route::put('/coupon', 'Api\v3\ARShopController@updateCoupon');
+        Route::delete('/coupon', 'Api\v3\ARShopController@removeCoupon');
+
+        Route::get('/user/coupon', 'Api\v3\ARShopController@getUserCoupon');
+        Route::post('/user/coupon', 'Api\v3\ARShopController@addUserCoupon');
+        Route::put('/user/coupon', 'Api\v3\ARShopController@updateUserCoupon');
+        Route::delete('/user/coupon', 'Api\v3\ARShopController@removeUserCoupon');
+
+        Route::post('checkout_transaction', 'Api\v3\ARShopController@checkout_transaction');
+
+        Route::get('/phpinfo', function () {
+            phpinfo();
+        })->name('phpinfo');
+    });
+});
 // test getAllinformation
 // api/test/
 Route::prefix('test')->group(function () {
-    Route::get('advertisement',             'Api\v1\Advertisement\AdvertisementController@getAll');
+    Route::get('advertisement', 'Api\v1\Advertisement\AdvertisementController@getAll');
     Route::get('address', 'Api\v1\Information\AddressController@getAll');
-    Route::get('bankaccount',               'Api\v1\Information\BankAccountController@getAll');
-    Route::get('device',                    'Api\v1\Information\DeviceController@getAll');
-    Route::get('interest',                  'Api\v1\Information\InterestController@getAll');
-    Route::get('vitcoin',                   'Api\v1\Information\VitcoinController@getAll');
-    Route::get('locker',                    'Api\v1\Locker\LockerController@getAll');
+    Route::get('bankaccount', 'Api\v1\Information\BankAccountController@getAll');
+    Route::get('device', 'Api\v1\Information\DeviceController@getAll');
+    Route::get('interest', 'Api\v1\Information\InterestController@getAll');
+    Route::get('vitcoin', 'Api\v1\Information\VitcoinController@getAll');
+    Route::get('locker', 'Api\v1\Locker\LockerController@getAll');
     Route::get('category',                  'Api\v1\Product\CategoryController@getAll');
     Route::get('led',                       'Api\v1\Product\LEDController@getAll');
     Route::get('product',                   'Api\v1\Product\ProductController@getAll');
