@@ -383,6 +383,7 @@ class ARShopController extends Controller
                 $result = Product::where('name', 'LIKE', '%' . $name . '%')->firstOr(function () {
                     return response()->json(["data" => "[]"], 200);
                 });
+                $result = Product::where('name', 'LIKE', '%' . $name . '%')->get();
                 return response()->json(["data" => $result], 200);
                 break;
         }
