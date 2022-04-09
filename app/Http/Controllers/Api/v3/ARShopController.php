@@ -767,9 +767,9 @@ class ARShopController extends Controller
             // $orders->load('hasProduct')->load('hasProduct.hasCategory');
             // $remark = unserialize($orders->remark); todo Remark for delivery address
             // $orders->load($remarks);
-            return parent::sendResponse('data', $array, 'Order Data');
+            return response()->json(['data', $array, 'Order Data'], 200);
         } catch (\Exception $e) {
-            return parent::sendError($e->getMessage(), 216);
+            return response()->json([$e->getMessage()], 216);
         }
     }
 }
