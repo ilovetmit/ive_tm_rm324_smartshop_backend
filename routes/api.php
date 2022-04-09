@@ -161,7 +161,8 @@ Route::prefix('v3')->group(function () {
         Route::put('/user/coupon', 'Api\v3\ARShopController@updateUserCoupon');
         Route::delete('/user/coupon', 'Api\v3\ARShopController@removeUserCoupon');
 
-        Route::post('checkout_transaction', 'Api\v3\ARShopController@checkout_transaction');
+        Route::get('orders', 'Api\v3\Transaction\ARShopController@getOrderHistory');
+        Route::post('checkout', 'Api\v3\ARShopController@checkout_transaction');
 
         Route::get('/phpinfo', function () {
             phpinfo();
