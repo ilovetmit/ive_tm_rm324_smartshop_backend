@@ -36,70 +36,70 @@ class ARShopController extends Controller
         }
     }
     /**
-    public function loginUser(Request $request)
-    {
-    $username = $request->input('username');
-    $password = $request->input('password');
-    $result = DB::table('user')
-    ->where('username', '=', $username)
-    ->where('password', '=', $password)
-    ->get();
-
-    if (count($result) > 0) {
-    $token = Str::random(32);
-    DB::table('token')->insert([
-    'type' => '1',
-    'userid' => $result[0]->userid,
-    'token' => $token,
-    'expired' => Carbon::now()->addDay(7)->timestamp
-    ]);
-    return response()->json(['result' => true, 'id' => $result[0]->userid, 'username' => $result[0]->username, 'name' => $result[0]->name, 'tel' => $result[0]->tel, 'email' => $result[0]->email, 'token' => $token], 200);
-    } else {
-    return response()->json(['result' => false, 'id' => '', 'username' => '', 'name' => '', 'tel' => '', 'email' => '', 'token' => ''], 401);
-    }
-
-    //return response()->json(['result' => true,'id' => 64, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
-    }
+     * public function loginUser(Request $request)
+     * {
+     * $username = $request->input('username');
+     * $password = $request->input('password');
+     * $result = DB::table('user')
+     * ->where('username', '=', $username)
+     * ->where('password', '=', $password)
+     * ->get();
+     *
+     * if (count($result) > 0) {
+     * $token = Str::random(32);
+     * DB::table('token')->insert([
+     * 'type' => '1',
+     * 'userid' => $result[0]->userid,
+     * 'token' => $token,
+     * 'expired' => Carbon::now()->addDay(7)->timestamp
+     * ]);
+     * return response()->json(['result' => true, 'id' => $result[0]->userid, 'username' => $result[0]->username, 'name' => $result[0]->name, 'tel' => $result[0]->tel, 'email' => $result[0]->email, 'token' => $token], 200);
+     * } else {
+     * return response()->json(['result' => false, 'id' => '', 'username' => '', 'name' => '', 'tel' => '', 'email' => '', 'token' => ''], 401);
+     * }
+     *
+     * //return response()->json(['result' => true,'id' => 64, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
+     * }
      **/
     /**
-    public function loginDevice(Request $request)
-    {
-    $utoken = $request->token;
-    $result = DB::table('token')
-    ->where('token', '=', $utoken)
-    ->first();
-    if ($result) {
-    $token = Str::random(32);
-    $outputqr = $request->input('outputqr');
-    if ($request->input('ecc') == "") {
-    $ecc = "L";
-    } else {
-    $ecc = $request->input('ecc');
-    }
-    DB::table('token')->insert([
-    'type' => '2',
-    'userid' => $result->userid,
-    'token' => $token,
-    'expired' => Carbon::now()->addDay(7)->timestamp
-    ]);
-    $data = ['result' => true, 'userid' => $result->userid, 'token' => $token];
-    if ($outputqr) {
-    $qrcode = QRCode::format('png')
-    ->size(300)
-    ->margin(5)
-    ->encoding('UTF-8')
-    ->errorCorrection($ecc)
-    ->generate(json_encode($data));
-    return response($qrcode)->header('Content-Type', 'image/png');
-    } else {
-    return response()->json($data, 200);
-    }
-    } else {
-    return response()->json(['result' => false, 'userid' => 0, 'token' => ''], 400);
-    }
-
-    //return response() -> json(['result' => true, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
-    }
+     * public function loginDevice(Request $request)
+     * {
+     * $utoken = $request->token;
+     * $result = DB::table('token')
+     * ->where('token', '=', $utoken)
+     * ->first();
+     * if ($result) {
+     * $token = Str::random(32);
+     * $outputqr = $request->input('outputqr');
+     * if ($request->input('ecc') == "") {
+     * $ecc = "L";
+     * } else {
+     * $ecc = $request->input('ecc');
+     * }
+     * DB::table('token')->insert([
+     * 'type' => '2',
+     * 'userid' => $result->userid,
+     * 'token' => $token,
+     * 'expired' => Carbon::now()->addDay(7)->timestamp
+     * ]);
+     * $data = ['result' => true, 'userid' => $result->userid, 'token' => $token];
+     * if ($outputqr) {
+     * $qrcode = QRCode::format('png')
+     * ->size(300)
+     * ->margin(5)
+     * ->encoding('UTF-8')
+     * ->errorCorrection($ecc)
+     * ->generate(json_encode($data));
+     * return response($qrcode)->header('Content-Type', 'image/png');
+     * } else {
+     * return response()->json($data, 200);
+     * }
+     * } else {
+     * return response()->json(['result' => false, 'userid' => 0, 'token' => ''], 400);
+     * }
+     *
+     * //return response() -> json(['result' => true, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
+     * }
      * */
     public function loginDevice(Request $request)
     {
@@ -184,7 +184,7 @@ class ARShopController extends Controller
      * return response()->json($data);
      * }
      *
-* public function createUser(Request $request)
+     * public function createUser(Request $request)
      * {
      * $username = $request->username;
      * $email = $request->email;
@@ -192,7 +192,7 @@ class ARShopController extends Controller
      * $name = $request->name;
      * $tel = $request->tel;
      *
-* $id = DB::table('user')->insertGetId([
+     * $id = DB::table('user')->insertGetId([
      * 'username' => $username,
      * 'email' => $email,
      * 'password' => $password,
@@ -206,7 +206,7 @@ class ARShopController extends Controller
      * }
      * }
      *
-* public function updateUser(Request $request)
+     * public function updateUser(Request $request)
      * {
      * $userid = $request->userid;
      * $username = $request->username;
@@ -234,7 +234,7 @@ class ARShopController extends Controller
      * ]);
      * }
      *
-* if ($affected > 0) {
+     * if ($affected > 0) {
      * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
      * } else {
      * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
@@ -253,7 +253,7 @@ class ARShopController extends Controller
      * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
      * }
      * }
-**/
+     **/
     public function getBuylists(Request $request)
     {
         $user = User::find(Auth::guard('api')->user()->id);
@@ -416,33 +416,33 @@ class ARShopController extends Controller
      * public function addProduct(Request $request)
      * {
      * $result = DB::table('product')->insertGetId([
-            * 'name' => $request->name,
-            * 'description' => $request->description,
-            * 'price' => $request->price,
-            * 'Location' => $request->Location
-        * ]);
-        * if ($result) {
-            * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
-        * } else {
-            * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
-        * }
-    * }
- *
-* public function updateProduct(Request $request)
-    * {
-        * $productid = $request->productid;
-        * $affected = DB::table('product')
-            * ->where('productid', '=', $productid)
-            * ->update([
-                * 'name' => $request->name,
-                * 'description' => $request->description,
-                * 'price' => $request->price,
-                * 'Location' => $request->Location
-            * ]);
-        * if ($affected) {
-            * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
-        * } else {
-            * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+     * 'name' => $request->name,
+     * 'description' => $request->description,
+     * 'price' => $request->price,
+     * 'Location' => $request->Location
+     * ]);
+     * if ($result) {
+     * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+     * } else {
+     * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
+     * }
+     * }
+     *
+     * public function updateProduct(Request $request)
+     * {
+     * $productid = $request->productid;
+     * $affected = DB::table('product')
+     * ->where('productid', '=', $productid)
+     * ->update([
+     * 'name' => $request->name,
+     * 'description' => $request->description,
+     * 'price' => $request->price,
+     * 'Location' => $request->Location
+     * ]);
+     * if ($affected) {
+     * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
+     * } else {
+     * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
      * }
      * }
      *
@@ -454,9 +454,9 @@ class ARShopController extends Controller
      * return response()->json(['code' => 200, 'type' => "result", 'message' => "Success"], 200);
      * } else {
      * return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
-        * }
-    * }
-**/
+     * }
+     * }
+     **/
     public function getProductDiscount(Request $request)
     {
         $productid = $request->productid;
@@ -465,7 +465,7 @@ class ARShopController extends Controller
         if (!$productid > 0) {
             $result = DB::table('productdiscount')->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->get();
             return response()->json(["result" => $result], 200);
-        } else{
+        } else {
             $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->first();
             return response()->json(["result" => $result], 200);
         }
