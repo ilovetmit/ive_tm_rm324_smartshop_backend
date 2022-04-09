@@ -746,4 +746,30 @@ class ARShopController extends Controller
             //return parent::sendError($e->getMessage(), 216);
         }
     }
+
+    public function getOrderHistory(Request $request)
+    {
+
+        try {
+            if ($request->input('transactionId') > 0) {
+                $transactions = Transaction::where('user_id', Auth::guard('api')->user()->id)->where('id', '=', $request->input('transactionId'))->with('hasProduct_transaction')->with('hasProduct_transaction.hasProduct')->orderBy('created_at', 'desc')->get();
+            } else {
+                $transactions = Transaction::where('user_id', Auth::guard('api')->user()->id)->with('hasProduct_transaction')->with('hasProduct_transaction.hasProduct')->orderBy('created_at', 'desc')->get();
+            }
+            // $orders = ProductTransaction::rightJoin('products', 'product_transactions.product_id', 'products.id')->rightJoin('transactions', 'product_transactions.transaction_id', 'transactions.id')->where('transactions.user_id', Auth::guard('api')->user()->id)->where('product_transactions.product_id', '<>', null)->orderBy('product_transactions.created_at', 'desc')->get();
+            //$transactions = Transaction::where('user_id', Auth::guard('api')->user()->id)->with('hasProduct_transaction')->with('hasProduct_transaction.hasProduct')->orderBy('created_at', 'desc')->get();
+            $array = [];
+            foreach ($transactions as $key => $transaction) {
+                if (count($transaction->hasProduct_transaction) > 0) {
+                    $array[] = $transaction;
+                }
+            }
+            // $orders->load('hasProduct')->load('hasProduct.hasCategory');
+            // $remark = unserialize($orders->remark); todo Remark for delivery address
+            // $orders->load($remarks);
+            return parent::sendResponse('data', $array, 'Order Data');
+        } catch (\Exception $e) {
+            return parent::sendError($e->getMessage(), 216);
+        }
+    }
 }
