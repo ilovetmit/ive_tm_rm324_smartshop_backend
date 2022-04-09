@@ -121,7 +121,7 @@ class ARShopController extends Controller
             $data = ['result' => true, 'userid' => $user->id, 'token' => $token];
             if ($outputqr) {
                 $qrcode = QRCode::format('png')
-                    ->size(900)
+                    ->size(600)
                     ->margin(5)
                     ->encoding('UTF-8')
                     ->errorCorrection($ecc)
