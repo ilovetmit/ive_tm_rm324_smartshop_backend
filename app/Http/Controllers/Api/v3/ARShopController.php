@@ -725,7 +725,8 @@ class ARShopController extends Controller
                 $productTransaction = new ProductTransaction;
                 $productTransaction->transaction_id = $transactions->id;
                 $productTransaction->product_id = $product->id;
-                $productTransaction->quantity = 1;
+                //$productTransaction->quantity = 1;
+                $productTransaction->quantity = $product_data['has_shop_product']['quantity'];
                 $productTransaction->shop_type = 3;
                 $productTransaction->save();
 
