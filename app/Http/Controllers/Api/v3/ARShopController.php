@@ -143,7 +143,7 @@ class ARShopController extends Controller
 
         $result = DB::table('device_login')->where('userid', '=', $userid)->where('login_token', '=', $token)->first();
         //$affected = DB::table('device_login')->where('userid','=',$userid)->where('login_token','=',$token)->delete();
-        if ($result->count() > 0) {
+        if ($result != null) {
             $data = ['data' => $result->bearer_token];
             $affected = DB::table('device_login')->where('id', '=', $result->id)->delete();
             return response()->json(['data' => $data], 200);
