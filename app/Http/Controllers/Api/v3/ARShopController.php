@@ -690,7 +690,7 @@ class ARShopController extends Controller
             $amount = $request->get('amount');
 
             $transactions = new Transaction;
-            $transactions->header = "S-SHOP@TMIT QR Checkout spending";
+            $transactions->header = "S-SHOP@TMIT ARShop Checkout spending";
             $transactions->user_id = $user->id;
             $transactions->amount = $amount;
             $currency = array_flip(config("constant.transaction_currency"));
