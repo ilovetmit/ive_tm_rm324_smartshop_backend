@@ -104,7 +104,8 @@ class ARShopController extends Controller
     public function loginDevice(Request $request)
     {
         $user = User::find(Auth::guard('api')->user()->id);
-        $oatoken = $request->bearerToken();
+        //$oatoken = $request->bearerToken();
+        $oatoken = $user->createToken('Device')->accessToken;
         $token = bin2hex(random_bytes(20));
         $outputqr = $request->input('outputqr');
         if ($request->input('ecc') == "") {
