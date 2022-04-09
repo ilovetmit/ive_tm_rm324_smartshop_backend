@@ -123,6 +123,7 @@ Route::prefix('v3')->group(function () {
     /**
      * ARShop API
      */
+    Route::post('/user/login/device/success', 'Api\v3\ARShopController@loginDeviceSuccess');
     Route::group(['middleware' => 'auth:api',], function () {
         //Route::post('/user/login', 'Api\v3\ARShopController@loginUser');
         //Route::get('/user/login', 'Api\v3\ARShopController@loginUser');

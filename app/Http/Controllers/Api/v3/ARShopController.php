@@ -104,27 +104,49 @@ class ARShopController extends Controller
     public function loginDevice(Request $request)
     {
         $user = User::find(Auth::guard('api')->user()->id);
-        $token = $request->bearerToken();
+        $oatoken = $request->bearerToken();
+        $token = bin2hex(random_bytes(20));
         $outputqr = $request->input('outputqr');
         if ($request->input('ecc') == "") {
             $ecc = "L";
         } else {
             $ecc = $request->input('ecc');
         }
-        $data = ['result' => true, 'userid' => $user->id, 'token' => $token];
-        if ($outputqr) {
-            $qrcode = QRCode::format('png')
-                ->size(900)
-                ->margin(5)
-                ->encoding('UTF-8')
-                ->errorCorrection($ecc)
-                ->generate(json_encode($data));
-            return response($qrcode)->header('Content-Type', 'image/png');
+        $result = DB::table('device_login')->insertGetId([
+            'userid' => $user->id,
+            'login_token' => $token,
+            'bearer_token' => $oatoken
+        ]);
+        if ($result > 0) {
+            $data = ['result' => true, 'userid' => $user->id, 'token' => $token];
+            if ($outputqr) {
+                $qrcode = QRCode::format('png')
+                    ->size(900)
+                    ->margin(5)
+                    ->encoding('UTF-8')
+                    ->errorCorrection($ecc)
+                    ->generate(json_encode($data));
+                return response($qrcode)->header('Content-Type', 'image/png');
+            } else {
+                return response()->json($data, 200);
+            }
         } else {
-            return response()->json($data, 200);
+            return response()->json(['data'], 400);
         }
-
         //return response() -> json(['result' => true, 'token' => "Tzq88tcwx5QWkKnjnLHks2C6evPL2wwLPbkHYrMDbDuNngJhkpaWEHCS4CcsqCsp"],200);
+    }
+
+    public function loginDeviceSuccess(Request $request)
+    {
+        $token = $request->token;
+        $userid = $request->userid;
+        $result = DB::table('device_login')->where('userid', '=', $userid)->where('login_token', '=', $token)->first();
+        //$affected = DB::table('device_login')->where('userid','=',$userid)->where('login_token','=',$token)->delete();
+        if ($result > 0) {
+            $data = ['data' => $result->bearer_token];
+            $affected = DB::table('device_login')->where('id', '=', $result->id)->delete();
+            return response()->json(['data' => $data], 200);
+        }
     }
 
     /**
