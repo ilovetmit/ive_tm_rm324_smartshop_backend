@@ -756,7 +756,7 @@ class ARShopController extends Controller
                 $productTransaction->shop_type = 3;
                 $productTransaction->save();
 
-                $product->quantity = $product->quantity - 1;
+                $product->quantity = $product->quantity - $product_data['has_shop_product']['quantity'];
                 $product->save();
             }
 
