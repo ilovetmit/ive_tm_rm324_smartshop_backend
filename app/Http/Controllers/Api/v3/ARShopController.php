@@ -435,22 +435,23 @@ class ARShopController extends Controller
         * }
     * }
 **/
-    public function getProductDiscount(Request $request, $productid)
+    public function getProductDiscount(Request $request)
     {
-        $discountid = $request->discountid;
+        $productid = $request->productid;
         $currenttime = Carbon::now()->timestamp;
 
-        if (!$discountid > 0) {
-            $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->get();
+        if (!$productid > 0) {
+            $result = DB::table('productdiscount')->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->get();
             return response()->json(["result" => $result], 200);
-        } else {
-            $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('discountid', '=', $discountid)->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->first();
+        } else{
+            $result = DB::table('productdiscount')->where('productid', '=', $productid)->where('starttime', '<', $currenttime)->where('endtime', '>', $currenttime)->first();
             return response()->json(["result" => $result], 200);
         }
     }
 
-    public function addProductDiscount(Request $request, $productid)
+    public function addProductDiscount(Request $request)
     {
+        $productid = $request->productid;
         $name = $request->name;
         $starttime = $request->starttime;
         $endtime = $request->endtime;
@@ -471,8 +472,9 @@ class ARShopController extends Controller
         }
     }
 
-    public function updateProductDiscount(Request $request, $productid)
+    public function updateProductDiscount(Request $request)
     {
+        $productid = $request->productid;
         $discountid = $request->discountid;
         $name = $request->name;
         $starttime = $request->starttime;
@@ -493,7 +495,7 @@ class ARShopController extends Controller
         }
     }
 
-    public function removeProductDiscount(Request $request, $productid)
+    public function removeProductDiscount(Request $request)
     {
         $discountid = $request->discountid;
         $affected = DB::table('productdiscount')->where('discountid', '=', $discountid)->delete();
