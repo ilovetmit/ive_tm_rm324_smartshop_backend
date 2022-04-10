@@ -579,7 +579,7 @@ class ARShopController extends Controller
             if ($result->count() > 1) {
                 return response()->json(["result" => $result], 200);
             } else {
-                return response()->json(["id" => $result[0]->id, "title" => $result[0]->title, "description" => $result[0]->description, "coupon" => $result[0]->coupon], 200);
+                return response()->json(["id" => $result[0]->id, "title" => $result[0]->title, "description" => $result[0]->description, "rate" => $result[0]->rate], 200);
             }
         } else {
             return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
@@ -590,11 +590,11 @@ class ARShopController extends Controller
     public function addCoupon(Request $request)
     {
         $title = $request->title;
-        $coupon = $request->coupon;
+        $rate = $request->rate;
         $description = $request->description;
 
         $affected = DB::table('coupon')->insert([
-            'coupon' => $coupon,
+            'rate' => $rate,
             'title' => $title,
             'description' => $description
         ]);
@@ -609,11 +609,11 @@ class ARShopController extends Controller
     {
         $id = $request->id;
         $title = $request->title;
-        $coupon = $request->coupon;
+        $rate = $request->rate;
         $description = $request->description;
 
         $affected = DB::table('coupon')->where('id', '=', $id)->update([
-            'coupon' => $coupon,
+            'rate' => $rate,
             'title' => $title,
             'description' => $description
         ]);
