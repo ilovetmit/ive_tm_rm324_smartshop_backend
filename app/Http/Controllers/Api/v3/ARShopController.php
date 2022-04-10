@@ -640,7 +640,7 @@ class ARShopController extends Controller
     {
         $user = User::find(Auth::guard('api')->user()->id);
         $userid = $user->id;
-        $result = DB::table('usercoupon')->where('userid', '=', $userid)->get();
+        $result = DB::table('usercoupon')->where('userid', '=', $userid)->where('used', '=', 0)->get();
         if ($result->count() > 0) {
             return response()->json(["result" => $result], 200);
         } else {
