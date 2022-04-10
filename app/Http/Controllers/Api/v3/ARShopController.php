@@ -577,11 +577,14 @@ class ARShopController extends Controller
             $result = DB::table('coupon')->get();
         }
         if ($result->count() > 0) {
-            if ($result->count() > 1) {
-                return response()->json(["result" => $result], 200);
-            } else {
-                return response()->json(["id" => $result[0]->id, "title" => $result[0]->title, "description" => $result[0]->description, "rate" => $result[0]->rate], 200);
-            }
+            return response()->json(["result" => $result], 200);
+            /**
+             * if ($result->count() > 1) {
+             * return response()->json(["result" => $result], 200);
+             * } else {
+             * return response()->json(["id" => $result[0]->id, "title" => $result[0]->title, "description" => $result[0]->description, "rate" => $result[0]->rate], 200);
+             * }
+             **/
         } else {
             return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
         }
