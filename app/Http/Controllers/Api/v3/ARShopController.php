@@ -648,7 +648,7 @@ class ARShopController extends Controller
             return response()->json(["result" => $result], 200);
         } else {
             //return response()->json(['code' => 400, 'type' => "error", 'message' => "General Error"], 400);
-            return response()->json(["result"], 200);
+            return response()->json(["result" => []], 200);
         }
 
     }
