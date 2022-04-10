@@ -104,7 +104,8 @@ class ARShopController extends Controller
     public function loginDevice(Request $request)
     {
         $user = User::find(Auth::guard('api')->user()->id);
-        $oatoken = $request->bearerToken();
+        //$oatoken = $request->bearerToken();
+        $oatoken = $user->createToken('Device')->accessToken;
         $token = bin2hex(random_bytes(20));
         $outputqr = $request->input('outputqr');
         if ($request->input('ecc') == "") {
@@ -639,7 +640,7 @@ class ARShopController extends Controller
     {
         $user = User::find(Auth::guard('api')->user()->id);
         $userid = $user->id;
-        $result = DB::table('usercoupon')->where('userid', '=', $userid)->get();
+        $result = DB::table('usercoupon')->where('userid', '=', $userid)->where('used', '=', 0)->get();
         if ($result->count() > 0) {
             return response()->json(["result" => $result], 200);
         } else {
@@ -755,7 +756,7 @@ class ARShopController extends Controller
                 $productTransaction->shop_type = 3;
                 $productTransaction->save();
 
-                $product->quantity = $product->quantity - 1;
+                $product->quantity = $product->quantity - $product_data['has_shop_product']['quantity'];
                 $product->save();
             }
 
