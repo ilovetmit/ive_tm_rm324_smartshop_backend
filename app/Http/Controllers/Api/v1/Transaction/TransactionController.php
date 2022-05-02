@@ -33,6 +33,12 @@ class TransactionController extends ApiController
                 return parent::sendError('Unexpected error occurs, please contact admin and see what happen.', 216);
             }
 
+
+            // TODO: VitCoin transfer not completed.
+            if ($request->get('to_account') == "VitCoin"){
+                return parent::sendError('You don\'t have enough VitCoin', 216);
+            }
+
             $user = User::find(Auth::guard('api')->user()->id);
             $user_bankAccount = $user->hasBankAccount;
 

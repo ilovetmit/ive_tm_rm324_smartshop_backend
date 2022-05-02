@@ -122,7 +122,8 @@ return [
     ],
     'shop_type' => [
         '1' => 'Vending',
-        '2' => 'WindowShop'
+        '2' => 'WindowShop',
+        '3' => 'AR Instant Checkout'
     ],
     'vitcoin_multiplier'=>0.5
 ];

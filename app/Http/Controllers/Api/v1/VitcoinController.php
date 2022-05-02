@@ -38,7 +38,6 @@ class VitcoinController extends ApiController
                 }
             }
         }
-
         return $result;
     }
 
